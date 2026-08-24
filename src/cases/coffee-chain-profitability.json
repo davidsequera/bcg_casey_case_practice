@@ -1,0 +1,417 @@
+{
+  "schemaVersion": 2,
+  "id": "coffee-chain-profitability",
+  "title": "Corvo Coffee: the vanishing profit",
+  "industry": "Consumer / Retail",
+  "difficulty": "medium",
+  "estimatedMinutes": 30,
+  "totalTimeSeconds": 1800,
+  "prompt": "Our client is Corvo Coffee, a coffee-shop chain operating company-owned stores in one country. Between 2021 and 2024 the chain grew from 350 to 400 stores, and management expected profit to grow with it. Instead, group profit has collapsed and the board is alarmed. The CEO has asked us one question: what happened to our profit, and what should we do about it?",
+  "exhibits": [
+    {
+      "id": "ex1",
+      "title": "Exhibit 1 — Average store P&L, 2021 vs 2024",
+      "type": "table",
+      "unitsNote": "$ thousands per store per year",
+      "source": "Client management accounts",
+      "table": {
+        "columns": [
+          "Line",
+          "2021",
+          "2024"
+        ],
+        "rows": [
+          [
+            "Revenue",
+            900,
+            840
+          ],
+          [
+            "Cost of goods sold",
+            270,
+            294
+          ],
+          [
+            "Store labour",
+            315,
+            336
+          ],
+          [
+            "Rent",
+            108,
+            126
+          ],
+          [
+            "Other operating costs",
+            63,
+            63
+          ],
+          [
+            "Store profit",
+            144,
+            21
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ex2",
+      "title": "Exhibit 2 — Store footprint and traffic",
+      "type": "table",
+      "unitsNote": "Chain level",
+      "source": "Client data",
+      "table": {
+        "columns": [
+          "Metric",
+          "2021",
+          "2024"
+        ],
+        "rows": [
+          [
+            "Stores at year end",
+            350,
+            400
+          ],
+          [
+            "Transactions per store per day",
+            600,
+            500
+          ],
+          [
+            "Average ticket ($)",
+            5.0,
+            5.6
+          ],
+          [
+            "Trading days per year",
+            300,
+            300
+          ]
+        ]
+      }
+    }
+  ],
+  "questions": [
+    {
+      "id": "q1",
+      "type": "structuring",
+      "timeLimitSeconds": 90,
+      "prompt": "Before we look at any data, what should we check with the client? Select the two most relevant.",
+      "responseFormat": "choice",
+      "selectCount": 2,
+      "options": [
+        "How many drinks does the average customer buy per visit?",
+        "What exactly does the board mean by profit — group profit, or margin per store?",
+        "Has the competitive landscape changed over this period?",
+        "What is the chain's brand awareness among under-25s?",
+        "How many roasting facilities does the chain operate?"
+      ],
+      "idealAnswer": {
+        "correctOptions": [
+          1,
+          2
+        ],
+        "optionRationale": [
+          "A drill-down you would reach for later, once you know whether the problem is traffic or basket.",
+          "Essential. Group profit and per-store margin tell different stories when the store count is moving.",
+          "Essential. Three years is long enough for the market to have changed under the client.",
+          "Brand awareness is a symptom at best, and it will not tell you where the profit went.",
+          "Supply-side structure is not where a chain loses four fifths of its profit in three years."
+        ],
+        "commonMistakes": [
+          "Diving into store-level detail before pinning down what the board is actually measuring",
+          "Ignoring the outside world in a problem that spans three years"
+        ]
+      },
+      "followUp": "On the metric: both have fallen, but the board cares most about absolute group profit.\n\nOn the estate: the pattern is broadly uniform. The 50 new stores perform in line with the rest, so this is not a bad-openings problem.\n\nOn competition: two low-price chains entered the market in 2022 and now operate roughly 200 stores between them.",
+      "scoringWeights": {
+        "structure": 0.4,
+        "accuracy": 0.4,
+        "communication": 0.2
+      }
+    },
+    {
+      "id": "q2",
+      "type": "structuring",
+      "timeLimitSeconds": 120,
+      "prompt": "How would you structure your approach to finding out why Corvo's profit has fallen? Select the four areas you would investigate.",
+      "responseFormat": "choice",
+      "selectCount": 4,
+      "options": [
+        "Revenue per store, split into transactions and average ticket",
+        "Cost per store, split into variable lines (COGS, hourly labour) and fixed lines (rent, other)",
+        "The number of stores, and how group profit moves with it",
+        "External change: the new entrants, category demand, input-cost and rent inflation",
+        "The chain's social-media engagement rate",
+        "Store-opening costs incurred before 2021",
+        "The CEO's compensation structure"
+      ],
+      "idealAnswer": {
+        "correctOptions": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "optionRationale": [
+          "The first fork in a retail profit tree: is the store selling less, or selling for less?",
+          "The second fork, and the one that tells you whether costs moved with volume or against it.",
+          "The bridge between per-store economics and the group number the board is watching.",
+          "The reason the internal numbers moved. Without it you can describe the fall but not explain it.",
+          "An engagement metric will not reconcile to a dollar of profit.",
+          "Sunk, and outside the window the board asked about.",
+          "Governance, not economics — it explains nothing about store profitability."
+        ],
+        "commonMistakes": [
+          "Reciting a generic profitability tree instead of tailoring it to a store-based chain",
+          "Forgetting the store count, so group profit and per-store profit get conflated",
+          "Jumping to cost cutting before sizing the revenue problem"
+        ]
+      },
+      "followUp": "That is the right frame. The arithmetic you will need is:\n\ngroup profit = store profit × number of stores\nrevenue per store = transactions per day × average ticket × trading days\n\nHere are both exhibits.",
+      "followUpExhibitIds": [
+        "ex1",
+        "ex2"
+      ],
+      "scoringWeights": {
+        "structure": 0.5,
+        "accuracy": 0.3,
+        "communication": 0.2
+      }
+    },
+    {
+      "id": "q3",
+      "type": "exhibit",
+      "timeLimitSeconds": 120,
+      "prompt": "Start by checking the two exhibits agree with each other. Using the footprint data only, what was revenue per store in 2024?",
+      "exhibitIds": [
+        "ex1",
+        "ex2"
+      ],
+      "responseFormat": "number",
+      "unit": "$K",
+      "tolerancePct": 2,
+      "answerFormatNote": "Enter in $ thousands per store per year, e.g. 900.",
+      "idealAnswer": {
+        "value": 840,
+        "workedSolution": "500 transactions per day × $5.60 average ticket × 300 trading days = $840,000 per store, or $840K.\nThat is exactly the revenue line in the P&L, so the two exhibits are consistent and you can use them together.",
+        "commonMistakes": [
+          "Using the 2021 ticket of $5.00 with the 2024 transaction count",
+          "Forgetting the 300 trading days and answering a daily or weekly figure"
+        ]
+      },
+      "followUp": "Exactly — and it ties to the P&L revenue line, so the two exhibits are consistent. Now let's take the revenue fall apart.",
+      "scoringWeights": {
+        "accuracy": 0.5,
+        "structure": 0.3,
+        "communication": 0.2
+      }
+    },
+    {
+      "id": "q4",
+      "type": "math",
+      "timeLimitSeconds": 90,
+      "prompt": "By what percentage did transactions per store per day fall between 2021 and 2024?",
+      "exhibitIds": [
+        "ex2"
+      ],
+      "responseFormat": "number",
+      "unit": "%",
+      "tolerancePct": 2,
+      "answerFormatNote": "Enter the percentage fall, e.g. 12.5.",
+      "idealAnswer": {
+        "value": 16.7,
+        "workedSolution": "(600 − 500) / 600 = 16.7%.",
+        "commonMistakes": [
+          "Dividing by the 2024 figure instead of the 2021 base, giving 20%",
+          "Answering the absolute fall of 100 transactions rather than the percentage"
+        ]
+      },
+      "followUp": "Traffic is down 16.7%, while the average ticket rose 12.0%, from $5.00 to $5.60. Net, revenue per store is down 6.7%.\n\nSo Corvo has been raising prices into a falling footfall — and the price rises have not covered the customers lost.",
+      "scoringWeights": {
+        "accuracy": 0.6,
+        "communication": 0.4
+      }
+    },
+    {
+      "id": "q5",
+      "type": "math",
+      "timeLimitSeconds": 210,
+      "prompt": "Using the store P&L and the footprint data, how much did chain-level store profit change between 2021 and 2024?",
+      "exhibitIds": [
+        "ex1",
+        "ex2"
+      ],
+      "responseFormat": "number",
+      "unit": "$M",
+      "tolerancePct": 2,
+      "answerFormatNote": "This is a fall. Enter its size in $ millions, without a minus sign.",
+      "idealAnswer": {
+        "value": 42,
+        "workedSolution": "2021: 350 stores × $144K = $50.4M.\n2024: 400 stores × $21K = $8.4M.\nChange: $8.4M − $50.4M = −$42.0M, a fall of $42M.",
+        "commonMistakes": [
+          "Multiplying both years by the same store count, which hides that expansion partly offset the decline",
+          "Answering the per-store fall of $123K and never getting to the group number",
+          "Losing a factor of 1,000 — the P&L is in $ thousands per store"
+        ]
+      },
+      "followUp": "A fall of $42M — group store profit went from $50.4M to $8.4M, down 83%.\n\nNote what that means: the store count grew 14.3% over the same period. Expansion was adding profit while per-store economics collapsed underneath it. Without the 50 new stores the group number would look worse still.",
+      "scoringWeights": {
+        "accuracy": 0.6,
+        "structure": 0.2,
+        "communication": 0.2
+      }
+    },
+    {
+      "id": "q6",
+      "type": "exhibit",
+      "timeLimitSeconds": 150,
+      "prompt": "Look again at the store P&L. Select the three statements it supports.",
+      "exhibitIds": [
+        "ex1"
+      ],
+      "responseFormat": "choice",
+      "selectCount": 3,
+      "options": [
+        "Store profit per store fell by more than 85%",
+        "Rent rose faster in percentage terms than any other cost line",
+        "Cost of goods sold rose as a share of revenue",
+        "Other operating costs rose roughly in line with inflation",
+        "Total cost per store fell as revenue fell"
+      ],
+      "idealAnswer": {
+        "correctOptions": [
+          0,
+          1,
+          2
+        ],
+        "optionRationale": [
+          "True: $144K to $21K is a fall of 85.4%.",
+          "True: rent +16.7%, against COGS +8.9% and store labour +6.7%.",
+          "True: 30.0% of revenue in 2021, 35.0% in 2024 — the squeeze is on the gross margin, not only the fixed lines.",
+          "False: other operating costs are flat at $63K in both years.",
+          "False, and this is the heart of it — total cost per store ROSE from $756K to $819K while revenue fell."
+        ],
+        "commonMistakes": [
+          "Reading the cost lines in dollars only and missing that COGS also rose as a share of revenue",
+          "Assuming costs must have fallen with volume; they did the opposite"
+        ]
+      },
+      "followUp": "That is the whole problem in one line: revenue per store fell $60K while cost per store rose $63K. Fixed lines did not flex with the lost traffic, and the gross margin gave way at the same time.\n\nNow let's size the prize on the revenue side.",
+      "scoringWeights": {
+        "accuracy": 0.5,
+        "structure": 0.2,
+        "communication": 0.3
+      }
+    },
+    {
+      "id": "q7",
+      "type": "math",
+      "timeLimitSeconds": 210,
+      "prompt": "Suppose Corvo recovered all 100 lost transactions per store per day, at the 2024 average ticket. Assume cost of goods sold stays at its 2024 share of revenue and every other cost line is unchanged. How much would that add to group profit each year?",
+      "exhibitIds": [
+        "ex1",
+        "ex2"
+      ],
+      "responseFormat": "number",
+      "unit": "$M",
+      "tolerancePct": 3,
+      "answerFormatNote": "Enter in $ millions per year, e.g. 12.5.",
+      "idealAnswer": {
+        "value": 43.7,
+        "workedSolution": "Extra revenue per store: 100 × $5.60 × 300 = $168K.\nCOGS runs at 294 / 840 = 35% of revenue, so the incremental COGS is 35% × $168K = $58.8K.\nEvery other line is unchanged, so incremental profit per store is $168K − $58.8K = $109.2K.\nAcross 400 stores: $109.2K × 400 = $43.7M a year.",
+        "commonMistakes": [
+          "Treating all costs as variable and applying the full 2024 cost ratio, which understates the prize badly",
+          "Treating none of the costs as variable, which overstates it by the COGS on the new volume",
+          "Applying the recovery to the 350 stores of 2021 rather than today's 400"
+        ]
+      },
+      "followUp": "About $43.7M a year — slightly more than the $42M the chain lost, because the recovered traffic now comes at the higher $5.60 ticket.\n\nThat is the size of the traffic prize, and it says the answer is a volume answer, not a cost answer. Cost work alone cannot get you there: total costs per store are $819K, and most of that is labour and rent you need in order to trade at all.",
+      "scoringWeights": {
+        "accuracy": 0.6,
+        "structure": 0.2,
+        "communication": 0.2
+      }
+    },
+    {
+      "id": "q8",
+      "type": "brainstorming",
+      "timeLimitSeconds": 150,
+      "prompt": "The CEO wants options. Select the four levers most worth putting in front of her.",
+      "responseFormat": "choice",
+      "selectCount": 4,
+      "options": [
+        "Win traffic back with a value tier priced against the new entrants",
+        "Renegotiate rents, and exit the weakest leases at their break clauses",
+        "Re-engineer the menu and supply contracts to pull COGS back toward 30% of revenue",
+        "Raise the average ticket further through attachments and larger formats",
+        "Accelerate store openings so that group profit grows again",
+        "Cut marketing spend to protect the margin",
+        "Sell the roasting operation to release cash"
+      ],
+      "idealAnswer": {
+        "correctOptions": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "optionRationale": [
+          "Goes directly at the 16.7% traffic loss, which is where the money is.",
+          "Rent rose 16.7% per store and does not flex with volume — the largest fixed-cost opportunity.",
+          "Five points of gross margin is roughly $42K per store, or $17M across the estate.",
+          "Ticket growth has worked so far; it is worth continuing, but it cannot carry the recovery alone.",
+          "Opening more stores at $21K of profit each adds almost nothing and consumes capital.",
+          "Cutting marketing into a traffic problem makes the traffic problem worse.",
+          "A financing move that does nothing about store economics."
+        ],
+        "commonMistakes": [
+          "Listing levers without weighting them against the numbers just calculated",
+          "Reaching for growth or disposals when per-store economics are the problem"
+        ]
+      },
+      "followUp": "Those group into three: recover volume, repair the gross margin, and take back the fixed-cost creep. The volume lever is the biggest, but it is also the one the competitors get a vote on.",
+      "scoringWeights": {
+        "creativity": 0.3,
+        "structure": 0.4,
+        "accuracy": 0.3
+      }
+    },
+    {
+      "id": "q9",
+      "type": "synthesis",
+      "timeLimitSeconds": 120,
+      "prompt": "The CEO steps into the lift with you. Give her your recommendation in six lines maximum.",
+      "responseFormat": "text",
+      "maxLines": 6,
+      "idealAnswer": {
+        "keyPoints": [
+          "Leads with the diagnosis: this is a traffic problem, not an expansion problem",
+          "Quantifies it — group store profit down $42M, driven by a 16.7% fall in transactions per store",
+          "Notes that price rises of 12% have not covered the lost customers, and that cost per store rose while revenue fell",
+          "Names the traffic prize at roughly $43.7M a year as the reason to lead with volume",
+          "Gives a second, smaller lever: five points of COGS and the rent creep",
+          "States the risk — the two low-price entrants will respond — and the immediate next step",
+          "Stays inside six lines and does not narrate the calculation"
+        ],
+        "commonMistakes": [
+          "Recommending cost cuts first when the arithmetic points at volume",
+          "Describing the fall without saying what to do about it",
+          "Ignoring that the entrants get a vote on any pricing move"
+        ]
+      },
+      "scoringWeights": {
+        "communication": 0.4,
+        "structure": 0.3,
+        "accuracy": 0.3
+      }
+    }
+  ],
+  "closing": "That is the end of the case. Your transcript is ready — copy it into an LLM to be graded on what you actually said, not on what you meant.",
+  "authoring": {
+    "model": "claude-opus-5",
+    "generatedAt": "2026-08-23",
+    "mathVerifiedWith": "code-execution (python)",
+    "verificationLog": "=== Internal consistency of the two exhibits ===\n2021 revenue per store from traffic: 600 x $5.0 x 300 = $900.0K\nPASS  2021 revenue ties to the P&L: derived 900.0000 vs declared 900.0000 (tol 0.01%)\n2024 revenue per store from traffic: 500 x $5.6 x 300 = $840.0K\nPASS  2024 revenue ties to the P&L: derived 840.0000 vs declared 840.0000 (tol 0.01%)\n2021 total costs per store: $756K\nPASS  2021 store profit ties to the P&L: derived 144.0000 vs declared 144.0000 (tol 0.01%)\n2024 total costs per store: $819K\nPASS  2024 store profit ties to the P&L: derived 21.0000 vs declared 21.0000 (tol 0.01%)\n\n=== Declared answers ===\nPASS  q3 2024 revenue per store ($K): derived 840.0000 vs declared 840.0000 (tol 2%)\nPASS  q4 fall in transactions per store (%): derived 16.6667 vs declared 16.7000 (tol 2%)\n2021 group store profit: $50.4M   2024: $8.4M\nPASS  q5 fall in group store profit ($M): derived 42.0000 vs declared 42.0000 (tol 2%)\nExtra revenue per store: $168.0K   COGS rate 2024: 35.0%\nExtra profit per store: $109.20K   across 400 stores: $43.68M\nPASS  q7 traffic-recovery prize ($M): derived 43.6800 vs declared 43.7000 (tol 2%)\n\n=== Figures quoted in follow-up text and in q6's options ===\nPASS  average ticket rise (%): derived 12.0000 vs declared 12.0000 (tol 2%)\nPASS  revenue per store fall (%): derived 6.6667 vs declared 6.7000 (tol 2%)\nPASS  store profit per store fall (%): derived 85.4167 vs declared 85.4000 (tol 2%)\nPASS  rent per store rise (%): derived 16.6667 vs declared 16.7000 (tol 2%)\nPASS  COGS per store rise (%): derived 8.8889 vs declared 8.9000 (tol 2%)\nPASS  store labour rise (%): derived 6.6667 vs declared 6.7000 (tol 2%)\nPASS  COGS share of revenue 2021 (%): derived 30.0000 vs declared 30.0000 (tol 2%)\nPASS  COGS share of revenue 2024 (%): derived 35.0000 vs declared 35.0000 (tol 2%)\nPASS  store count growth (%): derived 14.2857 vs declared 14.3000 (tol 2%)\nPASS  group profit fall (%): derived 83.3333 vs declared 83.3000 (tol 2%)\n\n=== q6 option checks (three true statements, two false) ===\nTRUE  store profit per store fell more than 85%: 85.4% -> True\nTRUE  rent rose faster than any other cost line: rent 16.7% vs COGS 8.9% vs labour 6.7% -> True\nTRUE  COGS rose as a share of revenue: 30.0% -> 35.0% -> True\nFALSE other operating costs are flat, not inflating: (63, 63) -> True\nFALSE total costs per store ROSE while revenue fell: $756K -> $819K -> True\n\n=== Sanity ===\nAll P&L lines positive: True\n2024 store profit margin: 2.5% (thin but positive)\nPrize of 43.7M vs the 42.0M lost: recovers 104% of the fall\n"
+  }
+}

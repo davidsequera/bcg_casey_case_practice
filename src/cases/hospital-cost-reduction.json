@@ -1,0 +1,355 @@
+{
+  "schemaVersion": 2,
+  "id": "hospital-cost-reduction",
+  "title": "St Brendan's: finding $30 million",
+  "industry": "Healthcare / Providers",
+  "difficulty": "easy",
+  "estimatedMinutes": 25,
+  "totalTimeSeconds": 1500,
+  "prompt": "Our client is St Brendan's, a 600-bed non-profit teaching hospital. Its reimbursement rates have been frozen for three years while costs have risen, and the hospital is now running at a deficit. The board has set a target of removing $30 million from an annual cost base of $500 million within two years. The CEO has asked us where that money is going to come from.",
+  "exhibits": [
+    {
+      "id": "ex1",
+      "title": "Exhibit 1 — Annual cost base by category",
+      "type": "table",
+      "unitsNote": "Total $500M",
+      "source": "Hospital finance office",
+      "table": {
+        "columns": [
+          "Category",
+          "Share of costs",
+          "$M"
+        ],
+        "rows": [
+          [
+            "Staff (clinical and support)",
+            "55%",
+            275
+          ],
+          [
+            "Medical supplies and drugs",
+            "20%",
+            100
+          ],
+          [
+            "Facilities and utilities",
+            "12%",
+            60
+          ],
+          [
+            "Administration",
+            "8%",
+            40
+          ],
+          [
+            "Other",
+            "5%",
+            25
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ex2",
+      "title": "Exhibit 2 — Length of stay against benchmark",
+      "type": "table",
+      "unitsNote": "Inpatient care",
+      "source": "National provider benchmarking dataset",
+      "table": {
+        "columns": [
+          "Metric",
+          "St Brendan's",
+          "Benchmark (top quartile)"
+        ],
+        "rows": [
+          [
+            "Average length of stay (days)",
+            5.0,
+            4.6
+          ],
+          [
+            "Annual admissions",
+            40000,
+            "—"
+          ],
+          [
+            "Variable cost per patient-day ($)",
+            400,
+            "—"
+          ]
+        ]
+      }
+    }
+  ],
+  "questions": [
+    {
+      "id": "q1",
+      "type": "structuring",
+      "timeLimitSeconds": 90,
+      "prompt": "Before you start looking for savings, what should you check with the board? Select the two most relevant.",
+      "responseFormat": "choice",
+      "selectCount": 2,
+      "options": [
+        "Does the $30M have to be a recurring annual reduction, or would one-off savings count?",
+        "Are there constraints we must respect — on clinical quality, on compulsory redundancies, on service closures?",
+        "How many years has the current CEO been in post?",
+        "What is the hospital's bed occupancy rate on a Tuesday?",
+        "How does the hospital rank in the national teaching-hospital league table?"
+      ],
+      "idealAnswer": {
+        "correctOptions": [
+          0,
+          1
+        ],
+        "optionRationale": [
+          "A one-off asset sale and a recurring $30M of run-rate are completely different programmes. Settle this first.",
+          "In a non-profit provider the constraints are usually what decide which levers are actually available.",
+          "Governance colour with no bearing on where $30M comes from.",
+          "Far too granular for a framing question, and a single day tells you nothing.",
+          "Reputation is not a cost lever."
+        ],
+        "commonMistakes": [
+          "Starting to list savings ideas before knowing whether one-off savings count",
+          "Ignoring constraints, then recommending redundancies the board has already ruled out"
+        ]
+      },
+      "followUp": "On the target: it must be a recurring reduction in the annual run rate, delivered inside two years.\n\nOn constraints: no reduction in clinical quality or in the services offered, and no compulsory clinical redundancies. Natural attrition and productivity gains are acceptable.",
+      "scoringWeights": {
+        "structure": 0.4,
+        "accuracy": 0.4,
+        "communication": 0.2
+      }
+    },
+    {
+      "id": "q2",
+      "type": "structuring",
+      "timeLimitSeconds": 120,
+      "prompt": "How would you go about finding $30 million of cost at St Brendan's? Select the four areas you would work through.",
+      "responseFormat": "choice",
+      "selectCount": 4,
+      "options": [
+        "Size the cost base by category, so effort goes where the money is",
+        "Benchmark clinical and operational performance against comparable hospitals to find the gaps",
+        "Separate the price of what the hospital buys from the volume of what it uses",
+        "Test each candidate saving against the constraints and against how quickly it can be delivered",
+        "Review the hospital's investment portfolio and endowment returns",
+        "Assess whether the hospital should merge with a neighbouring provider",
+        "Model what reimbursement rates might do in five years' time"
+      ],
+      "idealAnswer": {
+        "correctOptions": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "optionRationale": [
+          "The obvious first move, and the one that stops you spending the case on a $25M line.",
+          "Benchmarks turn 'we should be more efficient' into a specific, sized gap.",
+          "The standard cost decomposition: you can pay less per unit, or use fewer units, and they are different programmes.",
+          "The board's constraints and the two-year deadline are what turn a long list into a plan.",
+          "Income, not cost, and not the question asked.",
+          "A strategic option far beyond a two-year cost programme.",
+          "Revenue forecasting, and outside the window."
+        ],
+        "commonMistakes": [
+          "Producing a generic cost tree with no way to prioritise between branches",
+          "Skipping feasibility, which is where hospital cost programmes actually fail"
+        ]
+      },
+      "followUp": "Good. Here is the cost base and the one benchmark the finance office has already pulled.",
+      "followUpExhibitIds": [
+        "ex1",
+        "ex2"
+      ],
+      "scoringWeights": {
+        "structure": 0.5,
+        "accuracy": 0.3,
+        "communication": 0.2
+      }
+    },
+    {
+      "id": "q3",
+      "type": "math",
+      "timeLimitSeconds": 60,
+      "prompt": "First, put the target in context. What percentage of the annual cost base is the board asking you to remove?",
+      "exhibitIds": [
+        "ex1"
+      ],
+      "responseFormat": "number",
+      "unit": "%",
+      "tolerancePct": 2,
+      "answerFormatNote": "Enter the percentage, e.g. 4.5.",
+      "idealAnswer": {
+        "value": 6,
+        "workedSolution": "$30M / $500M = 6%.",
+        "commonMistakes": [
+          "Computing the target against a single cost line rather than the total base"
+        ]
+      },
+      "followUp": "6% of the run rate in two years. Demanding, but it is the sort of number a provider programme can reach — provided it comes from several places rather than one.\n\nNote what the cost mix says about where to look: staff, facilities and administration together are 75% of the base. Let's start with the benchmark the finance office found.",
+      "scoringWeights": {
+        "accuracy": 0.6,
+        "communication": 0.4
+      }
+    },
+    {
+      "id": "q4",
+      "type": "math",
+      "timeLimitSeconds": 180,
+      "prompt": "Suppose St Brendan's closes its length-of-stay gap to the benchmark, with admissions unchanged. How much would that save annually?",
+      "exhibitIds": [
+        "ex2"
+      ],
+      "responseFormat": "number",
+      "unit": "$M",
+      "tolerancePct": 2,
+      "answerFormatNote": "Enter in $ millions per year, e.g. 4.5.",
+      "idealAnswer": {
+        "value": 6.4,
+        "workedSolution": "Patient-days today: 40,000 admissions × 5.0 days = 200,000.\nAt the benchmark: 40,000 × 4.6 = 184,000.\nDays removed: 16,000.\nSaving: 16,000 × $400 variable cost per patient-day = $6.4M a year.",
+        "commonMistakes": [
+          "Applying the $400 to all 200,000 patient-days instead of to the 16,000 removed",
+          "Using the total cost per patient-day rather than the variable cost — beds you empty do not save you the fixed cost of the ward",
+          "Assuming admissions fall as well; the question holds them constant"
+        ]
+      },
+      "followUp": "$6.4M — about 21% of the target from a single operational lever, and one that respects every constraint the board set.\n\nThe next largest opportunity is on the buying side.",
+      "scoringWeights": {
+        "accuracy": 0.6,
+        "structure": 0.2,
+        "communication": 0.2
+      }
+    },
+    {
+      "id": "q5",
+      "type": "math",
+      "timeLimitSeconds": 90,
+      "prompt": "Procurement believes it can take 8% out of medical supplies and drugs by renegotiating contracts and standardising the formulary. How much would that contribute?",
+      "exhibitIds": [
+        "ex1"
+      ],
+      "responseFormat": "number",
+      "unit": "$M",
+      "tolerancePct": 2,
+      "answerFormatNote": "Enter in $ millions per year, e.g. 4.5.",
+      "idealAnswer": {
+        "value": 8,
+        "workedSolution": "Medical supplies and drugs are 20% of $500M = $100M.\n8% of $100M = $8M a year.",
+        "commonMistakes": [
+          "Taking 8% of the whole $500M cost base",
+          "Taking 8% of the $30M target"
+        ]
+      },
+      "followUp": "$8M — about 27% of the target, and a price lever rather than a volume one, so it is independent of the length-of-stay work.",
+      "scoringWeights": {
+        "accuracy": 0.6,
+        "communication": 0.4
+      }
+    },
+    {
+      "id": "q6",
+      "type": "math",
+      "timeLimitSeconds": 60,
+      "prompt": "With both of those delivered, how much of the $30M target is still outstanding?",
+      "responseFormat": "number",
+      "unit": "$M",
+      "tolerancePct": 2,
+      "answerFormatNote": "Enter in $ millions, e.g. 4.5.",
+      "idealAnswer": {
+        "value": 15.6,
+        "workedSolution": "$30M − $6.4M − $8M = $15.6M still to find.",
+        "commonMistakes": [
+          "Double-counting the two levers, which touch different cost lines and are genuinely additive here",
+          "Reporting the shortfall as a percentage when the question asks for dollars"
+        ]
+      },
+      "followUp": "$15.6M outstanding — just over half the target. The two easiest levers get you 48% of the way, which is the usual shape of these programmes: the first half is arithmetic, the second half is management.",
+      "scoringWeights": {
+        "accuracy": 0.6,
+        "communication": 0.4
+      }
+    },
+    {
+      "id": "q7",
+      "type": "brainstorming",
+      "timeLimitSeconds": 150,
+      "prompt": "Where should the remaining $15.6M realistically come from? Select the three strongest sources.",
+      "exhibitIds": [
+        "ex1"
+      ],
+      "responseFormat": "choice",
+      "selectCount": 3,
+      "options": [
+        "Staff productivity: rostering, agency and overtime reduction, and natural attrition against the $275M staff line",
+        "Administration: consolidating back-office functions and shared services against the $40M line",
+        "Facilities and utilities: energy efficiency, estate rationalisation and renegotiated service contracts against the $60M line",
+        "Closing the emergency department overnight",
+        "Reducing the nursing establishment on every ward by 10%",
+        "Cutting the 'other' line, at $25M, by 62%"
+      ],
+      "idealAnswer": {
+        "correctOptions": [
+          0,
+          1,
+          2
+        ],
+        "optionRationale": [
+          "At $275M it is the only line where a modest percentage — about 5.7% — closes the whole remaining gap, and agency and overtime can move without compulsory redundancies.",
+          "Real, though bounded: $40M means even an aggressive programme contributes single-digit millions.",
+          "Real and quick: $60M of facilities and utilities is where energy and contract work lands, and none of it touches clinical quality.",
+          "Breaches the constraint on service closures, and shifts cost onto neighbouring providers rather than removing it.",
+          "A blunt clinical cut that breaches the quality constraint — and the length-of-stay work depends on wards being properly staffed.",
+          "A 62% cut to a line nobody has decomposed is a target, not a plan."
+        ],
+        "commonMistakes": [
+          "Going after administration first because it feels safe, when $40M cannot carry a $15.6M gap on its own",
+          "Proposing clinical cuts that the board has explicitly ruled out",
+          "Naming lines without sizing what percentage each would have to give up"
+        ]
+      },
+      "followUp": "That is the right shape: the remaining gap has to be spread across the three largest non-clinical-quality levers, with staff productivity carrying most of it at roughly 5.7% of the staff line.\n\nNote the sequencing risk — the length-of-stay saving needs wards staffed well enough to discharge patients promptly, so the staff lever and the length-of-stay lever pull against each other if handled carelessly.",
+      "scoringWeights": {
+        "creativity": 0.3,
+        "structure": 0.4,
+        "accuracy": 0.3
+      }
+    },
+    {
+      "id": "q8",
+      "type": "synthesis",
+      "timeLimitSeconds": 120,
+      "prompt": "The board meets in five minutes. Give the CEO your recommendation in six lines maximum.",
+      "responseFormat": "text",
+      "maxLines": 6,
+      "idealAnswer": {
+        "keyPoints": [
+          "Leads with the answer: the $30M is reachable, and here is where it comes from",
+          "Names the two sized levers first — $6.4M from length of stay, $8M from supplies — as 48% of the target",
+          "States the remaining $15.6M and where it comes from: staff productivity, facilities, administration",
+          "Quantifies the ask on the largest line: roughly 5.7% of the $275M staff base, via attrition, agency and overtime rather than redundancies",
+          "Confirms it respects the board's constraints on quality, services and compulsory redundancy",
+          "Names the delivery risk and the next step — the two-year run-rate deadline, and the tension between ward staffing and length of stay",
+          "Stays inside six lines and does not narrate the calculation"
+        ],
+        "commonMistakes": [
+          "Presenting a list of ideas with no numbers attached",
+          "Claiming the target is met without accounting for the $15.6M that has no named owner yet",
+          "Forgetting that the board asked for a recurring reduction, not a one-off"
+        ]
+      },
+      "scoringWeights": {
+        "communication": 0.4,
+        "structure": 0.3,
+        "accuracy": 0.3
+      }
+    }
+  ],
+  "closing": "That is the end of the case. Your transcript is ready — copy it into an LLM to be graded on what you actually said, not on what you meant.",
+  "authoring": {
+    "model": "claude-opus-5",
+    "generatedAt": "2026-08-23",
+    "mathVerifiedWith": "code-execution (python)",
+    "verificationLog": "=== Exhibit 1 consistency ===\nShares sum to 100%; dollars sum to $500,000,000\n  Staff (clinical and support): 55% of $500M = $275M (stated $275M)\n  Medical supplies and drugs: 20% of $500M = $100M (stated $100M)\n  Facilities and utilities: 12% of $500M = $60M (stated $60M)\n  Administration: 8% of $500M = $40M (stated $40M)\n  Other: 5% of $500M = $25M (stated $25M)\n\n=== Declared answers ===\nPASS  q3 target as a share of the cost base (%): derived 6.0000 vs declared 6.0000 (tol 2%)\n  patient-days today: 200,000; at benchmark: 184,000\n  days removed: 16,000 x $400 = $6,400,000\nPASS  q4 length-of-stay saving ($M): derived 6.4000 vs declared 6.4000 (tol 2%)\nPASS  q5 supplies saving ($M): derived 8.0000 vs declared 8.0000 (tol 2%)\nPASS  q6 remaining gap to the target ($M): derived 15.6000 vs declared 15.6000 (tol 2%)\n\n=== Figures quoted in follow-up text and in options ===\nPASS  length-of-stay gap (%): derived 8.0000 vs declared 8.0000 (tol 2%)\nPASS  length-of-stay saving as a share of the target (%): derived 21.3333 vs declared 21.3000 (tol 2%)\nPASS  supplies saving as a share of the target (%): derived 26.6667 vs declared 26.7000 (tol 2%)\nPASS  both levers together as a share of the target (%): derived 48.0000 vs declared 48.0000 (tol 2%)\nPASS  staff cut needed to close the remaining gap alone (%): derived 5.6727 vs declared 5.7000 (tol 2%)\nPASS  admin cut needed to close the remaining gap alone (%): derived 39.0000 vs declared 39.0000 (tol 2%)\nPASS  facilities cut needed to close the remaining gap alone (%): derived 26.0000 vs declared 26.0000 (tol 2%)\nPASS  staff + admin + facilities as a share of the cost base (%): derived 75.0000 vs declared 75.0000 (tol 2%)\n\n=== Option checks ===\nTRUE  staff at $275M is the only line large enough to carry the remaining $15.6M at a modest percentage: 5.7%\nTRUE  admin alone would need a 39% cut -- implausible on its own\nFALSE 'other' at $25M would need a 62% cut to carry the remaining $15.6M -- not a credible single source\n\n=== Sanity ===\nTarget is 6% of the cost base -- demanding but not absurd\nBenchmark stay 4.6 days is below current 5.0 but clinically plausible\nTwo named levers deliver $14.4M of the $30M target\n"
+  }
+}

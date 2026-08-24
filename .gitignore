@@ -1,0 +1,7 @@
+node_modules
+dist
+.tmp
+
+# third-party source material, kept locally only
+NoteGPT_*.txt
+tsconfig.tsbuildinfo

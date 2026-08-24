@@ -1,0 +1,478 @@
+{
+  "schemaVersion": 2,
+  "id": "telco-network-jv",
+  "title": "Sadong and MinSol: sharing a 5G network",
+  "industry": "Telecommunications",
+  "difficulty": "hard",
+  "estimatedMinutes": 35,
+  "totalTimeSeconds": 2100,
+  "prompt": "Our clients are two of the biggest telco operators in South Korea. Last year, their main competitor announced the rollout of 5G across its entire network. Meanwhile, our clients assessed the feasibility of 5G deployment for their own systems and found that the return would not cover the investment cost. They have therefore started to discuss a joint investment, to save on the network infrastructure and operations costs of 5G. They have called us in to assess this collective effort.",
+  "exhibits": [
+    {
+      "id": "ex1",
+      "title": "Exhibit 1 — Projected subscribers and revenue per subscriber, next five years",
+      "type": "table",
+      "unitsNote": "Applies to BOTH scenarios",
+      "source": "Client planning data",
+      "table": {
+        "columns": [
+          "Operator",
+          "Subscribers (M)",
+          "Annual revenue per subscriber ($)"
+        ],
+        "rows": [
+          [
+            "Sadong",
+            15,
+            750
+          ],
+          [
+            "MinSol",
+            11,
+            700
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ex2",
+      "title": "Exhibit 2 — Standalone (no-JV) investment and annual operating costs",
+      "type": "table",
+      "unitsNote": "Each operator building its own 5G network",
+      "source": "Client planning data",
+      "table": {
+        "columns": [
+          "Operator",
+          "Initial investment ($B)",
+          "Annual fixed cost ($M)",
+          "Annual variable cost ($B)"
+        ],
+        "rows": [
+          [
+            "Sadong",
+            12.6,
+            670,
+            8.08
+          ],
+          [
+            "MinSol",
+            8.4,
+            450,
+            5.55
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ex3",
+      "title": "Exhibit 3 — Planned base stations by operator, standalone scenario",
+      "type": "chart",
+      "unitsNote": "Thousands of base stations",
+      "source": "Client network plans",
+      "chart": {
+        "kind": "bar",
+        "categories": [
+          "Sadong",
+          "MinSol"
+        ],
+        "series": [
+          {
+            "label": "Planned base stations",
+            "values": [
+              25.2,
+              16.8
+            ]
+          }
+        ],
+        "valueSuffix": "K"
+      }
+    },
+    {
+      "id": "ex4",
+      "title": "Exhibit 4 — Planned base stations, joint investment scenario",
+      "type": "text",
+      "source": "Client network plans",
+      "text": "Under the joint investment the two operators would install 28.0K base stations in total across the country. Their standalone plans overlap heavily in the same geographies, so a shared network covers the country with fewer sites."
+    },
+    {
+      "id": "ex5",
+      "title": "Exhibit 5 — Joint investment cost and data assumptions",
+      "type": "table",
+      "unitsNote": "1 petabyte = 1 million GB",
+      "source": "JV term sheet, draft",
+      "table": {
+        "columns": [
+          "Item",
+          "Value"
+        ],
+        "rows": [
+          [
+            "Total annual variable cost of the JV",
+            "$11.0B"
+          ],
+          [
+            "Initial investment cost of the JV",
+            "$16.8B"
+          ],
+          [
+            "Data carried for Sadong's customers",
+            "16.5 petabytes"
+          ],
+          [
+            "Data carried for MinSol's customers",
+            "11.0 petabytes"
+          ]
+        ]
+      }
+    }
+  ],
+  "questions": [
+    {
+      "id": "q1",
+      "type": "structuring",
+      "timeLimitSeconds": 90,
+      "prompt": "Before devising our approach, what should we check with the client first? Select the two most relevant data points.",
+      "responseFormat": "choice",
+      "selectCount": 2,
+      "options": [
+        "What are the latest subscriber growth rates for each operator?",
+        "Who are our clients and what are their shares of the market?",
+        "Do the clients have any specific financial or strategic objectives?",
+        "Do the clients operate in any countries other than South Korea?",
+        "How many different handset models does each operator sell?"
+      ],
+      "idealAnswer": {
+        "correctOptions": [
+          1,
+          2
+        ],
+        "optionRationale": [
+          "Growth rates matter for a market-sizing case; this one turns on the cost of a fixed infrastructure build.",
+          "You do not yet know who the clients are or how big they are. Get the basics before framing anything.",
+          "A must-have. Almost every joint-investment case has a profit hurdle or a budget constraint that decides the answer.",
+          "The prompt confines the question to South Korea, so where else they operate does not bear on it.",
+          "Handset mix is a retail question and has nothing to do with network infrastructure economics."
+        ],
+        "commonMistakes": [
+          "Asking for data you could not act on — growth rates and handset mix change nothing about a shared-infrastructure decision",
+          "Skipping the objective, which is what the whole case is later measured against"
+        ]
+      },
+      "followUp": "The clients are two large telco operators, Sadong and MinSol, with revenues of $20B and $15B and market shares of 33% and 25%. They sell fixed and mobile products and both have established 4G networks countrywide.\n\nOn objectives: each operator aims for at least $3B of additional profit compared with its own standalone rollout plan, measured at the end of the first five years.",
+      "scoringWeights": {
+        "structure": 0.4,
+        "accuracy": 0.4,
+        "communication": 0.2
+      }
+    },
+    {
+      "id": "q2",
+      "type": "structuring",
+      "timeLimitSeconds": 120,
+      "prompt": "Which areas of investigation would you focus on when structuring this case? Select the four most relevant.",
+      "responseFormat": "choice",
+      "selectCount": 4,
+      "options": [
+        "How the quality of service — speed and capacity — would change under a joint investment",
+        "How many subscribers each company has and how they are distributed geographically",
+        "What the companies' marketing budgets have been over the last five years",
+        "What synergies the joint investment could bring, in areas such as procurement, HR and distribution",
+        "Expected revenues, costs and profit outcomes under the standalone and joint scenarios",
+        "What risks this joint investment would carry",
+        "How many R&D employees each company currently has"
+      ],
+      "idealAnswer": {
+        "correctOptions": [
+          0,
+          3,
+          4,
+          5
+        ],
+        "optionRationale": [
+          "Worth checking: better quality would mean higher revenue potential, and you cannot assume it away.",
+          "You already know their revenues and that both operate countrywide, so this adds little.",
+          "Marketing spend is untouched by a back-end infrastructure partnership.",
+          "The core of the cost case — synergies are what make the joint build cheaper than two separate ones.",
+          "If you could pick only one, this is it. The rest of the case is this comparison.",
+          "Always include risks in an initial structure, particularly for a deal between competitors.",
+          "R&D headcount has no bearing on a network infrastructure build."
+        ],
+        "commonMistakes": [
+          "Loading the structure with data you have already been given",
+          "Omitting risks, which is where this case actually lands"
+        ]
+      },
+      "followUp": "On products: the investment is purely infrastructure. The equipment is the same quality as in the standalone scenario, so there is no difference in speed or capacity between the two scenarios — and therefore no difference in revenue.\n\nOn synergies: infrastructure operations have strong similarities to other network-related areas, procurement among them. Both parties already buy equipment from the same provider elsewhere in their businesses, in data centres and maintenance.\n\nOn capability: if the deal happens it will be the first network-sharing project in the country. Neither party has ever attempted a joint investment on this scale.",
+      "scoringWeights": {
+        "structure": 0.5,
+        "accuracy": 0.3,
+        "communication": 0.2
+      }
+    },
+    {
+      "id": "q3",
+      "type": "structuring",
+      "timeLimitSeconds": 120,
+      "prompt": "Which of the data points below are required to run a scenario analysis for both companies and compare their profit after five years under the individual and the joint investment scenarios? Select five.",
+      "responseFormat": "choice",
+      "selectCount": 5,
+      "options": [
+        "Initial cost of investment",
+        "Depreciation of existing network assets",
+        "Historical network upgrade costs",
+        "Annual fixed operating costs",
+        "Advertising and promotion budgets",
+        "Variable expenses per subscriber",
+        "Number of subscribers",
+        "Revenue per subscriber"
+      ],
+      "idealAnswer": {
+        "correctOptions": [
+          0,
+          3,
+          5,
+          6,
+          7
+        ],
+        "optionRationale": [
+          "The capex is the whole reason the standalone case fails; it has to be in the comparison.",
+          "Existing assets are unrelated to the new 5G build.",
+          "Historical costs are sunk and say nothing about this decision.",
+          "Half of the opex, and the half the shared build actually reduces.",
+          "A back-end partnership does not touch promotion spend.",
+          "The other half of the opex, and it scales with subscribers.",
+          "Needed to turn per-subscriber figures into totals, on both cost and revenue.",
+          "Needed to size the revenue line, which confirms revenue is identical in both scenarios."
+        ],
+        "commonMistakes": [
+          "Reaching for historical or accounting figures — depreciation, past upgrade costs — in a forward-looking incremental comparison",
+          "Taking only the four cost items and forgetting that you still have to quantify revenue to get to profit"
+        ]
+      },
+      "followUp": "That gives you the full calculation:\n\nsubscribers × revenue per subscriber = annual revenue\nannual fixed cost + annual variable cost = annual operating cost\nannual revenue − annual operating cost = annual profit\n(annual profit × 5) − initial investment = five-year net result\n\nHere are the projections for the standalone, no-JV scenario.",
+      "followUpExhibitIds": [
+        "ex1",
+        "ex2"
+      ],
+      "scoringWeights": {
+        "structure": 0.4,
+        "accuracy": 0.4,
+        "communication": 0.2
+      }
+    },
+    {
+      "id": "q4",
+      "type": "math",
+      "timeLimitSeconds": 240,
+      "prompt": "Exhibits 1 and 2 give the projected revenues and costs for the next five years if each company builds its own network — the standalone, no-JV scenario. Based on this information, what is Sadong's five-year profit in that scenario?",
+      "exhibitIds": [
+        "ex1",
+        "ex2"
+      ],
+      "responseFormat": "number",
+      "unit": "$M",
+      "tolerancePct": 2,
+      "answerFormatNote": "Sadong's five-year result is a loss. Enter the size of that loss in $ millions, without a minus sign.",
+      "idealAnswer": {
+        "value": 100,
+        "workedSolution": "Revenue: 15M subscribers × $750 = $11.25B a year.\nOperating cost: $670M fixed + $8.08B variable = $8.75B a year.\nAnnual profit: $11.25B − $8.75B = $2.5B.\nFive years: $2.5B × 5 = $12.5B.\nLess the initial investment: $12.5B − $12.6B = −$0.1B, a loss of $100M.",
+        "commonMistakes": [
+          "Forgetting to subtract the initial investment, and answering $12.5B",
+          "Subtracting the investment once per year instead of once in total",
+          "Mixing units — the fixed cost is in $M while the variable cost is in $B"
+        ]
+      },
+      "followUp": "At the outset we noted that a standalone 5G rollout is not particularly profitable, and that is exactly why the clients are considering a joint investment.\n\nOn the same arithmetic, MinSol's five-year standalone result is a profit of $100M. Neither rollout is worth doing on its own account.\n\nNow let's look at the JV, starting with fixed costs — the expenses that stay constant regardless of traffic or subscriber numbers: site rental and lease payments, network maintenance, salaries, insurance, property tax, depreciation, and certain utilities.",
+      "scoringWeights": {
+        "accuracy": 0.6,
+        "structure": 0.2,
+        "communication": 0.2
+      }
+    },
+    {
+      "id": "q5",
+      "type": "exhibit",
+      "timeLimitSeconds": 180,
+      "prompt": "For this project the key driver of fixed costs is the number of base stations. Given the planned station counts in the two scenarios, what is the total annual fixed cost of the JV?",
+      "exhibitIds": [
+        "ex3",
+        "ex4"
+      ],
+      "responseFormat": "number",
+      "unit": "$M",
+      "tolerancePct": 2,
+      "answerFormatNote": "Enter in $ millions, to the nearest million.",
+      "idealAnswer": {
+        "value": 746.7,
+        "workedSolution": "Standalone stations: 25.2K + 16.8K = 42.0K.\nJoint stations: 28.0K.\nThe joint network needs 28.0 / 42.0 = 2/3 of the stations — a reduction of one third.\nCombined standalone annual fixed cost: $670M + $450M = $1.12B.\nJV annual fixed cost: $1.12B × 2/3 = $746.7M.",
+        "commonMistakes": [
+          "Taking one third of the combined fixed cost instead of two thirds",
+          "Applying the station reduction to only one operator's fixed cost",
+          "Applying the reduction to variable costs too — they scale with traffic, not with sites"
+        ]
+      },
+      "followUp": "Right — a third fewer base stations, so two thirds of the combined fixed cost.\n\nOn how the JV divides its costs: the parties would split the annual fixed cost and the one-off investment cost equally, while the variable cost would be split according to the amount of data each party's customers carry.",
+      "scoringWeights": {
+        "accuracy": 0.5,
+        "structure": 0.3,
+        "communication": 0.2
+      }
+    },
+    {
+      "id": "q6",
+      "type": "math",
+      "timeLimitSeconds": 240,
+      "prompt": "Considering the following information on cost and data, what is Sadong's total five-year cost in the JV scenario?",
+      "exhibitIds": [
+        "ex5"
+      ],
+      "responseFormat": "number",
+      "unit": "$B",
+      "tolerancePct": 2,
+      "answerFormatNote": "Enter the cost rounded to the nearest billion. For instance, if the answer is $20.3B, type 20.",
+      "idealAnswer": {
+        "value": 43,
+        "workedSolution": "Investment, split equally: $16.8B / 2 = $8.4B.\nFixed cost, split equally: $746.7M / 2 = $373.3M a year, so $1.867B over five years.\nVariable cost, split by data: 16.5 / (16.5 + 11.0) = 60% for Sadong.\n60% × $11B = $6.6B a year, so $33B over five years.\nTotal: $8.4B + $1.867B + $33B = $43.27B, which rounds to $43B.",
+        "commonMistakes": [
+          "Splitting the variable cost equally as well — it follows the data, 60/40",
+          "Multiplying the investment cost by five; it is a one-off",
+          "Forgetting to halve the JV fixed cost before multiplying by five"
+        ]
+      },
+      "followUp": "On the same basis, MinSol's total five-year cost in the JV is $32B. The gap between them is the data split: 16.5 of the 27.5 petabytes is Sadong's, so the variable cost divides 60/40.",
+      "scoringWeights": {
+        "accuracy": 0.6,
+        "structure": 0.2,
+        "communication": 0.2
+      }
+    },
+    {
+      "id": "q7",
+      "type": "math",
+      "timeLimitSeconds": 180,
+      "prompt": "Now let's get to profits for the five-year period. Note that while the costs differ between scenarios, the revenue assumptions are the same. What is Sadong's total five-year profit in the JV scenario?",
+      "exhibitIds": [
+        "ex1"
+      ],
+      "responseFormat": "number",
+      "unit": "$M",
+      "tolerancePct": 2,
+      "answerFormatNote": "Enter in $ millions, rounded to the nearest million.",
+      "idealAnswer": {
+        "value": 12983,
+        "workedSolution": "Revenue is unchanged: 15M × $750 = $11.25B a year, so $56.25B over five years.\nFive-year cost in the JV: $43.267B.\nFive-year profit: $56.25B − $43.267B = $12.983B, or $12,983M.",
+        "commonMistakes": [
+          "Using the rounded $43B cost and then quoting the result to the nearest million",
+          "Reaching for a JV revenue figure — the exhibit says revenue is identical in both scenarios",
+          "Subtracting the capex a second time; it is already inside the five-year cost"
+        ]
+      },
+      "followUp": "MinSol's five-year profit in the JV, on the same basis, is $6,233M.",
+      "scoringWeights": {
+        "accuracy": 0.6,
+        "structure": 0.2,
+        "communication": 0.2
+      }
+    },
+    {
+      "id": "q8",
+      "type": "math",
+      "timeLimitSeconds": 120,
+      "prompt": "We now have profits for each player under both scenarios. Calculate the total gain to Sadong from forming the JV, so that we can evaluate it against the objective of at least $3B of additional profit for each player.",
+      "responseFormat": "number",
+      "unit": "$M",
+      "tolerancePct": 2,
+      "answerFormatNote": "Enter in $ millions, rounded to the nearest million.",
+      "idealAnswer": {
+        "value": 13083,
+        "workedSolution": "Sadong's five-year profit in the JV: $12,983M.\nSadong's five-year standalone result: a loss of $100M.\nGain: $12,983M − (−$100M) = $13,083M.",
+        "commonMistakes": [
+          "Subtracting $100M instead of adding it — the standalone result is negative, so avoiding it is part of the gain",
+          "Comparing against MinSol's result rather than against Sadong's own standalone plan",
+          "Testing the combined gain against $3B when the objective applies to each party separately"
+        ]
+      },
+      "followUp": "Both parties clear the $3B objective — but they do not clear it equally. MinSol's gain is $6,133M, so Sadong captures more than twice what MinSol does from the same deal.\n\nWith the financial case settled, we still need the non-financial factors and the risks before we can conclude.",
+      "scoringWeights": {
+        "accuracy": 0.6,
+        "structure": 0.2,
+        "communication": 0.2
+      }
+    },
+    {
+      "id": "q9",
+      "type": "brainstorming",
+      "timeLimitSeconds": 120,
+      "prompt": "What potential risks do you think are relevant for this JV? Select the three most relevant.",
+      "responseFormat": "choice",
+      "selectCount": 3,
+      "options": [
+        "Brand reputation risk — potential damage to either brand's image",
+        "Dependency risk — the joint investment reduces independence and creates reliance between the parties",
+        "Regulatory risk — competition or legal authorities intervening in the deal",
+        "Unbalanced gains — one company captures significantly more economic benefit than the other",
+        "Smartphone sales risk — a decline in handset sales hurting revenue"
+      ],
+      "idealAnswer": {
+        "correctOptions": [
+          1,
+          2,
+          3
+        ],
+        "optionRationale": [
+          "The partnership sits on the back end. Customers would not know the two companies were connected.",
+          "Real: neither party could change the infrastructure without the other's agreement, which slows every decision.",
+          "Real, and the biggest external threat: two of the largest players cooperating invites an antitrust challenge.",
+          "Real, and the one your own numbers just proved: Sadong gains more than twice what MinSol does.",
+          "Handset sales have nothing to do with a shared network build."
+        ],
+        "commonMistakes": [
+          "Picking brand risk out of habit without asking whether customers would ever see the arrangement",
+          "Missing the unbalanced-gains risk even after calculating the two gains yourself"
+        ]
+      },
+      "followUp": "Regulatory risk: because this favours two of the key players in the market, the others may object. We would want to understand the antitrust regulations, and look for precedents in countries with similar law.\n\nUnbalanced gains: Sadong is expected to make more than twice MinSol's profit over the first five years, so the parties should agree a compensation mechanism, or a different split of the capex.\n\nDependency risk: despite the cost saving, the joint investment creates significant interdependency. Changing any aspect of the infrastructure would depend on the other party's approval, and disagreement could delay implementation.",
+      "scoringWeights": {
+        "creativity": 0.3,
+        "accuracy": 0.4,
+        "structure": 0.3
+      }
+    },
+    {
+      "id": "q10",
+      "type": "synthesis",
+      "timeLimitSeconds": 180,
+      "prompt": "Now assume you came across Sadong's CEO in the hallway at the client site, and they ask you about your analysis and your recommendation on forming the JV. Please give your answer in seven to eight lines maximum.",
+      "responseFormat": "text",
+      "maxLines": 8,
+      "idealAnswer": {
+        "keyPoints": [
+          "Leads with the recommendation: go ahead with the joint investment",
+          "Gives the financial reason with numbers: roughly $13B of gain for Sadong and $6B for MinSol over five years, both far above the $3B objective",
+          "Contrasts it with the standalone plan, which is roughly break-even at best",
+          "Adds a non-financial reason: capability building and a durable supply-chain and cost advantage",
+          "Names the regulatory check as a condition, not an afterthought",
+          "Names the unbalanced gains and offers to restructure the split or agree a compensation mechanism",
+          "Stays inside seven or eight lines and does not narrate the calculation"
+        ],
+        "commonMistakes": [
+          "Walking the CEO through the arithmetic instead of leading with the answer",
+          "Presenting the deal as unconditionally good and omitting the regulatory and balance risks",
+          "Quoting the combined gain rather than each party's, which is how the objective was set"
+        ]
+      },
+      "scoringWeights": {
+        "communication": 0.4,
+        "structure": 0.3,
+        "accuracy": 0.3
+      }
+    }
+  ],
+  "closing": "That is the end of the case. Your transcript is ready — copy it into an LLM to be graded on what you actually said, not on what you meant.",
+  "authoring": {
+    "model": "claude-opus-5",
+    "generatedAt": "2026-08-23",
+    "mathVerifiedWith": "code-execution (python)",
+    "verificationLog": "=== Standalone scenario ===\nSadong annual revenue                                11,250,000,000.0000 $\nMinSol annual revenue                                7,700,000,000.0000 $\nSadong annual cost (fixed+variable)                  8,750,000,000.0000 $\nSadong annual profit                                 2,500,000,000.0000 $\nSadong 5-year profit after capex                      -100,000,000.0000 $\nMinSol annual cost (fixed+variable)                  6,000,000,000.0000 $\nMinSol annual profit                                 1,700,000,000.0000 $\nMinSol 5-year profit after capex                       100,000,000.0000 $\n\n=== JV fixed cost ===\nBase stations, standalone (both)                            42,000.0000 \nBase stations, JV                                           28,000.0000 \nJV stations as share of standalone                               0.6667 \nCombined standalone annual fixed cost                1,120,000,000.0000 $\nJV total annual fixed cost                             746,666,666.6667 $\n\n=== JV cost split ===\nSadong data share                                                0.6000 \nSadong capex share                                   8,400,000,000.0000 $\nSadong 5-year fixed share                            1,866,666,666.6667 $\nSadong 5-year variable share                         33,000,000,000.0000 $\nSadong 5-year total cost in JV                       43,266,666,666.6667 $\nSadong 5-year profit in JV                           12,983,333,333.3333 $\nSadong gain from the JV                              13,083,333,333.3333 $\nMinSol data share                                                0.4000 \nMinSol capex share                                   8,400,000,000.0000 $\nMinSol 5-year fixed share                            1,866,666,666.6667 $\nMinSol 5-year variable share                         22,000,000,000.0000 $\nMinSol 5-year total cost in JV                       32,266,666,666.6667 $\nMinSol 5-year profit in JV                           6,233,333,333.3333 $\nMinSol gain from the JV                              6,133,333,333.3333 $\n\n=== Assertions against the values declared in the JSON ===\nPASS  q4 Sadong standalone loss ($M): derived 100.0000 vs declared 100.0000 (tol 2%)\nPASS  q5 JV annual fixed cost ($M): derived 746.6667 vs declared 746.7000 (tol 2%)\nPASS  q6 Sadong 5-year JV cost ($B): derived 43.2667 vs declared 43.0000 (tol 2%)\nPASS  q7 Sadong 5-year JV profit ($M): derived 12,983.3333 vs declared 12,983.0000 (tol 2%)\nPASS  q8 Sadong gain ($M): derived 13,083.3333 vs declared 13,083.0000 (tol 2%)\n\n=== Figures quoted inside follow-up text ===\nPASS  MinSol standalone 5-year profit ($M): derived 100.0000 vs declared 100.0000 (tol 2%)\nPASS  MinSol 5-year JV cost ($B, rounded): derived 32.2667 vs declared 32.0000 (tol 2%)\nPASS  MinSol 5-year JV profit ($M): derived 6,233.3333 vs declared 6,233.0000 (tol 2%)\nPASS  MinSol gain ($M): derived 6,133.3333 vs declared 6,133.0000 (tol 2%)\nPASS  Station reduction (%): derived 33.3333 vs declared 33.3000 (tol 2%)\nPASS  Sadong annual revenue ($B): derived 11.2500 vs declared 11.2500 (tol 2%)\nPASS  MinSol annual revenue ($B): derived 7.7000 vs declared 7.7000 (tol 2%)\n\n=== Sanity ===\nMarket shares 33% + 25% = 58% <= 100%: True\nBoth parties clear the $3B objective: 6.133B minimum vs 3B target -> True\nGains are unbalanced (Sadong / MinSol): 2.13x\n"
+  }
+}
