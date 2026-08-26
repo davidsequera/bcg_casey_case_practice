@@ -6,20 +6,23 @@ import { AnswerDock } from '../src/components/AnswerDock'
 import { TranscriptView } from '../src/components/TranscriptView'
 import { buildMessages } from '../src/lib/chat'
 import { formatStamp } from '../src/lib/timer'
-import telco from '../src/cases/telco-network-jv.json'
+import cloud from '../src/cases/media-cloud-migration.json'
 import type { Case, Session } from '../src/types/case'
 import { check, finish, section, text } from './harness'
 
-const c = telco as unknown as Case
+const c = cloud as unknown as Case
 const noop = () => {}
 
 section('App shell renders the library')
 const appHtml = renderToStaticMarkup(<App />)
 const app = text(appHtml)
 check('mounts without throwing', app.length > 0)
-check('lists all four bundled cases',
-  app.includes('Sadong and MinSol') && app.includes('Corvo Coffee') &&
-    app.includes('Meridian Air') && app.includes('St Brendan'))
+check('lists all eleven bundled cases',
+  ['Corvo Coffee', 'Kestrel Pumps', 'Aurora Studios', 'Harbrook Bank', 'Grellin Power',
+    'Bramfield Capital', 'St Brendan', 'Solvenn Mutual', 'Pathways', 'Meridian Air',
+    'Hollis & Vane'].every((t) => app.includes(t)))
+check('shows the functional practice on the cards',
+  app.includes('Tech & Digital Advantage') && app.includes('Social Impact'))
 check('shows the case clock rather than a per-question total', app.includes('35:00 on the clock'))
 check('offers the upload panel', app.includes('Validate and add'))
 check('explains the structure of the assessment before the cases',
@@ -42,7 +45,7 @@ check('states the single case clock', intro.includes('35:00 for the whole case')
 check('counts the question formats', intro.includes('multiple select') && intro.includes('numeric entry'))
 check('warns that the answer key is recorded', intro.includes('flagged in your transcript'))
 check('does NOT leak the case prompt before the candidate begins',
-  !intro.includes('South Korea'))
+  !intro.includes('Ashvale'))
 
 section('The chat replays the conversation without leaking the key')
 const session: Session = {
@@ -61,16 +64,16 @@ const chat = text(renderToStaticMarkup(
   <MessageList caseData={c} messages={buildMessages(c, session)} />,
 ))
 check('opens with the interviewer', chat.includes('8 questions in total') || chat.includes('10 questions in total'))
-check('shows the case prompt', chat.includes('South Korea'))
+check('shows the case prompt', chat.includes('Aurora Studios'))
 check('numbers each question', chat.includes('(Question 1 of 10)') && chat.includes('(Question 5 of 10)'))
-check('shows the candidate answers back', chat.includes('Who are our clients'))
+check('shows the candidate answers back', chat.includes('What does the platform run on today'))
 // stamps render in the viewer's local time, so derive the expected value
 check('stamps the candidate messages',
   chat.includes(formatStamp('2026-08-23T10:10:00.000Z')))
-check('releases the follow-up information', chat.includes('market shares of 33% and 25%'))
+check('releases the follow-up information', chat.includes('saves at least $150M'))
 check('renders the exhibits that were handed over',
-  chat.includes('Subscribers (M)') && chat.includes('Annual fixed cost ($M)'))
-check('does NOT show the answer key', !chat.includes('Growth rates matter for a market-sizing case'))
+  chat.includes('Annual fixed cost ($M)') && chat.includes('Installed capacity (K server units)'))
+check('does NOT show the answer key', !chat.includes('Subscriber growth would matter'))
 check('does NOT show questions the candidate has not reached',
   !chat.includes('(Question 6 of 10)'))
 
@@ -85,9 +88,9 @@ check('shows the pacing budget', choiceDock.includes('of suggested time left'))
 const numberDock = text(renderToStaticMarkup(
   <AnswerDock question={c.questions[3]} softElapsed={10} disabled={false} onSend={noop} />,
 ))
-check('shows the rounding instruction', numberDock.includes('without a minus sign'))
+check('shows the rounding instruction', numberDock.includes('rounded to the nearest million'))
 check('offers optional working', numberDock.includes('show your working'))
-check('does NOT leak the expected value', !numberDock.includes('12.5B'))
+check('does NOT leak the expected value', !numberDock.includes('800'))
 
 const overDock = text(renderToStaticMarkup(
   <AnswerDock question={c.questions[0]} softElapsed={200} disabled={false} onSend={noop} />,
@@ -103,6 +106,6 @@ check('offers the copy button', tv.includes('Copy transcript for an LLM'))
 check('offers both downloads', tv.includes('Download .md') && tv.includes('Download session .json'))
 check('counts the questions never reached', tv.includes('6/10'))
 check('reports against the case clock', tv.includes('of the 35:00 case clock'))
-check('shows the transcript body', tv.includes('please grade') && tv.includes('South Korea'))
+check('shows the transcript body', tv.includes('please grade') && tv.includes('Aurora Studios'))
 
 finish()

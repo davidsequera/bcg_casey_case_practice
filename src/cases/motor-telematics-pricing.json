@@ -1,0 +1,408 @@
+{
+  "schemaVersion": 2,
+  "id": "motor-telematics-pricing",
+  "title": "Solvenn Mutual: pricing the safe drivers",
+  "industry": "Insurance",
+  "functionalPractice": "Marketing, Sales & Pricing",
+  "difficulty": "medium",
+  "estimatedMinutes": 35,
+  "totalTimeSeconds": 2100,
+  "prompt": "Our client is Solvenn Mutual, a motor insurer with two million policies. For decades it has charged broadly similar premiums to drivers with very different risk. New competitors now use telematics — a phone app that measures how people actually drive — to offer the safest drivers cheaper cover, and Solvenn is losing exactly those customers. Management is considering launching its own usage-based insurance product and has asked us whether it is worth doing.",
+  "exhibits": [
+    {
+      "id": "ex1",
+      "title": "Exhibit 1 — Solvenn’s motor book, annual figures",
+      "type": "table",
+      "unitsNote": "The loss ratio is claims as a share of premium; the expense ratio is costs as a share of premium",
+      "source": "Client underwriting report",
+      "table": {
+        "columns": [
+          "Item",
+          "Value"
+        ],
+        "rows": [
+          [
+            "Policies",
+            "2.0M"
+          ],
+          [
+            "Average premium",
+            "$1,000"
+          ],
+          [
+            "Loss ratio",
+            "70%"
+          ],
+          [
+            "Expense ratio",
+            "25%"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ex2",
+      "title": "Exhibit 2 — Loss ratio by segment",
+      "type": "chart",
+      "unitsNote": "Low-risk: 800K policies. Standard: 1.2M policies. Both pay the same $1,000 average premium today",
+      "source": "Client actuarial analysis",
+      "chart": {
+        "kind": "bar",
+        "categories": [
+          "Low-risk drivers",
+          "Standard drivers"
+        ],
+        "series": [
+          {
+            "label": "Loss ratio",
+            "values": [
+              55,
+              80
+            ]
+          }
+        ],
+        "valueSuffix": "%"
+      }
+    },
+    {
+      "id": "ex3",
+      "title": "Exhibit 3 — The usage-based product, per low-risk policy",
+      "type": "table",
+      "unitsNote": "Versus today’s $1,000 premium, $550 claims and $250 expenses for the same drivers",
+      "source": "Product team proposal, benchmarked against telematics competitors",
+      "table": {
+        "columns": [
+          "Item",
+          "Value"
+        ],
+        "rows": [
+          [
+            "Premium (10% telematics discount)",
+            "$900"
+          ],
+          [
+            "Expected claims (feedback and fairer selection)",
+            "$450"
+          ],
+          [
+            "Expenses (including $20 device and data cost)",
+            "$270"
+          ],
+          [
+            "One-off cost to build and launch",
+            "$50M"
+          ]
+        ]
+      }
+    }
+  ],
+  "questions": [
+    {
+      "id": "q1",
+      "type": "structuring",
+      "timeLimitSeconds": 90,
+      "prompt": "Before we evaluate the product, what should we clarify with Solvenn first? Select the two most relevant.",
+      "responseFormat": "choice",
+      "selectCount": 2,
+      "options": [
+        "How profitable are the customers Solvenn is losing, compared with the ones staying?",
+        "What happens to the book if Solvenn does nothing — how many more will leave?",
+        "Which celebrity fronts the competitors’ advertising?",
+        "What company car does Solvenn’s CFO drive?",
+        "How many colours does the claims form come in?"
+      ],
+      "idealAnswer": {
+        "correctOptions": [
+          0,
+          1
+        ],
+        "optionRationale": [
+          "The heart of the case: if the leavers are the profitable ones, this is not ordinary churn but the book being cherry-picked.",
+          "The base case. “Launch UBI” is only evaluable against an honest picture of what doing nothing costs.",
+          "Advertising talent is not what moves this decision.",
+          "Not a data point.",
+          "Not a data point."
+        ],
+        "commonMistakes": [
+          "Treating all churn as equal instead of asking who exactly is leaving",
+          "Evaluating the product against today’s book rather than against the do-nothing trajectory"
+        ]
+      },
+      "followUp": "Both questions cut to it. The leavers are Solvenn’s safest drivers — and on the do-nothing path the actuaries expect 300K of the 800K low-risk policies to defect to telematics competitors within a year, with the remainder stable after that.\n\nHere is the book as it stands.",
+      "followUpExhibitIds": [
+        "ex1"
+      ],
+      "scoringWeights": {
+        "structure": 0.4,
+        "accuracy": 0.4,
+        "communication": 0.2
+      }
+    },
+    {
+      "id": "q2",
+      "type": "structuring",
+      "timeLimitSeconds": 120,
+      "prompt": "Which areas would you investigate to decide on the UBI launch? Select the four most relevant.",
+      "responseFormat": "choice",
+      "selectCount": 4,
+      "options": [
+        "Segment economics — which customers make money today and which lose it",
+        "The do-nothing scenario — what the defections cost over the horizon",
+        "The UBI product economics — discounted premium, claims effect, and running costs",
+        "Risks — regulation on driving data, and discounting customers who would have stayed",
+        "The insurer’s branch office refurbishment schedule",
+        "The claims department’s softball league results",
+        "Historic premium rates from the 1990s"
+      ],
+      "idealAnswer": {
+        "correctOptions": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "optionRationale": [
+          "Pricing cases live or die on segmentation; the averages in Exhibit 1 hide the story.",
+          "The baseline every option is compared against.",
+          "The proposal itself — a discount is only worth giving if the economics behind it hold.",
+          "Both named risks are real for telematics pricing and belong in the structure.",
+          "Facilities do not bear on a pricing decision.",
+          "Not relevant.",
+          "Ancient rates say nothing about today’s competitive dynamics."
+        ],
+        "commonMistakes": [
+          "Working from book-level averages when the case is about the difference between segments",
+          "Forgetting that a discount handed to loyal customers is a cost, not a save"
+        ]
+      },
+      "followUp": "Let’s size the book first, then split it.",
+      "scoringWeights": {
+        "structure": 0.5,
+        "accuracy": 0.3,
+        "communication": 0.2
+      }
+    },
+    {
+      "id": "q3",
+      "type": "exhibit",
+      "timeLimitSeconds": 150,
+      "prompt": "Exhibit 2 splits the book by segment. What does it tell you about Solvenn’s position? Select the two best readings.",
+      "exhibitIds": [
+        "ex2"
+      ],
+      "responseFormat": "choice",
+      "selectCount": 2,
+      "options": [
+        "Low-risk drivers are heavily subsidising the rest of the book at today’s flat pricing",
+        "The whole book is unprofitable and should be repriced upward",
+        "Competitors are cherry-picking precisely the segment that funds Solvenn’s profitability",
+        "Standard drivers should be cancelled immediately",
+        "The two segments perform identically"
+      ],
+      "idealAnswer": {
+        "correctOptions": [
+          0,
+          2
+        ],
+        "optionRationale": [
+          "Correct: same premium, 55% versus 80% loss ratio — the safe drivers pay for the risky ones.",
+          "Too strong: the book overall runs at a 95% combined ratio, which is profitable.",
+          "Correct, and it is why this churn is existential rather than cosmetic: each defection removes a subsidiser.",
+          "Repricing or re-selecting standard drivers is a later conversation; cancellation is neither feasible nor implied.",
+          "Contradicted by the exhibit."
+        ],
+        "commonMistakes": [
+          "Reading the exhibit as a claims problem rather than a cross-subsidy problem",
+          "Missing that adverse selection gets worse as each safe driver leaves"
+        ]
+      },
+      "followUp": "That is the trap of flat pricing: when someone else prices the risk properly, they take your best customers and leave you the rest. Let’s put numbers on the book, then on the segment.",
+      "scoringWeights": {
+        "accuracy": 0.5,
+        "structure": 0.3,
+        "communication": 0.2
+      }
+    },
+    {
+      "id": "q4",
+      "type": "math",
+      "timeLimitSeconds": 180,
+      "prompt": "Using Exhibit 1, what underwriting profit does the whole motor book make in a year?",
+      "exhibitIds": [
+        "ex1"
+      ],
+      "responseFormat": "number",
+      "unit": "$M",
+      "tolerancePct": 2,
+      "answerFormatNote": "Enter in $ millions, rounded to the nearest million.",
+      "idealAnswer": {
+        "value": 100,
+        "workedSolution": "Premium: 2.0M × $1,000 = $2.0B.\nClaims: 70% = $1,400M. Expenses: 25% = $500M.\nUnderwriting profit: $2,000M − $1,400M − $500M = $100M a year.",
+        "commonMistakes": [
+          "Applying the ratios to policy count instead of premium",
+          "Using only the loss ratio and forgetting expenses"
+        ]
+      },
+      "followUp": "A $100M profit on a 95% combined ratio — respectable, but thin. Now the segment doing the heavy lifting.",
+      "scoringWeights": {
+        "accuracy": 0.6,
+        "structure": 0.2,
+        "communication": 0.2
+      }
+    },
+    {
+      "id": "q5",
+      "type": "math",
+      "timeLimitSeconds": 180,
+      "prompt": "A low-risk policy today carries a $1,000 premium, $550 of expected claims and $250 of expenses. How much profit does each low-risk policy contribute a year — and what does that imply about the rest of the book?",
+      "responseFormat": "number",
+      "unit": "$ per policy",
+      "tolerancePct": 2,
+      "answerFormatNote": "Enter in dollars per policy, to the nearest dollar.",
+      "idealAnswer": {
+        "value": 200,
+        "workedSolution": "Per policy: $1,000 − $550 − $250 = $200.\nAcross 800K low-risk policies that is $160M — more than the whole book’s $100M profit. The standard segment loses money at today’s prices.",
+        "commonMistakes": [
+          "Stopping at the per-policy figure and missing that the segment total exceeds the book total",
+          "Using the book-average 70% loss ratio for this segment"
+        ]
+      },
+      "followUp": "Exactly: the 800K safest drivers contribute $160M while the book makes $100M — the other 1.2M policies lose $60M between them. Losing 300K of the subsidisers is a $60M-a-year hole.\n\nHere is the product meant to keep them.",
+      "followUpExhibitIds": [
+        "ex3"
+      ],
+      "scoringWeights": {
+        "accuracy": 0.6,
+        "structure": 0.2,
+        "communication": 0.2
+      }
+    },
+    {
+      "id": "q6",
+      "type": "math",
+      "timeLimitSeconds": 180,
+      "prompt": "Using Exhibit 3, how much profit does a low-risk policy contribute a year on the usage-based product?",
+      "exhibitIds": [
+        "ex3"
+      ],
+      "responseFormat": "number",
+      "unit": "$ per policy",
+      "tolerancePct": 2,
+      "answerFormatNote": "Enter in dollars per policy, to the nearest dollar.",
+      "idealAnswer": {
+        "value": 180,
+        "workedSolution": "Per policy: $900 − $450 − $270 = $180.",
+        "commonMistakes": [
+          "Keeping today’s $550 claims figure — telematics feedback and fairer selection lower it",
+          "Forgetting the $20 device and data cost inside the $270",
+          "Reading $180 < $200 as “worse” before asking how many policies each scenario keeps"
+        ]
+      },
+      "followUp": "$180 against $200 today — each retained customer is slightly less profitable, but the point of the product is how many customers there are to retain. Compare the two futures over five years.",
+      "scoringWeights": {
+        "accuracy": 0.6,
+        "structure": 0.2,
+        "communication": 0.2
+      }
+    },
+    {
+      "id": "q7",
+      "type": "math",
+      "timeLimitSeconds": 240,
+      "prompt": "Over five years, how much more profit does launching UBI earn from the low-risk segment than doing nothing? Recall the do-nothing path keeps only 500K of the 800K policies, and the launch costs $50M.",
+      "responseFormat": "number",
+      "unit": "$M",
+      "tolerancePct": 2,
+      "answerFormatNote": "Enter in $ millions, rounded to the nearest million.",
+      "idealAnswer": {
+        "value": 170,
+        "workedSolution": "Do nothing: 500K × $200 = $100M a year → $500M over five years.\nUBI: 800K × $180 = $144M a year → $720M, less the $50M build → $670M.\nGain: $670M − $500M = $170M.",
+        "commonMistakes": [
+          "Comparing against today’s 800K book instead of the do-nothing path — the 300K are leaving either way without the product",
+          "Forgetting the $50M one-off",
+          "Giving the UBI price to only the 300K would-be leavers; in practice the whole segment migrates to the cheaper product"
+        ]
+      },
+      "followUp": "A $170M gain over five years, even though every retained customer pays less — volume beats rate here. Note what drives it: $100 of the discount is funded by lower claims, so the margin give-up is small.\n\nBefore recommending, the board will want the risks of pricing on driving data.",
+      "scoringWeights": {
+        "accuracy": 0.6,
+        "structure": 0.2,
+        "communication": 0.2
+      }
+    },
+    {
+      "id": "q8",
+      "type": "brainstorming",
+      "timeLimitSeconds": 120,
+      "prompt": "What are the most relevant risks of the UBI launch? Select the three most relevant.",
+      "responseFormat": "choice",
+      "selectCount": 3,
+      "options": [
+        "Cannibalisation — discounting drivers who would have stayed at full price anyway",
+        "Data and regulatory risk — collecting driving behaviour raises privacy and fairness questions",
+        "Adverse selection worsening in the remaining standard book as flat pricing unravels",
+        "Weather risk — more storms meaning more claims",
+        "Office relocation risk for the product team"
+      ],
+      "idealAnswer": {
+        "correctOptions": [
+          0,
+          1,
+          2
+        ],
+        "optionRationale": [
+          "The classic pricing-case risk: the $170M assumes the discount buys retention; for some drivers it just buys down revenue.",
+          "Real: telematics pricing runs on personal data, and regulators increasingly ask who is penalised by it.",
+          "Real: once safe drivers pay $900, the $1,000 flat price holds only risky drivers — the standard book’s 80% loss ratio drifts worse.",
+          "Weather affects both scenarios equally; it is not a UBI risk.",
+          "Immaterial."
+        ],
+        "commonMistakes": [
+          "Counting every discounted customer as a save",
+          "Fixing the low-risk segment and ignoring what the repricing does to the rest of the book"
+        ]
+      },
+      "followUp": "Cannibalisation: gate the best discounts behind actual telematics scores rather than giving them on enrolment.\n\nData: collect the minimum, be transparent about what moves the price, and clear the design with the regulator before launch.\n\nThe standard book: this launch is step one of a repricing journey, not the end state — the 80% loss-ratio segment needs its own risk-based pricing next.",
+      "scoringWeights": {
+        "creativity": 0.3,
+        "accuracy": 0.4,
+        "structure": 0.3
+      }
+    },
+    {
+      "id": "q9",
+      "type": "synthesis",
+      "timeLimitSeconds": 180,
+      "prompt": "Solvenn’s CEO asks for your recommendation on the usage-based product. Please give your answer in seven to eight lines maximum.",
+      "responseFormat": "text",
+      "maxLines": 8,
+      "idealAnswer": {
+        "keyPoints": [
+          "Leads with the recommendation: launch the product",
+          "Frames the problem correctly: competitors are cherry-picking the 800K drivers who fund the book’s entire profit",
+          "Gives the numbers: $670M versus $500M over five years — a $170M gain after the $50M build",
+          "Explains the pricing logic: the 10% discount is mostly funded by a $100 claims reduction, so margin give-up is small",
+          "Names the conditions: discounts earned by telematics scores, regulator engaged on data use, and a plan to reprice the standard book next",
+          "Stays inside seven or eight lines"
+        ],
+        "commonMistakes": [
+          "Comparing UBI to today’s book instead of to the do-nothing decline",
+          "Presenting the launch as the whole answer when the standard book’s cross-subsidy still needs fixing",
+          "Reciting the arithmetic instead of leading with the recommendation"
+        ]
+      },
+      "scoringWeights": {
+        "communication": 0.4,
+        "structure": 0.3,
+        "accuracy": 0.3
+      }
+    }
+  ],
+  "closing": "That is the end of the case. Your transcript is ready — copy it into an LLM to be graded on what you actually said, not on what you meant.",
+  "authoring": {
+    "model": "claude-fable-5",
+    "generatedAt": "2026-08-25",
+    "mathVerifiedWith": "code-execution (node)",
+    "verificationLog": "=== The book today ===\nGross written premium                                           2.0000 $B\nUnderwriting profit at a 95% combined ratio                   100.0000 $M/yr\nLow-risk loss ratio                                            55.0000 %\nStandard-book average claims per policy                       800.0000 $\nStandard-book loss ratio                                       80.0000 %\nLow-risk profit per policy                                    200.0000 $\n\n=== Do nothing (lose 300K low-risk policies) ===\nRetained low-risk policies                                    500.0000 K\nAnnual low-risk profit                                        100.0000 $M/yr\nFive-year low-risk profit                                     500.0000 $M\n\n=== Launch usage-based insurance ===\nProfit per UBI policy (900 - 450 - 270)                       180.0000 $\nAnnual low-risk profit at 800K retained                       144.0000 $M/yr\nFive-year profit after $50M build                             670.0000 $M\nFive-year gain vs doing nothing                               170.0000 $M\n\n=== Assertions against the values declared in the JSON ===\nPASS  q4 underwriting profit ($M): derived 100.0000 vs declared 100.0000 (tol 2%)\nPASS  q5 low-risk profit per policy ($): derived 200.0000 vs declared 200.0000 (tol 2%)\nPASS  q6 UBI profit per policy ($): derived 180.0000 vs declared 180.0000 (tol 2%)\nPASS  q7 five-year gain of UBI ($M): derived 170.0000 vs declared 170.0000 (tol 2%)\n\n=== Figures quoted inside follow-up text and rationale ===\nPASS  claims total quoted in q4 solution ($M): derived 1,400.0000 vs declared 1,400.0000 (tol 2%)\nPASS  expenses quoted in q4 solution ($M): derived 500.0000 vs declared 500.0000 (tol 2%)\nPASS  low-risk loss ratio in exhibit chart (%): derived 55.0000 vs declared 55.0000 (tol 2%)\nPASS  standard loss ratio in exhibit chart (%): derived 80.0000 vs declared 80.0000 (tol 2%)\nPASS  do-nothing five-year profit quoted in q7 solution ($M): derived 500.0000 vs declared 500.0000 (tol 2%)\nPASS  UBI five-year profit quoted in q7 solution ($M): derived 670.0000 vs declared 670.0000 (tol 2%)\nPASS  low-risk segment profit quoted in q5 follow-up ($M): derived 160.0000 vs declared 160.0000 (tol 2%)\nPASS  standard-book loss quoted in q5 follow-up ($M): derived 60.0000 vs declared 60.0000 (tol 2%)\nPASS  defection hole quoted in q5 follow-up ($M/yr): derived 60.0000 vs declared 60.0000 (tol 2%)\n\n=== Sanity ===\nLow-risk 800K x $200 = $160M vs $100M total: rest of book loses money: true\nSegment claims reconcile to book claims (440 + 960 = 1400): true\nUBI still prices above claims + expenses: true\n"
+  }
+}

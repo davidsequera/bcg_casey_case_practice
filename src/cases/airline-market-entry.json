@@ -2,7 +2,8 @@
   "schemaVersion": 2,
   "id": "airline-market-entry",
   "title": "Meridian Air: the Northport route",
-  "industry": "Travel / Aviation",
+  "industry": "Travel, Cities & Infrastructure",
+  "functionalPractice": "Corporate Finance & Strategy",
   "difficulty": "hard",
   "estimatedMinutes": 35,
   "totalTimeSeconds": 2100,
@@ -77,7 +78,7 @@
           ],
           [
             "Annual route fixed costs ($M)",
-            3.0
+            3
           ]
         ]
       }

@@ -1,0 +1,377 @@
+{
+  "schemaVersion": 2,
+  "id": "department-store-turnaround",
+  "title": "Hollis & Vane: the turnaround plan",
+  "industry": "BCG Transform",
+  "functionalPractice": "People & Organization",
+  "difficulty": "hard",
+  "estimatedMinutes": 35,
+  "totalTimeSeconds": 2100,
+  "prompt": "Our client is Hollis & Vane, a department-store chain with 120 stores and $2.4B of revenue. After years of drift it is now losing money, its lenders are nervous, and a new CEO has been brought in with a mandate to transform the business. She has asked us to build the turnaround plan: how much the business must improve, where the money will come from, and how to carry an exhausted organisation through it.",
+  "exhibits": [
+    {
+      "id": "ex1",
+      "title": "Exhibit 1 — Hollis & Vane, annual figures",
+      "type": "table",
+      "unitsNote": "Store-level EBIT is before head-office costs",
+      "source": "Client management accounts",
+      "table": {
+        "columns": [
+          "Item",
+          "Value"
+        ],
+        "rows": [
+          [
+            "Stores",
+            120
+          ],
+          [
+            "Revenue",
+            "$2,400M"
+          ],
+          [
+            "Group EBIT",
+            "−$60M"
+          ],
+          [
+            "Cost of goods sold",
+            "60% of revenue"
+          ],
+          [
+            "Store payroll",
+            "$480M"
+          ],
+          [
+            "Head-office cost",
+            "$300M"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ex2",
+      "title": "Exhibit 2 — The tail of the store network",
+      "type": "text",
+      "source": "Client store P&Ls",
+      "text": "The weakest 20 stores lose an average of $2M a year each at store level, after every reasonable local fix has been tried. Their leases allow exit within the year. Closing a store transfers little of its revenue to other stores in the chain."
+    },
+    {
+      "id": "ex3",
+      "title": "Exhibit 3 — Head-office benchmark",
+      "type": "text",
+      "source": "Retail benchmark panel",
+      "text": "Comparable retailers run head offices at about 10% of revenue. Hollis & Vane spends $300M — a quarter more than the benchmark implies for its $2.4B of sales."
+    }
+  ],
+  "questions": [
+    {
+      "id": "q1",
+      "type": "structuring",
+      "timeLimitSeconds": 90,
+      "prompt": "Before we build the plan, what should we clarify with the CEO first? Select the two most relevant.",
+      "responseFormat": "choice",
+      "selectCount": 2,
+      "options": [
+        "What outcome do the lenders and board require, and by when?",
+        "How much cash runway does the company have while the plan takes effect?",
+        "Which department store the CEO shopped at as a child?",
+        "The colour palette of the spring window displays?",
+        "Whether the company sponsors a football team?"
+      ],
+      "idealAnswer": {
+        "correctOptions": [
+          0,
+          1
+        ],
+        "optionRationale": [
+          "A turnaround is measured against whatever keeps the lenders committed; the target must come from them, not from ambition.",
+          "The clock. A perfect three-year plan is worthless if the cash runs out in eighteen months.",
+          "Nostalgia is not a constraint.",
+          "Not decision-relevant.",
+          "A minor cost line at most; not what to ask with the first question."
+        ],
+        "commonMistakes": [
+          "Designing the plan before pinning down the number and the deadline it must hit",
+          "Ignoring liquidity — in a turnaround, cash timing outranks accounting profit"
+        ]
+      },
+      "followUp": "The lenders will refinance if the plan credibly returns the business to a 5% EBIT margin, and the CEO wants every action launched within her first year.\n\nOn cash: runway is tight but sufficient if the plan starts fast — which is why the plan must be built from actions that can begin now.\n\nHere is the business as it stands.",
+      "followUpExhibitIds": [
+        "ex1"
+      ],
+      "scoringWeights": {
+        "structure": 0.4,
+        "accuracy": 0.4,
+        "communication": 0.2
+      }
+    },
+    {
+      "id": "q2",
+      "type": "structuring",
+      "timeLimitSeconds": 120,
+      "prompt": "Which areas would you examine to build the turnaround plan? Select the four most relevant.",
+      "responseFormat": "choice",
+      "selectCount": 4,
+      "options": [
+        "The store network — which stores make money and which never will",
+        "The cost structure above the stores — head office against benchmark",
+        "Buying and operating costs — procurement and store productivity",
+        "The organisation itself — capability, morale, and who will carry the change",
+        "The founder’s original 1908 business plan",
+        "Competitors’ staff canteen menus",
+        "The chain’s horoscope for the coming year"
+      ],
+      "idealAnswer": {
+        "correctOptions": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "optionRationale": [
+          "In a store chain the network is the portfolio; the tail usually hides much of the loss.",
+          "Overhead is the cost the customer never sees — the first place a turnaround looks.",
+          "The operational levers that improve every store that remains.",
+          "The lever that decides whether the others happen: transformations fail on people more than on arithmetic.",
+          "A century-old document is not a turnaround input.",
+          "Not relevant.",
+          "Not analysis."
+        ],
+        "commonMistakes": [
+          "Building a plan that is all arithmetic and no organisation",
+          "Treating every store as saveable out of sentiment"
+        ]
+      },
+      "followUp": "We will take them in that order — first the size of the mountain, then the levers.",
+      "scoringWeights": {
+        "structure": 0.5,
+        "accuracy": 0.3,
+        "communication": 0.2
+      }
+    },
+    {
+      "id": "q3",
+      "type": "math",
+      "timeLimitSeconds": 150,
+      "prompt": "Using Exhibit 1, how much annual EBIT improvement does the plan need to deliver to reach the lenders’ 5% margin?",
+      "exhibitIds": [
+        "ex1"
+      ],
+      "responseFormat": "number",
+      "unit": "$M",
+      "tolerancePct": 2,
+      "answerFormatNote": "Enter in $ millions, rounded to the nearest million.",
+      "idealAnswer": {
+        "value": 180,
+        "workedSolution": "Target EBIT: 5% × $2,400M = $120M.\nToday: −$60M.\nRequired improvement: $120M − (−$60M) = $180M a year.",
+        "commonMistakes": [
+          "Answering $120M — forgetting the plan first has to climb out of a $60M hole",
+          "Subtracting the loss instead of adding it"
+        ]
+      },
+      "followUp": "$180M a year — the mountain has a number. Now the levers, starting with the store network.",
+      "followUpExhibitIds": [
+        "ex2"
+      ],
+      "scoringWeights": {
+        "accuracy": 0.6,
+        "structure": 0.2,
+        "communication": 0.2
+      }
+    },
+    {
+      "id": "q4",
+      "type": "math",
+      "timeLimitSeconds": 150,
+      "prompt": "Using Exhibit 2, how much annual EBIT improvement does closing the 20 weakest stores deliver?",
+      "exhibitIds": [
+        "ex2"
+      ],
+      "responseFormat": "number",
+      "unit": "$M",
+      "tolerancePct": 2,
+      "answerFormatNote": "Enter in $ millions, rounded to the nearest million.",
+      "idealAnswer": {
+        "value": 40,
+        "workedSolution": "20 stores × $2M of store-level losses each = $40M a year of losses that stop.\nThe exhibit rules out the usual objections: local fixes are exhausted, leases allow exit, and little revenue transfers.",
+        "commonMistakes": [
+          "Netting off imagined transferred revenue the exhibit says not to count",
+          "Counting closure one-off costs here — they matter for cash, but the question is annual EBIT improvement"
+        ]
+      },
+      "followUp": "A quarter of the target from simply stopping the worst losses. Next, the cost the customer never sees.",
+      "followUpExhibitIds": [
+        "ex3"
+      ],
+      "scoringWeights": {
+        "accuracy": 0.6,
+        "structure": 0.2,
+        "communication": 0.2
+      }
+    },
+    {
+      "id": "q5",
+      "type": "math",
+      "timeLimitSeconds": 150,
+      "prompt": "Using Exhibit 3, how much annual saving does bringing head office to the benchmark deliver?",
+      "exhibitIds": [
+        "ex3"
+      ],
+      "responseFormat": "number",
+      "unit": "$M",
+      "tolerancePct": 2,
+      "answerFormatNote": "Enter in $ millions, rounded to the nearest million.",
+      "idealAnswer": {
+        "value": 60,
+        "workedSolution": "Benchmark: 10% × $2,400M = $240M.\nToday: $300M.\nSaving: $300M − $240M = $60M a year — a 20% reduction in head-office cost, which in practice means roles, not paperclips.",
+        "commonMistakes": [
+          "Benchmarking against the post-closure revenue base prematurely — the closures barely move $2.4B",
+          "Treating the saving as achievable without redundancies, which understates the human weight of the plan"
+        ]
+      },
+      "followUp": "Now two operating levers, briefly: procurement can save 2.5% of cost of goods sold, and smarter store scheduling can save 5% of store payroll. Put the whole cost programme together.",
+      "scoringWeights": {
+        "accuracy": 0.6,
+        "structure": 0.2,
+        "communication": 0.2
+      }
+    },
+    {
+      "id": "q6",
+      "type": "math",
+      "timeLimitSeconds": 240,
+      "prompt": "Adding the closures, the head-office reduction, the procurement saving and the scheduling saving: how much of the $180M do the four cost levers deliver?",
+      "responseFormat": "number",
+      "unit": "$M",
+      "tolerancePct": 2,
+      "answerFormatNote": "Enter in $ millions, rounded to the nearest million.",
+      "idealAnswer": {
+        "value": 160,
+        "workedSolution": "Closures: $40M.\nHead office: $60M.\nProcurement: 2.5% × $1,440M COGS = $36M.\nScheduling: 5% × $480M payroll = $24M.\nTotal: $40M + $60M + $36M + $24M = $160M.",
+        "commonMistakes": [
+          "Taking procurement on revenue instead of COGS",
+          "Taking scheduling on total payroll including head office, double-counting the overhead cut",
+          "Calling $160M close enough — the lenders asked for $180M, and “nearly” does not refinance"
+        ]
+      },
+      "followUp": "$160M — $20M short. Cost alone does not close a $180M gap, which is the point where weak turnarounds start shaving the truth. Strong ones find the rest somewhere real.",
+      "scoringWeights": {
+        "accuracy": 0.6,
+        "structure": 0.2,
+        "communication": 0.2
+      }
+    },
+    {
+      "id": "q7",
+      "type": "brainstorming",
+      "timeLimitSeconds": 150,
+      "prompt": "The plan needs $20M more of annual EBIT. Which two moves would you put in the plan to close the gap? Select the two most credible.",
+      "responseFormat": "choice",
+      "selectCount": 2,
+      "options": [
+        "Cut the marketing budget by a further $20M",
+        "Relaunch the loyalty programme and online store — plans the team already has — adding $100M of revenue at a 20% contribution margin",
+        "Raise all prices by 5% across the board",
+        "Renegotiate the leases of the retained stores, where terms are above market",
+        "Close 40 more stores"
+      ],
+      "idealAnswer": {
+        "correctOptions": [
+          1,
+          3
+        ],
+        "optionRationale": [
+          "Self-defeating: the plan needs revenue to hold while stores close; cutting demand generation to hit a cost number is how turnarounds spiral.",
+          "Credible and quantified: $100M × 20% = $20M, built on initiatives the organisation already believes in — which matters for momentum.",
+          "A blanket 5% rise on a struggling banner risks accelerating the sales decline that caused the crisis.",
+          "Credible: a chain in visible difficulty has real leverage with landlords who do not want 20 more dark stores.",
+          "The remaining 100 stores are not the loss-makers; closing profitable stores deepens the hole."
+        ],
+        "commonMistakes": [
+          "Closing the gap with a cut that undermines the revenue the plan depends on",
+          "Ignoring that “the team already believes in it” is itself a selection criterion in a transformation"
+        ]
+      },
+      "followUp": "Agreed on both — the loyalty and online relaunch is the one we will size in the plan: $100M of revenue at 20% contribution closes the $20M exactly, with lease renegotiation held as contingency.\n\nThe arithmetic now works. What remains is the part that usually fails: the organisation that has to deliver it.",
+      "scoringWeights": {
+        "creativity": 0.3,
+        "accuracy": 0.4,
+        "structure": 0.3
+      }
+    },
+    {
+      "id": "q8",
+      "type": "brainstorming",
+      "timeLimitSeconds": 150,
+      "prompt": "This plan closes 20 stores and cuts a fifth of head office. What are the most relevant people and organisation risks to manage? Select the three most relevant.",
+      "responseFormat": "choice",
+      "selectCount": 3,
+      "options": [
+        "The best people leaving first — top performers have options, and uncertainty sends them to competitors",
+        "Middle management overload — the same leaders must run the stores and deliver the change",
+        "The office plants dying during the head-office move",
+        "Change fatigue and rumour — a year of redundancies corroding the service customers experience",
+        "The CEO’s diary being too full"
+      ],
+      "idealAnswer": {
+        "correctOptions": [
+          0,
+          1,
+          3
+        ],
+        "optionRationale": [
+          "The classic transformation wound: the plan keeps the roles but loses the people who made them work.",
+          "Real: every lever lands on the same store and regional managers, and overload turns into missed execution.",
+          "Not a risk.",
+          "Real and customer-facing: demoralised floors sell less, and the revenue lever depends on stores that still care.",
+          "Diary management is not an organisational risk."
+        ],
+        "commonMistakes": [
+          "Managing the leavers and ignoring the workload of those who stay",
+          "Treating morale as soft while the plan’s revenue line quietly depends on it"
+        ]
+      },
+      "followUp": "Retention: identify the critical few hundred people early and lock them in with clarity and, where needed, money.\n\nOverload: sequence the levers rather than launching everything at once, and give the change a dedicated programme team instead of adding it to day jobs.\n\nFatigue: communicate the whole plan once, honestly — one big announcement beats a year of drip-fed bad news, and it lets the organisation see the credible future it is working toward.",
+      "scoringWeights": {
+        "creativity": 0.3,
+        "accuracy": 0.4,
+        "structure": 0.3
+      }
+    },
+    {
+      "id": "q9",
+      "type": "synthesis",
+      "timeLimitSeconds": 180,
+      "prompt": "The CEO presents to the lenders tomorrow and asks you to rehearse the plan with her. Summarise it in seven to eight lines maximum.",
+      "responseFormat": "text",
+      "maxLines": 8,
+      "idealAnswer": {
+        "keyPoints": [
+          "Leads with the destination: from a $60M loss to a $120M EBIT — a $180M annual improvement, fully identified",
+          "Lists the levers with numbers: closures $40M, head office $60M, procurement $36M, scheduling $24M, loyalty and online relaunch $20M",
+          "Notes that every action launches within the first year, which is what the runway requires",
+          "Names the people plan as part of the plan, not an appendix: retention of critical staff, sequenced rollout, honest communication",
+          "Acknowledges what is hard — 20 closures and a fifth of head office — rather than presenting a painless story",
+          "Stays inside seven or eight lines"
+        ],
+        "commonMistakes": [
+          "Presenting $160M of levers and hoping the lenders do not subtract",
+          "Reciting the cost levers and omitting the organisation that must deliver them",
+          "Overselling the revenue lever, the plan’s only non-cost line, without its conditions"
+        ]
+      },
+      "scoringWeights": {
+        "communication": 0.4,
+        "structure": 0.3,
+        "accuracy": 0.3
+      }
+    }
+  ],
+  "closing": "That is the end of the case. Your transcript is ready — copy it into an LLM to be graded on what you actually said, not on what you meant.",
+  "authoring": {
+    "model": "claude-fable-5",
+    "generatedAt": "2026-08-25",
+    "mathVerifiedWith": "code-execution (node)",
+    "verificationLog": "=== The target ===\nRevenue                                                     2,400.0000 $M\nEBIT today                                                    -60.0000 $M\nTarget EBIT at a 5% margin                                    120.0000 $M\nRequired annual improvement                                   180.0000 $M\n\n=== The four cost levers ===\nClose 20 loss-making stores (avg -$2M each)                    40.0000 $M\nHead office to benchmark (300 -> 240)                          60.0000 $M\nProcurement, 2.5% of $1,440M COGS                              36.0000 $M\nStore scheduling, 5% of $480M payroll                          24.0000 $M\nFour levers together                                          160.0000 $M\nRemaining gap to the target                                    20.0000 $M\n\n=== Closing the gap ===\nLoyalty & online relaunch revenue                             100.0000 $M\nContribution at 20%                                            20.0000 $M\nFull programme                                                180.0000 $M\n\n=== Assertions against the values declared in the JSON ===\nPASS  q3 required improvement ($M): derived 180.0000 vs declared 180.0000 (tol 2%)\nPASS  q4 closure benefit ($M): derived 40.0000 vs declared 40.0000 (tol 2%)\nPASS  q5 head-office saving ($M): derived 60.0000 vs declared 60.0000 (tol 2%)\nPASS  q6 four levers total ($M): derived 160.0000 vs declared 160.0000 (tol 2%)\n\n=== Figures quoted inside follow-up text and rationale ===\nPASS  COGS quoted in q6 solution ($M): derived 1,440.0000 vs declared 1,440.0000 (tol 2%)\nPASS  procurement saving quoted in q6 solution ($M): derived 36.0000 vs declared 36.0000 (tol 2%)\nPASS  scheduling saving quoted in q6 solution ($M): derived 24.0000 vs declared 24.0000 (tol 2%)\nPASS  gap quoted in q6 follow-up ($M): derived 20.0000 vs declared 20.0000 (tol 2%)\nPASS  revenue-lever contribution quoted in q7 rationale ($M): derived 20.0000 vs declared 20.0000 (tol 2%)\nPASS  head-office cut share quoted in q5 solution (%): derived 20.0000 vs declared 20.0000 (tol 2%)\n\n=== Sanity ===\nProgramme exactly meets the target (160 + 20 = 180): true\nHead-office benchmark is 10% of revenue: true\nEBIT today is a real loss: true\n"
+  }
+}

@@ -133,6 +133,8 @@ export interface Case {
   id: string
   title: string
   industry: string
+  /** the BCG functional practice the case leans on, e.g. "Marketing, Sales & Pricing" */
+  functionalPractice?: string
   difficulty: Difficulty
   estimatedMinutes: number
   /** the single clock for the whole case; defaults to 35 minutes */

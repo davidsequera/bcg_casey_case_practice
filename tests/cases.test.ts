@@ -1,14 +1,33 @@
 import { validateCase } from '../src/lib/validateCase'
 import { buildTranscriptMarkdown } from '../src/lib/transcript'
 import { buildMessages } from '../src/lib/chat'
-import telco from '../src/cases/telco-network-jv.json'
 import coffee from '../src/cases/coffee-chain-profitability.json'
-import airline from '../src/cases/airline-market-entry.json'
+import pumps from '../src/cases/pumps-vietnam-plant.json'
+import cloud from '../src/cases/media-cloud-migration.json'
+import bank from '../src/cases/bank-fraud-losses.json'
+import coal from '../src/cases/coal-retirement.json'
+import vets from '../src/cases/pe-vet-rollup.json'
 import hospital from '../src/cases/hospital-cost-reduction.json'
+import motor from '../src/cases/motor-telematics-pricing.json'
+import jobs from '../src/cases/jobs-programme.json'
+import airline from '../src/cases/airline-market-entry.json'
+import turnaround from '../src/cases/department-store-turnaround.json'
 import { totalTimeFor, type Case, type Session } from '../src/types/case'
 import { check, finish, section } from './harness'
 
-const BUNDLED = { telco, coffee, airline, hospital }
+const BUNDLED = {
+  coffee,
+  pumps,
+  cloud,
+  bank,
+  coal,
+  vets,
+  hospital,
+  motor,
+  jobs,
+  airline,
+  turnaround,
+}
 
 section('Bundled cases validate')
 for (const [name, c] of Object.entries(BUNDLED)) {
@@ -43,6 +62,19 @@ for (const [name, raw] of Object.entries(BUNDLED)) {
     c.questions
       .filter((q) => q.responseFormat === 'number')
       .every((q) => Boolean(q.answerFormatNote) && Boolean(q.unit) && Boolean(q.tolerancePct)))
+}
+
+section('The library covers the industry map')
+{
+  const cases = Object.values(BUNDLED) as unknown as Case[]
+  const industries = cases.map((c) => c.industry)
+  check('one case per industry — no repeats', new Set(industries).size === cases.length,
+    `-> ${industries.join(', ')}`)
+  check('every bundled case declares a functional practice',
+    cases.every((c) => typeof c.functionalPractice === 'string' && c.functionalPractice.length > 0))
+  const practices = new Set(cases.map((c) => c.functionalPractice))
+  check('the nine functional practices are all represented', practices.size >= 9,
+    `-> ${practices.size} distinct`)
 }
 
 section('Validator rejects malformed cases')
@@ -135,7 +167,7 @@ check('a chart series shorter than its categories is reported',
   !raggedChart.ok && raggedChart.errors.some((e) => e.includes('categories')))
 
 // ---------------------------------------------------------------------------
-const c = telco as unknown as Case
+const c = cloud as unknown as Case
 
 function fullSession(overrides: Partial<Session> = {}): Session {
   return {
@@ -164,7 +196,7 @@ const early = buildMessages(c, fullSession({ questionIndex: 0, answers: [], peek
 check('opens with the interviewer and the candidate', early[0].kind === 'bot' && early[1].kind === 'user')
 check('announces the question count', early[0].kind === 'bot' && early[0].text.includes('10 questions'))
 check('the first bot question carries the case prompt as a preamble',
-  early[2].kind === 'bot' && (early[2].preamble ?? '').includes('South Korea'))
+  early[2].kind === 'bot' && (early[2].preamble ?? '').includes('Aurora Studios'))
 check('labels the question', early[2].kind === 'bot' && early[2].label === '(Question 1 of 10)')
 check('shows nothing beyond the current question', early.length === 3, `-> ${early.length}`)
 
@@ -172,7 +204,7 @@ const answered = buildMessages(c, fullSession({ questionIndex: 1 }))
 check('the candidate bubble names the options picked',
   answered[3].kind === 'user' && answered[3].text === c.questions[0].options![0])
 check('the interviewer releases the follow-up after the answer',
-  answered[4].kind === 'bot' && answered[4].text.includes('$3B'))
+  answered[4].kind === 'bot' && answered[4].text.includes('$150M'))
 check('the next question follows', answered[5].kind === 'bot' &&
   answered[5].label === '(Question 2 of 10)')
 
@@ -184,10 +216,11 @@ check('a finished case closes the conversation',
 section('Transcript carries everything a grader needs')
 const md = buildTranscriptMarkdown(c, fullSession())
 check('includes grading instructions', md.includes('score every dimension'))
-check('includes the case prompt', md.includes('South Korea'))
-check('renders table exhibits as markdown', md.includes('| Operator | Subscribers (M) |'))
+check('includes the case prompt', md.includes('Aurora Studios'))
+check('renders table exhibits as markdown',
+  md.includes('| Data centre | Annual fixed cost ($M) | Installed capacity (K server units) |'))
 check('renders chart exhibits as data, not as a picture',
-  md.includes('bar chart') && md.includes('| Sadong | MinSol |'))
+  md.includes('bar chart') && md.includes('| Series | Ashvale | Derrow |'))
 check('includes every question', c.questions.every((q) => md.includes(q.prompt)))
 check('lays out the options with correct and picked marked',
   md.includes('✓ = correct') && md.includes('[✓●]'))
@@ -199,7 +232,7 @@ check('flags questions where the answer key was open',
   md.includes('**The answer key was open for this question.**'))
 check('flags questions that ran over their suggested pace', md.includes('**(over pace)**'))
 check('states the pace and the time used', md.includes('Suggested pace:'))
-check('includes the model answer key', md.includes('$12.5B − $12.6B'))
+check('includes the model answer key', md.includes('$800M − $600M = $200M'))
 check('reports scoring dimensions', md.includes('Scoring dimensions:'))
 check('closes with a time summary', md.includes('case clock'))
 

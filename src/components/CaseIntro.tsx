@@ -36,6 +36,9 @@ export function CaseIntro({
         <div className="row">
           <span className={`tag ${caseData.difficulty}`}>{caseData.difficulty}</span>
           <span className="tag">{caseData.industry}</span>
+          {caseData.functionalPractice ? (
+            <span className="tag">{caseData.functionalPractice}</span>
+          ) : null}
         </div>
         <h1 style={{ marginTop: 12 }}>{caseData.title}</h1>
 

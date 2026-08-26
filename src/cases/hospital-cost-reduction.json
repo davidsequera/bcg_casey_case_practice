@@ -2,7 +2,8 @@
   "schemaVersion": 2,
   "id": "hospital-cost-reduction",
   "title": "St Brendan's: finding $30 million",
-  "industry": "Healthcare / Providers",
+  "industry": "Health Care",
+  "functionalPractice": "Operations",
   "difficulty": "easy",
   "estimatedMinutes": 25,
   "totalTimeSeconds": 1500,
@@ -64,7 +65,7 @@
         "rows": [
           [
             "Average length of stay (days)",
-            5.0,
+            5,
             4.6
           ],
           [

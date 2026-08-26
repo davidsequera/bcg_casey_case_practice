@@ -46,7 +46,8 @@ ask is "does the transcript still give a grader everything it needs" — that is
 ## Repo layout
 
 ```
-src/cases/*.json        four bundled cases, each with a verificationLog
+src/cases/*.json        eleven bundled cases — one per BCG industry, each tagged with a
+                        functionalPractice and carrying a verificationLog
 src/components/         AssessmentIntro, CaseLibrary, CaseUpload   (landing)
                         CaseIntro                                  (pre-case briefing)
                         ChatScreen > MessageList + AnswerDock + AnswerKeyPanel, Exhibit

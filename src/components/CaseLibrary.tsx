@@ -16,6 +16,7 @@ function haystack(c: Case): string {
   return [
     c.title,
     c.industry,
+    c.functionalPractice ?? '',
     c.difficulty,
     c.prompt,
     ...typesIn(c).map((t) => QUESTION_TYPE_LABEL[t]),
@@ -64,7 +65,9 @@ export function CaseLibrary({
       </div>
       <h3>{c.title}</h3>
       <div className="case-meta">
-        {c.industry} · {c.questions.length} questions · {formatClock(totalTimeFor(c))} on the clock
+        {c.industry}
+        {c.functionalPractice ? ` · ${c.functionalPractice}` : ''} · {c.questions.length} questions
+        · {formatClock(totalTimeFor(c))} on the clock
       </div>
       <div className="case-meta">
         {typesIn(c)

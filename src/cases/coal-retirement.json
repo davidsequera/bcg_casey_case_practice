@@ -1,0 +1,420 @@
+{
+  "schemaVersion": 2,
+  "id": "coal-retirement",
+  "title": "Grellin Power: retiring Marsh Creek",
+  "industry": "Energy",
+  "functionalPractice": "Climate and Sustainability",
+  "difficulty": "hard",
+  "estimatedMinutes": 35,
+  "totalTimeSeconds": 2100,
+  "prompt": "Our client is Grellin Power, a regional utility. Its largest plant, the coal-fired Marsh Creek station, faces two changes at once: new air-quality rules that require a major retrofit to keep operating, and a carbon price coming into force next year. Grellin has publicly pledged to cut its generation emissions by at least 60%. The board must choose between retrofitting Marsh Creek and retiring it — replacing its output with a solar-and-storage build plus market purchases. They have asked us which path to take.",
+  "exhibits": [
+    {
+      "id": "ex1",
+      "title": "Exhibit 1 — Marsh Creek today, and the retrofit",
+      "type": "table",
+      "unitsNote": "Marsh Creek must keep delivering 5,000 GWh a year in either path; 1 GWh = 1,000 MWh",
+      "source": "Client generation data",
+      "table": {
+        "columns": [
+          "Item",
+          "Value"
+        ],
+        "rows": [
+          [
+            "Annual output",
+            "5,000 GWh"
+          ],
+          [
+            "Fuel and operating cost",
+            "$40 per MWh"
+          ],
+          [
+            "Emissions intensity",
+            "0.9 tCO2 per MWh"
+          ],
+          [
+            "Carbon price, from next year",
+            "$20 per tCO2"
+          ],
+          [
+            "Retrofit cost (one-off, air-quality rules)",
+            "$600M"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ex2",
+      "title": "Exhibit 2 — The replacement package",
+      "type": "table",
+      "unitsNote": "The solar-and-storage build and the market contract together replace the full 5,000 GWh",
+      "source": "Client engineering study",
+      "table": {
+        "columns": [
+          "Item",
+          "Value"
+        ],
+        "rows": [
+          [
+            "Solar + storage build cost (one-off)",
+            "$1,200M"
+          ],
+          [
+            "Energy delivered by solar + storage",
+            "3,000 GWh per year"
+          ],
+          [
+            "Solar operating cost",
+            "$10 per MWh"
+          ],
+          [
+            "Balance purchased from the market",
+            "2,000 GWh per year"
+          ],
+          [
+            "Market price",
+            "$50 per MWh"
+          ],
+          [
+            "Market power emissions intensity",
+            "0.45 tCO2 per MWh"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ex3",
+      "title": "Exhibit 3 — Annual cost per path, once running",
+      "type": "chart",
+      "unitsNote": "$M per year, excluding one-off costs",
+      "source": "Team analysis of Exhibits 1 and 2",
+      "chart": {
+        "kind": "stacked-bar",
+        "categories": [
+          "Retrofit path",
+          "Replace path"
+        ],
+        "series": [
+          {
+            "label": "Fuel, O&M and purchases",
+            "values": [
+              200,
+              130
+            ]
+          },
+          {
+            "label": "Carbon cost",
+            "values": [
+              90,
+              0
+            ]
+          }
+        ],
+        "valueSuffix": ""
+      }
+    }
+  ],
+  "questions": [
+    {
+      "id": "q1",
+      "type": "structuring",
+      "timeLimitSeconds": 90,
+      "prompt": "Before we compare the two paths, what should we clarify with Grellin first? Select the two most relevant.",
+      "responseFormat": "choice",
+      "selectCount": 2,
+      "options": [
+        "What must each path deliver — how much energy, over what horizon, at what reliability?",
+        "Is the 60% emissions pledge a hard constraint on this decision, or an aspiration?",
+        "Which architect designed the Marsh Creek turbine hall?",
+        "How many followers does Grellin have on social media?",
+        "What was Marsh Creek’s construction cost in the 1970s?"
+      ],
+      "idealAnswer": {
+        "correctOptions": [
+          0,
+          1
+        ],
+        "optionRationale": [
+          "The two paths are only comparable if they deliver the same thing; “replace” must be defined before it can be costed.",
+          "A must-have. If the pledge binds, a cheaper high-emission path is not actually available, and the option set shrinks.",
+          "Architectural history does not bear on the decision.",
+          "Not a decision variable.",
+          "Sunk cost — what the plant cost to build says nothing about what to do with it now."
+        ],
+        "commonMistakes": [
+          "Comparing costs before fixing what each path must deliver",
+          "Treating the public pledge as marketing rather than asking whether it constrains the answer"
+        ]
+      },
+      "followUp": "Both paths must deliver Marsh Creek’s full 5,000 GWh a year at utility reliability — the storage in the replacement package is sized for that, and the market contract is firm.\n\nAnd the pledge binds: the board will not approve a path that leaves the 60% reduction out of reach. Cost decides between paths that comply.",
+      "scoringWeights": {
+        "structure": 0.4,
+        "accuracy": 0.4,
+        "communication": 0.2
+      }
+    },
+    {
+      "id": "q2",
+      "type": "structuring",
+      "timeLimitSeconds": 120,
+      "prompt": "Which areas would you investigate to choose between retrofit and replacement? Select the four most relevant.",
+      "responseFormat": "choice",
+      "selectCount": 4,
+      "options": [
+        "The full cost of keeping Marsh Creek — retrofit, running costs, and the new carbon price",
+        "The full cost of the replacement — build cost, running costs, and market purchases",
+        "The emissions outcome of each path against the 60% pledge",
+        "The paint scheme of the new solar farm",
+        "Risks of each path — construction delay, market price exposure, and the plant workforce",
+        "The CEO’s personal carbon footprint",
+        "Coal prices in the 1980s"
+      ],
+      "idealAnswer": {
+        "correctOptions": [
+          0,
+          1,
+          2,
+          4
+        ],
+        "optionRationale": [
+          "One side of the ledger — and the carbon price is new, so yesterday’s cost picture is already wrong.",
+          "The other side of the ledger, including the energy the package buys rather than builds.",
+          "The binding constraint: a path that fails the pledge is out regardless of cost.",
+          "Not material.",
+          "Real on both sides: a big build can slip, market purchases float with prices, and a coal closure lands on real jobs.",
+          "Not relevant to a generation decision.",
+          "Historical prices are not what the plant will pay."
+        ],
+        "commonMistakes": [
+          "Costing the retrofit path at today’s costs and forgetting the carbon price starts next year",
+          "Leaving the workforce and community impact out of a coal-closure structure"
+        ]
+      },
+      "followUp": "Here is Marsh Creek’s cost position, including the carbon price that arrives next year. Work from these figures.",
+      "followUpExhibitIds": [
+        "ex1"
+      ],
+      "scoringWeights": {
+        "structure": 0.5,
+        "accuracy": 0.3,
+        "communication": 0.2
+      }
+    },
+    {
+      "id": "q3",
+      "type": "math",
+      "timeLimitSeconds": 240,
+      "prompt": "Using Exhibit 1, what will it cost to run Marsh Creek for a year once the carbon price is in force — fuel, operations and carbon together?",
+      "exhibitIds": [
+        "ex1"
+      ],
+      "responseFormat": "number",
+      "unit": "$M",
+      "tolerancePct": 2,
+      "answerFormatNote": "Enter in $ millions, rounded to the nearest million.",
+      "idealAnswer": {
+        "value": 290,
+        "workedSolution": "Fuel and O&M: 5,000 GWh = 5,000,000 MWh × $40 = $200M a year.\nEmissions: 5,000,000 MWh × 0.9 t = 4.5 Mt a year.\nCarbon: 4.5M t × $20 = $90M a year.\nTotal: $200M + $90M = $290M a year.",
+        "commonMistakes": [
+          "Leaving the carbon cost out — it is the new fact that changes the plant’s economics",
+          "Slipping a factor of 1,000 between GWh and MWh",
+          "Adding the retrofit here; it is a one-off, not a running cost"
+        ]
+      },
+      "followUp": "So keeping the plant costs $290M a year before the retrofit is even paid — $90M of it is the carbon bill on 4.5 Mt of emissions, a line item that did not exist last year.",
+      "scoringWeights": {
+        "accuracy": 0.6,
+        "structure": 0.2,
+        "communication": 0.2
+      }
+    },
+    {
+      "id": "q4",
+      "type": "math",
+      "timeLimitSeconds": 180,
+      "prompt": "What is the total five-year cost of the retrofit path — keeping Marsh Creek compliant and running?",
+      "responseFormat": "number",
+      "unit": "$M",
+      "tolerancePct": 2,
+      "answerFormatNote": "Enter in $ millions, rounded to the nearest million.",
+      "idealAnswer": {
+        "value": 2050,
+        "workedSolution": "Running cost: $290M × 5 = $1,450M.\nPlus the one-off retrofit: $1,450M + $600M = $2,050M.",
+        "commonMistakes": [
+          "Charging the $600M retrofit every year",
+          "Using the pre-carbon running cost of $200M",
+          "Forgetting the retrofit entirely — without it the plant cannot legally run"
+        ]
+      },
+      "followUp": "Just over $2B to keep the old plant alive for five years. Now cost the alternative. Here is the replacement package.",
+      "followUpExhibitIds": [
+        "ex2"
+      ],
+      "scoringWeights": {
+        "accuracy": 0.6,
+        "structure": 0.2,
+        "communication": 0.2
+      }
+    },
+    {
+      "id": "q5",
+      "type": "math",
+      "timeLimitSeconds": 240,
+      "prompt": "Using Exhibit 2, what does the replacement package cost per year, once built — solar operations plus market purchases?",
+      "exhibitIds": [
+        "ex2"
+      ],
+      "responseFormat": "number",
+      "unit": "$M",
+      "tolerancePct": 2,
+      "answerFormatNote": "Enter in $ millions, rounded to the nearest million.",
+      "idealAnswer": {
+        "value": 130,
+        "workedSolution": "Solar O&M: 3,000,000 MWh × $10 = $30M a year.\nMarket purchases: 2,000,000 MWh × $50 = $100M a year.\nTotal: $30M + $100M = $130M a year.",
+        "commonMistakes": [
+          "Pricing all 5,000 GWh at the market rate",
+          "Forgetting the purchased energy and costing only the solar half",
+          "Mixing the $/MWh figures across the two components"
+        ]
+      },
+      "followUp": "Right: $130M a year against $290M for coal — a $160M annual gap in the replacement’s favour once it is running, as the chart shows. The question is whether that gap earns back the much larger build cost.",
+      "followUpExhibitIds": [
+        "ex3"
+      ],
+      "scoringWeights": {
+        "accuracy": 0.6,
+        "structure": 0.2,
+        "communication": 0.2
+      }
+    },
+    {
+      "id": "q6",
+      "type": "math",
+      "timeLimitSeconds": 180,
+      "prompt": "What is the total five-year cost of the replace path, including the build?",
+      "responseFormat": "number",
+      "unit": "$M",
+      "tolerancePct": 2,
+      "answerFormatNote": "Enter in $ millions, rounded to the nearest million.",
+      "idealAnswer": {
+        "value": 1850,
+        "workedSolution": "Running cost: $130M × 5 = $650M.\nPlus the one-off build: $650M + $1,200M = $1,850M.",
+        "commonMistakes": [
+          "Adding the retrofit cost to this path — retiring the plant is how it is avoided",
+          "Charging the build cost per year",
+          "Comparing builds only ($1,200M vs $600M) and concluding retrofit is cheaper"
+        ]
+      },
+      "followUp": "So replacement costs $1,850M against $2,050M for the retrofit — $200M cheaper over five years, despite the build being twice the retrofit. The running-cost gap does the work. Cost favours retirement; now check it against the pledge.",
+      "scoringWeights": {
+        "accuracy": 0.6,
+        "structure": 0.2,
+        "communication": 0.2
+      }
+    },
+    {
+      "id": "q7",
+      "type": "exhibit",
+      "timeLimitSeconds": 180,
+      "prompt": "Using the emissions figures in Exhibits 1 and 2, by what percentage does the replace path cut Marsh Creek’s emissions?",
+      "exhibitIds": [
+        "ex1",
+        "ex2"
+      ],
+      "responseFormat": "number",
+      "unit": "%",
+      "tolerancePct": 2,
+      "answerFormatNote": "Enter as a percentage, rounded to the nearest whole number — for 75%, type 75.",
+      "idealAnswer": {
+        "value": 80,
+        "workedSolution": "Coal today: 4.5 Mt a year.\nReplace path: solar is zero-carbon; market purchases 2,000,000 MWh × 0.45 t = 0.9 Mt a year.\nReduction: (4.5 − 0.9) / 4.5 = 80%.",
+        "commonMistakes": [
+          "Calling the replace path zero-emission and answering 100% — the purchased power carries the grid’s carbon",
+          "Computing the cut on energy (60% solar share) instead of on emissions",
+          "Reporting what remains (20%) instead of the reduction"
+        ]
+      },
+      "followUp": "An 80% cut, well past the 60% pledge — and the cheaper path as well. Before recommending a coal closure, though, the board will ask about everything the spreadsheet leaves out.",
+      "scoringWeights": {
+        "accuracy": 0.5,
+        "structure": 0.3,
+        "communication": 0.2
+      }
+    },
+    {
+      "id": "q8",
+      "type": "brainstorming",
+      "timeLimitSeconds": 120,
+      "prompt": "What are the most relevant risks of retiring Marsh Creek and building the replacement? Select the three most relevant.",
+      "responseFormat": "choice",
+      "selectCount": 3,
+      "options": [
+        "Construction risk — the solar and storage build arriving late or over budget while the coal plant has already committed to closing",
+        "Market price risk — 2,000 GWh a year bought at prices that float",
+        "Workforce and community risk — the plant’s jobs and the town around them",
+        "Coal marketing risk — customers preferring coal-fired electricity",
+        "Logo redesign risk after the transition"
+      ],
+      "idealAnswer": {
+        "correctOptions": [
+          0,
+          1,
+          2
+        ],
+        "optionRationale": [
+          "The classic energy-transition trap: sequencing. Retire before the replacement is proven and the utility is short 5,000 GWh.",
+          "Real: $100M a year of the case is bought at $50/MWh, a number the market sets, not Grellin.",
+          "Real and central to a just transition: several hundred jobs and a local economy sit on this decision, and regulators and politicians will weigh it.",
+          "Electricity is fungible; customers cannot tell and by and large prefer cheaper and cleaner.",
+          "Immaterial."
+        ],
+        "commonMistakes": [
+          "Sequencing risk missed — treating retirement and build as independent events",
+          "Costing the transition while ignoring the people in it"
+        ]
+      },
+      "followUp": "Construction: keep Marsh Creek’s closure date contingent on the replacement’s commissioning tests, not the calendar.\n\nMarket exposure: contract most of the 2,000 GWh forward, and revisit expanding storage later.\n\nWorkforce: fund retraining and redeployment into the build and operations of the new assets, and engage the town early — a contested closure is a slow closure.",
+      "scoringWeights": {
+        "creativity": 0.3,
+        "accuracy": 0.4,
+        "structure": 0.3
+      }
+    },
+    {
+      "id": "q9",
+      "type": "synthesis",
+      "timeLimitSeconds": 180,
+      "prompt": "Grellin’s board chair asks for your recommendation on Marsh Creek. Please give your answer in seven to eight lines maximum.",
+      "responseFormat": "text",
+      "maxLines": 8,
+      "idealAnswer": {
+        "keyPoints": [
+          "Leads with the recommendation: retire Marsh Creek and build the replacement",
+          "Gives the cost case with numbers: $1,850M versus $2,050M over five years — $200M cheaper despite the larger build",
+          "Explains why: the carbon price turns the old plant’s $290M running cost into the expensive option",
+          "Gives the pledge answer: an 80% emissions cut against the 60% commitment",
+          "Names the conditions: closure tied to commissioning of the new assets, forward contracts on the purchased power, and a funded workforce transition",
+          "Stays inside seven or eight lines"
+        ],
+        "commonMistakes": [
+          "Comparing the two one-off costs and recommending the retrofit",
+          "Presenting the closure as purely financial and omitting the workforce plan",
+          "Claiming the replacement is zero-carbon when a fifth of the emissions remain via market power"
+        ]
+      },
+      "scoringWeights": {
+        "communication": 0.4,
+        "structure": 0.3,
+        "accuracy": 0.3
+      }
+    }
+  ],
+  "closing": "That is the end of the case. Your transcript is ready — copy it into an LLM to be graded on what you actually said, not on what you meant.",
+  "authoring": {
+    "model": "claude-fable-5",
+    "generatedAt": "2026-08-25",
+    "mathVerifiedWith": "code-execution (node)",
+    "verificationLog": "=== Retrofit path (keep Marsh Creek) ===\nFuel and O&M at $40/MWh on 5,000 GWh                          200.0000 $M/yr\nEmissions at 0.9 t/MWh                                          4.5000 Mt/yr\nCarbon cost at $20/t                                           90.0000 $M/yr\nAnnual cash cost incl. carbon                                 290.0000 $M/yr\nRetrofit capex (one-off)                                      600.0000 $M\nFive-year cost of the retrofit path                         2,050.0000 $M\n\n=== Replace path (solar + storage + market) ===\nSolar O&M on 3,000 GWh at $10/MWh                              30.0000 $M/yr\nMarket purchases 2,000 GWh at $50/MWh                         100.0000 $M/yr\nAnnual cost                                                   130.0000 $M/yr\nBuild capex (one-off)                                       1,200.0000 $M\nFive-year cost of the replace path                          1,850.0000 $M\nFive-year saving of replacing                                 200.0000 $M\n\n=== Emissions ===\nReplace-path emissions (market power only)                      0.9000 Mt/yr\nEmissions reduction                                            80.0000 %\n\n=== Assertions against the values declared in the JSON ===\nPASS  q3 coal annual cash cost incl. carbon ($M): derived 290.0000 vs declared 290.0000 (tol 2%)\nPASS  q4 retrofit path five-year cost ($M): derived 2,050.0000 vs declared 2,050.0000 (tol 2%)\nPASS  q5 replace path annual cost ($M): derived 130.0000 vs declared 130.0000 (tol 2%)\nPASS  q6 replace path five-year cost ($M): derived 1,850.0000 vs declared 1,850.0000 (tol 2%)\nPASS  q7 emissions reduction (%): derived 80.0000 vs declared 80.0000 (tol 2%)\n\n=== Figures quoted inside follow-up text and rationale ===\nPASS  carbon cost quoted in q3 solution ($M/yr): derived 90.0000 vs declared 90.0000 (tol 2%)\nPASS  coal emissions quoted in q3 solution (Mt/yr): derived 4.5000 vs declared 4.5000 (tol 2%)\nPASS  five-year saving quoted in q6 follow-up ($M): derived 200.0000 vs declared 200.0000 (tol 2%)\nPASS  replace-path emissions quoted in q7 solution (Mt/yr): derived 0.9000 vs declared 0.9000 (tol 2%)\nPASS  annual cost gap quoted in q5 follow-up ($M/yr): derived 160.0000 vs declared 160.0000 (tol 2%)\n\n=== Sanity ===\nReplace path is cheaper over five years: true\n80% cut clears the utility’s 60% pledge: true\nEnergy balance holds: 3,000 + 2,000 = 5,000 GWh: true\n"
+  }
+}

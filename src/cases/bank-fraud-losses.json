@@ -1,0 +1,383 @@
+{
+  "schemaVersion": 2,
+  "id": "bank-fraud-losses",
+  "title": "Harbrook Bank: the fraud leak",
+  "industry": "Financial Institutions",
+  "functionalPractice": "Risk and Compliance",
+  "difficulty": "medium",
+  "estimatedMinutes": 35,
+  "totalTimeSeconds": 2100,
+  "prompt": "Our client is Harbrook Bank, a large retail bank. Fraud losses on its card business have been climbing for three years, and the banking regulator has warned that it expects losses brought below a set threshold within two years. At the same time, the bank’s current fraud screening blocks a meaningful number of legitimate transactions, and cardholders are complaining. Management is evaluating a new machine-learning screening system and has asked us whether it is worth the money.",
+  "exhibits": [
+    {
+      "id": "ex1",
+      "title": "Exhibit 1 — Harbrook’s card business, annual figures",
+      "type": "table",
+      "unitsNote": "A basis point (bp) is one hundredth of one percent",
+      "source": "Client risk report",
+      "table": {
+        "columns": [
+          "Item",
+          "Value"
+        ],
+        "rows": [
+          [
+            "Card transactions per year",
+            "500M"
+          ],
+          [
+            "Average transaction value",
+            "$80"
+          ],
+          [
+            "Fraud losses",
+            "8bp of card volume"
+          ],
+          [
+            "Regulator’s threshold",
+            "5bp of card volume"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ex2",
+      "title": "Exhibit 2 — The cost of saying no",
+      "type": "text",
+      "source": "Client risk report",
+      "text": "Harbrook’s current screening declines 2% of all card transactions in error — legitimate purchases blocked as suspected fraud. The bank earns interchange of 1.5% on every transaction it approves, so each blocked purchase is revenue lost; declined cardholders also complain more and leave more often, which this case does not quantify."
+    },
+    {
+      "id": "ex3",
+      "title": "Exhibit 3 — Proposed screening system, vendor terms",
+      "type": "table",
+      "unitsNote": "Reductions are relative to today’s levels and assumed from the first year",
+      "source": "Vendor proposal, verified against reference banks",
+      "table": {
+        "columns": [
+          "Item",
+          "Value"
+        ],
+        "rows": [
+          [
+            "One-off implementation cost",
+            "$20M"
+          ],
+          [
+            "Running cost (licence, data, team)",
+            "$10M per year"
+          ],
+          [
+            "Reduction in fraud losses",
+            "60%"
+          ],
+          [
+            "Reduction in false declines",
+            "50%"
+          ]
+        ]
+      }
+    }
+  ],
+  "questions": [
+    {
+      "id": "q1",
+      "type": "structuring",
+      "timeLimitSeconds": 90,
+      "prompt": "Before we evaluate the system, what should we clarify with Harbrook first? Select the two most relevant.",
+      "responseFormat": "choice",
+      "selectCount": 2,
+      "options": [
+        "How large are the fraud losses today, and what threshold has the regulator set?",
+        "Which advertising agency runs the bank’s card campaigns?",
+        "What does the current screening cost the bank beyond fraud itself — in blocked good transactions?",
+        "How many branches does Harbrook operate?",
+        "What colour are the bank’s credit cards?"
+      ],
+      "idealAnswer": {
+        "correctOptions": [
+          0,
+          2
+        ],
+        "optionRationale": [
+          "The size of the problem and the bar the regulator has set are the two numbers the whole case is judged against.",
+          "Marketing has no bearing on screening economics.",
+          "The hidden half of the problem: screening has a false-positive cost, and any fix is judged on both sides of that trade-off.",
+          "Branch count does not bear on card fraud.",
+          "Not a data point."
+        ],
+        "commonMistakes": [
+          "Framing the case as fraud-only and missing that over-blocking is also a cost",
+          "Not pinning down the regulatory threshold that makes this urgent"
+        ]
+      },
+      "followUp": "Harbrook processes 500M card transactions a year at an average of $80 — about $40B of volume. Fraud losses currently run at 8 basis points of that volume; the regulator wants them below 5bp within two years.\n\nAnd yes: the current screening also declines legitimate transactions in error. We will quantify that side too.",
+      "scoringWeights": {
+        "structure": 0.4,
+        "accuracy": 0.4,
+        "communication": 0.2
+      }
+    },
+    {
+      "id": "q2",
+      "type": "structuring",
+      "timeLimitSeconds": 120,
+      "prompt": "Which areas would you investigate to decide whether the new system is worth buying? Select the four most relevant.",
+      "responseFormat": "choice",
+      "selectCount": 4,
+      "options": [
+        "The annual cost of fraud today, and how much of it the system removes",
+        "The revenue lost to false declines today, and how much of it the system recovers",
+        "The full cost of the system — implementation and running",
+        "The compliance test: does the result get Harbrook under the regulator’s threshold?",
+        "The bank’s mortgage book performance",
+        "The vendor CEO’s previous employers",
+        "Cafeteria costs at the bank’s head office"
+      ],
+      "idealAnswer": {
+        "correctOptions": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "optionRationale": [
+          "The headline benefit; without it there is no case.",
+          "The second benefit, and the one that makes this a customer-experience fix as well as a loss fix.",
+          "Benefits mean nothing until netted against what the system costs to buy and run.",
+          "Even a profitable system fails if it leaves Harbrook above 5bp — the regulator set a hard bar, not a preference.",
+          "Mortgages are a different book entirely.",
+          "Vendor diligence matters, but a biography is not one of the four analyses that decide this.",
+          "Not related."
+        ],
+        "commonMistakes": [
+          "Evaluating profit and forgetting the compliance test, or vice versa — this case has two pass/fail bars",
+          "Counting the benefits gross and skipping the running cost"
+        ]
+      },
+      "followUp": "Let’s size the problem first. Here are the card business figures again — work from these.",
+      "followUpExhibitIds": [
+        "ex1"
+      ],
+      "scoringWeights": {
+        "structure": 0.5,
+        "accuracy": 0.3,
+        "communication": 0.2
+      }
+    },
+    {
+      "id": "q3",
+      "type": "math",
+      "timeLimitSeconds": 180,
+      "prompt": "Using Exhibit 1, how much does card fraud cost Harbrook each year?",
+      "exhibitIds": [
+        "ex1"
+      ],
+      "responseFormat": "number",
+      "unit": "$M",
+      "tolerancePct": 2,
+      "answerFormatNote": "Enter in $ millions, rounded to the nearest million.",
+      "idealAnswer": {
+        "value": 32,
+        "workedSolution": "Volume: 500M transactions × $80 = $40B a year.\nFraud at 8bp: $40B × 0.0008 = $32M a year.",
+        "commonMistakes": [
+          "Treating 8bp as 8% and answering $3.2B",
+          "Applying the rate to transaction count instead of volume",
+          "Slipping a factor of ten converting basis points"
+        ]
+      },
+      "followUp": "$32M a year, and rising. Now the other leak — the good transactions the screening turns away. Here is what saying no costs.",
+      "followUpExhibitIds": [
+        "ex2"
+      ],
+      "scoringWeights": {
+        "accuracy": 0.6,
+        "structure": 0.2,
+        "communication": 0.2
+      }
+    },
+    {
+      "id": "q4",
+      "type": "math",
+      "timeLimitSeconds": 240,
+      "prompt": "Using Exhibit 2, how much interchange revenue does Harbrook lose each year to falsely declined transactions?",
+      "exhibitIds": [
+        "ex2"
+      ],
+      "responseFormat": "number",
+      "unit": "$M",
+      "tolerancePct": 2,
+      "answerFormatNote": "Enter in $ millions, rounded to the nearest million.",
+      "idealAnswer": {
+        "value": 12,
+        "workedSolution": "Falsely declined: 2% × 500M = 10M transactions a year.\nBlocked volume: 10M × $80 = $0.8B.\nForgone interchange: $0.8B × 1.5% = $12M a year.",
+        "commonMistakes": [
+          "Counting the full $0.8B of blocked volume as the loss — the bank only earns the 1.5% interchange on it",
+          "Applying 2% to fraud losses instead of to all transactions",
+          "Ignoring this line entirely because it is not labelled \"fraud\""
+        ]
+      },
+      "followUp": "So the screening problem costs $44M a year in total: $32M of fraud that gets through, plus $12M of good business turned away — before counting the customers who give up on the card altogether.\n\nHere is the system the bank is evaluating.",
+      "followUpExhibitIds": [
+        "ex3"
+      ],
+      "scoringWeights": {
+        "accuracy": 0.6,
+        "structure": 0.2,
+        "communication": 0.2
+      }
+    },
+    {
+      "id": "q5",
+      "type": "math",
+      "timeLimitSeconds": 240,
+      "prompt": "Using the vendor terms in Exhibit 3, what is the annual net benefit of the new system, once it is running?",
+      "exhibitIds": [
+        "ex3"
+      ],
+      "responseFormat": "number",
+      "unit": "$M",
+      "tolerancePct": 2,
+      "answerFormatNote": "Enter in $ millions, to one decimal place — for $15,700,000, type 15.7.",
+      "idealAnswer": {
+        "value": 15.2,
+        "workedSolution": "Fraud avoided: 60% × $32M = $19.2M a year.\nInterchange recovered: 50% × $12M = $6M a year.\nGross benefit: $25.2M a year.\nLess running cost: $25.2M − $10M = $15.2M a year.",
+        "commonMistakes": [
+          "Forgetting the recovered interchange and netting only the fraud line",
+          "Subtracting the $20M one-off here — it belongs in the multi-year view, not the run-rate",
+          "Applying the 50% cut to fraud and the 60% cut to declines"
+        ]
+      },
+      "followUp": "A $25.2M gross benefit against $10M of running cost — $15.2M a year net. Now put the one-off cost in and look at the full horizon.",
+      "scoringWeights": {
+        "accuracy": 0.6,
+        "structure": 0.2,
+        "communication": 0.2
+      }
+    },
+    {
+      "id": "q6",
+      "type": "math",
+      "timeLimitSeconds": 180,
+      "prompt": "What is the net benefit of the system over five years, including the implementation cost?",
+      "responseFormat": "number",
+      "unit": "$M",
+      "tolerancePct": 2,
+      "answerFormatNote": "Enter in $ millions, rounded to the nearest million.",
+      "idealAnswer": {
+        "value": 56,
+        "workedSolution": "Annual net benefit: $15.2M × 5 = $76M.\nLess the one-off implementation: $76M − $20M = $56M.",
+        "commonMistakes": [
+          "Charging the $20M every year",
+          "Using the $25.2M gross figure and forgetting the running cost",
+          "Stopping at the annual figure when the question asks for five years"
+        ]
+      },
+      "followUp": "The system clears its costs comfortably — payback comes inside the second year. But profit was only one of the two bars. The regulator set the other.",
+      "scoringWeights": {
+        "accuracy": 0.6,
+        "structure": 0.2,
+        "communication": 0.2
+      }
+    },
+    {
+      "id": "q7",
+      "type": "math",
+      "timeLimitSeconds": 180,
+      "prompt": "With the new system running, what would Harbrook’s fraud losses be as a share of card volume — and does that satisfy the regulator?",
+      "responseFormat": "number",
+      "unit": "bp",
+      "tolerancePct": 2,
+      "answerFormatNote": "Enter in basis points, to one decimal place — for 4.5bp, type 4.5.",
+      "idealAnswer": {
+        "value": 3.2,
+        "workedSolution": "Remaining fraud: 40% × $32M = $12.8M a year.\nAs a share of volume: $12.8M ÷ $40B = 3.2bp — comfortably below the regulator’s 5bp threshold.",
+        "commonMistakes": [
+          "Cutting the 8bp rate by 50% instead of 60%",
+          "Dividing by transaction count rather than volume",
+          "Reporting the reduction (4.8bp) instead of what remains (3.2bp)"
+        ]
+      },
+      "followUp": "So both bars are cleared: $56M of five-year value, and a fraud rate of 3.2bp against a 5bp requirement. Before we recommend, the risk function will ask what could go wrong with the system itself.",
+      "scoringWeights": {
+        "accuracy": 0.6,
+        "structure": 0.2,
+        "communication": 0.2
+      }
+    },
+    {
+      "id": "q8",
+      "type": "brainstorming",
+      "timeLimitSeconds": 120,
+      "prompt": "What are the most relevant risks of relying on the new screening system? Select the three most relevant.",
+      "responseFormat": "choice",
+      "selectCount": 3,
+      "options": [
+        "Model drift — fraudsters adapt, and a 60% reduction today may not hold next year",
+        "Integration risk — the system must sit inside payment flows that cannot go down",
+        "Branch refurbishment delays",
+        "Governance risk — the regulator will ask how an ML model’s decisions are explained and audited",
+        "The vendor’s office location"
+      ],
+      "idealAnswer": {
+        "correctOptions": [
+          0,
+          1,
+          3
+        ],
+        "optionRationale": [
+          "The central risk: fraud is an adversary, not a constant, and the business case assumes the reduction persists.",
+          "Real: screening sits in the authorisation path, and an outage there stops card payments, not just fraud checks.",
+          "Branches are not part of this case.",
+          "Real and specific to ML: a regulator that set a loss threshold will also expect the model to be explainable, monitored and challengeable.",
+          "Immaterial."
+        ],
+        "commonMistakes": [
+          "Treating the vendor’s reduction figures as permanent rather than a moving target",
+          "Missing model governance — a compliance case solved with a tool the regulator cannot audit is not solved"
+        ]
+      },
+      "followUp": "Model drift: agree performance floors in the vendor contract, monitor weekly, and keep an in-house challenger model.\n\nIntegration: run the system in shadow mode against live traffic before it takes decisions, with a kill-switch back to the current rules.\n\nGovernance: stand up model documentation, decision explainability and an audit trail from day one — take the regulator through it before go-live, not after.",
+      "scoringWeights": {
+        "creativity": 0.3,
+        "accuracy": 0.4,
+        "structure": 0.3
+      }
+    },
+    {
+      "id": "q9",
+      "type": "synthesis",
+      "timeLimitSeconds": 180,
+      "prompt": "Harbrook’s Chief Risk Officer asks for your recommendation on the system. Please give your answer in seven to eight lines maximum.",
+      "responseFormat": "text",
+      "maxLines": 8,
+      "idealAnswer": {
+        "keyPoints": [
+          "Leads with the recommendation: buy and implement the system",
+          "Gives the compliance answer first — fraud falls from 8bp to 3.2bp, clearing the regulator’s 5bp bar with room",
+          "Gives the financial answer with numbers: $15.2M a year net, $56M over five years, payback inside two years",
+          "Notes the customer side: half the false declines disappear, which the complaint numbers will show",
+          "Names the conditions: shadow-mode rollout, contractual performance floors, and model governance the regulator can audit",
+          "Stays inside seven or eight lines"
+        ],
+        "commonMistakes": [
+          "Leading with the ROI and treating the regulatory requirement as a footnote — it is the reason the case exists",
+          "Presenting vendor reduction figures as certainties rather than contracted targets",
+          "Omitting the false-decline benefit, which is a third of the value"
+        ]
+      },
+      "scoringWeights": {
+        "communication": 0.4,
+        "structure": 0.3,
+        "accuracy": 0.3
+      }
+    }
+  ],
+  "closing": "That is the end of the case. Your transcript is ready — copy it into an LLM to be graded on what you actually said, not on what you meant.",
+  "authoring": {
+    "model": "claude-fable-5",
+    "generatedAt": "2026-08-25",
+    "mathVerifiedWith": "code-execution (node)",
+    "verificationLog": "=== Today ===\nCard volume                                                    40.0000 $B\nFraud losses at 8bp                                            32.0000 $M/yr\nFalsely declined transactions                                  10.0000 M/yr\nBlocked legitimate volume                                       0.8000 $B/yr\nForgone interchange at 1.5%                                    12.0000 $M/yr\n\n=== New screening system ===\nFraud losses avoided (60% cut)                                 19.2000 $M/yr\nInterchange recovered (declines halved)                         6.0000 $M/yr\nRunning cost                                                   10.0000 $M/yr\nAnnual net benefit                                             15.2000 $M/yr\nFive-year net benefit after one-off                            56.0000 $M\nRemaining fraud losses                                         12.8000 $M/yr\nRemaining fraud rate                                            3.2000 bp\n\n=== Assertions against the values declared in the JSON ===\nPASS  q3 annual fraud losses ($M): derived 32.0000 vs declared 32.0000 (tol 2%)\nPASS  q4 forgone interchange ($M): derived 12.0000 vs declared 12.0000 (tol 2%)\nPASS  q5 annual net benefit ($M): derived 15.2000 vs declared 15.2000 (tol 2%)\nPASS  q6 five-year net benefit ($M): derived 56.0000 vs declared 56.0000 (tol 2%)\nPASS  q7 remaining fraud rate (bp): derived 3.2000 vs declared 3.2000 (tol 2%)\n\n=== Figures quoted inside follow-up text and rationale ===\nPASS  card volume quoted in q1 follow-up ($B): derived 40.0000 vs declared 40.0000 (tol 2%)\nPASS  blocked volume quoted in q4 solution ($B): derived 0.8000 vs declared 0.8000 (tol 2%)\nPASS  fraud saved quoted in q5 solution ($M): derived 19.2000 vs declared 19.2000 (tol 2%)\nPASS  remaining fraud losses quoted in q7 solution ($M): derived 12.8000 vs declared 12.8000 (tol 2%)\nPASS  gross annual benefit quoted in q5 follow-up ($M): derived 25.2000 vs declared 25.2000 (tol 2%)\n\n=== Sanity ===\nRemaining 3.2bp is under the regulator’s 5bp threshold: true\nForgone interchange ($12M) is meaningful next to fraud ($32M): true\nSystem pays back inside two years (20 / 15.2): true\n"
+  }
+}

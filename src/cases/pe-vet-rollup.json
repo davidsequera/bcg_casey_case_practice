@@ -1,0 +1,367 @@
+{
+  "schemaVersion": 2,
+  "id": "pe-vet-rollup",
+  "title": "Bramfield Capital: the veterinary roll-up",
+  "industry": "Principal Investors & Private Equity",
+  "functionalPractice": "Corporate Finance & Strategy",
+  "difficulty": "hard",
+  "estimatedMinutes": 35,
+  "totalTimeSeconds": 2100,
+  "prompt": "Our client is Bramfield Capital, a mid-market private equity fund. It has been offered Bracken Vets, a chain of 40 veterinary clinics, at an asking price of $240M. The seller’s pitch is a roll-up: keep acquiring independent clinics, centralise the back office, and sell the larger group in five years. Bramfield’s investment committee meets on Friday and has asked us to test whether the deal earns its target return at the asking price.",
+  "exhibits": [
+    {
+      "id": "ex1",
+      "title": "Exhibit 1 — Bracken Vets today",
+      "type": "table",
+      "unitsNote": "All figures are annual and current-year",
+      "source": "Seller information memorandum, diligence-adjusted",
+      "table": {
+        "columns": [
+          "Item",
+          "Value"
+        ],
+        "rows": [
+          [
+            "Clinics",
+            40
+          ],
+          [
+            "Average revenue per clinic",
+            "$3.0M"
+          ],
+          [
+            "EBITDA margin",
+            "20%"
+          ],
+          [
+            "Asking price",
+            "$240M"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ex2",
+      "title": "Exhibit 2 — The five-year plan",
+      "type": "table",
+      "unitsNote": "Acquired clinics perform like existing ones once integrated",
+      "source": "Deal team value-creation plan",
+      "table": {
+        "columns": [
+          "Item",
+          "Value"
+        ],
+        "rows": [
+          [
+            "Add-on acquisitions over five years",
+            "20 clinics"
+          ],
+          [
+            "Price per add-on clinic",
+            "$2.0M"
+          ],
+          [
+            "Group EBITDA margin by year 5 (shared back office)",
+            "25%"
+          ],
+          [
+            "Assumed exit multiple",
+            "10× EBITDA — the same as at entry"
+          ]
+        ]
+      }
+    }
+  ],
+  "questions": [
+    {
+      "id": "q1",
+      "type": "structuring",
+      "timeLimitSeconds": 90,
+      "prompt": "Before we model the deal, what should we clarify with Bramfield first? Select the two most relevant.",
+      "responseFormat": "choice",
+      "selectCount": 2,
+      "options": [
+        "What return does the fund need from this deal, over what holding period?",
+        "What is Bracken actually earning today, on numbers we trust rather than the seller’s?",
+        "What breeds of dog are most common among Bracken’s patients?",
+        "Which law firm will paper the transaction?",
+        "What did Bramfield’s last three exits return?"
+      ],
+      "idealAnswer": {
+        "correctOptions": [
+          0,
+          1
+        ],
+        "optionRationale": [
+          "The yardstick. A deal is only good or bad relative to the return the fund underwrites to.",
+          "The base of every projection. Roll-up stories are sold on adjusted numbers; diligence starts by re-cutting them.",
+          "Clinical mix might interest an operator, but it does not gate a Friday investment-committee answer.",
+          "Process, not analysis.",
+          "Past exits do not change this deal’s economics."
+        ],
+        "commonMistakes": [
+          "Modelling before asking what return the model must clear",
+          "Taking the information memorandum’s EBITDA at face value"
+        ]
+      },
+      "followUp": "The fund underwrites to at least 2.0× its invested capital over a five-year hold — money out over money in, before fees.\n\nAnd our diligence accountants have re-cut the seller’s numbers: the figures you will see are the adjusted ones we can stand behind.",
+      "scoringWeights": {
+        "structure": 0.4,
+        "accuracy": 0.4,
+        "communication": 0.2
+      }
+    },
+    {
+      "id": "q2",
+      "type": "structuring",
+      "timeLimitSeconds": 120,
+      "prompt": "Which areas would you focus the diligence on? Select the four most relevant.",
+      "responseFormat": "choice",
+      "selectCount": 4,
+      "options": [
+        "Quality of current earnings — what the 40 clinics really make",
+        "The roll-up plan — how many clinics can be bought, at what price, and integrated",
+        "The margin story — whether a shared back office really lifts profitability",
+        "Exit assumptions — what a buyer pays for the group in five years",
+        "The seller’s reasons for choosing this month to sell",
+        "The uniform colours worn by clinic staff",
+        "Bramfield’s office lease terms"
+      ],
+      "idealAnswer": {
+        "correctOptions": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "optionRationale": [
+          "The base. Every other number in the deal is built on it.",
+          "The growth engine of the thesis — and roll-ups fail here more than anywhere: targets run out or get expensive.",
+          "The value-creation lever. If the margin lift is real it changes the exit EBITDA by a quarter.",
+          "Half the return arithmetic. An optimistic exit multiple can make any deal look good.",
+          "Worth a question in passing, but it is colour, not one of the four analyses that decide the price.",
+          "Immaterial.",
+          "Unrelated to the target."
+        ],
+        "commonMistakes": [
+          "Spending the diligence on today’s earnings and waving the growth and exit assumptions through",
+          "Ignoring that the exit multiple assumption carries as much of the return as the operating plan"
+        ]
+      },
+      "followUp": "Here is Bracken as it stands today, on our adjusted numbers.",
+      "followUpExhibitIds": [
+        "ex1"
+      ],
+      "scoringWeights": {
+        "structure": 0.5,
+        "accuracy": 0.3,
+        "communication": 0.2
+      }
+    },
+    {
+      "id": "q3",
+      "type": "math",
+      "timeLimitSeconds": 180,
+      "prompt": "Using Exhibit 1, what is Bracken’s EBITDA today?",
+      "exhibitIds": [
+        "ex1"
+      ],
+      "responseFormat": "number",
+      "unit": "$M",
+      "tolerancePct": 2,
+      "answerFormatNote": "Enter in $ millions, rounded to the nearest million.",
+      "idealAnswer": {
+        "value": 24,
+        "workedSolution": "Revenue: 40 clinics × $3.0M = $120M.\nEBITDA: $120M × 20% = $24M.",
+        "commonMistakes": [
+          "Applying the margin per clinic and then forgetting to scale to 40",
+          "Using the asking price somewhere in an earnings calculation"
+        ]
+      },
+      "followUp": "A $24M earnings base. The first thing an investment committee will ask is what the seller is charging for it.",
+      "scoringWeights": {
+        "accuracy": 0.6,
+        "structure": 0.2,
+        "communication": 0.2
+      }
+    },
+    {
+      "id": "q4",
+      "type": "math",
+      "timeLimitSeconds": 120,
+      "prompt": "At the $240M asking price, what multiple of today’s EBITDA is the seller asking for?",
+      "responseFormat": "number",
+      "unit": "× EBITDA",
+      "tolerancePct": 2,
+      "answerFormatNote": "Enter the multiple to one decimal place — for 8.5×, type 8.5.",
+      "idealAnswer": {
+        "value": 10,
+        "workedSolution": "Multiple: $240M ÷ $24M = 10.0× EBITDA.",
+        "commonMistakes": [
+          "Dividing by revenue and quoting 2× — the convention in this market is EBITDA",
+          "Inverting the ratio"
+        ]
+      },
+      "followUp": "10× — a full price for a vet group, which is exactly why the seller leads with the roll-up story: you are being asked to pay today for growth Bramfield still has to build. Here is the plan the price rests on.",
+      "followUpExhibitIds": [
+        "ex2"
+      ],
+      "scoringWeights": {
+        "accuracy": 0.6,
+        "structure": 0.2,
+        "communication": 0.2
+      }
+    },
+    {
+      "id": "q5",
+      "type": "math",
+      "timeLimitSeconds": 240,
+      "prompt": "Assume the plan in Exhibit 2 is delivered in full. What is the group’s EBITDA in year 5?",
+      "exhibitIds": [
+        "ex2"
+      ],
+      "responseFormat": "number",
+      "unit": "$M",
+      "tolerancePct": 2,
+      "answerFormatNote": "Enter in $ millions, rounded to the nearest million.",
+      "idealAnswer": {
+        "value": 45,
+        "workedSolution": "Clinics: 40 + 20 = 60.\nRevenue: 60 × $3.0M = $180M.\nEBITDA at the improved margin: $180M × 25% = $45M.",
+        "commonMistakes": [
+          "Applying the 25% margin only to the acquired clinics",
+          "Keeping the 20% margin and answering $36M",
+          "Growing revenue per clinic — the plan holds it flat at $3M"
+        ]
+      },
+      "followUp": "EBITDA nearly doubles: half from the 20 clinics bought for $40M in total, half from the margin lift. Now to what that is worth on the way out.",
+      "scoringWeights": {
+        "accuracy": 0.6,
+        "structure": 0.2,
+        "communication": 0.2
+      }
+    },
+    {
+      "id": "q6",
+      "type": "math",
+      "timeLimitSeconds": 120,
+      "prompt": "At the assumed exit multiple, what does Bramfield sell the group for in year 5?",
+      "responseFormat": "number",
+      "unit": "$M",
+      "tolerancePct": 2,
+      "answerFormatNote": "Enter in $ millions, rounded to the nearest million.",
+      "idealAnswer": {
+        "value": 450,
+        "workedSolution": "Exit: $45M × 10 = $450M.",
+        "commonMistakes": [
+          "Assuming a higher exit multiple than entry — the plan deliberately does not bet on multiple expansion",
+          "Selling only the original 40 clinics’ earnings"
+        ]
+      },
+      "followUp": "A $450M exit on a plan fully delivered. Now the number the committee actually votes on.",
+      "scoringWeights": {
+        "accuracy": 0.6,
+        "structure": 0.2,
+        "communication": 0.2
+      }
+    },
+    {
+      "id": "q7",
+      "type": "math",
+      "timeLimitSeconds": 240,
+      "prompt": "Counting everything Bramfield puts in — the purchase and the add-on acquisitions — what multiple of its money does the fund make at the asking price?",
+      "responseFormat": "number",
+      "unit": "× invested",
+      "tolerancePct": 2,
+      "answerFormatNote": "Enter the multiple to one decimal place — for 2.3×, type 2.3.",
+      "idealAnswer": {
+        "value": 1.6,
+        "workedSolution": "Invested: $240M purchase + $40M of add-ons = $280M.\nMultiple of money: $450M ÷ $280M ≈ 1.6×.",
+        "commonMistakes": [
+          "Dividing by the $240M price alone and getting 1.9× — the add-ons are Bramfield’s money too",
+          "Netting the add-on spend out of the exit value instead of adding it to invested capital",
+          "Comparing the exit to EBITDA rather than to cash invested"
+        ]
+      },
+      "followUp": "1.6× against a 2.0× hurdle — the deal fails at the asking price even with the plan delivered perfectly. Run it backwards and the price that works is about $185M: at that entry, $450M back on $225M in is exactly 2.0×.\n\nSo the honest answer is not “no” but “not at $240M”. Before we put a number in front of the committee, what could make even that too generous?",
+      "scoringWeights": {
+        "accuracy": 0.6,
+        "structure": 0.2,
+        "communication": 0.2
+      }
+    },
+    {
+      "id": "q8",
+      "type": "brainstorming",
+      "timeLimitSeconds": 120,
+      "prompt": "Which risks could make the plan itself — not just the price — too optimistic? Select the three most relevant.",
+      "responseFormat": "choice",
+      "selectCount": 3,
+      "options": [
+        "Vet shortage — clinicians are scarce, and clinics without vets have revenue but no future",
+        "Add-on inflation — other consolidators bidding up the $2M clinic price",
+        "Exit multiple risk — buyers in five years paying less than 10× for roll-ups",
+        "Pet fashion risk — a decline in the popularity of dogs",
+        "Office décor standards across the clinic network"
+      ],
+      "idealAnswer": {
+        "correctOptions": [
+          0,
+          1,
+          2
+        ],
+        "optionRationale": [
+          "The sector’s defining constraint: the roll-up buys buildings and brands, but the earnings walk out the door if the vets do.",
+          "Real: the plan prices 20 clinics at $2M each in a market where every fund has the same idea.",
+          "Real and painful arithmetic: at 8× exit the same plan returns $360M — below 1.3× on the ask.",
+          "Pet ownership is famously resilient; this is not a three-most-relevant risk.",
+          "Immaterial."
+        ],
+        "commonMistakes": [
+          "Stress-testing the operations and leaving the exit multiple untouched — it is the single most sensitive assumption",
+          "Ignoring that the roll-up competes with other buyers for the same targets"
+        ]
+      },
+      "followUp": "Staffing: diligence the vet retention data before signing, and budget for retention packages.\n\nAdd-on inflation: line up a pipeline of targets before close, and walk away from the plan’s economics if prices move past $2.5M.\n\nExit: underwrite at 9×, not 10× — if the deal only works at the top of the multiple range, the price is wrong.",
+      "scoringWeights": {
+        "creativity": 0.3,
+        "accuracy": 0.4,
+        "structure": 0.3
+      }
+    },
+    {
+      "id": "q9",
+      "type": "synthesis",
+      "timeLimitSeconds": 180,
+      "prompt": "You have five minutes with Bramfield’s investment committee on Friday. What do you tell them? Please give your answer in seven to eight lines maximum.",
+      "responseFormat": "text",
+      "maxLines": 8,
+      "idealAnswer": {
+        "keyPoints": [
+          "Leads with the recommendation: do not pay $240M; pursue the deal at up to about $185M",
+          "Gives the arithmetic: even with the plan fully delivered, the ask returns 1.6× against a 2.0× hurdle ($450M back on $280M in)",
+          "Credits the asset: the roll-up logic and margin story are sound — the problem is the price, not the business",
+          "Notes the plan is already generous: flat clinic economics, full integration, and no exit-multiple upside or downside",
+          "Names the walk-away conditions: vet retention data, add-on prices, and an exit underwritten below 10×",
+          "Stays inside seven or eight lines"
+        ],
+        "commonMistakes": [
+          "Framing the answer as kill-the-deal when the analysis supports a lower bid",
+          "Quoting the 1.9× figure that ignores the add-on capital",
+          "Recommending the price without naming what diligence must still confirm"
+        ]
+      },
+      "scoringWeights": {
+        "communication": 0.4,
+        "structure": 0.3,
+        "accuracy": 0.3
+      }
+    }
+  ],
+  "closing": "That is the end of the case. Your transcript is ready — copy it into an LLM to be graded on what you actually said, not on what you meant.",
+  "authoring": {
+    "model": "claude-fable-5",
+    "generatedAt": "2026-08-25",
+    "mathVerifiedWith": "code-execution (node)",
+    "verificationLog": "=== Bracken Vets today ===\nRevenue (40 clinics x $3M)                                    120.0000 $M\nEBITDA at a 20% margin                                         24.0000 $M\nEntry multiple at the $240M ask                                10.0000 x\n\n=== The plan at year 5 ===\nClinics after 20 add-ons                                       60.0000 \nRevenue (60 x $3M)                                            180.0000 $M\nEBITDA at a 25% margin                                         45.0000 $M\nExit value at 10x                                             450.0000 $M\n\n=== Returns ===\nTotal invested (price + add-ons)                              280.0000 $M\nMultiple of money                                               1.6071 x\nMax entry price for a 2.0x return                             185.0000 $M\n\n=== Assertions against the values declared in the JSON ===\nPASS  q3 EBITDA today ($M): derived 24.0000 vs declared 24.0000 (tol 2%)\nPASS  q4 entry multiple (x): derived 10.0000 vs declared 10.0000 (tol 2%)\nPASS  q5 year-5 EBITDA ($M): derived 45.0000 vs declared 45.0000 (tol 2%)\nPASS  q6 exit value ($M): derived 450.0000 vs declared 450.0000 (tol 2%)\nPASS  q7 multiple of money (x): derived 1.6071 vs declared 1.6000 (tol 2%)\n\n=== Figures quoted inside follow-up text and rationale ===\nPASS  revenue today quoted in q3 solution ($M): derived 120.0000 vs declared 120.0000 (tol 2%)\nPASS  year-5 revenue quoted in q5 solution ($M): derived 180.0000 vs declared 180.0000 (tol 2%)\nPASS  total invested quoted in q7 solution ($M): derived 280.0000 vs declared 280.0000 (tol 2%)\nPASS  add-on spend quoted in q5 follow-up ($M): derived 40.0000 vs declared 40.0000 (tol 2%)\nPASS  max price quoted in q7 follow-up ($M): derived 185.0000 vs declared 185.0000 (tol 2%)\nPASS  invested at max price quoted in q7 follow-up ($M): derived 225.0000 vs declared 225.0000 (tol 2%)\nPASS  8x downside exit quoted in q8 rationale ($M): derived 360.0000 vs declared 360.0000 (tol 2%)\n8x exit returns below 1.3x as q8 rationale claims: true\n\n=== Sanity ===\n1.6x falls short of the fund’s 2.0x hurdle: true\nAt $185M the deal returns exactly 2.0x: true\nExit assumes no multiple expansion (10x in, 10x out): true\n"
+  }
+}

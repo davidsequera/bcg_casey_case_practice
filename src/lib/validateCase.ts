@@ -48,6 +48,13 @@ export function validateCase(input: unknown): ValidationResult {
   req('prompt', 'string')
   req('estimatedMinutes', 'number')
 
+  if (
+    input.functionalPractice !== undefined &&
+    (typeof input.functionalPractice !== 'string' || input.functionalPractice.trim() === '')
+  ) {
+    errors.push('"functionalPractice" must be a non-empty string when present.')
+  }
+
   if (typeof input.schemaVersion !== 'number') {
     errors.push('"schemaVersion" is required and must be a number.')
   } else if (input.schemaVersion !== SCHEMA_VERSION) {

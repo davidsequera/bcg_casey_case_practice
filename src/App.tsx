@@ -14,12 +14,32 @@ import {
   saveUploadedCase,
 } from './lib/storage'
 
-import telco from './cases/telco-network-jv.json'
 import coffee from './cases/coffee-chain-profitability.json'
-import airline from './cases/airline-market-entry.json'
+import pumps from './cases/pumps-vietnam-plant.json'
+import cloud from './cases/media-cloud-migration.json'
+import bank from './cases/bank-fraud-losses.json'
+import coal from './cases/coal-retirement.json'
+import vets from './cases/pe-vet-rollup.json'
 import hospital from './cases/hospital-cost-reduction.json'
+import motor from './cases/motor-telematics-pricing.json'
+import jobs from './cases/jobs-programme.json'
+import airline from './cases/airline-market-entry.json'
+import turnaround from './cases/department-store-turnaround.json'
 
-const BUNDLED: Case[] = [telco, coffee, airline, hospital] as unknown as Case[]
+/** One case per industry, in the order of the practice-area map. */
+const BUNDLED: Case[] = [
+  coffee,
+  pumps,
+  cloud,
+  bank,
+  coal,
+  vets,
+  hospital,
+  motor,
+  jobs,
+  airline,
+  turnaround,
+] as unknown as Case[]
 
 function newSession(c: Case, practiceMode: boolean): Session {
   return {

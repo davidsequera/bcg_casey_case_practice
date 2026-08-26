@@ -57,7 +57,8 @@ round enough that a candidate can do them mentally on paper (prefer 240 and 15% 
   "schemaVersion": 2,
   "id": "kebab-case-unique-id",
   "title": "Human readable title",
-  "industry": "e.g. Consumer / Retail",
+  "industry": "e.g. Consumer",
+  "functionalPractice": "optional; the functional practice the case leans on, e.g. Marketing, Sales & Pricing",
   "difficulty": "easy | medium | hard",
   "estimatedMinutes": 35,
   "totalTimeSeconds": 2100,            // the single clock for the whole case; 2100 = 35 min
