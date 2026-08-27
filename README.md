@@ -62,3 +62,53 @@ that.
 ## Licence
 
 Code: GPL-3.0 (see `LICENSE`). The case content is provided for personal interview practice.
+
+
+## Cases 
+
+  ┌─────────────────────────┬─────────────────────────────────────────────────────────────────────────┬───────────────────────┬────────────┐
+  │        Industry         │                                  Case                                   │       Practice        │ Difficulty │
+  ├─────────────────────────┼─────────────────────────────────────────────────────────────────────────┼───────────────────────┼────────────┤
+  │ Consumer                │ Corvo Coffee: the vanishing profit (kept)                               │ Marketing, Sales &    │ medium     │
+  │                         │                                                                         │ Pricing               │            │
+  ├─────────────────────────┼─────────────────────────────────────────────────────────────────────────┼───────────────────────┼────────────┤
+  │ Industrial Goods        │ Kestrel Pumps: a plant in Vietnam — build local vs export past tariffs  │ Global Advantage      │ medium     │
+  │                         │ and a capacity cap                                                      │                       │            │
+  ├─────────────────────────┼─────────────────────────────────────────────────────────────────────────┼───────────────────────┼────────────┤
+  │ Tech, Media &           │ Aurora Studios: leaving the data centre — cloud migration, with the     │ Tech & Digital        │ hard       │
+  │ Communications          │ peak-vs-average utilisation insight at its core                         │ Advantage             │            │
+  ├─────────────────────────┼─────────────────────────────────────────────────────────────────────────┼───────────────────────┼────────────┤
+  │ Financial Institutions  │ Harbrook Bank: the fraud leak — fraud losses vs false declines, with a  │ Risk and Compliance   │ medium     │
+  │                         │ regulatory bp threshold                                                 │                       │            │
+  ├─────────────────────────┼─────────────────────────────────────────────────────────────────────────┼───────────────────────┼────────────┤
+  │ Energy                  │ Grellin Power: retiring Marsh Creek — coal retrofit vs solar + storage  │ Climate and           │ hard       │
+  │                         │ under a new carbon price                                                │ Sustainability        │            │
+  ├─────────────────────────┼─────────────────────────────────────────────────────────────────────────┼───────────────────────┼────────────┤
+  │ Principal Investors &   │ Bramfield Capital: the veterinary roll-up — diligence that lands on     │ Corporate Finance &   │ hard       │
+  │ PE                      │ "not at $240M; bid $185M"                                               │ Strategy              │            │
+  ├─────────────────────────┼─────────────────────────────────────────────────────────────────────────┼───────────────────────┼────────────┤
+  │ Health Care             │ St Brendan's: finding $30 million (kept)                                │ Operations            │ easy       │
+  ├─────────────────────────┼─────────────────────────────────────────────────────────────────────────┼───────────────────────┼────────────┤
+  │ Insurance               │ Solvenn Mutual: pricing the safe drivers — telematics pricing to stop   │ Marketing, Sales &    │ medium     │
+  │                         │ cross-subsidy cherry-picking                                            │ Pricing               │            │
+  ├─────────────────────────┼─────────────────────────────────────────────────────────────────────────┼───────────────────────┼────────────┤
+  │ Public Sector           │ Pathways: buying more first jobs — cost per placement, with the         │ Social Impact         │ easy       │
+  │                         │ fewer-places equity trade-off owned honestly                            │                       │            │
+  ├─────────────────────────┼─────────────────────────────────────────────────────────────────────────┼───────────────────────┼────────────┤
+  │ Travel, Cities &        │ Meridian Air: the Northport route (kept)                                │ Corporate Finance &   │ hard       │
+  │ PE                      │ "not at $240M; bid $185M"                                               │ Strategy              │            │
+  ├─────────────────────────┼─────────────────────────────────────────────────────────────────────────┼───────────────────────┼────────────┤
+  │ Health Care             │ St Brendan's: finding $30 million (kept)                                │ Operations            │ easy       │
+  ├─────────────────────────┼─────────────────────────────────────────────────────────────────────────┼───────────────────────┼────────────┤
+  │ Insurance               │ Solvenn Mutual: pricing the safe drivers — telematics pricing to stop   │ Marketing, Sales &    │ medium     │
+  │                         │ cross-subsidy cherry-picking                                            │ Pricing               │            │
+  ├─────────────────────────┼─────────────────────────────────────────────────────────────────────────┼───────────────────────┼────────────┤
+  │ Public Sector           │ Pathways: buying more first jobs — cost per placement, with the         │ Social Impact         │ easy       │
+  │                         │ fewer-places equity trade-off owned honestly                            │                       │            │
+  ├─────────────────────────┼─────────────────────────────────────────────────────────────────────────┼───────────────────────┼────────────┤
+  │ Travel, Cities &        │ Meridian Air: the Northport route (kept)                                │ Corporate Finance &   │ hard       │
+  │ Infrastructure          │                                                                         │ Strategy              │            │
+  ├─────────────────────────┼─────────────────────────────────────────────────────────────────────────┼───────────────────────┼────────────┤
+  │ BCG Transform           │ Hollis & Vane: the turnaround plan — $180M sized top-down, four levers  │ People & Organization │ hard       │
+  │                         │ reach $160M, and the people plan carries the rest                       │                       │            │
+  └─────────────────────────┴─────────────────────────────────────────────────────────────────────────┴───────────────────────┴────────────┘

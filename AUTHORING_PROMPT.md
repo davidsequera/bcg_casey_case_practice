@@ -36,7 +36,9 @@ You have a code execution tool. Use it.
    exactly as they appear in your JSON, re-derive every `idealAnswer.value` from them, and
    `assert` each one matches within the question's `tolerancePct`. Assert every figure quoted in
    prose too. For each `choice` question whose options make factual claims, print the claim and
-   the computed evidence for it, so the correct set is provably correct.
+   the computed evidence for it, so the correct set is provably correct. Assert the structure as
+   well: the sum of `timeLimitSeconds` fits inside `totalTimeSeconds`, and every exhibit id is
+   referenced by some question's `exhibitIds` or `followUpExhibitIds`.
 4. If any assertion fails, fix the JSON and run the script again. Repeat until all pass.
 5. Paste the final script's output verbatim into `authoring.verificationLog`, and set
    `authoring.mathVerifiedWith` to the tool you used.
@@ -52,13 +54,22 @@ round enough that a candidate can do them mentally on paper (prefer 240 and 15% 
 
 ## Schema
 
+For `industry`, use one of BCG's: Consumer; Industrial Goods; Tech, Media & Communications;
+Financial Institutions; Energy; Principal Investors & Private Equity; Health Care; Insurance;
+Public Sector; Travel, Cities & Infrastructure; BCG Transform (turnarounds). For
+`functionalPractice`, pick the one of the nine practices the case's mechanics genuinely lean on —
+Corporate Finance & Strategy; Marketing, Sales & Pricing; People & Organization; Operations;
+Tech & Digital Advantage; Global Advantage; Social Impact; Risk and Compliance; Climate and
+Sustainability — not the nearest-sounding label: a cost-reduction case is Operations even if the
+client is a tech company.
+
 ```jsonc
 {
   "schemaVersion": 2,
   "id": "kebab-case-unique-id",
   "title": "Human readable title",
   "industry": "e.g. Consumer",
-  "functionalPractice": "optional; the functional practice the case leans on, e.g. Marketing, Sales & Pricing",
+  "functionalPractice": "e.g. Marketing, Sales & Pricing",
   "difficulty": "easy | medium | hard",
   "estimatedMinutes": 35,
   "totalTimeSeconds": 2100,            // the single clock for the whole case; 2100 = 35 min
@@ -187,6 +198,15 @@ candidate has to choose to open, and opening it is recorded against them. So:
   the way the real thing does: a hallway conversation with the CEO.
 - Build the case so the numbers **chain**: question 6 should need what question 5 established.
   That is what makes a case feel like a case rather than a quiz.
+- Give the case **one real insight** — a point where the naive calculation is wrong and the
+  correct one changes the answer: paying for peak capacity when you use the average, incremental
+  profit versus total profit, cost per outcome versus cost per participant, a discount funded by
+  a claims reduction. Design the trap into a question, and let the `followUp` name the principle
+  once the candidate has committed. A case without one is arithmetic with a story attached.
+- Every exhibit must actually reach the candidate — referenced by some question's `exhibitIds`
+  or handed over in a `followUpExhibitIds`. An exhibit nobody is shown is dead weight. (Handing
+  an exhibit over in a `followUp` and listing it again on the next question is safe: the app
+  will not render it twice in a row.)
 - Every question needs `commonMistakes` — the specific traps in *this* case, not generic advice.
 - `scoringWeights` values should sum to 1.0.
 
