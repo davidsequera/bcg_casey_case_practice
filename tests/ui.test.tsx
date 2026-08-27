@@ -104,7 +104,10 @@ const tv = text(renderToStaticMarkup(
 ))
 check('offers the copy button', tv.includes('Copy transcript for an LLM'))
 check('offers both downloads', tv.includes('Download .md') && tv.includes('Download session .json'))
-check('counts the questions never reached', tv.includes('6/10'))
+check('counts the questions never reached', tv.includes('Never reached 6 of 10 questions'))
+check('tallies the closed questions it could check',
+  /Closed questions \d+\/\d+ answered correctly/.test(tv), `-> ${tv.slice(0, 200)}`)
+check('says the written questions are left to the grader', tv.includes('left unscored'))
 check('reports against the case clock', tv.includes('of the 35:00 case clock'))
 check('shows the transcript body', tv.includes('please grade') && tv.includes('Aurora Studios'))
 

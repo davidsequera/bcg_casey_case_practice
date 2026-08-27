@@ -7,6 +7,7 @@ import {
   downloadFile,
 } from '../lib/transcript'
 import { formatClock } from '../lib/timer'
+import { scoreSession } from '../lib/score'
 
 export function TranscriptView({
   caseData,
@@ -31,6 +32,7 @@ export function TranscriptView({
   const unreached = caseData.questions.length - session.answers.length
   const peeked = session.answers.filter((a) => a.peeked).length
   const slug = caseData.id.replace(/[^a-z0-9-]/gi, '-')
+  const score = useMemo(() => scoreSession(caseData, session), [caseData, session])
 
   return (
     <div>
@@ -49,16 +51,32 @@ export function TranscriptView({
             <div className="small muted">of the {formatClock(totalLimit)} case clock</div>
           </div>
           <div style={{ marginLeft: 32 }}>
-            <div className="small muted">Never reached</div>
+            <div className="small muted">Closed questions</div>
             <div className="timer ok">
-              {unreached}/{caseData.questions.length}
+              {score.correct}/{score.scorable}
             </div>
+            <div className="small muted">answered correctly</div>
+          </div>
+          <div style={{ marginLeft: 32 }}>
+            <div className="small muted">Never reached</div>
+            <div className="timer ok">{unreached}</div>
+            <div className="small muted">of {caseData.questions.length} questions</div>
           </div>
           <div style={{ marginLeft: 32 }}>
             <div className="small muted">Answer key opened</div>
             <div className="timer ok">{peeked}</div>
+            <div className="small muted">
+              {peeked === 1 ? 'question' : 'questions'}
+            </div>
           </div>
         </div>
+        <p className="small muted" style={{ marginTop: 12, marginBottom: 0 }}>
+          Only the multiple-select and numeric questions can be checked mechanically, against the
+          answers the case declares. The {score.unscored} written{' '}
+          {score.unscored === 1 ? 'question is' : 'questions are'} left unscored — paste the
+          transcript below to have those judged, and to find out <em>why</em> anything above went
+          wrong.
+        </p>
       </div>
 
       <div className="panel">

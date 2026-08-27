@@ -8,6 +8,7 @@ import {
   type Session,
 } from '../types/case'
 import { formatClock } from './timer'
+import { describeScore, scoreQuestion, scoreSession } from './score'
 
 const GRADER_HEADER = `# Case interview transcript — please grade
 
@@ -21,19 +22,25 @@ Grade like an interviewer, not a teacher. Specifically:
 
 1. For each question, score every dimension listed under "Scoring dimensions" from 1 to 5
    (1 = would not pass, 3 = borderline hire, 5 = clearly above bar) and justify each score
-   in one sentence quoting the candidate's own words.
-2. For multiple-select questions, compare their picks to the correct set: say which distractor
+   in one sentence quoting the candidate's own words. Score only the dimensions listed —
+   they vary by question, because a multiple-select answer has no prose to judge.
+2. The "Objective check" line has already been computed from the case's declared answers.
+   Treat it as settled and do not re-derive it; your job is to explain the answers it marks
+   wrong, not to re-check the ones it marks right.
+3. For multiple-select questions, compare their picks to the correct set: say which distractor
    they fell for and what that reveals about their judgement, not just how many they got.
-3. For numeric questions, state whether the answer is within the stated tolerance of the
-   model value, and if not, diagnose *where* the reasoning broke — a setup error, an
-   arithmetic slip, or a misread exhibit.
-4. Answers marked **(answer key was open)** were given with the model answer visible. Do not
+4. For numeric questions marked outside tolerance, diagnose *where* the reasoning broke — a
+   setup error, an arithmetic slip, or a misread exhibit. Check whether the error carried
+   forward into later answers or was silently corrected.
+5. Answers marked **(answer key was open)** were given with the model answer visible. Do not
    credit them as independent work; say so plainly.
-5. Comment on pacing: the case-level clock is the real constraint, so flag questions that ran
+6. Comment on pacing: the case-level clock is the real constraint, so flag questions that ran
    far over their suggested pace, questions that were never reached, and answers that used
    almost no time but were thin.
-6. Close with an overall verdict (1-5), and the three highest-leverage things this
+7. Close with an overall verdict (1-5), and the three highest-leverage things this
    candidate should change before their next case. Be blunt; vague encouragement is useless.
+   The closed-question tally at the foot of this transcript is a floor, not the verdict — a
+   candidate can get every number right and still be below bar on judgement.
 
 ---
 `
@@ -62,27 +69,58 @@ function exhibitToMarkdown(ex: Exhibit): string {
   return lines.join('\n')
 }
 
-function dimensionsFor(q: Question): string {
+const DEFAULT_DIMENSIONS: Record<Question['type'], string[]> = {
+  math: ['accuracy', 'approach', 'communication'],
+  structuring: ['MECE-ness', 'relevance to the client question', 'communication'],
+  brainstorming: ['creativity', 'breadth', 'structure'],
+  synthesis: ['top-down recommendation', 'support', 'concision'],
+  exhibit: ['accuracy of read', 'so-what insight', 'communication'],
+}
+
+/**
+ * A multiple-select answer is a set of clicks and a numeric answer is often a single token --
+ * there is no prose to judge, so asking a grader to score "communication" there invites it to
+ * invent a number and quietly skew the weighted score. Communication survives on written
+ * answers, and on numeric answers only when the candidate showed their working.
+ */
+function communicationApplies(q: Question, rec: AnswerRecord | undefined): boolean {
+  if (q.responseFormat === 'text') return true
+  if (q.responseFormat === 'choice') return false
+  return Boolean(rec?.scratch?.trim())
+}
+
+/** Dropping a dimension must not silently discount the ones that remain. */
+function renormalise(entries: [string, number][]): [string, number][] {
+  const sum = entries.reduce((s, [, v]) => s + v, 0)
+  if (sum <= 0) return entries
+  const scaled = entries.map(([k, v]) => [k, Math.round((v / sum) * 100) / 100] as [string, number])
+  const residual = Math.round((1 - scaled.reduce((s, [, v]) => s + v, 0)) * 100) / 100
+  if (residual !== 0 && scaled.length > 0) {
+    const last = scaled[scaled.length - 1]
+    scaled[scaled.length - 1] = [last[0], Math.round((last[1] + residual) * 100) / 100]
+  }
+  return scaled
+}
+
+function dimensionsFor(q: Question, rec: AnswerRecord | undefined): string {
+  const keepCommunication = communicationApplies(q, rec)
+  const isCommunication = (name: string) => name.toLowerCase() === 'communication'
+
   const weights = q.scoringWeights
   if (weights) {
-    const entries = Object.entries(weights).filter(([, v]) => typeof v === 'number')
-    if (entries.length > 0) {
+    const declared = Object.entries(weights).filter(([, v]) => typeof v === 'number') as [
+      string,
+      number,
+    ][]
+    if (declared.length > 0) {
+      const kept = keepCommunication ? declared : declared.filter(([k]) => !isCommunication(k))
+      const entries = kept.length > 0 ? renormalise(kept) : declared
       return entries.map(([k, v]) => `${k} (weight ${v})`).join(', ')
     }
   }
   // sensible defaults per type when the case did not declare weights
-  switch (q.type) {
-    case 'math':
-      return 'accuracy, approach, communication'
-    case 'structuring':
-      return 'MECE-ness, relevance to the client question, communication'
-    case 'brainstorming':
-      return 'creativity, breadth, structure'
-    case 'synthesis':
-      return 'top-down recommendation, support, concision'
-    case 'exhibit':
-      return 'accuracy of read, so-what insight, communication'
-  }
+  const names = DEFAULT_DIMENSIONS[q.type]
+  return (keepCommunication ? names : names.filter((n) => !isCommunication(n))).join(', ')
 }
 
 function choiceBlock(q: Question, rec: AnswerRecord | undefined): string[] {
@@ -148,7 +186,9 @@ export function buildTranscriptMarkdown(c: Case, session: Session): string {
         rec.secondsUsed,
       )}${rec.secondsUsed > q.timeLimitSeconds ? ' **(over pace)**' : ''}`,
     )
-    out.push(`- Scoring dimensions: ${dimensionsFor(q)}`)
+    out.push(`- Scoring dimensions: ${dimensionsFor(q, rec)}`)
+    const objective = describeScore(scoreQuestion(q, rec))
+    if (objective) out.push(`- Objective check: ${objective}`)
     if (rec.peeked) out.push('- **The answer key was open for this question.**')
     if (q.responseFormat === 'number') {
       out.push(
@@ -190,12 +230,21 @@ export function buildTranscriptMarkdown(c: Case, session: Session): string {
   const totalUsed = session.answers.reduce((sum, a) => sum + a.secondsUsed, 0)
   const unanswered = c.questions.length - session.answers.length
   const peeked = session.answers.filter((a) => a.peeked).length
+  const score = scoreSession(c, session)
   out.push(
     `_Answering time: ${formatClock(totalUsed)} of the ${formatClock(
       limit,
     )} case clock. ${unanswered} question(s) never reached. Answer key was open for ${peeked} of ${
       session.answers.length
     } answered question(s)._`,
+  )
+  out.push('')
+  out.push(
+    `_Objective check: **${score.correct} of ${score.scorable}** closed questions fully correct` +
+      (score.partial > 0 ? ` (${score.partial} partially correct)` : '') +
+      `. ${score.unscored} written question${
+        score.unscored === 1 ? ' is' : 's are'
+      } not machine-checkable and left to your judgement._`,
   )
 
   return out.join('\n')

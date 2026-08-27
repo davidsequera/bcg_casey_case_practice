@@ -38,10 +38,27 @@ The fidelity target is the hosted product, not a generic study tool. That means:
   bubble carrying the information later questions depend on. This is not optional decoration —
   the numeric chain breaks without it.
 
-**The transcript is the product.** The app deliberately never scores anything, and never tells the
-candidate whether they were right. When changing question flow or answer capture, the question to
-ask is "does the transcript still give a grader everything it needs" — that is what
-`src/lib/transcript.ts` exists to guarantee, and what most of `tests/cases.test.ts` asserts.
+**The transcript is the product.** The app never tells a candidate whether they were right
+*during* a case — the chat says nothing after an answer beyond the `followUp`, and that is not
+negotiable. When changing question flow or answer capture, the question to ask is "does the
+transcript still give a grader everything it needs" — that is what `src/lib/transcript.ts` exists
+to guarantee, and what most of `tests/cases.test.ts` asserts.
+
+Once the case is over, `src/lib/score.ts` totals the questions that can be checked mechanically
+(`choice` against `correctOptions`, `number` against `value` within `tolerancePct`) and shows the
+tally on the transcript screen. That screen already prints the expected answer under every
+question, so the correctness was on the page regardless; only the totalling is new. Two rules keep
+it honest and both are asserted in `tests/score.test.ts`:
+
+- **Written answers are never scored, and the denominator says so.** A nine-question case reports
+  "6 of 8", not "6 of 9" — a tally that quietly folded in prose it never read would be a lie.
+  Unreached questions are their own bucket too, not silent failures.
+- **Nothing leaks into `ChatScreen`.** `scoreSession` is called from `TranscriptView` and from the
+  transcript markdown, nowhere else.
+
+The markdown carries a per-question `Objective check:` line and tells the grading LLM to treat it
+as settled rather than re-deriving the arithmetic — graders were getting it wrong. The tally is
+framed to the grader as a floor, not the verdict.
 
 ## Repo layout
 
@@ -179,6 +196,11 @@ sub-second.
 one of each closed format, a written recommendation last, pacing budgets fitting inside the case
 clock, an `optionRationale` for every option, and an `answerFormatNote` on every numeric question.
 A new bundled case that skips these fails the suite.
+
+`tests/score.test.ts` pins the objective check to a real recorded run of the pumps case (six
+of eight closed questions right) and covers the lenient numeric parser — candidates type
+`$135M` and `3.6 years` into a free-text field, and a trailing `M` restates the question's
+declared unit rather than multiplying by a million.
 
 When asserting on server-rendered markup, use the `text()` helper from the harness — React escapes
 entities, so a raw `includes('P&L')` will fail against `P&amp;L`.

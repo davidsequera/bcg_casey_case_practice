@@ -208,7 +208,9 @@ candidate has to choose to open, and opening it is recorded against them. So:
   an exhibit over in a `followUp` and listing it again on the next question is safe: the app
   will not render it twice in a row.)
 - Every question needs `commonMistakes` — the specific traps in *this* case, not generic advice.
-- `scoringWeights` values should sum to 1.0.
+- `scoringWeights` values should sum to 1.0. Weight `communication` freely — on a `choice` or
+  bare `number` question the app drops it and renormalises the rest, since there is no prose
+  there to judge, so it survives only where the candidate actually wrote something.
 
 ## Output format
 
