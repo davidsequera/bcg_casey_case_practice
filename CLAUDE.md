@@ -131,6 +131,13 @@ State lives in `src/App.tsx` as plain `useState` — a `phase` field
 object (answers, timings, peeks) is written to localStorage on every submit and restored on mount,
 so a refresh mid-case resumes.
 
+`storage.ts` also tracks a separate, unrelated bit of local state: `completedCaseIds`, a list of
+case ids the candidate has manually flagged as "done" via the check-toggle on each `CaseLibrary`
+card. This is **not** derived from finishing a case — it does not get set when a session reaches
+the transcript screen, only by the candidate's own click — because a candidate revisiting an
+unfinished or abandoned case should not find it silently marked done. Keep it that way rather than
+wiring it to `phase === 'transcript'`.
+
 `phase === 'running'` returns the full-viewport `ChatScreen` instead of the padded `.app` shell —
 that early return in `App.tsx` is deliberate, since the chat owns the whole window.
 

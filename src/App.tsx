@@ -7,11 +7,14 @@ import { AssessmentIntro } from './components/AssessmentIntro'
 import { ChatScreen, type ChatSubmission } from './components/ChatScreen'
 import { TranscriptView } from './components/TranscriptView'
 import {
+  clearCompletedCaseIds,
   deleteUploadedCase,
+  loadCompletedCaseIds,
   loadSession,
   loadUploadedCases,
   saveSession,
   saveUploadedCase,
+  toggleCaseCompleted,
 } from './lib/storage'
 
 import coffee from './cases/coffee-chain-profitability.json'
@@ -60,6 +63,7 @@ export default function App() {
   const [session, setSession] = useState<Session | null>(null)
   const [practiceMode, setPracticeMode] = useState(false)
   const [toast, setToast] = useState<string | null>(null)
+  const [completedIds, setCompletedIds] = useState<string[]>(() => loadCompletedCaseIds())
 
   const allCases = useMemo(() => [...BUNDLED, ...uploaded], [uploaded])
   const activeCase = allCases.find((c) => c.id === activeCaseId) ?? null
@@ -182,10 +186,16 @@ export default function App() {
           <CaseLibrary
             bundled={BUNDLED}
             uploaded={uploaded}
+            completedIds={completedIds}
             onStart={startCase}
             onDelete={(id) => {
               setUploaded(deleteUploadedCase(id))
               notify('Case removed')
+            }}
+            onToggleCompleted={(id) => setCompletedIds(toggleCaseCompleted(id))}
+            onClearCompleted={() => {
+              setCompletedIds(clearCompletedCaseIds())
+              notify('Completed cases cleared')
             }}
           />
           <CaseUpload notify={notify} onAdd={(c) => setUploaded(saveUploadedCase(c))} />

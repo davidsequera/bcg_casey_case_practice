@@ -139,6 +139,7 @@ textarea.scratch { min-height: 76px; font-family: var(--mono); font-size: 13px; 
 .tag.medium { color: var(--warn); border-color: #e2cca4; background: #fbf4e7; }
 .tag.hard { color: var(--danger); border-color: #e3b6b1; background: #fbebea; }
 .tag.uploaded { color: #1c5b96; border-color: #b6cfe6; background: #eaf1f9; }
+.tag.done { color: var(--green); border-color: #b6d9c8; background: var(--green-soft); }
 
 label.check { display: flex; gap: 9px; align-items: flex-start; cursor: pointer; }
 input[type="checkbox"] { accent-color: var(--green); width: 16px; height: 16px; margin-top: 4px; }
@@ -202,10 +203,8 @@ details[open] summary { margin-bottom: 8px; }
   background: var(--surface); border: 1px solid var(--line);
   border-radius: var(--radius); padding: 24px; margin-bottom: 22px;
 }
-.library-head {
-  display: flex; justify-content: space-between; align-items: flex-end;
-  gap: 18px; flex-wrap: wrap; margin-bottom: 18px;
-}
+.library-head { display: flex; flex-direction: column; gap: 14px; margin-bottom: 18px; }
+.library-head-top { display: flex; justify-content: space-between; align-items: flex-end; gap: 18px; flex-wrap: wrap; }
 .library-head h2 { margin: 0 0 4px; }
 .library-head p { margin: 0; }
 
@@ -217,14 +216,63 @@ details[open] summary { margin-bottom: 8px; }
   pointer-events: none;
 }
 
+.done-summary { position: relative; }
+.done-summary.is-empty { visibility: hidden; }
+.done-summary-toggle {
+  display: flex; align-items: center; gap: 5px;
+  width: 34px; height: 34px; padding: 0; border-radius: 999px;
+  background: var(--green-soft); border: 1px solid #b6d9c8; color: var(--green);
+  cursor: pointer; transition: background 0.12s ease, box-shadow 0.12s ease;
+}
+.done-summary-toggle:hover { box-shadow: 0 2px 8px rgba(12, 43, 21, 0.12); }
+.done-summary-toggle svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2.4; flex: none; }
+.done-count {
+  display: none; font-size: 11px; font-weight: 600; min-width: 12px;
+}
+.done-summary:not(.is-empty) .done-summary-toggle {
+  width: auto; padding: 0 12px 0 10px;
+}
+.done-summary:not(.is-empty) .done-count { display: inline-block; }
+.done-popover {
+  position: absolute; top: calc(100% + 8px); right: 0; z-index: 5;
+  display: flex; align-items: center; gap: 10px;
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+  box-shadow: 0 8px 24px rgba(12, 43, 21, 0.14); padding: 10px 10px 10px 14px;
+  white-space: nowrap;
+}
+.done-popover p { margin: 0; }
+.icon-btn {
+  display: flex; align-items: center; justify-content: center;
+  width: 30px; height: 30px; padding: 0; border-radius: 999px;
+}
+.icon-btn svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2; }
+
 .case-grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(272px, 1fr)); }
 .case-card {
+  position: relative;
   background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
   padding: 18px; display: flex; flex-direction: column; gap: 9px;
   transition: border-color 0.12s ease, box-shadow 0.12s ease;
 }
 .case-card:hover { border-color: #bfc4bf; box-shadow: 0 2px 10px rgba(12, 43, 21, 0.07); }
-.case-card h3 { margin: 0; }
+.case-card h3 { margin: 0; padding-right: 26px; }
+
+.done-toggle {
+  position: absolute; top: 14px; right: 14px; z-index: 1;
+  width: 24px; height: 24px; padding: 0; border-radius: 999px;
+  display: flex; align-items: center; justify-content: center;
+  background: #faf9f7; border: 1px solid var(--line);
+  color: transparent; cursor: pointer;
+  transition: background 0.12s ease, border-color 0.12s ease, color 0.12s ease;
+}
+.done-toggle svg {
+  width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 2.4;
+}
+.done-toggle:hover { border-color: #bfc4bf; }
+.done-toggle.is-done {
+  background: var(--green); border-color: var(--green); color: #fff;
+}
+.done-toggle.is-done:hover { background: #106548; border-color: #106548; }
 .case-meta { font-size: 13px; color: var(--muted); }
 .library-empty {
   border: 1px dashed var(--line); border-radius: var(--radius);

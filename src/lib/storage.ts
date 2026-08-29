@@ -2,6 +2,7 @@ import type { Case, Session } from '../types/case'
 
 const CASES_KEY = 'casey.uploadedCases.v1'
 const SESSION_KEY = 'casey.session.v1'
+const COMPLETED_KEY = 'casey.completedCases.v1'
 
 function read<T>(key: string, fallback: T): T {
   try {
@@ -52,4 +53,21 @@ export function saveSession(s: Session | null): void {
     return
   }
   write(SESSION_KEY, s)
+}
+
+/** Case ids the candidate has manually marked "done" on this device -- a local checklist, not a score. */
+export function loadCompletedCaseIds(): string[] {
+  return read<string[]>(COMPLETED_KEY, [])
+}
+
+export function toggleCaseCompleted(id: string): string[] {
+  const current = loadCompletedCaseIds()
+  const next = current.includes(id) ? current.filter((x) => x !== id) : [...current, id]
+  write(COMPLETED_KEY, next)
+  return next
+}
+
+export function clearCompletedCaseIds(): string[] {
+  write(COMPLETED_KEY, [])
+  return []
 }
