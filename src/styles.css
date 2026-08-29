@@ -101,7 +101,11 @@ button.primary {
   background: var(--green); border-color: var(--green); color: #fff; font-weight: 600;
 }
 button.primary:hover:not(:disabled) { background: var(--green-hover); border-color: var(--green-hover); }
-button.ghost { background: transparent; border-color: transparent; color: var(--ink-2); padding-left: 0; }
+button.ghost { 
+  background: transparent;
+  border-color: transparent;
+  color: var(--ink-2)
+ }
 button.ghost:hover:not(:disabled) { background: transparent; color: var(--green); }
 button.danger-text { background: transparent; border-color: transparent; color: var(--muted); }
 button.danger-text:hover:not(:disabled) { color: var(--danger); background: transparent; }
