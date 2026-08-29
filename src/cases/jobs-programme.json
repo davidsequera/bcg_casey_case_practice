@@ -16,23 +16,11 @@
       "unitsNote": "A placement means a participant in work six months after finishing",
       "source": "Ministry programme data",
       "table": {
-        "columns": [
-          "Item",
-          "Value"
-        ],
+        "columns": ["Item", "Value"],
         "rows": [
-          [
-            "Annual budget",
-            "$300M"
-          ],
-          [
-            "Cost per participant",
-            "$6,000"
-          ],
-          [
-            "Placement rate",
-            "40%"
-          ]
+          ["Annual budget", "$300M"],
+          ["Cost per participant", "$6,000"],
+          ["Placement rate", "40%"]
         ]
       }
     },
@@ -43,23 +31,11 @@
       "unitsNote": "Measured on the same placement definition as Exhibit 1",
       "source": "Independent pilot evaluation",
       "table": {
-        "columns": [
-          "Item",
-          "Value"
-        ],
+        "columns": ["Item", "Value"],
         "rows": [
-          [
-            "Cost per participant",
-            "$8,000"
-          ],
-          [
-            "Placement rate",
-            "60%"
-          ],
-          [
-            "Benefits no longer paid, per placement",
-            "$4,000 per year"
-          ]
+          ["Cost per participant", "$8,000"],
+          ["Placement rate", "60%"],
+          ["Benefits no longer paid, per placement", "$4,000 per year"]
         ]
       }
     }
@@ -72,34 +48,14 @@
       "prompt": "Before we compare the two models, what should we clarify with the ministry first? Select the two most relevant.",
       "responseFormat": "choice",
       "selectCount": 2,
-      "options": [
-        "What is the programme actually trying to maximise — participants trained, or people in work?",
-        "Is the budget fixed, or does the ministry expect to spend more or less?",
-        "Which building the programme’s administrators sit in?",
-        "What the minister studied at university?",
-        "The font used in the programme’s brochures?"
-      ],
+      "options": ["What is the programme actually trying to maximise — participants trained, or people in work?", "Is the budget fixed, or does the ministry expect to spend more or less?", "What share of participants finish the classroom course?", "How many training providers does the ministry contract with today?", "What is the national unemployment rate?"],
       "idealAnswer": {
-        "correctOptions": [
-          0,
-          1
-        ],
-        "optionRationale": [
-          "The objective decides the answer: the two models rank differently on throughput than on jobs.",
-          "The constraint. Comparing models only makes sense at a defined budget — and a spending review means it will not grow.",
-          "Not relevant to the decision.",
-          "Not relevant.",
-          "Not relevant."
-        ],
-        "commonMistakes": [
-          "Assuming the metric is participants served, when the review is about outcomes",
-          "Comparing the models at different budgets without noticing"
-        ]
+        "correctOptions": [0, 1],
+        "optionRationale": ["The objective decides the answer: the two models rank differently on throughput than on jobs.", "The constraint. Comparing models only makes sense at a defined budget — and a spending review means it will not grow.", "No. A completion rate describes how the current model runs; it does not tell you what the ministry is trying to buy. It is also a figure you will pick up from the pilot data without asking.", "No — real operational detail, but the choice between the two models turns on what each delivers per dollar, not on how many suppliers the current one uses.", "No, and it is the most tempting of the three: context matters. But the comparison is between two models spending the same budget in the same labour market, so the rate is common to both and cancels out."],
+        "commonMistakes": ["Assuming the metric is participants served, when the review is about outcomes", "Comparing the models at different budgets without noticing"]
       },
       "followUp": "The objective is employment: the review measures Pathways on people in work six months after the programme, not on seats filled. Today the programme trains 50,000 participants a year.\n\nAnd the budget is fixed at $300M — the comparison is what each model delivers for the same money.\n\nHere is the current model.",
-      "followUpExhibitIds": [
-        "ex1"
-      ],
+      "followUpExhibitIds": ["ex1"],
       "scoringWeights": {
         "structure": 0.4,
         "accuracy": 0.4,
@@ -113,40 +69,14 @@
       "prompt": "Which areas would you examine to make the recommendation? Select the four most relevant.",
       "responseFormat": "choice",
       "selectCount": 4,
-      "options": [
-        "Cost per placement under each model — what a job actually costs to create",
-        "What the fixed budget delivers under each model — placements, and participants served",
-        "Whether the pilot’s results would survive scaling to the whole country",
-        "The wider fiscal effect — benefits saved when someone moves into work",
-        "The ministers who ran the programme in the 1990s",
-        "The catering arrangements at training centres",
-        "The programme’s logo redesign options"
-      ],
+      "options": ["Cost per placement under each model — what a job actually costs to create", "What the fixed budget delivers under each model — placements, and participants served", "Whether the pilot’s results would survive scaling to the whole country", "The wider fiscal effect — benefits saved when someone moves into work", "Cost per participant under each model", "The satisfaction scores participants give each model", "How many training centres each model would need"],
       "idealAnswer": {
-        "correctOptions": [
-          0,
-          1,
-          2,
-          3
-        ],
-        "optionRationale": [
-          "The core efficiency measure, and the one the spending review will quote.",
-          "The budget is fixed, so the real question is what $300M buys — and the models trade off participants against placements.",
-          "The classic pilot trap: small pilots get the most motivated employers and participants; scale may dilute both.",
-          "Placements pay back twice — once in wages, once in benefits not paid. The review will want that number.",
-          "History does not decide this.",
-          "Immaterial.",
-          "Immaterial."
-        ],
-        "commonMistakes": [
-          "Stopping at cost-per-placement and missing the participants-served trade-off, which is where the political difficulty lives",
-          "Taking pilot results as guaranteed at national scale"
-        ]
+        "correctOptions": [0, 1, 2, 3],
+        "optionRationale": ["The core efficiency measure, and the one the spending review will quote.", "The budget is fixed, so the real question is what $300M buys — and the models trade off participants against placements.", "The classic pilot trap: small pilots get the most motivated employers and participants; scale may dilute both.", "Placements pay back twice — once in wages, once in benefits not paid. The review will want that number.", "No — and this is the trap the whole case is built on. The ministry is buying jobs, not attendance, so the unit that matters is cost per placement, which is already one of the four areas. Cost per participant is the number that makes the cheaper-looking model look good.", "No. A real programme metric that a ministry will ask about, but it says nothing about how many people end up in work per dollar spent, which is the question on the table.", "No. That is downstream of the decision: you size the estate once you know which model you are running, and its cost is already inside each model's cost per placement."],
+        "commonMistakes": ["Stopping at cost-per-placement and missing the participants-served trade-off, which is where the political difficulty lives", "Taking pilot results as guaranteed at national scale"]
       },
       "followUp": "Here are the pilot results, measured on the same definitions as the current programme.",
-      "followUpExhibitIds": [
-        "ex2"
-      ],
+      "followUpExhibitIds": ["ex2"],
       "scoringWeights": {
         "structure": 0.5,
         "accuracy": 0.3,
@@ -158,9 +88,7 @@
       "type": "math",
       "timeLimitSeconds": 180,
       "prompt": "Using Exhibit 1, what does one placement — one young person in work — cost under the current model?",
-      "exhibitIds": [
-        "ex1"
-      ],
+      "exhibitIds": ["ex1"],
       "responseFormat": "number",
       "unit": "$ per placement",
       "tolerancePct": 2,
@@ -168,10 +96,7 @@
       "idealAnswer": {
         "value": 15000,
         "workedSolution": "Participants: $300M ÷ $6,000 = 50,000 a year.\nPlacements: 50,000 × 40% = 20,000.\nCost per placement: $300M ÷ 20,000 = $15,000. (Or directly: $6,000 ÷ 0.40.)",
-        "commonMistakes": [
-          "Quoting the $6,000 cost per participant as the cost per placement",
-          "Dividing by participants instead of placements"
-        ]
+        "commonMistakes": ["Quoting the $6,000 cost per participant as the cost per placement", "Dividing by participants instead of placements"]
       },
       "followUp": "So each job costs $15,000 — because the ministry pays for the 60% of participants who do not end up in work as well. Now the same figure for the pilot model.",
       "scoringWeights": {
@@ -185,9 +110,7 @@
       "type": "math",
       "timeLimitSeconds": 180,
       "prompt": "Using Exhibit 2, what does one placement cost under the apprenticeship model?",
-      "exhibitIds": [
-        "ex2"
-      ],
+      "exhibitIds": ["ex2"],
       "responseFormat": "number",
       "unit": "$ per placement",
       "tolerancePct": 2,
@@ -195,10 +118,7 @@
       "idealAnswer": {
         "value": 13333,
         "workedSolution": "Cost per placement: $8,000 ÷ 0.60 ≈ $13,333.\nMore expensive per participant, cheaper per job.",
-        "commonMistakes": [
-          "Concluding the model is worse because $8,000 > $6,000 — the placement rate more than compensates",
-          "Multiplying by the placement rate instead of dividing"
-        ]
+        "commonMistakes": ["Concluding the model is worse because $8,000 > $6,000 — the placement rate more than compensates", "Multiplying by the placement rate instead of dividing"]
       },
       "followUp": "That is the pivot of the case: the apprenticeship model costs a third more per participant but over 10% less per job. The next question is what that means at the programme’s actual budget.",
       "scoringWeights": {
@@ -219,10 +139,7 @@
       "idealAnswer": {
         "value": 22500,
         "workedSolution": "Participants: $300M ÷ $8,000 = 37,500 a year.\nPlacements: 37,500 × 60% = 22,500 — against 20,000 today.",
-        "commonMistakes": [
-          "Keeping 50,000 participants at the new cost, which overspends the budget by $100M",
-          "Applying the 60% rate to today’s 50,000 participants"
-        ]
+        "commonMistakes": ["Keeping 50,000 participants at the new cost, which overspends the budget by $100M", "Applying the 60% rate to today’s 50,000 participants"]
       },
       "followUp": "2,500 more young people in work each year from the same money. The trade-off: participants served falls by 12,500, from 50,000 to 37,500 — fewer places, better odds. Both facts belong in the minister’s brief.\n\nOne more number: the fiscal side.",
       "scoringWeights": {
@@ -243,10 +160,7 @@
       "idealAnswer": {
         "value": 10,
         "workedSolution": "Extra placements: 22,500 − 20,000 = 2,500 a year.\nExtra saving: 2,500 × $4,000 = $10M a year.",
-        "commonMistakes": [
-          "Applying the $4,000 to all 22,500 placements instead of the incremental 2,500",
-          "Treating the saving as one-off when it recurs for as long as the person stays in work"
-        ]
+        "commonMistakes": ["Applying the $4,000 to all 22,500 placements instead of the incremental 2,500", "Treating the saving as one-off when it recurs for as long as the person stays in work"]
       },
       "followUp": "So the switch pays a dividend beyond the programme: $10M a year back to the treasury, on top of more young people in work. What should still give the minister pause is the next question.",
       "scoringWeights": {
@@ -262,30 +176,11 @@
       "prompt": "What are the most relevant risks in moving Pathways to the apprenticeship model? Select the three most relevant.",
       "responseFormat": "choice",
       "selectCount": 3,
-      "options": [
-        "Scale risk — the pilot may have attracted the most willing employers, and 37,500 apprenticeships need many more",
-        "Selection risk — the pilot may have enrolled more motivated participants, flattering the 60% rate",
-        "Equity risk — 12,500 fewer places a year, and it matters who loses them",
-        "Currency risk on the programme’s budget",
-        "The risk that classroom buildings fall empty"
-      ],
+      "options": ["Scale risk — the pilot may have attracted the most willing employers, and 37,500 apprenticeships need many more", "Selection risk — the pilot may have enrolled more motivated participants, flattering the 60% rate", "Equity risk — 12,500 fewer places a year, and it matters who loses them", "Provider risk — the training providers losing income as places move to employers", "Asset risk — the ministry owning classroom space it would no longer need"],
       "idealAnswer": {
-        "correctOptions": [
-          0,
-          1,
-          2
-        ],
-        "optionRationale": [
-          "The central scaling question: employer demand for apprentices is the model’s raw material, and pilots recruit the easy supply first.",
-          "The classic evaluation trap: if the pilot’s participants were unusually motivated, the national rate lands below 60%.",
-          "Real and political: a model that helps fewer people more is a defensible choice, but only if made openly and with care for who is excluded.",
-          "A domestic programme in domestic currency.",
-          "A managed transition handles facilities; it is not a decision-level risk."
-        ],
-        "commonMistakes": [
-          "Reading pilot numbers as national numbers",
-          "Treating the drop in participants served as a footnote rather than a decision the minister must own"
-        ]
+        "correctOptions": [0, 1, 2],
+        "optionRationale": ["The central scaling question: employer demand for apprentices is the model’s raw material, and pilots recruit the easy supply first.", "The classic evaluation trap: if the pilot’s participants were unusually motivated, the national rate lands below 60%.", "Real and political: a model that helps fewer people more is a defensible choice, but only if made openly and with care for who is excluded.", "No. It is a real consequence, and providers will lobby about it, but it is a risk to the providers rather than to the programme's ability to put people into work.", "No. The estate is real money, but its cost is already inside the cost per placement of the classroom model, and an underused building is a stock to be dealt with, not a risk to the recommendation."],
+        "commonMistakes": ["Reading pilot numbers as national numbers", "Treating the drop in participants served as a footnote rather than a decision the minister must own"]
       },
       "followUp": "Scale: phase the transition region by region, and recruit employers ahead of participants.\n\nSelection: keep the independent evaluation running through the rollout, with results measured on the full intake.\n\nEquity: use part of the treasury saving to protect places for the hardest-to-reach participants, who benefit most from the programme even at lower placement rates.",
       "scoringWeights": {
@@ -302,19 +197,8 @@
       "responseFormat": "text",
       "maxLines": 8,
       "idealAnswer": {
-        "keyPoints": [
-          "Leads with the recommendation: move Pathways to the apprenticeship model, phased",
-          "Gives the outcome numbers: 22,500 placements a year versus 20,000, at $13,333 per job versus $15,000, on the same $300M",
-          "Adds the fiscal dividend: $10M a year of benefits no longer paid",
-          "Owns the trade-off honestly: 12,500 fewer places a year — states it rather than hiding it",
-          "Names the conditions: region-by-region rollout, continued independent evaluation, and protected places for the hardest to reach",
-          "Stays inside seven or eight lines"
-        ],
-        "commonMistakes": [
-          "Hiding the drop in participants served, which the hearing will find anyway",
-          "Presenting pilot results as guaranteed at national scale",
-          "Leading with the fiscal saving rather than the employment outcome the programme exists for"
-        ]
+        "keyPoints": ["Leads with the recommendation: move Pathways to the apprenticeship model, phased", "Gives the outcome numbers: 22,500 placements a year versus 20,000, at $13,333 per job versus $15,000, on the same $300M", "Adds the fiscal dividend: $10M a year of benefits no longer paid", "Owns the trade-off honestly: 12,500 fewer places a year — states it rather than hiding it", "Names the conditions: region-by-region rollout, continued independent evaluation, and protected places for the hardest to reach", "Stays inside seven or eight lines"],
+        "commonMistakes": ["Hiding the drop in participants served, which the hearing will find anyway", "Presenting pilot results as guaranteed at national scale", "Leading with the fiscal saving rather than the employment outcome the programme exists for"]
       },
       "scoringWeights": {
         "communication": 0.4,

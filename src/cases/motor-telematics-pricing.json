@@ -1,408 +1,263 @@
 {
   "schemaVersion": 2,
   "id": "motor-telematics-pricing",
-  "title": "Solvenn Mutual: pricing the safe drivers",
+  "title": "Solvenn Mutual: the discount for safe drivers",
   "industry": "Insurance",
   "functionalPractice": "Marketing, Sales & Pricing",
-  "difficulty": "medium",
+  "difficulty": "hard",
   "estimatedMinutes": 35,
   "totalTimeSeconds": 2100,
-  "prompt": "Our client is Solvenn Mutual, a motor insurer with two million policies. For decades it has charged broadly similar premiums to drivers with very different risk. New competitors now use telematics — a phone app that measures how people actually drive — to offer the safest drivers cheaper cover, and Solvenn is losing exactly those customers. Management is considering launching its own usage-based insurance product and has asked us whether it is worth doing.",
+  "prompt": "A motor insurer's economics are simple to write down and hard to run: it collects a premium, pays out claims, and carries the cost of selling and administering the policy. What is left is underwriting profit. Our client is Solvenn Mutual, which has one million motor policies and has priced them for decades on broad categories — age, address, vehicle — rather than on how anyone actually drives. Competitors now offer a telematics product: a phone app that measures braking, speed and mileage, gives the driver feedback, and rewards them with a discount. Solvenn's board wants to launch its own version, offering a discount on the premium to any policyholder who installs the app, and expects about a fifth of the book to take it up. Two things will matter today: the discount is paid to everyone who adopts, whether or not their driving changes, and the drivers who volunteer for an app that watches them are not a random sample of the book.",
   "exhibits": [
     {
+      "id": "ex0",
+      "title": "Exhibit 1 — How a motor policy makes money",
+      "type": "text",
+      "text": "Premium collected − claims paid − expenses of selling and administering the policy = underwriting profit per policy. A discount reduces the premium on day one and for certain; a change in driving behaviour reduces claims later and only if it happens. Solvenn's board is being asked to trade one for the other."
+    },
+    {
       "id": "ex1",
-      "title": "Exhibit 1 — Solvenn’s motor book, annual figures",
+      "title": "Exhibit 2 — Solvenn's motor book and the expected adopters (Scenario 1)",
       "type": "table",
-      "unitsNote": "The loss ratio is claims as a share of premium; the expense ratio is costs as a share of premium",
-      "source": "Client underwriting report",
       "table": {
-        "columns": [
-          "Item",
-          "Value"
-        ],
+        "columns": ["", "Whole motor book", "Expected adopters"],
         "rows": [
-          [
-            "Policies",
-            "2.0M"
-          ],
-          [
-            "Average premium",
-            "$1,000"
-          ],
-          [
-            "Loss ratio",
-            "70%"
-          ],
-          [
-            "Expense ratio",
-            "25%"
-          ]
+          ["Policies", 1000000, 200000],
+          ["Average annual premium (USD)", 800, 800],
+          ["Average annual claims cost before the app (USD)", 560, 480],
+          ["Average annual expenses (USD)", 160, 160],
+          ["Expected reduction in claims cost from app feedback", "n/a", "15%"],
+          ["Discount offered on the premium", "none", "8%"]
         ]
-      }
+      },
+      "unitsNote": "Adopters are a subset of the book, not an addition to it. Their claims cost is measured before the app is installed; the 15% reduction applies to that figure. Expenses are unchanged by the app.",
+      "source": "Solvenn actuarial pack and the competitor trial published last year"
     },
     {
       "id": "ex2",
-      "title": "Exhibit 2 — Loss ratio by segment",
-      "type": "chart",
-      "unitsNote": "Low-risk: 800K policies. Standard: 1.2M policies. Both pay the same $1,000 average premium today",
-      "source": "Client actuarial analysis",
-      "chart": {
-        "kind": "bar",
-        "categories": [
-          "Low-risk drivers",
-          "Standard drivers"
-        ],
-        "series": [
-          {
-            "label": "Loss ratio",
-            "values": [
-              55,
-              80
-            ]
-          }
-        ],
-        "valueSuffix": "%"
-      }
-    },
-    {
-      "id": "ex3",
-      "title": "Exhibit 3 — The usage-based product, per low-risk policy",
+      "title": "Exhibit 3 — Scenario 2: the adopter group re-measured",
       "type": "table",
-      "unitsNote": "Versus today’s $1,000 premium, $550 claims and $250 expenses for the same drivers",
-      "source": "Product team proposal, benchmarked against telematics competitors",
       "table": {
-        "columns": [
-          "Item",
-          "Value"
-        ],
+        "columns": ["", "Whole motor book", "Expected adopters"],
         "rows": [
-          [
-            "Premium (10% telematics discount)",
-            "$900"
-          ],
-          [
-            "Expected claims (feedback and fairer selection)",
-            "$450"
-          ],
-          [
-            "Expenses (including $20 device and data cost)",
-            "$270"
-          ],
-          [
-            "One-off cost to build and launch",
-            "$50M"
-          ]
+          ["Policies", 1000000, 200000],
+          ["Average annual premium (USD)", 800, 800],
+          ["Average annual claims cost before the app (USD)", 560, 400],
+          ["Average annual expenses (USD)", 160, 160],
+          ["Expected reduction in claims cost from app feedback", "n/a", "15%"],
+          ["Discount offered on the premium", "none", "8%"]
         ]
-      }
+      },
+      "unitsNote": "Changed from Scenario 1: the adopters' claims cost before the app is $400, not $480 — a closer look at who signed up for the competitor's product shows they are safer still. Every other figure is unchanged."
     }
   ],
   "questions": [
     {
       "id": "q1",
       "type": "structuring",
-      "timeLimitSeconds": 90,
-      "prompt": "Before we evaluate the product, what should we clarify with Solvenn first? Select the two most relevant.",
-      "responseFormat": "choice",
-      "selectCount": 2,
-      "options": [
-        "How profitable are the customers Solvenn is losing, compared with the ones staying?",
-        "What happens to the book if Solvenn does nothing — how many more will leave?",
-        "Which celebrity fronts the competitors’ advertising?",
-        "What company car does Solvenn’s CFO drive?",
-        "How many colours does the claims form come in?"
-      ],
+      "timeLimitSeconds": 180,
+      "prompt": "Let's start with the right structure. What are the three key questions you would need to answer in order to tell Solvenn whether to launch the telematics discount? Please summarise them in 3 lines maximum.",
+      "exhibitIds": ["ex0"],
+      "responseFormat": "text",
+      "maxLines": 3,
       "idealAnswer": {
-        "correctOptions": [
-          0,
-          1
-        ],
-        "optionRationale": [
-          "The heart of the case: if the leavers are the profitable ones, this is not ordinary churn but the book being cherry-picked.",
-          "The base case. “Launch UBI” is only evaluable against an honest picture of what doing nothing costs.",
-          "Advertising talent is not what moves this decision.",
-          "Not a data point.",
-          "Not a data point."
-        ],
-        "commonMistakes": [
-          "Treating all churn as equal instead of asking who exactly is leaving",
-          "Evaluating the product against today’s book rather than against the do-nothing trajectory"
-        ]
+        "keyPoints": ["Who adopts, and what do their claims look like before the app — are they already the book's safest drivers?", "How much does the app actually change behaviour, and what is that worth against the discount Solvenn gives away to get it?", "What does it do to the rest of the book — retention of the safest drivers, and the risk mix left behind if they leave."],
+        "commonMistakes": ["Reciting a generic pricing framework instead of the three questions this launch turns on.", "Treating adopters as a random slice of the book, which is the assumption the whole case attacks.", "Framing it only as a claims question and forgetting the discount is a certain cost.", "Naming six things when the interviewer asked for three."]
       },
-      "followUp": "Both questions cut to it. The leavers are Solvenn’s safest drivers — and on the do-nothing path the actuaries expect 300K of the 800K low-risk policies to defect to telematics competitors within a year, with the remainder stable after that.\n\nHere is the book as it stands.",
-      "followUpExhibitIds": [
-        "ex1"
-      ],
+      "followUp": "Good. The actuarial team has put numbers to the launch, using the adoption profile seen in a competitor's product.",
+      "followUpExhibitIds": ["ex1"],
       "scoringWeights": {
-        "structure": 0.4,
-        "accuracy": 0.4,
-        "communication": 0.2
+        "structure": 0.5,
+        "creativity": 0.2,
+        "communication": 0.3
       }
     },
     {
       "id": "q2",
-      "type": "structuring",
-      "timeLimitSeconds": 120,
-      "prompt": "Which areas would you investigate to decide on the UBI launch? Select the four most relevant.",
-      "responseFormat": "choice",
-      "selectCount": 4,
-      "options": [
-        "Segment economics — which customers make money today and which lose it",
-        "The do-nothing scenario — what the defections cost over the horizon",
-        "The UBI product economics — discounted premium, claims effect, and running costs",
-        "Risks — regulation on driving data, and discounting customers who would have stayed",
-        "The insurer’s branch office refurbishment schedule",
-        "The claims department’s softball league results",
-        "Historic premium rates from the 1990s"
-      ],
+      "type": "math",
+      "timeLimitSeconds": 300,
+      "prompt": "Scenario 1: given the data in the exhibit, what would launching the telematics discount do to Solvenn's annual underwriting profit? Please give your answer rounded to the nearest whole number, without further explanation or working.",
+      "exhibitIds": ["ex1"],
+      "responseFormat": "number",
+      "unit": "USD per year",
+      "tolerancePct": 1,
+      "answerFormatNote": "Give your answer in USD per year, rounded to the nearest whole number (for example 1111 or 123456 or 500885), without further explanation or working. If profit falls, enter the answer with a minus sign, for example -250000.",
       "idealAnswer": {
-        "correctOptions": [
-          0,
-          1,
-          2,
-          3
-        ],
-        "optionRationale": [
-          "Pricing cases live or die on segmentation; the averages in Exhibit 1 hide the story.",
-          "The baseline every option is compared against.",
-          "The proposal itself — a discount is only worth giving if the economics behind it hold.",
-          "Both named risks are real for telematics pricing and belong in the structure.",
-          "Facilities do not bear on a pricing decision.",
-          "Not relevant.",
-          "Ancient rates say nothing about today’s competitive dynamics."
-        ],
-        "commonMistakes": [
-          "Working from book-level averages when the case is about the difference between segments",
-          "Forgetting that a discount handed to loyal customers is a cost, not a save"
-        ]
+        "value": 1600000,
+        "workedSolution": "Work per adopting policy, since nothing changes for the rest of the book.\nClaims saved: the adopters' claims cost before the app is $480 — not the book average of $560 — and the app takes 15% off it: $480 × 15% = $72 a policy.\nDiscount given: 8% of the $800 premium = $64 a policy, paid to every adopter.\nNet per adopting policy = $72 − $64 = $8.\nAcross 200,000 adopters: 200,000 × $8 = $1,600,000 a year.\nExpenses are unchanged, and the 800,000 non-adopting policies are unaffected.",
+        "keyPoints": ["The saving applies to the adopters' own claims cost, which is well below the book average — that is the selection effect.", "The discount is certain and universal among adopters; the saving is a percentage of a smaller base.", "Only the adopting policies are in the calculation at all."],
+        "commonMistakes": ["Using the book-average claims cost of $560 and answering 200,000 × ($84 − $64) = $4,000,000 — the single most common error here.", "Applying the discount to the whole book of one million policies and answering a large negative number.", "Netting the 15% against the 8% as if they were percentages of the same base.", "Including expenses, which the app does not change."]
       },
-      "followUp": "Let’s size the book first, then split it.",
       "scoringWeights": {
-        "structure": 0.5,
-        "accuracy": 0.3,
-        "communication": 0.2
+        "accuracy": 0.8,
+        "structure": 0.2
       }
     },
     {
       "id": "q3",
-      "type": "exhibit",
+      "type": "math",
       "timeLimitSeconds": 150,
-      "prompt": "Exhibit 2 splits the book by segment. What does it tell you about Solvenn’s position? Select the two best readings.",
-      "exhibitIds": [
-        "ex2"
-      ],
-      "responseFormat": "choice",
-      "selectCount": 2,
-      "options": [
-        "Low-risk drivers are heavily subsidising the rest of the book at today’s flat pricing",
-        "The whole book is unprofitable and should be repriced upward",
-        "Competitors are cherry-picking precisely the segment that funds Solvenn’s profitability",
-        "Standard drivers should be cancelled immediately",
-        "The two segments perform identically"
-      ],
+      "prompt": "Please explain briefly the reasoning behind your answer to the previous question, in 3 lines maximum.",
+      "responseFormat": "text",
+      "maxLines": 3,
       "idealAnswer": {
-        "correctOptions": [
-          0,
-          2
-        ],
-        "optionRationale": [
-          "Correct: same premium, 55% versus 80% loss ratio — the safe drivers pay for the risky ones.",
-          "Too strong: the book overall runs at a 95% combined ratio, which is profitable.",
-          "Correct, and it is why this churn is existential rather than cosmetic: each defection removes a subsidiser.",
-          "Repricing or re-selecting standard drivers is a later conversation; cancellation is neither feasible nor implied.",
-          "Contradicted by the exhibit."
-        ],
-        "commonMistakes": [
-          "Reading the exhibit as a claims problem rather than a cross-subsidy problem",
-          "Missing that adverse selection gets worse as each safe driver leaves"
-        ]
+        "keyPoints": ["Only adopters are affected, so the whole calculation is per adopting policy times the number of adopters.", "The claims saving is 15% of the adopters' own claims cost, and adopters are already safer than the book, so the base is $480 rather than $560.", "The discount is 8% of the full premium, given to every adopter whether or not their driving changes.", "The two nearly cancel: the margin is $8 a policy, which is thin enough that any error in either input matters."],
+        "commonMistakes": ["Explaining the arithmetic without naming the selection effect that sets the base.", "Describing the discount as a cost of acquisition rather than a reduction in premium already being collected.", "Not commenting on how thin the resulting margin is."]
       },
-      "followUp": "That is the trap of flat pricing: when someone else prices the risk properly, they take your best customers and leave you the rest. Let’s put numbers on the book, then on the segment.",
+      "followUp": "Understood. The actuarial team confirms the 15% figure is measured on adopters' own claims experience, before and after installation, in the competitor's published trial.",
       "scoringWeights": {
-        "accuracy": 0.5,
         "structure": 0.3,
-        "communication": 0.2
+        "accuracy": 0.4,
+        "communication": 0.3
       }
     },
     {
       "id": "q4",
       "type": "math",
-      "timeLimitSeconds": 180,
-      "prompt": "Using Exhibit 1, what underwriting profit does the whole motor book make in a year?",
-      "exhibitIds": [
-        "ex1"
-      ],
+      "timeLimitSeconds": 90,
+      "prompt": "I'd like to check a couple of the parameters behind that. In Scenario 1, how much would the app save in claims on a single adopting policy in a year? Please give your answer rounded to the nearest whole number, without further explanation or working.",
+      "exhibitIds": ["ex1"],
       "responseFormat": "number",
-      "unit": "$M",
-      "tolerancePct": 2,
-      "answerFormatNote": "Enter in $ millions, rounded to the nearest million.",
+      "unit": "USD per policy per year",
+      "tolerancePct": 1,
+      "answerFormatNote": "Give your answer in USD per policy per year, rounded to the nearest whole number (for example 1111 or 123456 or 500885), without further explanation or working.",
       "idealAnswer": {
-        "value": 100,
-        "workedSolution": "Premium: 2.0M × $1,000 = $2.0B.\nClaims: 70% = $1,400M. Expenses: 25% = $500M.\nUnderwriting profit: $2,000M − $1,400M − $500M = $100M a year.",
-        "commonMistakes": [
-          "Applying the ratios to policy count instead of premium",
-          "Using only the loss ratio and forgetting expenses"
-        ]
+        "value": 72,
+        "workedSolution": "An adopter's claims cost before the app is $480 a year.\nThe app reduces it by 15%: $480 × 0.15 = $72 a year.",
+        "keyPoints": ["The reduction applies to the adopter's claims cost, not to the book average and not to the premium."],
+        "commonMistakes": ["$560 × 15% = $84, using the book average.", "$800 × 15% = $120, applying the reduction to the premium.", "Answering $408, the claims cost after the reduction rather than the saving."]
       },
-      "followUp": "A $100M profit on a 95% combined ratio — respectable, but thin. Now the segment doing the heavy lifting.",
+      "followUp": "Thanks. Note that the discount is set in the product terms and does not vary by driver: every adopter receives the same percentage off.",
       "scoringWeights": {
-        "accuracy": 0.6,
-        "structure": 0.2,
-        "communication": 0.2
+        "accuracy": 0.85,
+        "structure": 0.15
       }
     },
     {
       "id": "q5",
       "type": "math",
-      "timeLimitSeconds": 180,
-      "prompt": "A low-risk policy today carries a $1,000 premium, $550 of expected claims and $250 of expenses. How much profit does each low-risk policy contribute a year — and what does that imply about the rest of the book?",
+      "timeLimitSeconds": 90,
+      "prompt": "And what would the discount cost Solvenn in total across all adopters in a year? Please give your answer rounded to the nearest whole number, without further explanation or working.",
+      "exhibitIds": ["ex1"],
       "responseFormat": "number",
-      "unit": "$ per policy",
-      "tolerancePct": 2,
-      "answerFormatNote": "Enter in dollars per policy, to the nearest dollar.",
+      "unit": "USD per year",
+      "tolerancePct": 1,
+      "answerFormatNote": "Give your answer in USD per year, rounded to the nearest whole number (for example 1111 or 123456 or 500885), without further explanation or working.",
       "idealAnswer": {
-        "value": 200,
-        "workedSolution": "Per policy: $1,000 − $550 − $250 = $200.\nAcross 800K low-risk policies that is $160M — more than the whole book’s $100M profit. The standard segment loses money at today’s prices.",
-        "commonMistakes": [
-          "Stopping at the per-policy figure and missing that the segment total exceeds the book total",
-          "Using the book-average 70% loss ratio for this segment"
-        ]
+        "value": 12800000,
+        "workedSolution": "Discount per adopting policy = 8% × $800 = $64.\nAcross 200,000 adopters: 200,000 × $64 = $12,800,000 a year of premium given up.",
+        "keyPoints": ["The discount is a reduction in premium Solvenn is collecting today, so it is a real and immediate cost.", "It is paid on every adopting policy, regardless of whether that driver's behaviour changes."],
+        "commonMistakes": ["Applying the discount to the whole book and answering $64,000,000.", "Discounting the underwriting profit rather than the premium.", "Netting the claims saving off before answering — the question asks for the discount alone."]
       },
-      "followUp": "Exactly: the 800K safest drivers contribute $160M while the book makes $100M — the other 1.2M policies lose $60M between them. Losing 300K of the subsidisers is a $60M-a-year hole.\n\nHere is the product meant to keep them.",
-      "followUpExhibitIds": [
-        "ex3"
-      ],
+      "followUp": "That gives the board both halves of the trade. Before we conclude, they want to know how sensitive the answer is.",
       "scoringWeights": {
-        "accuracy": 0.6,
-        "structure": 0.2,
-        "communication": 0.2
+        "accuracy": 0.85,
+        "structure": 0.15
       }
     },
     {
       "id": "q6",
-      "type": "math",
+      "type": "exhibit",
       "timeLimitSeconds": 180,
-      "prompt": "Using Exhibit 3, how much profit does a low-risk policy contribute a year on the usage-based product?",
-      "exhibitIds": [
-        "ex3"
-      ],
-      "responseFormat": "number",
-      "unit": "$ per policy",
-      "tolerancePct": 2,
-      "answerFormatNote": "Enter in dollars per policy, to the nearest dollar.",
+      "prompt": "Which of the following statements, if true, would change the annual profit impact you calculated? Select all that apply.",
+      "exhibitIds": ["ex1"],
+      "responseFormat": "choice",
+      "selectCount": 0,
+      "options": ["Running the app and processing its data would cost Solvenn $6 per adopting policy per year", "Solvenn's regulator would require the discount to be offered to any policyholder who asks for it, though only the 200,000 adopters would install the app", "Two competitors already sell a telematics product in this market", "Claims costs across the market are expected to inflate by 5% next year, with premiums held flat", "Adopters' claims cost before the app is $480 against a book average of $560"],
       "idealAnswer": {
-        "value": 180,
-        "workedSolution": "Per policy: $900 − $450 − $270 = $180.",
-        "commonMistakes": [
-          "Keeping today’s $550 claims figure — telematics feedback and fairer selection lower it",
-          "Forgetting the $20 device and data cost inside the $270",
-          "Reading $180 < $200 as “worse” before asking how many policies each scenario keeps"
-        ]
+        "correctOptions": [0, 1, 3],
+        "optionRationale": ["Changes it. $6 × 200,000 = $1.2M of running cost against an $8-a-policy margin, cutting the impact from $1.6M to $400,000. On a margin this thin, the cost of running the programme is not a rounding error.", "Changes it, and it destroys the case. The discount would go to all one million policies — $64M of premium given up — while the claims saving stays with the 200,000 who install: $14.4M against $64M, an impact of −$49.6M. The discount and the behaviour change have to be tied to the same population.", "Does not change it. Competitors matter for adoption rates and for retention, but neither the discount nor the claims saving in your calculation moves because a rival is in the market.", "Changes it, and in Solvenn's favour. The saving is 15% of a claims cost that is now $504, worth $75.60 a policy, while the $64 discount is fixed to a premium that has not moved: the impact rises to $2.32M. Claims inflation makes claims-reducing programmes more valuable, not less.", "Does not change it. That is the exhibit restated, and it is already the base you used."],
+        "keyPoints": ["Ask which term each statement touches: the population discounted, the population whose claims change, the base, or the rate.", "The most dangerous statement is the one that breaks the link between who pays and who benefits.", "A thin margin is sensitive to running costs that would be immaterial elsewhere."],
+        "commonMistakes": ["Picking the competitors' presence because it is strategically important, though it is not in this arithmetic.", "Missing the regulator's requirement because it sounds procedural rather than economic.", "Assuming claims inflation must hurt an insurer, without asking what it does to a saving expressed as a percentage."]
       },
-      "followUp": "$180 against $200 today — each retained customer is slightly less profitable, but the point of the product is how many customers there are to retain. Compare the two futures over five years.",
+      "followUp": "That is exactly the sensitivity the board was worried about. And the actuarial team has now looked harder at who actually signs up for products like this.",
+      "followUpExhibitIds": ["ex2"],
       "scoringWeights": {
         "accuracy": 0.6,
-        "structure": 0.2,
-        "communication": 0.2
+        "structure": 0.4
       }
     },
     {
       "id": "q7",
-      "type": "math",
-      "timeLimitSeconds": 240,
-      "prompt": "Over five years, how much more profit does launching UBI earn from the low-risk segment than doing nothing? Recall the do-nothing path keeps only 500K of the 800K policies, and the launch costs $50M.",
-      "responseFormat": "number",
-      "unit": "$M",
-      "tolerancePct": 2,
-      "answerFormatNote": "Enter in $ millions, rounded to the nearest million.",
-      "idealAnswer": {
-        "value": 170,
-        "workedSolution": "Do nothing: 500K × $200 = $100M a year → $500M over five years.\nUBI: 800K × $180 = $144M a year → $720M, less the $50M build → $670M.\nGain: $670M − $500M = $170M.",
-        "commonMistakes": [
-          "Comparing against today’s 800K book instead of the do-nothing path — the 300K are leaving either way without the product",
-          "Forgetting the $50M one-off",
-          "Giving the UBI price to only the 300K would-be leavers; in practice the whole segment migrates to the cheaper product"
-        ]
-      },
-      "followUp": "A $170M gain over five years, even though every retained customer pays less — volume beats rate here. Note what drives it: $100 of the discount is funded by lower claims, so the margin give-up is small.\n\nBefore recommending, the board will want the risks of pricing on driving data.",
-      "scoringWeights": {
-        "accuracy": 0.6,
-        "structure": 0.2,
-        "communication": 0.2
-      }
-    },
-    {
-      "id": "q8",
-      "type": "brainstorming",
-      "timeLimitSeconds": 120,
-      "prompt": "What are the most relevant risks of the UBI launch? Select the three most relevant.",
+      "type": "exhibit",
+      "timeLimitSeconds": 180,
+      "prompt": "Which of the following is likely to be true for Scenario 2 compared with Scenario 1? Use the data below for your revised calculation. The change is described under the exhibit.",
+      "exhibitIds": ["ex2"],
       "responseFormat": "choice",
-      "selectCount": 3,
-      "options": [
-        "Cannibalisation — discounting drivers who would have stayed at full price anyway",
-        "Data and regulatory risk — collecting driving behaviour raises privacy and fairness questions",
-        "Adverse selection worsening in the remaining standard book as flat pricing unravels",
-        "Weather risk — more storms meaning more claims",
-        "Office relocation risk for the product team"
-      ],
+      "selectCount": 1,
+      "options": ["The launch adds more profit in Scenario 2, because adopters are safer drivers", "The launch now reduces Solvenn's underwriting profit", "The profit impact is unchanged, because the discount and the claims reduction are both unchanged", "There is not enough information to decide"],
       "idealAnswer": {
-        "correctOptions": [
-          0,
-          1,
-          2
-        ],
-        "optionRationale": [
-          "The classic pricing-case risk: the $170M assumes the discount buys retention; for some drivers it just buys down revenue.",
-          "Real: telematics pricing runs on personal data, and regulators increasingly ask who is penalised by it.",
-          "Real: once safe drivers pay $900, the $1,000 flat price holds only risky drivers — the standard book’s 80% loss ratio drifts worse.",
-          "Weather affects both scenarios equally; it is not a UBI risk.",
-          "Immaterial."
-        ],
-        "commonMistakes": [
-          "Counting every discounted customer as a save",
-          "Fixing the low-risk segment and ignoring what the repricing does to the rest of the book"
-        ]
+        "correctOptions": [1],
+        "optionRationale": ["Wrong, and it is the intuitive answer: safer adopters do cost less to insure, but Solvenn is not choosing whether to insure them — it already does. What it is choosing is whether to hand them 8% of their premium.", "Correct. The saving is 15% of $400 = $60 a policy, against an unchanged $64 discount: −$4 a policy, or −$800,000 a year across 200,000 adopters. The safer the adopter, the less there is to save, while the discount stays the same — so the programme turns from value-creating to value-destroying.", "Wrong. Both percentages are unchanged; what changed is the base the claims percentage applies to, which is the only thing that mattered.", "Wrong. The adopters' claims cost, the reduction, the discount and the number of adopters are all given. Worth choosing where something is genuinely missing; here nothing is."],
+        "keyPoints": ["+$1.6M becomes −$800,000 on a single row of the exhibit.", "A percentage discount on premium is fixed; a percentage saving on claims shrinks with the claims base.", "Break-even is where 15% of the adopters' claims cost equals $64, that is a claims cost of about $427."],
+        "commonMistakes": ["Reading 'safer drivers' as 'better for the insurer' and choosing the first option.", "Recomputing the whole book rather than the 200,000 adopters.", "Choosing 'not enough information' because the re-measurement feels like it should come with more detail."]
       },
-      "followUp": "Cannibalisation: gate the best discounts behind actual telematics scores rather than giving them on enrolment.\n\nData: collect the minimum, be transparent about what moves the price, and clear the design with the regulator before launch.\n\nThe standard book: this launch is step one of a repricing journey, not the end state — the 80% loss-ratio segment needs its own risk-based pricing next.",
       "scoringWeights": {
-        "creativity": 0.3,
-        "accuracy": 0.4,
+        "accuracy": 0.7,
         "structure": 0.3
       }
     },
     {
-      "id": "q9",
+      "id": "q8",
       "type": "synthesis",
       "timeLimitSeconds": 180,
-      "prompt": "Solvenn’s CEO asks for your recommendation on the usage-based product. Please give your answer in seven to eight lines maximum.",
+      "prompt": "Please explain in 2 to 3 lines the reasoning behind your answer to the previous question — and say what it implies about how Solvenn should design the discount.",
       "responseFormat": "text",
-      "maxLines": 8,
+      "maxLines": 3,
       "idealAnswer": {
-        "keyPoints": [
-          "Leads with the recommendation: launch the product",
-          "Frames the problem correctly: competitors are cherry-picking the 800K drivers who fund the book’s entire profit",
-          "Gives the numbers: $670M versus $500M over five years — a $170M gain after the $50M build",
-          "Explains the pricing logic: the 10% discount is mostly funded by a $100 claims reduction, so margin give-up is small",
-          "Names the conditions: discounts earned by telematics scores, regulator engaged on data use, and a plan to reprice the standard book next",
-          "Stays inside seven or eight lines"
-        ],
-        "commonMistakes": [
-          "Comparing UBI to today’s book instead of to the do-nothing decline",
-          "Presenting the launch as the whole answer when the standard book’s cross-subsidy still needs fixing",
-          "Reciting the arithmetic instead of leading with the recommendation"
-        ]
+        "keyPoints": ["The discount is a fixed percentage of premium; the saving is a percentage of a claims cost that falls as the adopter group gets safer.", "So the better the drivers who self-select into the product, the worse the economics — which is the opposite of the board's instinct.", "Design implication: tie the discount to the claims saved rather than to the premium, or vary it by the driver's measured score so that safe drivers who were never going to crash are not paid for behaviour they have not changed.", "A strong answer also notes the defensive argument: Solvenn may have to launch anyway to stop competitors taking its safest drivers, and that is a retention case, not this one."],
+        "commonMistakes": ["Restating the numbers without drawing out the design implication the question asks for.", "Concluding that Solvenn should avoid safe drivers, rather than that it should price the discount differently.", "Ignoring the competitive reason the board wants to launch at all."]
+      },
+      "followUp": "That is the argument the board needs. Separately, the technology committee has asked whether Solvenn should build the app itself rather than license one.",
+      "scoringWeights": {
+        "structure": 0.3,
+        "accuracy": 0.35,
+        "communication": 0.35
+      }
+    },
+    {
+      "id": "q9",
+      "type": "brainstorming",
+      "timeLimitSeconds": 180,
+      "prompt": "Choose the four pieces of data that, when combined, would allow us to estimate the net benefit to Solvenn of building its own telematics app, over the app's whole life.",
+      "responseFormat": "choice",
+      "selectCount": 4,
+      "options": ["Upfront cost to build, test and certify the app", "Number of years the app will stay competitive before it must be rebuilt", "Policies enrolled in each year of the app's life", "Net benefit per enrolled policy — claims saved less discount given — in each year of the app's life", "Cost of running the app and processing its data in each year of the app's life", "The licensor's annual fee for the app Solvenn would otherwise buy", "The average premium of an enrolled policy"],
+      "idealAnswer": {
+        "correctOptions": [0, 2, 3, 4],
+        "optionRationale": ["Needed. Lifetime net benefit is what the app delivers less what it cost to build.", "Not needed. Three of the other items are already given 'in each year of the app's life', so the number of years is carried by them.", "Needed. Enrolment is what the per-policy benefit is applied to, and it will build over time.", "Needed, and per year: the claims saving and the discount can both move as the book and the market change.", "Needed. Running an app and processing driving data is an annual cost, not a one-off.", "Not needed for this estimate. The licence fee is what you compare the answer with once you have it, not an input to the build's own benefit.", "Not needed, and it is the easiest one to take by reflex, because the discount is a percentage of premium. But the net benefit per enrolled policy is already stated net of that discount — taking the premium as well would be counting the same thing twice."],
+        "keyPoints": ["Lifetime net benefit = Σ over years of (policies enrolled × net benefit per policy − running cost) − upfront cost.", "That expression consumes exactly the four selected items and nothing else.", "The price of the alternative is a comparison, not an input."],
+        "commonMistakes": ["Taking the number of years because a lifetime calculation obviously needs one, without noticing the per-year projections already carry it.", "Taking the licensor's fee because the decision is build-versus-buy.", "Taking the average premium because the discount is expressed as a percentage of it, when the per-policy benefit already nets the discount off."]
+      },
+      "followUp": "Thanks. One last thing before the board paper goes out.",
+      "scoringWeights": {
+        "structure": 0.5,
+        "accuracy": 0.5
+      }
+    },
+    {
+      "id": "q10",
+      "type": "brainstorming",
+      "timeLimitSeconds": 240,
+      "prompt": "Your BCG project leader has asked you for the potential downsides of Solvenn launching the telematics discount — the things that could go wrong even if the arithmetic works. Could you share your thoughts in 3 to 4 lines?",
+      "responseFormat": "text",
+      "maxLines": 4,
+      "idealAnswer": {
+        "keyPoints": ["The book left behind: if the safest fifth take a discount and everyone else stays, the average risk of the non-adopting book rises and its pricing is now wrong.", "The measured 15% may not survive contact with a full launch — trial participants are the most motivated, and behaviour change decays once the novelty passes.", "Adoption could be much higher or much lower than a fifth, and the economics are thin enough that either would matter.", "Data, privacy and conduct risk: continuous location data on a million drivers, and a regulator that will ask how the discount is justified per customer.", "Competitive response: rivals can match the discount, leaving Solvenn with the cost and none of the retention benefit that motivated the launch."],
+        "commonMistakes": ["Listing generic product-launch risks with no link to how the insurer earns money.", "Missing the effect on the rest of the book, which is the risk specific to selective discounting.", "Repeating the selection argument from earlier questions rather than naming new risks."]
       },
       "scoringWeights": {
-        "communication": 0.4,
+        "creativity": 0.35,
         "structure": 0.3,
-        "accuracy": 0.3
+        "communication": 0.35
       }
     }
   ],
-  "closing": "That is the end of the case. Your transcript is ready — copy it into an LLM to be graded on what you actually said, not on what you meant.",
+  "closing": "That is everything. You held the discount and the claims saving to the same population, noticed that the saving rests on a smaller base than the book average, and then watched a single re-measurement of who adopts turn the launch from value-creating to value-destroying. Thank you — the board meets on Wednesday.",
   "authoring": {
-    "model": "claude-fable-5",
-    "generatedAt": "2026-08-25",
+    "model": "claude-opus-5",
+    "generatedAt": "2026-08-29",
     "mathVerifiedWith": "code-execution (node)",
-    "verificationLog": "=== The book today ===\nGross written premium                                           2.0000 $B\nUnderwriting profit at a 95% combined ratio                   100.0000 $M/yr\nLow-risk loss ratio                                            55.0000 %\nStandard-book average claims per policy                       800.0000 $\nStandard-book loss ratio                                       80.0000 %\nLow-risk profit per policy                                    200.0000 $\n\n=== Do nothing (lose 300K low-risk policies) ===\nRetained low-risk policies                                    500.0000 K\nAnnual low-risk profit                                        100.0000 $M/yr\nFive-year low-risk profit                                     500.0000 $M\n\n=== Launch usage-based insurance ===\nProfit per UBI policy (900 - 450 - 270)                       180.0000 $\nAnnual low-risk profit at 800K retained                       144.0000 $M/yr\nFive-year profit after $50M build                             670.0000 $M\nFive-year gain vs doing nothing                               170.0000 $M\n\n=== Assertions against the values declared in the JSON ===\nPASS  q4 underwriting profit ($M): derived 100.0000 vs declared 100.0000 (tol 2%)\nPASS  q5 low-risk profit per policy ($): derived 200.0000 vs declared 200.0000 (tol 2%)\nPASS  q6 UBI profit per policy ($): derived 180.0000 vs declared 180.0000 (tol 2%)\nPASS  q7 five-year gain of UBI ($M): derived 170.0000 vs declared 170.0000 (tol 2%)\n\n=== Figures quoted inside follow-up text and rationale ===\nPASS  claims total quoted in q4 solution ($M): derived 1,400.0000 vs declared 1,400.0000 (tol 2%)\nPASS  expenses quoted in q4 solution ($M): derived 500.0000 vs declared 500.0000 (tol 2%)\nPASS  low-risk loss ratio in exhibit chart (%): derived 55.0000 vs declared 55.0000 (tol 2%)\nPASS  standard loss ratio in exhibit chart (%): derived 80.0000 vs declared 80.0000 (tol 2%)\nPASS  do-nothing five-year profit quoted in q7 solution ($M): derived 500.0000 vs declared 500.0000 (tol 2%)\nPASS  UBI five-year profit quoted in q7 solution ($M): derived 670.0000 vs declared 670.0000 (tol 2%)\nPASS  low-risk segment profit quoted in q5 follow-up ($M): derived 160.0000 vs declared 160.0000 (tol 2%)\nPASS  standard-book loss quoted in q5 follow-up ($M): derived 60.0000 vs declared 60.0000 (tol 2%)\nPASS  defection hole quoted in q5 follow-up ($M/yr): derived 60.0000 vs declared 60.0000 (tol 2%)\n\n=== Sanity ===\nLow-risk 800K x $200 = $160M vs $100M total: rest of book loses money: true\nSegment claims reconcile to book claims (440 + 960 = 1400): true\nUBI still prices above claims + expenses: true\n"
+    "verificationLog": "=== Solvenn Mutual: the discount for safe drivers ===\nPASS  exhibit policy counts match the model\nPASS  exhibit premium matches the model\nPASS  exhibit claims costs match the model\nPASS  exhibit reduction and discount match the model\nPASS  adopters are safer than the book average\nPASS  scenario 2 changes the adopter claims row only\n\nclaims saved per adopting policy $72; discount per adopting policy $64\nnet per adopting policy $8; across 200,000 adopters $1,600,000\nscenario 2 (adopter claims $400): $-800,000\n\nPASS  q2 (annual underwriting profit impact) = 1,600,000  declared 1,600,000, tolerance ±1%\nPASS  q4 (claims saved per adopting policy) = 72  declared 72, tolerance ±1%\nPASS  q5 (total annual discount cost) = 12,800,000  declared 12,800,000, tolerance ±1%\n\nPASS  q2 worked solution quotes $72, $64, $8 and $1,600,000\nPASS  q2 mistake \"$4,000,000\" is the book-average error\nPASS  q5 mistake \"$64,000,000\" is the whole-book discount\n\nPASS  q6 option 0 (app running cost of $6 per adopting policy) moves the profit impact  $1,600,000 -> $400,000\nPASS  q6 option 1 (discount offered to the whole book, app installed by adopters only) moves the profit impact  $1,600,000 -> $-49,600,000\nPASS  q6 option 2 (two competitors already sell telematics) does not move the profit impact  $1,600,000 -> $1,600,000\nPASS  q6 option 3 (claims inflate 5% with premiums flat) moves the profit impact  $1,600,000 -> $2,320,000\nPASS  q6 option 4 (restatement of the adopter claims cost) does not move the profit impact  $1,600,000 -> $1,600,000\nPASS  q6 option 0 rationale quotes $1.2M and $400,000\nPASS  q6 option 1 rationale quotes $64M, $14.4M and −$49.6M\nPASS  q6 option 3 rationale quotes $504, $75.60 and $2.32M\n\nPASS  q7 scenario 2 turns the launch value-destroying  $1,600,000 -> $-800,000\nPASS  q7 declares \"now reduces underwriting profit\"\nPASS  q7 rationale quotes $60, −$4 and −$800,000\nPASS  q7 break-even claims cost of about $427 is right  exact break-even $426.67\n\nq9 lifetime net benefit = SUM over years[ policies enrolled(y) x net benefit per policy(y) - running cost(y) ] - upfront build\n        inputs consumed: [0] upfront, [2] policies by year, [3] net benefit per policy by year, [4] running cost by year\n        [1] years is carried by the per-year projections; [5] the licensor fee is the comparison, not an input;\n        [6] the average premium is already netted inside the per-policy benefit in [3].\nPASS  q9 declares exactly the four sufficient inputs\nPASS  q9 formula computes on those four inputs alone  worked example: $-14,320,000\n\nPASS  pacing budget fits inside the case clock  1770s of 2100s\nPASS  8-10 questions  10\nPASS  the last question is written\nPASS  every exhibit reaches the candidate  ex0:shown ex1:shown ex2:shown\nPASS  q6 rationale covers every option\nPASS  q6 correctOptions agrees with selectCount  select-all, 3 correct\nPASS  q7 rationale covers every option\nPASS  q7 correctOptions agrees with selectCount  1\nPASS  q9 rationale covers every option\nPASS  q9 correctOptions agrees with selectCount  4\nPASS  q2 tells the candidate how to format the number\nPASS  q4 tells the candidate how to format the number\nPASS  q5 tells the candidate how to format the number\nPASS  every question names its own common mistakes\nPASS  scoring weights sum to 1.0\nPASS  selectCount varies across the case  0, 1, 4\nPASS  the case is marked hard\nPASS  at least two explain-your-answer questions  2\n\nALL 44 ASSERTIONS PASSED"
   }
 }

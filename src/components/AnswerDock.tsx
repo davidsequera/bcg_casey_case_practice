@@ -42,9 +42,15 @@ export function AnswerDock({
     firstField.current?.focus()
   }, [question.id])
 
-  const need = question.selectCount ?? 1
   const isChoice = question.responseFormat === 'choice'
-  const ready = isChoice ? selected.length === need : value.trim().length > 0
+  /** selectCount 0 means "select all that apply" -- the candidate is not told how many. */
+  const openEnded = isChoice && question.selectCount === 0
+  const need = openEnded ? (question.options?.length ?? 0) : (question.selectCount ?? 1)
+  const ready = isChoice
+    ? openEnded
+      ? selected.length > 0
+      : selected.length === need
+    : value.trim().length > 0
 
   const send = () => {
     if (!ready || disabled) return
@@ -135,7 +141,11 @@ export function AnswerDock({
 
         <div className="dock-foot">
           <span className={`pace ${over ? 'over' : ''}`}>
-            {isChoice ? `Select ${need}: ${selected.length}/${need} chosen · ` : ''}
+            {isChoice
+              ? openEnded
+                ? `Select all that apply: ${selected.length} chosen · `
+                : `Select ${need}: ${selected.length}/${need} chosen · `
+              : ''}
             {over
               ? `${formatClock(softElapsed)} on this question — suggested ${formatClock(
                   question.timeLimitSeconds,

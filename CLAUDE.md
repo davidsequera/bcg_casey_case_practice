@@ -34,6 +34,10 @@ The fidelity target is the hosted product, not a generic study tool. That means:
   locks when it runs out. Only the case clock ends the case.
 - **Questions are mostly multiple-select** ("select the two most relevant"), with numeric entry
   carrying explicit rounding instructions, and a single written recommendation last.
+  `selectCount: 0` means "select all that apply" — the count is withheld from the candidate,
+  which is what the real assessment does on its judgement questions. `AnswerDock` then accepts
+  any non-empty selection, and `score.ts` already grades hits against distractors, so nothing
+  else has to change.
 - **The interviewer answers back.** After each answer, `Question.followUp` is posted as a new bot
   bubble carrying the information later questions depend on. This is not optional decoration —
   the numeric chain breaks without it.

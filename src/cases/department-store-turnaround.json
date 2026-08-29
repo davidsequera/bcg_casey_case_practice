@@ -1,377 +1,288 @@
 {
   "schemaVersion": 2,
   "id": "department-store-turnaround",
-  "title": "Hollis & Vane: the turnaround plan",
+  "title": "Hollis & Vane: closing the loss-making stores",
   "industry": "BCG Transform",
   "functionalPractice": "People & Organization",
   "difficulty": "hard",
   "estimatedMinutes": 35,
   "totalTimeSeconds": 2100,
-  "prompt": "Our client is Hollis & Vane, a department-store chain with 120 stores and $2.4B of revenue. After years of drift it is now losing money, its lenders are nervous, and a new CEO has been brought in with a mandate to transform the business. She has asked us to build the turnaround plan: how much the business must improve, where the money will come from, and how to carry an exhausted organisation through it.",
+  "prompt": "A department store chain's accounts are built in two layers, and the difference between them decides most turnaround arguments. The first layer is what a store itself earns: its sales, less the cost of the goods it sells, less the payroll, rent and running costs of that building — its store contribution. The second layer is head office: buying, marketing, technology, finance and the executive team, whose cost is spread across the stores as an allocation. A store's reported profit is its contribution less that allocation, and the allocation does not disappear when the store does. Our client is Hollis & Vane, a chain of 120 stores with $2.4B of revenue, now losing money at group level, whose lenders have accepted a plan to reach $120M of EBIT within three years — an improvement of $180M from today's −$60M. A new CEO has been brought in to deliver it. Her board has fixed on the obvious first move: twenty stores report losses, and the board wants them closed. She has asked us to check the number before she commits to it, and to tell her what closing them would take out of an organisation that is already exhausted.",
   "exhibits": [
     {
+      "id": "ex0",
+      "title": "Exhibit 1 — The two layers of a Hollis & Vane store P&L",
+      "type": "text",
+      "text": "Store contribution = store sales − cost of goods sold − store payroll − rent − other local running costs. Reported store EBIT = store contribution − allocated head-office cost. Head-office cost is allocated to stores in proportion to their sales. Closing a store removes its contribution immediately; it removes head-office cost only to the extent that head office actually shrinks."
+    },
+    {
       "id": "ex1",
-      "title": "Exhibit 1 — Hollis & Vane, annual figures",
+      "title": "Exhibit 2 — Hollis & Vane, annual figures",
       "type": "table",
-      "unitsNote": "Store-level EBIT is before head-office costs",
-      "source": "Client management accounts",
       "table": {
-        "columns": [
-          "Item",
-          "Value"
-        ],
+        "columns": ["Item", "Value"],
         "rows": [
-          [
-            "Stores",
-            120
-          ],
-          [
-            "Revenue",
-            "$2,400M"
-          ],
-          [
-            "Group EBIT",
-            "−$60M"
-          ],
-          [
-            "Cost of goods sold",
-            "60% of revenue"
-          ],
-          [
-            "Store payroll",
-            "$480M"
-          ],
-          [
-            "Head-office cost",
-            "$300M"
-          ]
+          ["Stores", 120],
+          ["Revenue", "$2,400M"],
+          ["Group EBIT", "−$60M"],
+          ["Cost of goods sold", "60% of revenue"],
+          ["Store payroll", "$480M"],
+          ["Head-office cost", "$300M"],
+          ["EBIT improvement the lenders' plan requires", "$180M"]
         ]
-      }
+      },
+      "unitsNote": "Head-office cost is allocated across stores in proportion to sales.",
+      "source": "Management accounts, latest full year"
     },
     {
       "id": "ex2",
-      "title": "Exhibit 2 — The tail of the store network",
-      "type": "text",
-      "source": "Client store P&Ls",
-      "text": "The weakest 20 stores lose an average of $2M a year each at store level, after every reasonable local fix has been tried. Their leases allow exit within the year. Closing a store transfers little of its revenue to other stores in the chain."
+      "title": "Exhibit 3 — The twenty weakest stores, per store per year (Scenario 1)",
+      "type": "table",
+      "table": {
+        "columns": ["Item", "$M per store"],
+        "rows": [
+          ["Sales", 10],
+          ["Cost of goods sold", 6],
+          ["Store payroll", 2.4],
+          ["Rent", 1],
+          ["Other local running costs", 0.4],
+          ["Allocated head-office cost", 1.25],
+          ["Reported store EBIT", -1.05],
+          ["Share of the allocated head-office cost that head office would genuinely remove if the store closed", "40%"],
+          ["One-off severance and lease exit cost if the store closes", 2]
+        ]
+      },
+      "unitsNote": "$M per store per year, except the two marked otherwise. All twenty stores are close enough to this average to be treated as identical. Leases on these twenty can be exited within the year at the cost shown.",
+      "source": "Store-level management accounts and the property team"
     },
     {
       "id": "ex3",
-      "title": "Exhibit 3 — Head-office benchmark",
-      "type": "text",
-      "source": "Retail benchmark panel",
-      "text": "Comparable retailers run head offices at about 10% of revenue. Hollis & Vane spends $300M — a quarter more than the benchmark implies for its $2.4B of sales."
+      "title": "Exhibit 4 — Scenario 2: the head-office reduction is happening anyway",
+      "type": "table",
+      "table": {
+        "columns": ["Item", "$M per store"],
+        "rows": [
+          ["Sales", 10],
+          ["Cost of goods sold", 6],
+          ["Store payroll", 2.4],
+          ["Rent", 1],
+          ["Other local running costs", 0.4],
+          ["Allocated head-office cost", 1.25],
+          ["Reported store EBIT", -1.05],
+          ["Share of the allocated head-office cost that head office would genuinely remove if the store closed", "0%"],
+          ["One-off severance and lease exit cost if the store closes", 2]
+        ]
+      },
+      "unitsNote": "Changed from Scenario 1: the board has already committed to its head-office reduction and will deliver it whether or not the stores close, so no further head-office cost comes out with them. Every other figure is unchanged."
     }
   ],
   "questions": [
     {
       "id": "q1",
       "type": "structuring",
-      "timeLimitSeconds": 90,
-      "prompt": "Before we build the plan, what should we clarify with the CEO first? Select the two most relevant.",
-      "responseFormat": "choice",
-      "selectCount": 2,
-      "options": [
-        "What outcome do the lenders and board require, and by when?",
-        "How much cash runway does the company have while the plan takes effect?",
-        "Which department store the CEO shopped at as a child?",
-        "The colour palette of the spring window displays?",
-        "Whether the company sponsors a football team?"
-      ],
+      "timeLimitSeconds": 180,
+      "prompt": "Let's start with the right structure. What are the three key questions you would need to answer before the CEO commits to closing the twenty stores? Please summarise them in 3 lines maximum.",
+      "exhibitIds": ["ex0"],
+      "responseFormat": "text",
+      "maxLines": 3,
       "idealAnswer": {
-        "correctOptions": [
-          0,
-          1
-        ],
-        "optionRationale": [
-          "A turnaround is measured against whatever keeps the lenders committed; the target must come from them, not from ambition.",
-          "The clock. A perfect three-year plan is worthless if the cash runs out in eighteen months.",
-          "Nostalgia is not a constraint.",
-          "Not decision-relevant.",
-          "A minor cost line at most; not what to ask with the first question."
-        ],
-        "commonMistakes": [
-          "Designing the plan before pinning down the number and the deadline it must hit",
-          "Ignoring liquidity — in a turnaround, cash timing outranks accounting profit"
-        ]
+        "keyPoints": ["What do these stores actually earn or lose before head-office allocation — is the reported loss a store problem or an accounting one?", "What genuinely goes away if they close: which costs are avoidable, what happens to their sales, and what does the exit cost up front?", "What does closing them cost the organisation — who leaves, who is left to run the change, and can the same team deliver the rest of the $180M?"],
+        "commonMistakes": ["A generic turnaround framework rather than the three questions this specific decision turns on.", "Accepting the board's premise that a reported loss means a value-destroying store.", "Leaving out the people dimension entirely, when the CEO has asked about it directly.", "Naming six things when the interviewer asked for three."]
       },
-      "followUp": "The lenders will refinance if the plan credibly returns the business to a 5% EBIT margin, and the CEO wants every action launched within her first year.\n\nOn cash: runway is tight but sufficient if the plan starts fast — which is why the plan must be built from actions that can begin now.\n\nHere is the business as it stands.",
-      "followUpExhibitIds": [
-        "ex1"
-      ],
+      "followUp": "Good. The finance team has pulled the store-level detail, and the property team has priced the exits. Note the second-to-last line: the allocation and what head office would actually remove are not the same number.",
+      "followUpExhibitIds": ["ex1", "ex2"],
       "scoringWeights": {
-        "structure": 0.4,
-        "accuracy": 0.4,
-        "communication": 0.2
+        "structure": 0.5,
+        "creativity": 0.2,
+        "communication": 0.3
       }
     },
     {
       "id": "q2",
-      "type": "structuring",
-      "timeLimitSeconds": 120,
-      "prompt": "Which areas would you examine to build the turnaround plan? Select the four most relevant.",
-      "responseFormat": "choice",
-      "selectCount": 4,
-      "options": [
-        "The store network — which stores make money and which never will",
-        "The cost structure above the stores — head office against benchmark",
-        "Buying and operating costs — procurement and store productivity",
-        "The organisation itself — capability, morale, and who will carry the change",
-        "The founder’s original 1908 business plan",
-        "Competitors’ staff canteen menus",
-        "The chain’s horoscope for the coming year"
-      ],
+      "type": "math",
+      "timeLimitSeconds": 300,
+      "prompt": "Scenario 1: given the data in the exhibits, what would closing all twenty stores do to Hollis & Vane's annual EBIT? Please give your answer rounded to the nearest whole number, without further explanation or working.",
+      "exhibitIds": ["ex1", "ex2"],
+      "responseFormat": "number",
+      "unit": "USD per year",
+      "tolerancePct": 1,
+      "answerFormatNote": "Give your answer in USD per year, rounded to the nearest whole number (for example 1111 or 123456 or 500885), without further explanation or working. If EBIT would fall, enter the answer with a minus sign, for example -250000.",
       "idealAnswer": {
-        "correctOptions": [
-          0,
-          1,
-          2,
-          3
-        ],
-        "optionRationale": [
-          "In a store chain the network is the portfolio; the tail usually hides much of the loss.",
-          "Overhead is the cost the customer never sees — the first place a turnaround looks.",
-          "The operational levers that improve every store that remains.",
-          "The lever that decides whether the others happen: transformations fail on people more than on arithmetic.",
-          "A century-old document is not a turnaround input.",
-          "Not relevant.",
-          "Not analysis."
-        ],
-        "commonMistakes": [
-          "Building a plan that is all arithmetic and no organisation",
-          "Treating every store as saveable out of sentiment"
-        ]
+        "value": 6000000,
+        "workedSolution": "Store contribution, per store: sales $10.0M − cost of goods $6.0M − payroll $2.4M − rent $1.0M − other local costs $0.4M = $0.2M. Positive: these stores cover their own costs and contribute $0.2M each.\nTheir reported loss of $1.05M each comes entirely from the $1.25M of head-office cost allocated to them.\nClosing all twenty removes 20 × $0.2M = $4.0M of contribution.\nHead office genuinely shrinks by 40% of the allocated cost: 20 × $1.25M × 40% = $10.0M.\nAnnual EBIT impact = −$4.0M + $10.0M = +$6,000,000 a year.\nThere is also a one-off cost of 20 × $2.0M = $40M, and the board's assumption — that closing stores reporting $1.05M losses each saves $21M a year — is wrong by more than three times.",
+        "keyPoints": ["A reported store loss driven by allocation is not a cash loss; the store contribution is what closing actually removes.", "Allocated cost only goes away to the extent head office actually shrinks — here 40 cents in the dollar.", "The move is worth $6M against a $180M plan: real, but not the centrepiece the board thinks it is."],
+        "commonMistakes": ["Taking the reported losses at face value and answering $21,000,000.", "Removing the whole allocated cost and answering $21,000,000 by a different route — 20 × ($1.25M − $0.2M).", "Netting the $40M one-off into an annual figure.", "Treating the stores' sales as lost profit rather than working from contribution."]
       },
-      "followUp": "We will take them in that order — first the size of the mountain, then the levers.",
       "scoringWeights": {
-        "structure": 0.5,
-        "accuracy": 0.3,
-        "communication": 0.2
+        "accuracy": 0.8,
+        "structure": 0.2
       }
     },
     {
       "id": "q3",
       "type": "math",
       "timeLimitSeconds": 150,
-      "prompt": "Using Exhibit 1, how much annual EBIT improvement does the plan need to deliver to reach the lenders’ 5% margin?",
-      "exhibitIds": [
-        "ex1"
-      ],
-      "responseFormat": "number",
-      "unit": "$M",
-      "tolerancePct": 2,
-      "answerFormatNote": "Enter in $ millions, rounded to the nearest million.",
+      "prompt": "Please explain briefly the reasoning behind your answer to the previous question, in 3 lines maximum.",
+      "responseFormat": "text",
+      "maxLines": 3,
       "idealAnswer": {
-        "value": 180,
-        "workedSolution": "Target EBIT: 5% × $2,400M = $120M.\nToday: −$60M.\nRequired improvement: $120M − (−$60M) = $180M a year.",
-        "commonMistakes": [
-          "Answering $120M — forgetting the plan first has to climb out of a $60M hole",
-          "Subtracting the loss instead of adding it"
-        ]
+        "keyPoints": ["These stores are not losing money at store level: each contributes $0.2M after every cost the building itself incurs.", "The reported loss is an allocation of head-office cost, and that cost only leaves the business if head office is actually made smaller.", "So closing them removes real contribution and saves only the 40% of allocation head office would genuinely take out, netting about $6M a year.", "It is worth doing, but it is a small part of a $180M plan, and it costs $40M up front to get."],
+        "commonMistakes": ["Explaining the arithmetic without naming the difference between contribution and allocated cost.", "Saying the stores are profitable without qualifying that this is before head office.", "Not putting the answer in the context of the $180M the plan needs."]
       },
-      "followUp": "$180M a year — the mountain has a number. Now the levers, starting with the store network.",
-      "followUpExhibitIds": [
-        "ex2"
-      ],
+      "followUp": "Understood. For context, the average Hollis & Vane store turns over $20M a year, so these twenty are half the size of the chain's average — which is how they came to look like the problem.",
       "scoringWeights": {
-        "accuracy": 0.6,
-        "structure": 0.2,
-        "communication": 0.2
+        "structure": 0.3,
+        "accuracy": 0.4,
+        "communication": 0.3
       }
     },
     {
       "id": "q4",
       "type": "math",
-      "timeLimitSeconds": 150,
-      "prompt": "Using Exhibit 2, how much annual EBIT improvement does closing the 20 weakest stores deliver?",
-      "exhibitIds": [
-        "ex2"
-      ],
+      "timeLimitSeconds": 90,
+      "prompt": "I'd like to check a couple of the parameters behind that. How much store contribution would Hollis & Vane give up in a year by closing all twenty? Please give your answer rounded to the nearest whole number, without further explanation or working.",
+      "exhibitIds": ["ex2"],
       "responseFormat": "number",
-      "unit": "$M",
-      "tolerancePct": 2,
-      "answerFormatNote": "Enter in $ millions, rounded to the nearest million.",
+      "unit": "USD per year",
+      "tolerancePct": 1,
+      "answerFormatNote": "Give your answer in USD per year, rounded to the nearest whole number (for example 1111 or 123456 or 500885), without further explanation or working.",
       "idealAnswer": {
-        "value": 40,
-        "workedSolution": "20 stores × $2M of store-level losses each = $40M a year of losses that stop.\nThe exhibit rules out the usual objections: local fixes are exhausted, leases allow exit, and little revenue transfers.",
-        "commonMistakes": [
-          "Netting off imagined transferred revenue the exhibit says not to count",
-          "Counting closure one-off costs here — they matter for cash, but the question is annual EBIT improvement"
-        ]
+        "value": 4000000,
+        "workedSolution": "Per store: $10.0M − $6.0M − $2.4M − $1.0M − $0.4M = $0.2M of contribution.\nTwenty stores: 20 × $0.2M = $4,000,000 a year.",
+        "keyPoints": ["Contribution stops at the store's own costs; the allocation is not one of them.", "The figure is positive, which is the whole point of asking."],
+        "commonMistakes": ["Including the allocated head-office cost and answering −$21,000,000.", "Using gross margin only and answering $80,000,000.", "Answering $200,000,000, the sales rather than the contribution."]
       },
-      "followUp": "A quarter of the target from simply stopping the worst losses. Next, the cost the customer never sees.",
-      "followUpExhibitIds": [
-        "ex3"
-      ],
+      "followUp": "Thanks. The finance director confirms the allocation is formulaic — head office is spread across stores by sales, and no part of it was ever charged to a store because that store caused it.",
       "scoringWeights": {
-        "accuracy": 0.6,
-        "structure": 0.2,
-        "communication": 0.2
+        "accuracy": 0.85,
+        "structure": 0.15
       }
     },
     {
       "id": "q5",
       "type": "math",
-      "timeLimitSeconds": 150,
-      "prompt": "Using Exhibit 3, how much annual saving does bringing head office to the benchmark deliver?",
-      "exhibitIds": [
-        "ex3"
-      ],
+      "timeLimitSeconds": 90,
+      "prompt": "And how much head-office cost would genuinely come out of the business in a year if all twenty closed? Please give your answer rounded to the nearest whole number, without further explanation or working.",
+      "exhibitIds": ["ex2"],
       "responseFormat": "number",
-      "unit": "$M",
-      "tolerancePct": 2,
-      "answerFormatNote": "Enter in $ millions, rounded to the nearest million.",
+      "unit": "USD per year",
+      "tolerancePct": 1,
+      "answerFormatNote": "Give your answer in USD per year, rounded to the nearest whole number (for example 1111 or 123456 or 500885), without further explanation or working.",
       "idealAnswer": {
-        "value": 60,
-        "workedSolution": "Benchmark: 10% × $2,400M = $240M.\nToday: $300M.\nSaving: $300M − $240M = $60M a year — a 20% reduction in head-office cost, which in practice means roles, not paperclips.",
-        "commonMistakes": [
-          "Benchmarking against the post-closure revenue base prematurely — the closures barely move $2.4B",
-          "Treating the saving as achievable without redundancies, which understates the human weight of the plan"
-        ]
+        "value": 10000000,
+        "workedSolution": "Allocated head-office cost across the twenty = 20 × $1.25M = $25.0M.\nHead office would genuinely remove 40% of it: $25.0M × 40% = $10,000,000 a year.\nThe other $15.0M is redistributed across the remaining 100 stores, making each of them look slightly worse without anything having changed.",
+        "keyPoints": ["Avoidable cost, not allocated cost, is what a closure decision runs on.", "The unavoidable 60% does not vanish — it lands on the stores that remain."],
+        "commonMistakes": ["Answering $25,000,000 by removing the whole allocation.", "Applying the 40% to the store contribution instead of the allocated cost.", "Answering $300,000,000, the whole head-office cost."]
       },
-      "followUp": "Now two operating levers, briefly: procurement can save 2.5% of cost of goods sold, and smarter store scheduling can save 5% of store payroll. Put the whole cost programme together.",
+      "followUp": "That redistribution matters more than it sounds: it is how a chain talks itself into closing a second tranche of stores next year. Before we move on, the CEO wants to know how robust the $6M is.",
       "scoringWeights": {
-        "accuracy": 0.6,
-        "structure": 0.2,
-        "communication": 0.2
+        "accuracy": 0.85,
+        "structure": 0.15
       }
     },
     {
       "id": "q6",
-      "type": "math",
-      "timeLimitSeconds": 240,
-      "prompt": "Adding the closures, the head-office reduction, the procurement saving and the scheduling saving: how much of the $180M do the four cost levers deliver?",
-      "responseFormat": "number",
-      "unit": "$M",
-      "tolerancePct": 2,
-      "answerFormatNote": "Enter in $ millions, rounded to the nearest million.",
+      "type": "exhibit",
+      "timeLimitSeconds": 180,
+      "prompt": "Which of the following statements, if true, would change the annual EBIT impact you calculated? Select all that apply.",
+      "exhibitIds": ["ex2"],
+      "responseFormat": "choice",
+      "selectCount": 0,
+      "options": ["One pound in every five of a closed store's sales transfers to another Hollis & Vane store, at the same gross margin and with no extra cost in the receiving store", "The leases on the twenty stores have four years left and cannot be exited early: the rent must be paid until they expire", "Two of the twenty stores are freehold and could be sold for $12M each", "A competitor has announced it will close fifteen stores in the same towns", "Each of the twenty stores reports a loss of $1.05M a year after head-office allocation"],
       "idealAnswer": {
-        "value": 160,
-        "workedSolution": "Closures: $40M.\nHead office: $60M.\nProcurement: 2.5% × $1,440M COGS = $36M.\nScheduling: 5% × $480M payroll = $24M.\nTotal: $40M + $60M + $36M + $24M = $160M.",
-        "commonMistakes": [
-          "Taking procurement on revenue instead of COGS",
-          "Taking scheduling on total payroll including head office, double-counting the overhead cut",
-          "Calling $160M close enough — the lenders asked for $180M, and “nearly” does not refinance"
-        ]
+        "correctOptions": [0, 1],
+        "optionRationale": ["Changes it, and by more than anything else on this list. A fifth of $10M is $2M of sales moving to a store that keeps 40% of it with no extra cost: $0.8M per closed store, $16M across the twenty, taking the annual impact to $22M. Transfer is the single most important number in any store-closure case, and it is the one the board did not mention.", "Changes it. Rent of $1.0M a store would carry on being paid, so each closure gives up $1.2M rather than $0.2M: $24M of cost against $10M of head-office saving, and the annual impact becomes −$14M. Whether a cost is avoidable is a question about the contract, not about the accounts.", "Does not change the annual EBIT impact. $24M of proceeds is real money and belongs in the cash case for closing — but it is a one-off receipt, not a change to the annual run rate you were asked about.", "Does not change it. It may well be a reason to keep the stores open and take the competitor's customers, which makes it worth raising — but nothing in your calculation moves because of it.", "Does not change it. That is the exhibit restated, and that reported loss is exactly the figure the analysis has just shown to be misleading."],
+        "keyPoints": ["Sort each statement into: does it change the contribution lost, the cost avoided, or neither?", "One-off cash and annual run rate are different questions; a closure case needs both, separately.", "A cost is avoidable only if a contract lets you stop paying it."],
+        "commonMistakes": ["Picking the freehold sale because $24M is a big number, without noticing it is a one-off.", "Missing the lease term, which is the difference between a $6M gain and a $14M loss.", "Missing the transfer of sales, which is the first thing an experienced retailer would ask about."]
       },
-      "followUp": "$160M — $20M short. Cost alone does not close a $180M gap, which is the point where weak turnarounds start shaving the truth. Strong ones find the rest somewhere real.",
+      "followUp": "The CEO has taken both points. There is also a development at board level: the head-office reduction she was planning has now been committed to publicly, on its own timetable.",
+      "followUpExhibitIds": ["ex3"],
       "scoringWeights": {
         "accuracy": 0.6,
-        "structure": 0.2,
-        "communication": 0.2
+        "structure": 0.4
       }
     },
     {
       "id": "q7",
-      "type": "brainstorming",
-      "timeLimitSeconds": 150,
-      "prompt": "The plan needs $20M more of annual EBIT. Which two moves would you put in the plan to close the gap? Select the two most credible.",
+      "type": "exhibit",
+      "timeLimitSeconds": 180,
+      "prompt": "Which of the following is likely to be true for Scenario 2 compared with Scenario 1? Use the data below for your revised calculation. The change is described under the exhibit.",
+      "exhibitIds": ["ex3"],
       "responseFormat": "choice",
-      "selectCount": 2,
-      "options": [
-        "Cut the marketing budget by a further $20M",
-        "Relaunch the loyalty programme and online store — plans the team already has — adding $100M of revenue at a 20% contribution margin",
-        "Raise all prices by 5% across the board",
-        "Renegotiate the leases of the retained stores, where terms are above market",
-        "Close 40 more stores"
-      ],
+      "selectCount": 1,
+      "options": ["Closing the twenty stores now reduces annual EBIT", "The gain is smaller but closing the stores still improves EBIT", "The impact is unchanged, because the stores' own economics have not moved", "There is not enough information to decide"],
       "idealAnswer": {
-        "correctOptions": [
-          1,
-          3
-        ],
-        "optionRationale": [
-          "Self-defeating: the plan needs revenue to hold while stores close; cutting demand generation to hit a cost number is how turnarounds spiral.",
-          "Credible and quantified: $100M × 20% = $20M, built on initiatives the organisation already believes in — which matters for momentum.",
-          "A blanket 5% rise on a struggling banner risks accelerating the sales decline that caused the crisis.",
-          "Credible: a chain in visible difficulty has real leverage with landlords who do not want 20 more dark stores.",
-          "The remaining 100 stores are not the loss-makers; closing profitable stores deepens the hole."
-        ],
-        "commonMistakes": [
-          "Closing the gap with a cut that undermines the revenue the plan depends on",
-          "Ignoring that “the team already believes in it” is itself a selection criterion in a transformation"
-        ]
+        "correctOptions": [0],
+        "optionRationale": ["Correct. If head office shrinks anyway, none of that saving is caused by the closures. All that is left is the contribution given up: −$4,000,000 a year, plus the $40M one-off. The stores were only ever 'loss-making' because of a cost the company is now removing without touching them.", "Wrong. There is no saving left to set against the lost contribution — the whole $10M was the head-office reduction, which is now happening regardless.", "Wrong. The stores' own economics are indeed unchanged, which is exactly why the answer changes: the entire benefit of closing them came from somewhere else, and that somewhere else has been claimed by another decision.", "Wrong. The exhibit changes one line and holds the rest. Worth choosing where something is genuinely missing; here nothing is."],
+        "keyPoints": ["+$6M becomes −$4M, and nothing about the stores changed.", "A saving that another decision is already delivering cannot be counted again here — that is double counting across two workstreams, and it is how turnaround plans come to promise more than they deliver.", "The stores are worth keeping on these numbers; the head-office reduction is worth doing on its own merits."],
+        "commonMistakes": ["Re-deriving the store contribution, which has not moved.", "Assuming a smaller saving must still be a saving.", "Choosing 'not enough information' because the board's commitment sounds like it needs more detail."]
       },
-      "followUp": "Agreed on both — the loyalty and online relaunch is the one we will size in the plan: $100M of revenue at 20% contribution closes the $20M exactly, with lease renegotiation held as contingency.\n\nThe arithmetic now works. What remains is the part that usually fails: the organisation that has to deliver it.",
       "scoringWeights": {
-        "creativity": 0.3,
-        "accuracy": 0.4,
+        "accuracy": 0.7,
         "structure": 0.3
       }
     },
     {
       "id": "q8",
-      "type": "brainstorming",
-      "timeLimitSeconds": 150,
-      "prompt": "This plan closes 20 stores and cuts a fifth of head office. What are the most relevant people and organisation risks to manage? Select the three most relevant.",
-      "responseFormat": "choice",
-      "selectCount": 3,
-      "options": [
-        "The best people leaving first — top performers have options, and uncertainty sends them to competitors",
-        "Middle management overload — the same leaders must run the stores and deliver the change",
-        "The office plants dying during the head-office move",
-        "Change fatigue and rumour — a year of redundancies corroding the service customers experience",
-        "The CEO’s diary being too full"
-      ],
+      "type": "synthesis",
+      "timeLimitSeconds": 180,
+      "prompt": "Please explain in 2 to 3 lines the reasoning behind your answer to the previous question — and say what you would now tell the CEO to do about the twenty stores.",
+      "responseFormat": "text",
+      "maxLines": 3,
       "idealAnswer": {
-        "correctOptions": [
-          0,
-          1,
-          3
-        ],
-        "optionRationale": [
-          "The classic transformation wound: the plan keeps the roles but loses the people who made them work.",
-          "Real: every lever lands on the same store and regional managers, and overload turns into missed execution.",
-          "Not a risk.",
-          "Real and customer-facing: demoralised floors sell less, and the revenue lever depends on stores that still care.",
-          "Diary management is not an organisational risk."
-        ],
-        "commonMistakes": [
-          "Managing the leavers and ignoring the workload of those who stay",
-          "Treating morale as soft while the plan’s revenue line quietly depends on it"
-        ]
+        "keyPoints": ["The benefit of closing was never in the stores; it was the head-office cost that came out alongside them, and another decision now claims that saving.", "On these numbers closing destroys $4M a year and costs $40M to do, so the recommendation is to stop the closure programme, not to shrink it.", "Keep the stores under review on contribution rather than on reported EBIT, and revisit any store whose contribution turns negative or whose lease comes up.", "A strong answer adds that the $180M has to be found somewhere else, and that management attention is itself scarce — the closure programme would have consumed the team for a year for less than 4% of the plan."],
+        "commonMistakes": ["Recommending a partial closure without a reason why some stores differ.", "Explaining what changed in the exhibit rather than what the CEO should now do.", "Missing that the real cost of the wrong decision is the organisation's attention, which is the CEO's actual constraint."]
       },
-      "followUp": "Retention: identify the critical few hundred people early and lock them in with clarity and, where needed, money.\n\nOverload: sequence the levers rather than launching everything at once, and give the change a dedicated programme team instead of adding it to day jobs.\n\nFatigue: communicate the whole plan once, honestly — one big announcement beats a year of drip-fed bad news, and it lets the organisation see the credible future it is working toward.",
+      "followUp": "That is the message she needs to take back to her board. The head-office reduction is still going ahead, and she has asked for help sizing it properly.",
       "scoringWeights": {
-        "creativity": 0.3,
-        "accuracy": 0.4,
-        "structure": 0.3
+        "structure": 0.3,
+        "accuracy": 0.35,
+        "communication": 0.35
       }
     },
     {
       "id": "q9",
-      "type": "synthesis",
+      "type": "brainstorming",
       "timeLimitSeconds": 180,
-      "prompt": "The CEO presents to the lenders tomorrow and asks you to rehearse the plan with her. Summarise it in seven to eight lines maximum.",
-      "responseFormat": "text",
-      "maxLines": 8,
+      "prompt": "Choose the four pieces of data that, when combined, would allow us to estimate the five-year net saving from a voluntary redundancy programme in head office.",
+      "responseFormat": "choice",
+      "selectCount": 4,
+      "options": ["Number of roles leaving in each year of the programme", "Average salary and employment on-costs of a leaving role", "One-off severance cost per leaving role", "Cost of contractors and backfill in each year of the programme", "Average length of service of the leavers", "Share of leavers who go voluntarily rather than compulsorily", "Notice period each leaving role must serve"],
       "idealAnswer": {
-        "keyPoints": [
-          "Leads with the destination: from a $60M loss to a $120M EBIT — a $180M annual improvement, fully identified",
-          "Lists the levers with numbers: closures $40M, head office $60M, procurement $36M, scheduling $24M, loyalty and online relaunch $20M",
-          "Notes that every action launches within the first year, which is what the runway requires",
-          "Names the people plan as part of the plan, not an appendix: retention of critical staff, sequenced rollout, honest communication",
-          "Acknowledges what is hard — 20 closures and a fifth of head office — rather than presenting a painless story",
-          "Stays inside seven or eight lines"
-        ],
-        "commonMistakes": [
-          "Presenting $160M of levers and hoping the lenders do not subtract",
-          "Reciting the cost levers and omitting the organisation that must deliver them",
-          "Overselling the revenue lever, the plan’s only non-cost line, without its conditions"
-        ]
+        "correctOptions": [0, 1, 2, 3],
+        "optionRationale": ["Needed. The saving builds as people leave, so the profile by year is what drives it.", "Needed. Salary alone understates a role: pension, national insurance and benefits go with it.", "Needed. Severance is the price of the saving, and it lands before the saving arrives.", "Needed, and the most commonly forgotten: work does not disappear with the person, and backfill is what turns a headline saving into a real one.", "Not needed. Length of service is what drives severance, and the severance cost per role is already on the list — take both and you have spent a pick on the input to another input.", "Not needed for the same reason. Voluntary and compulsory exits cost different amounts, and that difference is already inside the severance cost per role.", "Not needed. Notice periods decide when in the year a saving starts, and the year-by-year profile of leavers already carries the phasing."],
+        "keyPoints": ["Five-year net saving = Σ over years of (roles gone by that year × salary and on-costs − backfill cost) − severance paid.", "That expression consumes exactly the four selected items and nothing else.", "Three of the wrong options are inputs to inputs: they are already inside a figure you have picked."],
+        "commonMistakes": ["Taking length of service because redundancy pay obviously depends on it.", "Leaving out backfill, which is what makes head-office reductions under-deliver.", "Taking the notice period, which affects timing the leaver profile already captures."]
+      },
+      "followUp": "Thanks. One last thing before we write this up.",
+      "scoringWeights": {
+        "structure": 0.5,
+        "accuracy": 0.5
+      }
+    },
+    {
+      "id": "q10",
+      "type": "brainstorming",
+      "timeLimitSeconds": 240,
+      "prompt": "Your BCG project leader has asked what the turnaround will cost Hollis & Vane as an organisation — the people and capability risks the CEO has to manage while delivering $180M. Could you share your thoughts in 3 to 4 lines?",
+      "responseFormat": "text",
+      "maxLines": 4,
+      "idealAnswer": {
+        "keyPoints": ["The best people leave first: strong performers have options, and a year of announced redundancies is when they use them — the ones you most need to deliver the plan are the ones most able to go.", "Middle management carries both jobs at once, running the stores and delivering the change, and there is no slack left after a head-office reduction.", "Capability loss: cutting head office by role rather than by capability strips out buying and merchandising skill the recovery depends on.", "Change fatigue and rumour reach the shop floor and then the customer — service is the product in a department store.", "Credibility: announcing a store-closure programme and then reversing it, as this analysis implies, costs the CEO something with her board and her staff unless she frames the reversal as evidence the plan is being tested properly."],
+        "commonMistakes": ["Listing generic change-management risks with no link to how this business runs.", "Missing that attention and capability, not cash, are the binding constraints in a turnaround.", "Repeating the store-closure conclusion instead of naming organisational risks."]
       },
       "scoringWeights": {
-        "communication": 0.4,
+        "creativity": 0.35,
         "structure": 0.3,
-        "accuracy": 0.3
+        "communication": 0.35
       }
     }
   ],
-  "closing": "That is the end of the case. Your transcript is ready — copy it into an LLM to be graded on what you actually said, not on what you meant.",
+  "closing": "That is everything I wanted to cover. You went behind the reported store losses to what the stores actually contribute, separated the head-office cost that would genuinely leave from the cost that would simply be redistributed, and then found that another decision had already claimed the saving. Thank you — the CEO takes this to her board on Thursday.",
   "authoring": {
-    "model": "claude-fable-5",
-    "generatedAt": "2026-08-25",
+    "model": "claude-opus-5",
+    "generatedAt": "2026-08-29",
     "mathVerifiedWith": "code-execution (node)",
-    "verificationLog": "=== The target ===\nRevenue                                                     2,400.0000 $M\nEBIT today                                                    -60.0000 $M\nTarget EBIT at a 5% margin                                    120.0000 $M\nRequired annual improvement                                   180.0000 $M\n\n=== The four cost levers ===\nClose 20 loss-making stores (avg -$2M each)                    40.0000 $M\nHead office to benchmark (300 -> 240)                          60.0000 $M\nProcurement, 2.5% of $1,440M COGS                              36.0000 $M\nStore scheduling, 5% of $480M payroll                          24.0000 $M\nFour levers together                                          160.0000 $M\nRemaining gap to the target                                    20.0000 $M\n\n=== Closing the gap ===\nLoyalty & online relaunch revenue                             100.0000 $M\nContribution at 20%                                            20.0000 $M\nFull programme                                                180.0000 $M\n\n=== Assertions against the values declared in the JSON ===\nPASS  q3 required improvement ($M): derived 180.0000 vs declared 180.0000 (tol 2%)\nPASS  q4 closure benefit ($M): derived 40.0000 vs declared 40.0000 (tol 2%)\nPASS  q5 head-office saving ($M): derived 60.0000 vs declared 60.0000 (tol 2%)\nPASS  q6 four levers total ($M): derived 160.0000 vs declared 160.0000 (tol 2%)\n\n=== Figures quoted inside follow-up text and rationale ===\nPASS  COGS quoted in q6 solution ($M): derived 1,440.0000 vs declared 1,440.0000 (tol 2%)\nPASS  procurement saving quoted in q6 solution ($M): derived 36.0000 vs declared 36.0000 (tol 2%)\nPASS  scheduling saving quoted in q6 solution ($M): derived 24.0000 vs declared 24.0000 (tol 2%)\nPASS  gap quoted in q6 follow-up ($M): derived 20.0000 vs declared 20.0000 (tol 2%)\nPASS  revenue-lever contribution quoted in q7 rationale ($M): derived 20.0000 vs declared 20.0000 (tol 2%)\nPASS  head-office cut share quoted in q5 solution (%): derived 20.0000 vs declared 20.0000 (tol 2%)\n\n=== Sanity ===\nProgramme exactly meets the target (160 + 20 = 180): true\nHead-office benchmark is 10% of revenue: true\nEBIT today is a real loss: true\n"
+    "verificationLog": "=== Hollis & Vane: closing the loss-making stores ===\nPASS  exhibit store P&L matches the model\nPASS  exhibit allocation and reported EBIT match the model\nPASS  the reported store EBIT in the exhibit is internally consistent\nPASS  the allocation is consistent with allocating head office by sales  $300M x 10/2400 = $1.25M\nPASS  the chain-level exhibit is consistent\nPASS  scenario 2 changes the removable share row only\n\nstore contribution $0.2M per store; twenty stores give up $4M a year\nhead office genuinely removed $10M a year of the $25M allocated\nannual EBIT impact $6M; one-off cost $40M\nthe board's assumption, taking reported losses at face value: $21M a year\n\nPASS  q2 (annual EBIT impact of closing all twenty) = 6,000,000  declared 6,000,000, tolerance ±1%\nPASS  q4 (store contribution given up) = 4,000,000  declared 4,000,000, tolerance ±1%\nPASS  q5 (head-office cost genuinely removed) = 10,000,000  declared 10,000,000, tolerance ±1%\n\nPASS  q2 worked quotes $0.2M, $4.0M, $10.0M, +$6,000,000, $40M, $21M\nPASS  q5 worked quotes $25.0M, $15.0M\nPASS  the average store is twice the size of these twenty, as q3 says\n\nPASS  q6 option 0 (a fifth of sales transfers to another store) moves the annual EBIT impact  $6M -> $22M\nPASS  q6 option 1 (leases cannot be exited, rent continues) moves the annual EBIT impact  $6M -> $-14M\nPASS  q6 option 2 (two freeholds could be sold for $12M each) does not move the annual EBIT impact  $6M -> $6M\nPASS  q6 option 3 (a competitor is closing fifteen stores nearby) does not move the annual EBIT impact  $6M -> $6M\nPASS  q6 option 4 (restatement of the reported loss) does not move the annual EBIT impact  $6M -> $6M\nPASS  q6 rationale quotes $0.8M per closed store, $16M, $22M\nPASS  q6 rationale quotes $1.2M rather than $0.2M, $24M, −$14M\nPASS  q6 rationale quotes $24M of proceeds\n\nPASS  q7 scenario 2 turns the closure programme value-destroying  $6M -> $-4M\nPASS  q7 declares \"now reduces annual EBIT\"\nPASS  q7 rationale quotes −$4,000,000, $40M\nPASS  q7 keyPoints quotes +$6M becomes −$4M\nPASS  q8 is right that the closure programme was under 4% of the plan  3.3% of $180M\n\nq9 five-year net saving = SUM over years[ roles gone by that year x salary and on-costs - backfill cost ] - severance paid\n        inputs consumed: [0] leaver profile by year, [1] salary and on-costs, [2] severance per role, [3] backfill by year\n        [4] length of service and [5] the voluntary/compulsory split are both inputs to [2];\n        [6] notice periods affect timing, which [0] already carries.\nPASS  q9 declares exactly the four sufficient inputs\n\nPASS  pacing budget fits inside the case clock  1770s of 2100s\nPASS  8-10 questions  10\nPASS  the last question is written\nPASS  every exhibit reaches the candidate  ex0:shown ex1:shown ex2:shown ex3:shown\nPASS  q6 rationale covers every option\nPASS  q6 correctOptions agrees with selectCount  select-all, 2 correct\nPASS  q7 rationale covers every option\nPASS  q7 correctOptions agrees with selectCount  1\nPASS  q9 rationale covers every option\nPASS  q9 correctOptions agrees with selectCount  4\nPASS  q2 tells the candidate how to format the number\nPASS  q4 tells the candidate how to format the number\nPASS  q5 tells the candidate how to format the number\nPASS  every question names its own common mistakes\nPASS  scoring weights sum to 1.0\nPASS  selectCount varies across the case  0, 1, 4\nPASS  the case is marked hard\nPASS  at least two explain-your-answer questions  2\n\nALL 44 ASSERTIONS PASSED"
   }
 }

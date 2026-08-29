@@ -16,27 +16,12 @@
       "unitsNote": "US dollars per pump; the selling price is the same in both scenarios",
       "source": "Client cost accounts",
       "table": {
-        "columns": [
-          "Item",
-          "Value ($)"
-        ],
+        "columns": ["Item", "Value ($)"],
         "rows": [
-          [
-            "Selling price in Southeast Asia",
-            6000
-          ],
-          [
-            "Ex-factory cost, home plant",
-            4200
-          ],
-          [
-            "Ocean freight per pump",
-            300
-          ],
-          [
-            "Import tariff",
-            "10% of selling price"
-          ]
+          ["Selling price in Southeast Asia", 6000],
+          ["Ex-factory cost, home plant", 4200],
+          ["Ocean freight per pump", 300],
+          ["Import tariff", "10% of selling price"]
         ]
       }
     },
@@ -48,23 +33,11 @@
       "source": "Client market model",
       "chart": {
         "kind": "bar",
-        "categories": [
-          "2027",
-          "2028",
-          "2029",
-          "2030",
-          "2031"
-        ],
+        "categories": ["2027", "2028", "2029", "2030", "2031"],
         "series": [
           {
             "label": "Projected demand",
-            "values": [
-              25,
-              27,
-              30,
-              32,
-              36
-            ]
+            "values": [25, 27, 30, 32, 36]
           }
         ],
         "valueSuffix": "K"
@@ -77,31 +50,13 @@
       "unitsNote": "The plant would be operational from the first year of the horizon",
       "source": "Client engineering study",
       "table": {
-        "columns": [
-          "Item",
-          "Value"
-        ],
+        "columns": ["Item", "Value"],
         "rows": [
-          [
-            "One-off cost to build the plant",
-            "$150M"
-          ],
-          [
-            "Production cost per pump",
-            "$3,900"
-          ],
-          [
-            "Regional freight per pump",
-            "$100"
-          ],
-          [
-            "Import tariff within the region",
-            "none"
-          ],
-          [
-            "Annual capacity",
-            "40K pumps"
-          ]
+          ["One-off cost to build the plant", "$150M"],
+          ["Production cost per pump", "$3,900"],
+          ["Regional freight per pump", "$100"],
+          ["Import tariff within the region", "none"],
+          ["Annual capacity", "40K pumps"]
         ]
       }
     }
@@ -114,29 +69,11 @@
       "prompt": "Before structuring the analysis, what should we clarify with Kestrel first? Select the two most relevant.",
       "responseFormat": "choice",
       "selectCount": 2,
-      "options": [
-        "Does the board have a financial hurdle for an investment of this size?",
-        "Can the home plant actually supply everything the region will demand?",
-        "What colour are the pumps painted for the Asian market?",
-        "How many patents does Kestrel hold in Europe?",
-        "What is the CEO’s favourite market to visit?"
-      ],
+      "options": ["Does the board have a financial hurdle for an investment of this size?", "Can the home plant actually supply everything the region will demand?", "What does a pump cost to land in the region when exported from Europe today?", "How many pumps did Kestrel sell in the region last year?", "Which Vietnamese province offers the best investment incentives?"],
       "idealAnswer": {
-        "correctOptions": [
-          0,
-          1
-        ],
-        "optionRationale": [
-          "A must-have. A plant is a large, hard-to-reverse capital commitment; the case will be judged against whatever hurdle the board sets.",
-          "The binding constraint. If the home plant cannot serve future demand, \"keep exporting\" quietly means \"give up growth\", and the comparison changes shape.",
-          "Cosmetic specification has no bearing on where to build capacity.",
-          "Patent count does not change the export-versus-local-build economics.",
-          "Not a data point at all."
-        ],
-        "commonMistakes": [
-          "Skipping the capacity question and comparing the two paths at today’s volume",
-          "Not asking for the hurdle the investment must clear"
-        ]
+        "correctOptions": [0, 1],
+        "optionRationale": ["A must-have. A plant is a large, hard-to-reverse capital commitment; the case will be judged against whatever hurdle the board sets.", "The binding constraint. If the home plant cannot serve future demand, \"keep exporting\" quietly means \"give up growth\", and the comparison changes shape.", "No. A necessary input, and you will build the whole comparison on it, but it is a number to gather rather than a question that has to be settled with the client first.", "No, for the same reason: it is data. It also tells you where Kestrel has been rather than what the region will demand over the plant's life, which is what the decision turns on.", "No. A real question with real money attached — but it is downstream of a decision nobody has taken yet. You choose a province after deciding to build, not before deciding whether to."],
+        "commonMistakes": ["Skipping the capacity question and comparing the two paths at today’s volume", "Not asking for the hurdle the investment must clear"]
       },
       "followUp": "On the hurdle: the board wants the plant to pay back within four years of opening.\n\nOn capacity: the home plant can spare at most 20K pumps a year for Southeast Asia — its remaining output is committed to Europe. Regional demand is already above that and rising.",
       "scoringWeights": {
@@ -152,40 +89,14 @@
       "prompt": "Which areas would you investigate to compare exporting against building in Vietnam? Select the four most relevant.",
       "responseFormat": "choice",
       "selectCount": 4,
-      "options": [
-        "Per-pump economics of each path — production cost, freight and tariffs",
-        "How regional demand develops over the horizon, against each path’s capacity",
-        "The investment cost of the plant and how fast it pays back",
-        "The history of Kestrel’s founding family",
-        "Risks of operating a first plant far from home — quality, currency, management",
-        "The typeface used in Kestrel’s regional advertising",
-        "European labour union reaction to opening a plant abroad"
-      ],
+      "options": ["Per-pump economics of each path — production cost, freight and tariffs", "How regional demand develops over the horizon, against each path’s capacity", "The investment cost of the plant and how fast it pays back", "The wage gap between European and Vietnamese assembly workers", "Risks of operating a first plant far from home — quality, currency, management", "The freight cost of shipping a pump from Vietnam back to Europe", "How many extra pumps the European plant could make on a third shift"],
       "idealAnswer": {
-        "correctOptions": [
-          0,
-          1,
-          2,
-          4
-        ],
-        "optionRationale": [
-          "The unit economics are where tariffs and freight either justify the plant or do not.",
-          "Volume is half the profit equation, and the export path is capacity-capped — the comparison moves with demand.",
-          "The capex and the board’s payback hurdle are what the whole case is measured against.",
-          "Heritage is not a decision variable.",
-          "A first offshore plant is an operating-model change, not just a spreadsheet line; the risks belong in the structure.",
-          "Marketing cosmetics do not bear on a manufacturing footprint decision.",
-          "Worth managing later, but it is a stakeholder issue, not one of the four analyses that decide the economics."
-        ],
-        "commonMistakes": [
-          "Structuring only the cost side and ignoring that the plant also unlocks volume the home plant cannot supply",
-          "Leaving out the risks of a first offshore operation"
-        ]
+        "correctOptions": [0, 1, 2, 4],
+        "optionRationale": ["The unit economics are where tariffs and freight either justify the plant or do not.", "Volume is half the profit equation, and the export path is capacity-capped — the comparison moves with demand.", "The capex and the board’s payback hurdle are what the whole case is measured against.", "No. It is the first thing everyone reaches for, and it is already inside the per-pump production cost of each path. Taking it separately spends one of your four areas on a number you are getting anyway.", "A first offshore plant is an operating-model change, not just a spreadsheet line; the risks belong in the structure.", "No. The plant is being built to serve regional demand, not to supply Europe. This would matter for a different plan than the one Kestrel has asked about.", "No — genuinely relevant, which is what makes it a trap: it is already inside the area that tests regional demand against each path's capacity. Picking it as well leaves one of the other three areas uncovered."],
+        "commonMistakes": ["Structuring only the cost side and ignoring that the plant also unlocks volume the home plant cannot supply", "Leaving out the risks of a first offshore operation"]
       },
       "followUp": "Here are the export economics per pump. Work from these for the next question.",
-      "followUpExhibitIds": [
-        "ex1"
-      ],
+      "followUpExhibitIds": ["ex1"],
       "scoringWeights": {
         "structure": 0.5,
         "accuracy": 0.3,
@@ -197,9 +108,7 @@
       "type": "math",
       "timeLimitSeconds": 180,
       "prompt": "Using Exhibit 1, what margin does Kestrel earn today on each pump it exports to Southeast Asia?",
-      "exhibitIds": [
-        "ex1"
-      ],
+      "exhibitIds": ["ex1"],
       "responseFormat": "number",
       "unit": "$",
       "tolerancePct": 2,
@@ -207,16 +116,10 @@
       "idealAnswer": {
         "value": 900,
         "workedSolution": "Tariff: 10% × $6,000 = $600.\nLanded cost: $4,200 + $300 + $600 = $5,100.\nMargin: $6,000 − $5,100 = $900 per pump.",
-        "commonMistakes": [
-          "Charging the tariff on cost rather than on the selling price",
-          "Forgetting the freight",
-          "Quoting the landed cost instead of the margin"
-        ]
+        "commonMistakes": ["Charging the tariff on cost rather than on the selling price", "Forgetting the freight", "Quoting the landed cost instead of the margin"]
       },
       "followUp": "So exporting earns $900 a pump — a 15% margin, with $600 of tariff and $300 of freight taken out of every unit before Kestrel sees a cent.\n\nNow volume. Here is the demand projection; remember the home plant can supply at most 20K pumps a year to the region.",
-      "followUpExhibitIds": [
-        "ex2"
-      ],
+      "followUpExhibitIds": ["ex2"],
       "scoringWeights": {
         "accuracy": 0.6,
         "structure": 0.2,
@@ -228,9 +131,7 @@
       "type": "exhibit",
       "timeLimitSeconds": 240,
       "prompt": "Using Exhibit 2 and the export margin you just calculated, what profit does the export path earn over the five years?",
-      "exhibitIds": [
-        "ex2"
-      ],
+      "exhibitIds": ["ex2"],
       "responseFormat": "number",
       "unit": "$M",
       "tolerancePct": 2,
@@ -238,16 +139,10 @@
       "idealAnswer": {
         "value": 90,
         "workedSolution": "Demand exceeds 20K in every year, so the export path sells its full 20K cap each year.\n20,000 pumps × $900 = $18M a year.\nFive years: $18M × 5 = $90M.",
-        "commonMistakes": [
-          "Multiplying the margin by demand (150K pumps over the period) rather than by what the home plant can actually supply",
-          "Using a single year instead of the five-year total",
-          "Treating the 20K cap as a one-off rather than an annual limit"
-        ]
+        "commonMistakes": ["Multiplying the margin by demand (150K pumps over the period) rather than by what the home plant can actually supply", "Using a single year instead of the five-year total", "Treating the 20K cap as a one-off rather than an annual limit"]
       },
       "followUp": "Exactly — the cap binds in every year, so exporting earns $90M over the period while total demand of 150K pumps goes largely unserved: rivals pick up the rest.\n\nHere is what the Vietnam plant would look like.",
-      "followUpExhibitIds": [
-        "ex3"
-      ],
+      "followUpExhibitIds": ["ex3"],
       "scoringWeights": {
         "accuracy": 0.5,
         "structure": 0.3,
@@ -259,9 +154,7 @@
       "type": "math",
       "timeLimitSeconds": 180,
       "prompt": "Using Exhibit 3, what margin would Kestrel earn on each pump built in Vietnam?",
-      "exhibitIds": [
-        "ex3"
-      ],
+      "exhibitIds": ["ex3"],
       "responseFormat": "number",
       "unit": "$",
       "tolerancePct": 2,
@@ -269,11 +162,7 @@
       "idealAnswer": {
         "value": 2000,
         "workedSolution": "Cost per pump: $3,900 production + $100 regional freight = $4,000. No tariff.\nMargin: $6,000 − $4,000 = $2,000 per pump.",
-        "commonMistakes": [
-          "Still charging the 10% tariff, which local production avoids",
-          "Using the home plant’s freight figure",
-          "Deducting the $150M capex from the per-pump margin — it is a one-off, handled separately"
-        ]
+        "commonMistakes": ["Still charging the 10% tariff, which local production avoids", "Using the home plant’s freight figure", "Deducting the $150M capex from the per-pump margin — it is a one-off, handled separately"]
       },
       "followUp": "A $2,000 margin — a third of the selling price, against 15% when exporting. And the plant’s 40K capacity covers demand in every year, averaging 30K pumps a year over the horizon.",
       "scoringWeights": {
@@ -294,11 +183,7 @@
       "idealAnswer": {
         "value": 150,
         "workedSolution": "Average demand: 150K pumps over five years = 30K a year, all of it within the plant’s capacity.\nProfit: 30,000 × $2,000 = $60M a year on average, $300M over five years.\nLess the plant: $300M − $150M = $150M.",
-        "commonMistakes": [
-          "Capping volume at 20K out of habit — the new plant’s capacity is 40K",
-          "Charging the $150M in every year instead of once",
-          "Comparing to zero rather than remembering exporting also earns $90M"
-        ]
+        "commonMistakes": ["Capping volume at 20K out of habit — the new plant’s capacity is 40K", "Charging the $150M in every year instead of once", "Comparing to zero rather than remembering exporting also earns $90M"]
       },
       "followUp": "So the Vietnam path earns $150M over five years against $90M for exporting — a $60M gain, plus a structurally better margin from year six onward. The board’s test, though, was payback.",
       "scoringWeights": {
@@ -319,11 +204,7 @@
       "idealAnswer": {
         "value": 3.6,
         "workedSolution": "Incremental profit of the plant: $60M − $18M = $42M a year on average.\nPayback: $150M ÷ $42M ≈ 3.6 years.",
-        "commonMistakes": [
-          "Dividing by the plant’s full $60M profit instead of the incremental $42M — the export profit was already being earned",
-          "Using a single early year’s demand, which understates the average",
-          "Rounding to 4 and calling the hurdle failed — it is met with margin"
-        ]
+        "commonMistakes": ["Dividing by the plant’s full $60M profit instead of the incremental $42M — the export profit was already being earned", "Using a single early year’s demand, which understates the average", "Rounding to 4 and calling the hurdle failed — it is met with margin"]
       },
       "followUp": "Payback in roughly 3.6 years clears the four-year hurdle. The economics favour building; what could still go wrong is the next question.",
       "scoringWeights": {
@@ -339,30 +220,11 @@
       "prompt": "What are the most relevant risks of Kestrel’s first plant outside Europe? Select the three most relevant.",
       "responseFormat": "choice",
       "selectCount": 3,
-      "options": [
-        "Ramp-up risk — a new plant and workforce missing quality or volume targets in the early years",
-        "Currency risk — costs in dong, revenue across the region, and a home currency none of them match",
-        "Tariff policy risk — the trade rules that justify the plant could change again",
-        "Weather risk — European winters disrupting the home plant",
-        "Font licensing risk on regional packaging"
-      ],
+      "options": ["Ramp-up risk — a new plant and workforce missing quality or volume targets in the early years", "Currency risk — costs in dong, revenue across the region, and a home currency none of them match", "Tariff policy risk — the trade rules that justify the plant could change again", "Demand risk — the region growing faster than Kestrel has forecast", "Transfer-pricing risk — how profit is split between the European parent and the Vietnamese subsidiary"],
       "idealAnswer": {
-        "correctOptions": [
-          0,
-          1,
-          2
-        ],
-        "optionRationale": [
-          "Real and near-term: the payback case assumes full production from year one, which first plants rarely deliver.",
-          "Real and permanent: the case’s margins move with exchange rates the client does not control.",
-          "Real and structural: $600 of the per-pump advantage is tariff avoidance, and tariffs are set by governments, not by Kestrel.",
-          "The home plant’s weather exposure is unchanged by this decision.",
-          "Not a material risk."
-        ],
-        "commonMistakes": [
-          "Missing that the tariff saving — the biggest single lever — is also the most fragile assumption",
-          "Ignoring ramp-up and assuming year-one output equals nameplate capacity"
-        ]
+        "correctOptions": [0, 1, 2],
+        "optionRationale": ["Real and near-term: the payback case assumes full production from year one, which first plants rarely deliver.", "Real and permanent: the case’s margins move with exchange rates the client does not control.", "Real and structural: $600 of the per-pump advantage is tariff avoidance, and tariffs are set by governments, not by Kestrel.", "No. Growth beyond forecast is the argument for building the plant, not a risk of it. The risk is demand falling short of the volumes the payback depends on, and that sits inside the ramp-up risk already listed.", "No. A real matter for the tax and finance teams, and worth getting right, but it moves profit between Kestrel's own entities rather than threatening whether the plant earns its investment back."],
+        "commonMistakes": ["Missing that the tariff saving — the biggest single lever — is also the most fragile assumption", "Ignoring ramp-up and assuming year-one output equals nameplate capacity"]
       },
       "followUp": "Ramp-up: stage the capacity, keep exporting in parallel during year one, and send an experienced home-plant team to run the start-up.\n\nCurrency: match costs and revenues where possible and hedge the gap.\n\nTariffs: the risk cuts both ways — tariffs could also rise, which would make exporting worse and the plant more valuable. Diversifying the footprint is itself a hedge.",
       "scoringWeights": {
@@ -379,19 +241,8 @@
       "responseFormat": "text",
       "maxLines": 8,
       "idealAnswer": {
-        "keyPoints": [
-          "Leads with the recommendation: build the plant",
-          "Gives the financial reason with numbers: $150M versus $90M over five years, and payback in about 3.6 years against a four-year hurdle",
-          "Explains the two drivers: margin per pump more than doubles ($900 to $2,000), and the plant serves demand the home plant must turn away",
-          "Notes the strategic upside: a regional footprint keeps growing in value after the horizon",
-          "Names the conditions: staged ramp-up with exports running in parallel, currency hedging, and monitoring of trade policy",
-          "Stays inside seven or eight lines and does not narrate the calculation"
-        ],
-        "commonMistakes": [
-          "Reciting the arithmetic instead of leading with the answer",
-          "Ignoring the capacity story and framing the plant as a pure cost play",
-          "Omitting ramp-up risk after the payback case assumed full year-one output"
-        ]
+        "keyPoints": ["Leads with the recommendation: build the plant", "Gives the financial reason with numbers: $150M versus $90M over five years, and payback in about 3.6 years against a four-year hurdle", "Explains the two drivers: margin per pump more than doubles ($900 to $2,000), and the plant serves demand the home plant must turn away", "Notes the strategic upside: a regional footprint keeps growing in value after the horizon", "Names the conditions: staged ramp-up with exports running in parallel, currency hedging, and monitoring of trade policy", "Stays inside seven or eight lines and does not narrate the calculation"],
+        "commonMistakes": ["Reciting the arithmetic instead of leading with the answer", "Ignoring the capacity story and framing the plant as a pure cost play", "Omitting ramp-up risk after the payback case assumed full year-one output"]
       },
       "scoringWeights": {
         "communication": 0.4,

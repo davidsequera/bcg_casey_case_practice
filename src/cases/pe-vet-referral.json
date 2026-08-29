@@ -1,0 +1,267 @@
+{
+  "schemaVersion": 2,
+  "id": "pe-vet-referral",
+  "title": "Bramfield Capital: bidding for Bracken Vets",
+  "industry": "Principal Investors & Private Equity",
+  "functionalPractice": "Corporate Finance & Strategy",
+  "difficulty": "hard",
+  "estimatedMinutes": 35,
+  "totalTimeSeconds": 2100,
+  "prompt": "Veterinary care runs through a short chain: independent clinics and clinic groups see pets for routine general practice, and the complex cases they cannot handle — orthopaedic surgery, oncology, advanced imaging — are referred on to specialist referral hospitals, which charge the referring clinic a fixed price per case. Our client is Bramfield Capital, a mid-market private equity fund. Bramfield already owns Ardent Vets, a group of 60 general-practice clinics with no referral hospital of its own; Ardent sends about 5,000 complex cases a year to third-party referral hospitals and pays the going market price of $900 for each of them. Last week Bracken Vets was put up for sale at an asking price of $240M. Bracken is a group of 40 general-practice clinics plus one referral hospital, and it is not currently one of Ardent's referral providers. Bramfield's investment committee values any acquisition at 8 times the steady-state annual profit before depreciation, interest and tax that the group as a whole would earn from owning it — including any cost saved elsewhere in the group. Two terms will matter today: a clinic's or hospital's spare capacity is the volume it could serve beyond what it serves now, and contribution per case is the price of a case less the costs that vary with it. The committee meets on Friday and wants to know whether to bid for Bracken and, if so, how much.",
+  "exhibits": [
+    {
+      "id": "ex0",
+      "title": "Exhibit 1 — Where the money moves in veterinary care",
+      "type": "text",
+      "text": "Pet owner → general-practice clinic (routine care, paid by the owner and their insurer) → referral hospital (complex cases, paid a fixed price per case by the referring clinic). Ardent Vets, which Bramfield already owns, sits only in general practice. Bracken Vets, the target, sits in both: 40 general-practice clinics and one referral hospital."
+    },
+    {
+      "id": "ex1",
+      "title": "Exhibit 2 — Bracken Vets: capacity, volumes and costs (Scenario 1)",
+      "type": "table",
+      "table": {
+        "columns": ["", "General practice", "Referral"],
+        "rows": [
+          ["Maximum capacity (cases/yr)", 400000, 30000],
+          ["Cases delivered (cases/yr)", 380000, 24000],
+          ["Cases Ardent currently sends to third-party providers (cases/yr)", 0, 5000],
+          ["Market price per case (USD)", 120, 900],
+          ["Consumables cost per case (USD)", 40, 300],
+          ["Clinical staff cost per case (USD)", 30, 250],
+          ["Property, admin and support cost (USD/yr)", 4500000, 1500000],
+          ["Depreciation (USD/yr)", 1500000, 2500000]
+        ]
+      },
+      "unitsNote": "Bracken is not currently one of Ardent's referral providers. Property, admin, support and depreciation are annual costs that do not vary with the number of cases.",
+      "source": "Vendor data pack, reviewed by the diligence team"
+    },
+    {
+      "id": "ex2",
+      "title": "Exhibit 3 — Scenario 2: Bracken's fourth theatre is leased out until 2031",
+      "type": "table",
+      "table": {
+        "columns": ["", "General practice", "Referral"],
+        "rows": [
+          ["Maximum capacity (cases/yr)", 400000, 24000],
+          ["Cases delivered (cases/yr)", 380000, 24000],
+          ["Cases Ardent currently sends to third-party providers (cases/yr)", 0, 5000],
+          ["Market price per case (USD)", 120, 900],
+          ["Consumables cost per case (USD)", 40, 300],
+          ["Clinical staff cost per case (USD)", 30, 250],
+          ["Property, admin and support cost (USD/yr)", 4500000, 1500000],
+          ["Depreciation (USD/yr)", 1500000, 2500000]
+        ]
+      },
+      "unitsNote": "Changed from Scenario 1: referral maximum capacity is 24,000 cases a year, not 30,000 — the fourth operating theatre is leased to another operator until 2031. Every other figure is unchanged."
+    }
+  ],
+  "questions": [
+    {
+      "id": "q1",
+      "type": "structuring",
+      "timeLimitSeconds": 180,
+      "prompt": "Let's start with the right structure. What are the three key questions you would need to answer in order to tell Bramfield how much to bid for Bracken? Please summarise them in 3 lines maximum.",
+      "exhibitIds": ["ex0"],
+      "responseFormat": "text",
+      "maxLines": 3,
+      "idealAnswer": {
+        "keyPoints": ["Is Bracken's market attractive — is demand for general practice and for referral work growing, and what does competition and insurer pricing do to it?", "What are Bracken's standalone economics, and what is the risk of not buying — what happens if a rival platform owns Bracken's referral hospital instead?", "What synergies would Bramfield specifically get, given that Ardent already buys 5,000 referral cases a year on the open market — and are those synergies limited by Bracken's capacity?"],
+        "commonMistakes": ["Reciting a generic profitability framework (revenue, cost, market, competition) instead of the three questions this bid actually turns on.", "Missing the synergy question entirely and treating the bid as a standalone valuation — which is the whole reason a vet platform would outbid a financial buyer.", "Naming eight things when the interviewer asked for three; the cap is part of the question."]
+      },
+      "followUp": "Thanks. The vendor has given us Bracken's operating data. Note that Bracken is not currently one of Ardent's referral providers — Ardent's 5,000 complex cases a year go to other hospitals at the market price of $900 each.",
+      "followUpExhibitIds": ["ex1"],
+      "scoringWeights": {
+        "structure": 0.5,
+        "creativity": 0.2,
+        "communication": 0.3
+      }
+    },
+    {
+      "id": "q2",
+      "type": "math",
+      "timeLimitSeconds": 300,
+      "prompt": "Scenario 1: given the data in the exhibit, what is the maximum Bramfield should be willing to pay for Bracken? Please give your answer rounded to the nearest whole number, without further explanation or working.",
+      "exhibitIds": ["ex1"],
+      "responseFormat": "number",
+      "unit": "USD",
+      "tolerancePct": 1,
+      "answerFormatNote": "Give your answer in USD, rounded to the nearest whole number (for example 1111 or 123456 or 500885), without further explanation or working.",
+      "idealAnswer": {
+        "value": 185200000,
+        "workedSolution": "Contribution per case: general practice $120 − $40 − $30 = $50; referral $900 − $300 − $250 = $350.\nBracken standalone, as it trades today: general practice 380,000 × $50 = $19.0M, less $4.5M of fixed cost = $14.5M; referral 24,000 × $350 = $8.4M, less $1.5M of fixed cost = $6.9M. Standalone profit before depreciation = $21.4M.\nSynergy: Ardent buys 5,000 referral cases a year on the market at $900. Bracken's spare referral capacity is 30,000 − 24,000 = 6,000 cases, so all 5,000 can be brought in-house. The group stops paying $900 and instead incurs $300 + $250 = $550 of variable cost, saving $350 a case: 5,000 × $350 = $1.75M a year.\nProfit to the group = $21.4M + $1.75M = $23.15M. At 8 times: 8 × $23.15M = $185,200,000.\nThat is below the $240M asking price, so on these figures Bramfield should not meet the ask.",
+        "keyPoints": ["Depreciation is excluded — the committee's rule values profit before depreciation, and it is not a cash cost.", "The synergy is the avoided market price less the incremental cost of serving the case, not the whole $900.", "The synergy is capped by spare capacity, which here (6,000) is more than enough for Ardent's 5,000 cases."],
+        "commonMistakes": ["Subtracting the $4M of depreciation before applying the multiple, valuing 8 × $19.15M and answering $153.2M.", "Valuing the synergy at 5,000 × $900 = $4.5M, as if serving a case in-house were free.", "Valuing Bracken standalone at 8 × $21.4M = $171.2M and never asking what it is worth to this particular buyer.", "Using Bracken's maximum capacity rather than the volume it actually delivers for the standalone profit."]
+      },
+      "scoringWeights": {
+        "accuracy": 0.8,
+        "structure": 0.2
+      }
+    },
+    {
+      "id": "q3",
+      "type": "math",
+      "timeLimitSeconds": 150,
+      "prompt": "Please explain briefly the reasoning behind your answer to the previous question, in 3 lines maximum.",
+      "responseFormat": "text",
+      "maxLines": 3,
+      "idealAnswer": {
+        "keyPoints": ["Two components: what Bracken earns on its own, plus what owning it saves the rest of the group.", "Standalone profit is contribution per case times cases delivered, less the fixed costs, with depreciation left out because the committee's rule values profit before it.", "The saving is the referral cases Ardent buys outside, valued at the market price less the cost of doing them in-house — and it stops at Bracken's spare capacity.", "The multiple of 8 is applied to the two together, because that is what the group would earn from owning the asset."],
+        "commonMistakes": ["Restating the arithmetic without naming why depreciation was excluded.", "Describing the saving as revenue Bracken gains rather than cost the group avoids.", "Not mentioning the capacity constraint at all, which is the assumption the next scenario will test."]
+      },
+      "followUp": "Understood. Ardent's operations director confirms that the 5,000 cases she currently sends out are all within a 40-minute drive of Bracken's referral hospital, so there is no clinical or logistical reason they could not be redirected there.",
+      "scoringWeights": {
+        "structure": 0.3,
+        "accuracy": 0.4,
+        "communication": 0.3
+      }
+    },
+    {
+      "id": "q4",
+      "type": "math",
+      "timeLimitSeconds": 90,
+      "prompt": "I'd like to understand a couple of the parameters behind your answer. What is the expected saving per year to the Bramfield group if Ardent's referral cases are handled by Bracken at cost? Please give your answer rounded to the nearest whole number, without further explanation or working.",
+      "exhibitIds": ["ex1"],
+      "responseFormat": "number",
+      "unit": "USD per year",
+      "tolerancePct": 1,
+      "answerFormatNote": "Give your answer in USD per year, rounded to the nearest whole number (for example 1111 or 123456 or 500885), without further explanation or working.",
+      "idealAnswer": {
+        "value": 1750000,
+        "workedSolution": "Ardent sends out 5,000 referral cases a year and pays $900 each.\nServed inside Bracken, each case costs $300 of consumables and $250 of clinical staff = $550.\nSaving per case = $900 − $550 = $350.\nBracken's spare referral capacity is 30,000 − 24,000 = 6,000 cases, so all 5,000 fit.\n5,000 × $350 = $1,750,000 a year.",
+        "keyPoints": ["The saving is a margin, not a price: $900 avoided less $550 incurred.", "Fixed property and admin cost does not change with these extra cases, so it does not enter the saving.", "Check the volume against spare capacity before valuing it."],
+        "commonMistakes": ["5,000 × $900 = $4.5M, forgetting that the cases still cost something to deliver.", "Loading a share of Bracken's fixed costs onto the 5,000 incremental cases.", "Using Ardent's own general-practice economics instead of Bracken's referral costs."]
+      },
+      "followUp": "Thanks. For context, Ardent's current third-party provider has confirmed it will hold its price at $900 a case for at least three more years, so the market price is not about to move.",
+      "scoringWeights": {
+        "accuracy": 0.85,
+        "structure": 0.15
+      }
+    },
+    {
+      "id": "q5",
+      "type": "math",
+      "timeLimitSeconds": 90,
+      "prompt": "And what annual profit does Bracken generate today from serving its own customers — before depreciation, interest and tax, and before anything Bramfield might do with it? Please give your answer rounded to the nearest whole number, without further explanation or working.",
+      "exhibitIds": ["ex1"],
+      "responseFormat": "number",
+      "unit": "USD per year",
+      "tolerancePct": 1,
+      "answerFormatNote": "Give your answer in USD per year, rounded to the nearest whole number (for example 1111 or 123456 or 500885), without further explanation or working.",
+      "idealAnswer": {
+        "value": 21400000,
+        "workedSolution": "General practice: 380,000 × ($120 − $40 − $30) = 380,000 × $50 = $19.0M, less $4.5M fixed = $14.5M.\nReferral: 24,000 × ($900 − $300 − $250) = 24,000 × $350 = $8.4M, less $1.5M fixed = $6.9M.\nTotal = $21,400,000. Depreciation of $4.0M is excluded: the committee values profit before it, and it is not a cash cost.",
+        "keyPoints": ["Volumes delivered, not capacity.", "Both lines of business carry their own fixed cost, and both are before depreciation."],
+        "commonMistakes": ["Deducting the $4.0M of depreciation and answering $17.4M.", "Valuing general practice at capacity (400,000 cases) rather than at the 380,000 delivered.", "Including the 5,000 cases Ardent sends out, which Bracken does not serve today."]
+      },
+      "followUp": "That is the figure the committee will start from. Before we go further they want to know how robust the maximum you gave is — several things could still come out of diligence.",
+      "scoringWeights": {
+        "accuracy": 0.85,
+        "structure": 0.15
+      }
+    },
+    {
+      "id": "q6",
+      "type": "exhibit",
+      "timeLimitSeconds": 180,
+      "prompt": "Which of the following statements, if true, would change the maximum you gave for Bracken? Select all that apply.",
+      "exhibitIds": ["ex1"],
+      "responseFormat": "choice",
+      "selectCount": 0,
+      "options": ["Ardent's contract with its current third-party referral provider runs to 2032 and can only be exited with a one-off penalty of $3M", "An accounting revaluation of Bracken's properties will raise its depreciation charge from $4M to $6M a year", "Two other funds are known to be preparing offers for Bracken", "Ardent expects the complex cases it sends out to grow from 5,000 to 8,000 a year from next year onwards", "Bracken's referral hospital handled 24,000 cases last year against a maximum capacity of 30,000"],
+      "idealAnswer": {
+        "correctOptions": [0, 3],
+        "optionRationale": ["Changes it. The saving is still $1.75M a year, but the group has to buy its way out of the contract first, so the most Bramfield should pay falls by the $3M penalty, to $182.2M.", "Does not change it. The committee values profit before depreciation, and a revaluation moves no cash. It changes the accounts, not what the asset is worth.", "Does not change it. Rival bidders change the price Bramfield may have to pay to win, not the maximum it should be willing to pay. Confusing the two is how funds overpay.", "Changes it, but not proportionally. Ardent would have 8,000 cases to bring in-house and Bracken has only 6,000 of spare referral capacity, so the saving rises to 6,000 × $350 = $2.1M, and the maximum to $188.0M — not to 8,000 × $350.", "Does not change it. That is the exhibit restated; those figures are already inside the number you gave."],
+        "keyPoints": ["Separate what changes the asset's value to this buyer from what changes the price the auction will demand.", "Non-cash charges do not move a valuation built on profit before depreciation.", "Every synergy is capped by capacity — more demand does not mean more saving."],
+        "commonMistakes": ["Picking the rival bidders, which is the most tempting wrong answer in any auction case.", "Picking the depreciation revaluation because the number in it is large.", "Rejecting the volume growth because it 'only adds more of the same' — it adds more, but the capacity ceiling changes the arithmetic."]
+      },
+      "followUp": "Useful. Diligence has now come back with something material: Bracken's fourth operating theatre is leased to another operator until 2031, so the referral hospital's usable capacity is lower than the vendor's pack implied. Everything else is unchanged.",
+      "followUpExhibitIds": ["ex2"],
+      "scoringWeights": {
+        "accuracy": 0.6,
+        "structure": 0.4
+      }
+    },
+    {
+      "id": "q7",
+      "type": "exhibit",
+      "timeLimitSeconds": 180,
+      "prompt": "Which of the following is likely to be true for Scenario 2 compared with Scenario 1? Use the data below for your revised calculation. The change is described under the exhibit.",
+      "exhibitIds": ["ex2"],
+      "responseFormat": "choice",
+      "selectCount": 1,
+      "options": ["Bramfield is likely to bid higher for Bracken in Scenario 2", "Bramfield is likely to bid lower for Bracken in Scenario 2", "Bramfield is likely to bid the same for Bracken in Scenario 2", "There is not enough information to decide"],
+      "idealAnswer": {
+        "correctOptions": [1],
+        "optionRationale": ["No. Nothing in Scenario 2 makes Bracken earn more; the only change removes capacity.", "Yes. Bracken still delivers 24,000 referral cases, so its standalone profit is unchanged at $21.4M — but with usable capacity of 24,000 there is no spare capacity left. Any case Ardent sends in displaces one Bracken already does, so the group saves nothing net and the synergy falls to zero. The maximum drops from 8 × $23.15M = $185.2M to 8 × $21.4M = $171.2M.", "No. The standalone profit is the same, but the synergy that justified the premium has gone, so the maximum is $14.0M lower.", "No. The exhibit gives capacity, volume, prices and costs — everything the calculation needs. This option is worth considering seriously in a case where a figure is genuinely missing; here nothing is."],
+        "keyPoints": ["Standalone profit is unchanged — only the synergy moves.", "A synergy that runs through someone else's spare capacity is worth nothing when there is no spare capacity.", "$185.2M against $171.2M: the whole $14.0M difference is the in-sourcing saving, capitalised."],
+        "commonMistakes": ["Assuming lower capacity means lower profit and re-running the standalone number; the volume delivered has not changed.", "Choosing 'not enough information' because the scenario feels underspecified.", "Reasoning that Bracken would simply build more capacity — the question asks what these figures imply today."]
+      },
+      "scoringWeights": {
+        "accuracy": 0.7,
+        "structure": 0.3
+      }
+    },
+    {
+      "id": "q8",
+      "type": "synthesis",
+      "timeLimitSeconds": 180,
+      "prompt": "Please explain in 2 to 3 lines the reasoning behind your answer to the previous question — and say whether a buyer with no veterinary platform of its own would see Bracken the same way.",
+      "responseFormat": "text",
+      "maxLines": 3,
+      "idealAnswer": {
+        "keyPoints": ["Bracken's own trading is identical in both scenarios; what changes is the spare capacity Ardent's cases would have used.", "With no spare capacity, in-sourcing displaces Bracken's existing third-party work one for one, so the group saves nothing and the synergy is zero.", "A financial buyer with no clinics of its own has no synergy in either scenario, so it values Bracken at 8 × $21.4M = $171.2M in both.", "So Bramfield can outbid a non-industry buyer in Scenario 1 but not in Scenario 2 — in Scenario 2 the two are willing to pay the same, and the auction is decided on someone else's numbers."],
+        "commonMistakes": ["Explaining what changed in the exhibit rather than why it changes the value.", "Claiming a strategic buyer always pays more than a financial buyer; it pays more only where a synergy actually exists.", "Forgetting to answer the second half of the question."]
+      },
+      "followUp": "That is the point the committee needs to hear on Friday: the premium a platform owner can justify is the value of a synergy, and this one lives entirely in someone else's spare capacity. Separately, the committee has asked what building a referral hospital of its own would look like instead of buying one.",
+      "scoringWeights": {
+        "structure": 0.3,
+        "accuracy": 0.35,
+        "communication": 0.35
+      }
+    },
+    {
+      "id": "q9",
+      "type": "brainstorming",
+      "timeLimitSeconds": 180,
+      "prompt": "Choose the four pieces of data that, when combined, would allow us to estimate how much profit a newly built referral hospital would generate over its lifetime. Assume its full capacity can always be sold, either to Ardent's clinics or to third parties.",
+      "responseFormat": "choice",
+      "selectCount": 4,
+      "options": ["Upfront cost to build and equip the hospital", "Useful life of the hospital, in years", "Number of referral cases the hospital can handle per year", "Contribution per case (price less the costs that vary with a case), projected for each year of the hospital's life", "Fixed property, admin and staffing cost per year, projected for each year of the hospital's life", "Share of the hospital's capacity that Ardent's own clinics would use", "Change in the market price of a referral case caused by the extra capacity the hospital adds"],
+      "idealAnswer": {
+        "correctOptions": [0, 2, 3, 4],
+        "optionRationale": ["Needed. Lifetime profit is what the hospital earns less what it cost to put there.", "Not needed. Two of the other items are already projected 'for each year of the hospital's life', so the number of years is implied by them. Picking it wastes one of your four.", "Needed. With full capacity assumed sold, capacity is the volume.", "Needed, and it must be per year: the margin on a case will not be constant across the hospital's life.", "Needed. Contribution alone overstates profit; the hospital carries fixed costs whether or not it is full.", "Not needed. The question assumes the full capacity sells either way, so who buys the cases does not change the profit — it changes only where the cash comes from.", "Not needed. Any price effect is already inside the contribution per case projected for each year; taking it separately would count it twice."],
+        "keyPoints": ["Lifetime profit = Σ over years of (capacity × contribution per case − fixed cost) − upfront cost.", "That expression consumes exactly the four selected items and nothing else.", "A datum implied by another datum is not a missing input."],
+        "commonMistakes": ["Taking the useful life because a lifetime calculation obviously needs it, without noticing the per-year projections already carry it.", "Taking the Ardent share because the case has been about Ardent throughout, ignoring the assumption in the question.", "Leaving out fixed costs and estimating contribution rather than profit."]
+      },
+      "followUp": "Thanks. One last thing before Friday — the project leader wants the other side of the argument in the paper.",
+      "scoringWeights": {
+        "structure": 0.5,
+        "accuracy": 0.5
+      }
+    },
+    {
+      "id": "q10",
+      "type": "brainstorming",
+      "timeLimitSeconds": 240,
+      "prompt": "Your BCG project leader has asked you for the potential disadvantages — the negative synergies — that might result from Bramfield buying Bracken. Could you share your thoughts on this in 3 to 4 lines?",
+      "responseFormat": "text",
+      "maxLines": 4,
+      "idealAnswer": {
+        "keyPoints": ["Rival general-practice groups may stop referring cases to a hospital owned by a competitor, so part of Bracken's 24,000 referral cases — the profitable half of the business — could walk out of the door on day one.", "Retention: referral hospitals run on a handful of named specialists, and a change of ownership is exactly when they are recruited away.", "Integration cost and distraction across two clinic estates, two clinical systems and two cultures, against a synergy of only $1.75M a year.", "Competition or regulatory review where Ardent and Bracken clinics overlap locally, and the possibility of forced disposals.", "Capital: the leased fourth theatre, and the capex needed if Ardent's referral volume grows beyond Bracken's capacity."],
+        "commonMistakes": ["Listing generic M&A risks with no reference to how this business earns money.", "Missing the referral-flow risk, which is the one negative synergy specific to buying a hospital your competitors also refer into.", "Repeating the price argument from earlier questions instead of naming risks to the plan itself."]
+      },
+      "scoringWeights": {
+        "creativity": 0.35,
+        "structure": 0.3,
+        "communication": 0.35
+      }
+    }
+  ],
+  "closing": "That is everything I wanted to cover. You built the maximum from standalone profit plus a synergy, tested what the synergy actually depends on, and then watched it disappear when the capacity behind it did. Thank you — the committee paper goes out on Friday.",
+  "authoring": {
+    "model": "claude-opus-5",
+    "generatedAt": "2026-08-29",
+    "mathVerifiedWith": "code-execution (node)",
+    "verificationLog": "PASS  exhibit 2 capacity row matches the model\nPASS  exhibit 2 volume row matches the model\nPASS  exhibit 2 price row matches the model\nPASS  exhibit 2 variable costs match the model\nPASS  exhibit 2 fixed costs match the model\nPASS  exhibit 2 Ardent outsourced volume matches the model\nPASS  exhibit 3 changes the referral capacity row only\n\ncontribution per case: general practice $50, referral $350\nstandalone profit before depreciation: $21,400,000\nspare referral capacity: 6000 cases; Ardent needs 5000\nannual synergy: $1,750,000\nscenario 1 maximum bid: $185,200,000\n\nPASS  q2 (maximum bid, scenario 1) = 185,200,000  declared 185,200,000, tolerance ±1%\nPASS  q4 (annual in-sourcing saving) = 1,750,000  declared 1,750,000, tolerance ±1%\nPASS  q5 (standalone profit before depreciation) = 21,400,000  declared 21,400,000, tolerance ±1%\n\nPASS  q2 worked solution states $21.4M standalone\nPASS  q2 worked solution states $1.75M synergy\nPASS  q2 worked solution states $23.15M combined\nPASS  q2 commonMistakes states $153.2M (depreciation deducted)\nPASS  q2 commonMistakes states $171.2M (standalone only)\n\nPASS  q6 option 0 (contract exit penalty of $3M) moves the maximum  $185,200,000 -> $182,200,000\nPASS  q6 option 1 (depreciation revalued to $6M/yr) does not move the maximum  $185,200,000 -> $185,200,000\nPASS  q6 option 2 (two rival bidders) does not move the maximum  $185,200,000 -> $185,200,000\nPASS  q6 option 3 (Ardent volume grows to 8,000 cases) moves the maximum  $185,200,000 -> $188,000,000\nPASS  q6 option 4 (restatement of the exhibit) does not move the maximum  $185,200,000 -> $185,200,000\nPASS  q6 option 3 is capped by spare capacity, not by demand  capped $188,000,000 vs uncapped $193,600,000\nPASS  q6 option 0 rationale quotes $182.2M\nPASS  q6 option 3 rationale quotes $2.1M and $188.0M\n\nPASS  q7 scenario 2 is strictly lower than scenario 1  $171,200,000 < $185,200,000\nPASS  q7 declares \"bids lower\"\nPASS  q7 standalone profit is unchanged between scenarios\nPASS  q7 the whole difference is the capitalised synergy\nPASS  q7 rationale quotes $185.2M and $171.2M\nPASS  q8 keyPoints quote the non-industry buyer at $171.2M\n\nq9 lifetime profit = SUM over years[ capacity_per_year x contribution_per_case(y) - fixed_cost(y) ] - upfront_cost\n        inputs consumed: [0] upfront cost, [2] capacity per year, [3] contribution per case by year, [4] fixed cost by year\n        the number of years is carried by the per-year projections in [3] and [4], so [1] is redundant;\n        [5] is excluded by the question's own assumption that full capacity sells either way;\n        [6] is already inside the per-year contribution in [3].\nPASS  q9 declares exactly the four sufficient inputs\nPASS  q9 formula computes without any other input  worked example: $2,050,000\n\nPASS  pacing budget fits inside the case clock  1770s of 2100s\nPASS  8-10 questions  10\nPASS  the last question is written\nPASS  every exhibit reaches the candidate  ex0:shown ex1:shown ex2:shown\nPASS  q6 rationale covers every option\nPASS  q6 correctOptions agrees with selectCount  select-all, 2 correct\nPASS  q7 rationale covers every option\nPASS  q7 correctOptions agrees with selectCount  1\nPASS  q9 rationale covers every option\nPASS  q9 correctOptions agrees with selectCount  4\nPASS  q2 tells the candidate how to format the number\nPASS  q4 tells the candidate how to format the number\nPASS  q5 tells the candidate how to format the number\nPASS  every question names its own common mistakes\nPASS  scoring weights sum to 1.0\nPASS  follow-ups release information without restating the candidate's own figures\nPASS  selectCount varies across the case  0, 1, 4\n\nALL 48 ASSERTIONS PASSED"
+  }
+}

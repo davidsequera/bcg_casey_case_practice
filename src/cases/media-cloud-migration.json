@@ -16,22 +16,10 @@
       "unitsNote": "Costs recur every year of the five-year horizon",
       "source": "Client infrastructure ledger",
       "table": {
-        "columns": [
-          "Data centre",
-          "Annual fixed cost ($M)",
-          "Installed capacity (K server units)"
-        ],
+        "columns": ["Data centre", "Annual fixed cost ($M)", "Installed capacity (K server units)"],
         "rows": [
-          [
-            "Ashvale",
-            70,
-            20
-          ],
-          [
-            "Derrow",
-            50,
-            12
-          ]
+          ["Ashvale", 70, 20],
+          ["Derrow", 50, 12]
         ]
       }
     },
@@ -50,24 +38,15 @@
       "source": "Platform telemetry, trailing 12 months",
       "chart": {
         "kind": "bar",
-        "categories": [
-          "Ashvale",
-          "Derrow"
-        ],
+        "categories": ["Ashvale", "Derrow"],
         "series": [
           {
             "label": "Average demand",
-            "values": [
-              8,
-              4
-            ]
+            "values": [8, 4]
           },
           {
             "label": "Installed capacity",
-            "values": [
-              20,
-              12
-            ]
+            "values": [20, 12]
           }
         ],
         "valueSuffix": "K"
@@ -80,23 +59,11 @@
       "unitsNote": "A cloud server unit delivers the same workload as one owned server unit",
       "source": "Provider term sheet, draft",
       "table": {
-        "columns": [
-          "Item",
-          "Value"
-        ],
+        "columns": ["Item", "Value"],
         "rows": [
-          [
-            "Price per server unit per year",
-            "$6,000"
-          ],
-          [
-            "Capacity Aurora must reserve",
-            "average demand + 25% headroom"
-          ],
-          [
-            "One-off migration cost (incl. one year of dual running)",
-            "$150M"
-          ]
+          ["Price per server unit per year", "$6,000"],
+          ["Capacity Aurora must reserve", "average demand + 25% headroom"],
+          ["One-off migration cost (incl. one year of dual running)", "$150M"]
         ]
       }
     }
@@ -109,29 +76,11 @@
       "prompt": "Before we build the comparison, what should we clarify with Aurora first? Select the two most relevant.",
       "responseFormat": "choice",
       "selectCount": 2,
-      "options": [
-        "How many subscribers has the streaming platform added in each of the last five years?",
-        "What does the platform run on today, and what would staying put actually cost?",
-        "Does the board have a specific financial objective or constraint for this decision?",
-        "Which production studios and back catalogues does Aurora own?",
-        "What is the advertising revenue per hour of viewing?"
-      ],
+      "options": ["How many engineers work in the platform team today?", "What does the platform run on today, and what would staying put actually cost?", "Does the board have a specific financial objective or constraint for this decision?", "Which cloud provider does the board prefer?", "What uptime has the platform achieved over the last year?"],
       "idealAnswer": {
-        "correctOptions": [
-          1,
-          2
-        ],
-        "optionRationale": [
-          "Subscriber growth would matter for a revenue case; this one turns on the cost of serving a platform whose demand is already given.",
-          "The baseline. You cannot compare against \"staying\" until you know what staying costs and what it commits Aurora to.",
-          "A must-have. Almost every invest-or-migrate case has a hurdle — a saving target or a budget cap — that the answer is measured against.",
-          "Content assets sit on the revenue side of the business and do not bear on where the platform is hosted.",
-          "Advertising economics are identical in both scenarios — viewers cannot tell where the stream is served from."
-        ],
-        "commonMistakes": [
-          "Reaching for revenue-side data — subscribers, advertising — in a decision where revenue is identical on both paths",
-          "Skipping the objective, which is what the whole comparison is later judged against"
-        ]
+        "correctOptions": [1, 2],
+        "optionRationale": ["No. You will need this when you come to the capability risk, but it is a data point you can collect at any time — it does not change how the comparison is framed.", "The baseline. You cannot compare against \"staying\" until you know what staying costs and what it commits Aurora to.", "A must-have. Almost every invest-or-migrate case has a hurdle — a saving target or a budget cap — that the answer is measured against.", "No, and it is the most tempting wrong answer here. Choosing a provider is a decision that follows the decision to move at all; asking it first invites the client to skip the question you were hired to answer.", "No — a real operational metric, and it will matter when you weigh migration risk, but it is not something that has to be agreed with Aurora before the comparison can be built."],
+        "commonMistakes": ["Reaching for revenue-side data — subscribers, advertising — in a decision where revenue is identical on both paths", "Skipping the objective, which is what the whole comparison is later judged against"]
       },
       "followUp": "The platform serves 30 million registered viewers from the two sites, Ashvale and Derrow, and both are run by Aurora’s own engineering team.\n\nOn objectives: the board wants the cheaper path over the next five years, and it will only migrate if the move saves at least $150M over that horizon — it will not trade reliability for a marginal saving.",
       "scoringWeights": {
@@ -147,35 +96,11 @@
       "prompt": "Which areas would you investigate to compare the two paths? Select the four most relevant.",
       "responseFormat": "choice",
       "selectCount": 4,
-      "options": [
-        "The full five-year cost of staying: annual operating costs plus the hardware refresh",
-        "How cloud pricing maps onto Aurora’s actual demand — what it would really pay for",
-        "The one-off cost and disruption of migrating a platform that must stay live",
-        "Which presenters front Aurora’s flagship programmes",
-        "How Aurora’s programme budget is allocated across genres",
-        "The risks of each path — reliability, vendor lock-in, and the capability to run either",
-        "What the original construction of the two data centres cost a decade ago"
-      ],
+      "options": ["The full five-year cost of staying: annual operating costs plus the hardware refresh", "How cloud pricing maps onto Aurora’s actual demand — what it would really pay for", "The one-off cost and disruption of migrating a platform that must stay live", "What Aurora spends delivering video to viewers' devices", "The depreciation charge on the current data-centre hardware", "The risks of each path — reliability, vendor lock-in, and the capability to run either", "What the original construction of the two data centres cost a decade ago"],
       "idealAnswer": {
-        "correctOptions": [
-          0,
-          1,
-          2,
-          5
-        ],
-        "optionRationale": [
-          "One whole side of the comparison — and the refresh is the reason the decision is live now.",
-          "The other side. Cloud economics depend entirely on how much capacity Aurora must pay for, which is not the same as what it built.",
-          "Migration is not free, and for a live broadcast platform the execution cost and risk belong in the base case, not a footnote.",
-          "Talent contracts sit on the content side and are untouched by where the platform is hosted.",
-          "Programme mix does not change the infrastructure bill.",
-          "Always in an initial structure — and here the risk profile of the two paths differs more than their cost.",
-          "Sunk cost. What the sites cost to build says nothing about what to do next."
-        ],
-        "commonMistakes": [
-          "Loading the structure with content-side questions the decision cannot touch",
-          "Treating migration as free and comparing only the run-rate costs"
-        ]
+        "correctOptions": [0, 1, 2, 5],
+        "optionRationale": ["One whole side of the comparison — and the refresh is the reason the decision is live now.", "The other side. Cloud economics depend entirely on how much capacity Aurora must pay for, which is not the same as what it built.", "Migration is not free, and for a live broadcast platform the execution cost and risk belong in the base case, not a footnote.", "No. A genuine and large cost, but it is incurred whichever way the platform is hosted, so it is common to both paths and cannot separate them.", "No. Depreciation is the accounting shadow of money already spent. The comparison is about cash Aurora will or will not spend from here, and the hardware is bought either way.", "Always in an initial structure — and here the risk profile of the two paths differs more than their cost.", "Sunk cost. What the sites cost to build says nothing about what to do next."],
+        "commonMistakes": ["Loading the structure with content-side questions the decision cannot touch", "Treating migration as free and comparing only the run-rate costs"]
       },
       "followUp": "On demand: streaming is spiky. The platform is built for Saturday-night peaks, so the data centres carry far more capacity than an ordinary day uses — and Aurora pays to power and maintain all of it. The cloud is priced differently: you pay for what you reserve, not for what you built.\n\nOn capability: Aurora has never run a cloud workload at scale. The engineering team’s entire experience is on-premise.",
       "scoringWeights": {
@@ -191,44 +116,14 @@
       "prompt": "Which data points do you need to compare the five-year cost of staying against the five-year cost of migrating? Select five.",
       "responseFormat": "choice",
       "selectCount": 5,
-      "options": [
-        "Annual fixed cost of each data centre",
-        "The original purchase price of the current servers",
-        "The one-off cost of the hardware refresh",
-        "The cloud price per unit of capacity",
-        "Aurora’s annual programme production budget",
-        "The capacity the cloud contract would require Aurora to reserve",
-        "The one-off cost of the migration itself",
-        "The advertising rates Aurora charges"
-      ],
+      "options": ["Annual fixed cost of each data centre", "The original purchase price of the current servers", "The one-off cost of the hardware refresh", "The cloud price per unit of capacity", "Aurora’s annual programme production budget", "The capacity the cloud contract would require Aurora to reserve", "The one-off cost of the migration itself", "The advertising rates Aurora charges"],
       "idealAnswer": {
-        "correctOptions": [
-          0,
-          2,
-          3,
-          5,
-          6
-        ],
-        "optionRationale": [
-          "The run-rate of the staying path; five years of it is most of that side of the ledger.",
-          "Sunk. What the old hardware cost has no bearing on the forward comparison.",
-          "The one-off on the staying side, and the piece people forget because it has not been paid yet.",
-          "Half of the cloud run-rate calculation.",
-          "Content spend is identical on both paths and cancels out of the comparison.",
-          "The other half of the cloud run-rate: the bill is price × reserved capacity, not price × installed capacity.",
-          "The one-off on the cloud side, and it includes keeping both environments alive during cutover.",
-          "Revenue-side, identical in both scenarios."
-        ],
-        "commonMistakes": [
-          "Reaching for sunk or content-side figures in a forward-looking cost comparison",
-          "Taking the cloud price but forgetting you also need the reserved capacity to multiply it by"
-        ]
+        "correctOptions": [0, 2, 3, 5, 6],
+        "optionRationale": ["The run-rate of the staying path; five years of it is most of that side of the ledger.", "Sunk. What the old hardware cost has no bearing on the forward comparison.", "The one-off on the staying side, and the piece people forget because it has not been paid yet.", "Half of the cloud run-rate calculation.", "Content spend is identical on both paths and cancels out of the comparison.", "The other half of the cloud run-rate: the bill is price × reserved capacity, not price × installed capacity.", "The one-off on the cloud side, and it includes keeping both environments alive during cutover.", "Revenue-side, identical in both scenarios."],
+        "commonMistakes": ["Reaching for sunk or content-side figures in a forward-looking cost comparison", "Taking the cloud price but forgetting you also need the reserved capacity to multiply it by"]
       },
       "followUp": "That gives you both sides of the comparison:\n\nstaying = (annual data-centre cost × 5) + hardware refresh\ncloud = (annual cloud bill × 5) + migration cost\nannual cloud bill = reserved capacity × price per server unit\n\nHere is what the two data centres cost to run, and what the refresh would come to.",
-      "followUpExhibitIds": [
-        "ex1",
-        "ex2"
-      ],
+      "followUpExhibitIds": ["ex1", "ex2"],
       "scoringWeights": {
         "structure": 0.4,
         "accuracy": 0.4,
@@ -240,10 +135,7 @@
       "type": "math",
       "timeLimitSeconds": 240,
       "prompt": "Exhibits 1 and 2 give the cost of keeping the platform in Aurora’s own data centres. What is the total five-year cost of staying?",
-      "exhibitIds": [
-        "ex1",
-        "ex2"
-      ],
+      "exhibitIds": ["ex1", "ex2"],
       "responseFormat": "number",
       "unit": "$M",
       "tolerancePct": 2,
@@ -251,11 +143,7 @@
       "idealAnswer": {
         "value": 800,
         "workedSolution": "Annual fixed cost: $70M + $50M = $120M.\nFive years: $120M × 5 = $600M.\nPlus the one-off refresh: $600M + $200M = $800M.",
-        "commonMistakes": [
-          "Forgetting the refresh and answering $600M — the hardware does not survive the horizon",
-          "Multiplying the refresh by five; it is a one-off",
-          "Adding the capacity figures into the cost line — the K-unit column is capacity, not dollars"
-        ]
+        "commonMistakes": ["Forgetting the refresh and answering $600M — the hardware does not survive the horizon", "Multiplying the refresh by five; it is a one-off", "Adding the capacity figures into the cost line — the K-unit column is capacity, not dollars"]
       },
       "followUp": "Staying costs $800M over the five years, $120M a year of it just to keep the lights on.\n\nNow the cloud side — starting with how much capacity Aurora actually needs. The sites were sized for the biggest broadcast nights of the year, not for an ordinary Tuesday.",
       "scoringWeights": {
@@ -269,9 +157,7 @@
       "type": "exhibit",
       "timeLimitSeconds": 180,
       "prompt": "Exhibit 3 shows average demand against installed capacity at each site. On an average day, what share of Aurora’s total installed capacity is actually in use?",
-      "exhibitIds": [
-        "ex3"
-      ],
+      "exhibitIds": ["ex3"],
       "responseFormat": "number",
       "unit": "%",
       "tolerancePct": 2,
@@ -279,16 +165,10 @@
       "idealAnswer": {
         "value": 37.5,
         "workedSolution": "Average demand: 8K + 4K = 12K server units.\nInstalled capacity: 20K + 12K = 32K server units.\nUtilisation: 12 / 32 = 37.5%.",
-        "commonMistakes": [
-          "Reading one site instead of both",
-          "Inverting the ratio and answering 267%",
-          "Averaging the two sites’ utilisation rates (40% and 33%) without weighting by size"
-        ]
+        "commonMistakes": ["Reading one site instead of both", "Inverting the ratio and answering 267%", "Averaging the two sites’ utilisation rates (40% and 33%) without weighting by size"]
       },
       "followUp": "Right — nearly two thirds of what Aurora built sits idle on an average day (62.5%, to be exact), and every idle unit is powered, cooled and maintained anyway.\n\nThe cloud prices the same workload differently. Here are the terms Aurora has been offered.",
-      "followUpExhibitIds": [
-        "ex4"
-      ],
+      "followUpExhibitIds": ["ex4"],
       "scoringWeights": {
         "accuracy": 0.5,
         "structure": 0.3,
@@ -300,9 +180,7 @@
       "type": "math",
       "timeLimitSeconds": 240,
       "prompt": "Using the cloud terms in Exhibit 4 and the demand figures in Exhibit 3, what would Aurora’s annual cloud bill be?",
-      "exhibitIds": [
-        "ex4"
-      ],
+      "exhibitIds": ["ex4"],
       "responseFormat": "number",
       "unit": "$M",
       "tolerancePct": 2,
@@ -310,11 +188,7 @@
       "idealAnswer": {
         "value": 90,
         "workedSolution": "Reserved capacity: average demand of 12K units × 1.25 = 15K server units.\nAnnual bill: 15,000 units × $6,000 = $90M.",
-        "commonMistakes": [
-          "Reserving installed capacity (32K units) instead of demand plus headroom — that is the mistake the cloud model exists to fix",
-          "Forgetting the 25% headroom and answering $72M",
-          "Slipping a factor of a thousand between K units and dollars"
-        ]
+        "commonMistakes": ["Reserving installed capacity (32K units) instead of demand plus headroom — that is the mistake the cloud model exists to fix", "Forgetting the 25% headroom and answering $72M", "Slipping a factor of a thousand between K units and dollars"]
       },
       "followUp": "A $90M bill against $120M of data-centre fixed cost — $30M a year in Aurora’s favour. But the annual gap is not the decision: the migration itself costs money, and the refresh only bites if Aurora stays.",
       "scoringWeights": {
@@ -335,11 +209,7 @@
       "idealAnswer": {
         "value": 600,
         "workedSolution": "Annual bill: $90M × 5 = $450M.\nPlus the one-off migration: $450M + $150M = $600M.",
-        "commonMistakes": [
-          "Adding the $200M hardware refresh to the cloud path — migrating is precisely how Aurora avoids it",
-          "Charging the migration cost every year; it is a one-off",
-          "Adding an extra year of data-centre cost for dual running — the $150M already includes it"
-        ]
+        "commonMistakes": ["Adding the $200M hardware refresh to the cloud path — migrating is precisely how Aurora avoids it", "Charging the migration cost every year; it is a one-off", "Adding an extra year of data-centre cost for dual running — the $150M already includes it"]
       },
       "followUp": "So the cloud path comes to $600M all-in over the same five years.",
       "scoringWeights": {
@@ -360,11 +230,7 @@
       "idealAnswer": {
         "value": 200,
         "workedSolution": "Staying: $800M.\nCloud: $600M.\nSaving: $800M − $600M = $200M.",
-        "commonMistakes": [
-          "Comparing only the run-rates ($120M vs $90M a year) and reporting $150M — the one-offs are where the paths differ most",
-          "Netting the refresh out of both sides; only the staying path pays it",
-          "Comparing the saving to the $150M migration cost instead of to the board’s objective"
-        ]
+        "commonMistakes": ["Comparing only the run-rates ($120M vs $90M a year) and reporting $150M — the one-offs are where the paths differ most", "Netting the refresh out of both sides; only the staying path pays it", "Comparing the saving to the $150M migration cost instead of to the board’s objective"]
       },
       "followUp": "A $200M saving clears the board’s $150M bar — and a full $200M refresh is what staying would have spent next year, which is why the decision cannot wait. The financial case is made; before recommending, we need the risks of a migration this size.",
       "scoringWeights": {
@@ -380,30 +246,11 @@
       "prompt": "What are the most relevant risks of migrating the platform to the cloud? Select the three most relevant.",
       "responseFormat": "choice",
       "selectCount": 3,
-      "options": [
-        "Audience risk — viewers may drift away from Aurora’s programming",
-        "Capability risk — Aurora’s engineers have never run a cloud platform at scale",
-        "Vendor lock-in — once migrated, the provider’s future price rises are hard to escape",
-        "Cutover risk — an outage during migration on a platform that must stay live",
-        "Weather risk — storms damaging the two data centres"
-      ],
+      "options": ["Audience risk — viewers may drift away from Aurora’s programming", "Capability risk — Aurora’s engineers have never run a cloud platform at scale", "Vendor lock-in — once migrated, the provider’s future price rises are hard to escape", "Cutover risk — an outage during migration on a platform that must stay live", "Reporting risk — the cost moving from capital spend to operating spend in Aurora's accounts"],
       "idealAnswer": {
-        "correctOptions": [
-          1,
-          2,
-          3
-        ],
-        "optionRationale": [
-          "Programming taste has nothing to do with where the stream is served from; viewers cannot tell.",
-          "Real, and flagged earlier: the team’s whole experience is on-premise, and the operating model changes on day one.",
-          "Real, and structural: the five-year saving rests on the provider’s prices, which Aurora will be in a weak position to renegotiate once the data centres are gone.",
-          "Real, and the sharpest near-term threat: a broadcaster’s platform cannot go dark for a weekend while the migration happens.",
-          "The data centres are being left, not defended — and site weather risk exists equally today."
-        ],
-        "commonMistakes": [
-          "Picking audience or weather risk out of habit rather than asking what the migration itself changes",
-          "Missing lock-in — the risk that the $200M saving quietly erodes after the point of no return"
-        ]
+        "correctOptions": [1, 2, 3],
+        "optionRationale": ["Programming taste has nothing to do with where the stream is served from; viewers cannot tell.", "Real, and flagged earlier: the team’s whole experience is on-premise, and the operating model changes on day one.", "Real, and structural: the five-year saving rests on the provider’s prices, which Aurora will be in a weak position to renegotiate once the data centres are gone.", "Real, and the sharpest near-term threat: a broadcaster’s platform cannot go dark for a weekend while the migration happens.", "No. It is a real consequence and the CFO will raise it, but it changes how the cost is presented, not what Aurora pays or whether the platform stays up. Presentation is not risk."],
+        "commonMistakes": ["Picking audience or weather risk out of habit rather than asking what the migration itself changes", "Missing lock-in — the risk that the $200M saving quietly erodes after the point of no return"]
       },
       "followUp": "Lock-in: negotiate multi-year price caps and committed-use discounts now, while Aurora still has a credible alternative, and keep the platform portable where it is cheap to do so.\n\nCapability: hire a core of cloud engineers, retrain the existing team, and lean on the provider’s migration support — this is a people plan, not just a technology plan.\n\nCutover: migrate service by service with the dual-running year the offer already pays for, rehearse the rollback, and move the crown-jewel live channels last.",
       "scoringWeights": {
@@ -420,20 +267,8 @@
       "responseFormat": "text",
       "maxLines": 8,
       "idealAnswer": {
-        "keyPoints": [
-          "Leads with the recommendation: migrate to the cloud",
-          "Gives the financial reason with numbers: $600M versus $800M over five years — a $200M saving against the board’s $150M bar",
-          "Explains why: Aurora pays for 32K units of capacity and uses 12K; the cloud charges for 15K",
-          "Notes the timing: the $200M refresh falls due next year, so deciding now is what makes the saving real",
-          "Names the conditions: price caps negotiated before signing, a capability plan for the engineering team, and a phased cutover with rollback",
-          "Keeps reliability explicit — the board said it would not trade it away, so the answer must say how it is protected",
-          "Stays inside seven or eight lines and does not narrate the calculation"
-        ],
-        "commonMistakes": [
-          "Walking the CFO through the arithmetic instead of leading with the answer",
-          "Presenting the migration as unconditionally good and omitting lock-in and cutover risk",
-          "Quoting the $30M annual gap as the saving and ignoring the one-offs on both sides"
-        ]
+        "keyPoints": ["Leads with the recommendation: migrate to the cloud", "Gives the financial reason with numbers: $600M versus $800M over five years — a $200M saving against the board’s $150M bar", "Explains why: Aurora pays for 32K units of capacity and uses 12K; the cloud charges for 15K", "Notes the timing: the $200M refresh falls due next year, so deciding now is what makes the saving real", "Names the conditions: price caps negotiated before signing, a capability plan for the engineering team, and a phased cutover with rollback", "Keeps reliability explicit — the board said it would not trade it away, so the answer must say how it is protected", "Stays inside seven or eight lines and does not narrate the calculation"],
+        "commonMistakes": ["Walking the CFO through the arithmetic instead of leading with the answer", "Presenting the migration as unconditionally good and omitting lock-in and cutover risk", "Quoting the $30M annual gap as the saving and ignoring the one-offs on both sides"]
       },
       "scoringWeights": {
         "communication": 0.4,

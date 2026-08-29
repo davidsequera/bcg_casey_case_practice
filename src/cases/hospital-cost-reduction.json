@@ -16,37 +16,13 @@
       "unitsNote": "Total $500M",
       "source": "Hospital finance office",
       "table": {
-        "columns": [
-          "Category",
-          "Share of costs",
-          "$M"
-        ],
+        "columns": ["Category", "Share of costs", "$M"],
         "rows": [
-          [
-            "Staff (clinical and support)",
-            "55%",
-            275
-          ],
-          [
-            "Medical supplies and drugs",
-            "20%",
-            100
-          ],
-          [
-            "Facilities and utilities",
-            "12%",
-            60
-          ],
-          [
-            "Administration",
-            "8%",
-            40
-          ],
-          [
-            "Other",
-            "5%",
-            25
-          ]
+          ["Staff (clinical and support)", "55%", 275],
+          ["Medical supplies and drugs", "20%", 100],
+          ["Facilities and utilities", "12%", 60],
+          ["Administration", "8%", 40],
+          ["Other", "5%", 25]
         ]
       }
     },
@@ -57,27 +33,11 @@
       "unitsNote": "Inpatient care",
       "source": "National provider benchmarking dataset",
       "table": {
-        "columns": [
-          "Metric",
-          "St Brendan's",
-          "Benchmark (top quartile)"
-        ],
+        "columns": ["Metric", "St Brendan's", "Benchmark (top quartile)"],
         "rows": [
-          [
-            "Average length of stay (days)",
-            5,
-            4.6
-          ],
-          [
-            "Annual admissions",
-            40000,
-            "—"
-          ],
-          [
-            "Variable cost per patient-day ($)",
-            400,
-            "—"
-          ]
+          ["Average length of stay (days)", 5, 4.6],
+          ["Annual admissions", 40000, "—"],
+          ["Variable cost per patient-day ($)", 400, "—"]
         ]
       }
     }
@@ -90,29 +50,11 @@
       "prompt": "Before you start looking for savings, what should you check with the board? Select the two most relevant.",
       "responseFormat": "choice",
       "selectCount": 2,
-      "options": [
-        "Does the $30M have to be a recurring annual reduction, or would one-off savings count?",
-        "Are there constraints we must respect — on clinical quality, on compulsory redundancies, on service closures?",
-        "How many years has the current CEO been in post?",
-        "What is the hospital's bed occupancy rate on a Tuesday?",
-        "How does the hospital rank in the national teaching-hospital league table?"
-      ],
+      "options": ["Does the $30M have to be a recurring annual reduction, or would one-off savings count?", "Are there constraints we must respect — on clinical quality, on compulsory redundancies, on service closures?", "Which of St Brendan's cost lines are the largest?", "How does St Brendan's cost per patient compare with peer hospitals?", "What did the hospital spend on agency staff last year?"],
       "idealAnswer": {
-        "correctOptions": [
-          0,
-          1
-        ],
-        "optionRationale": [
-          "A one-off asset sale and a recurring $30M of run-rate are completely different programmes. Settle this first.",
-          "In a non-profit provider the constraints are usually what decide which levers are actually available.",
-          "Governance colour with no bearing on where $30M comes from.",
-          "Far too granular for a framing question, and a single day tells you nothing.",
-          "Reputation is not a cost lever."
-        ],
-        "commonMistakes": [
-          "Starting to list savings ideas before knowing whether one-off savings count",
-          "Ignoring constraints, then recommending redundancies the board has already ruled out"
-        ]
+        "correctOptions": [0, 1],
+        "optionRationale": ["A one-off asset sale and a recurring $30M of run-rate are completely different programmes. Settle this first.", "In a non-profit provider the constraints are usually what decide which levers are actually available.", "No. That is the first thing you will look at, but you can read it off the accounts — it is analysis, not something you need the board to settle before you start.", "No, for the same reason: benchmarking is one of the areas you will investigate. A clarification question is one whose answer changes what you do, and the board cannot answer this one anyway.", "No. A specific data request, and a useful one — but it sits inside the staff line you are about to size, and it does not change the shape of the work the way the target and the constraints do."],
+        "commonMistakes": ["Starting to list savings ideas before knowing whether one-off savings count", "Ignoring constraints, then recommending redundancies the board has already ruled out"]
       },
       "followUp": "On the target: it must be a recurring reduction in the annual run rate, delivered inside two years.\n\nOn constraints: no reduction in clinical quality or in the services offered, and no compulsory clinical redundancies. Natural attrition and productivity gains are acceptable.",
       "scoringWeights": {
@@ -128,41 +70,14 @@
       "prompt": "How would you go about finding $30 million of cost at St Brendan's? Select the four areas you would work through.",
       "responseFormat": "choice",
       "selectCount": 4,
-      "options": [
-        "Size the cost base by category, so effort goes where the money is",
-        "Benchmark clinical and operational performance against comparable hospitals to find the gaps",
-        "Separate the price of what the hospital buys from the volume of what it uses",
-        "Test each candidate saving against the constraints and against how quickly it can be delivered",
-        "Review the hospital's investment portfolio and endowment returns",
-        "Assess whether the hospital should merge with a neighbouring provider",
-        "Model what reimbursement rates might do in five years' time"
-      ],
+      "options": ["Size the cost base by category, so effort goes where the money is", "Benchmark clinical and operational performance against comparable hospitals to find the gaps", "Separate the price of what the hospital buys from the volume of what it uses", "Test each candidate saving against the constraints and against how quickly it can be delivered", "Review the hospital's investment portfolio and endowment returns", "Assess whether the hospital should merge with a neighbouring provider", "Model what reimbursement rates might do in five years' time"],
       "idealAnswer": {
-        "correctOptions": [
-          0,
-          1,
-          2,
-          3
-        ],
-        "optionRationale": [
-          "The obvious first move, and the one that stops you spending the case on a $25M line.",
-          "Benchmarks turn 'we should be more efficient' into a specific, sized gap.",
-          "The standard cost decomposition: you can pay less per unit, or use fewer units, and they are different programmes.",
-          "The board's constraints and the two-year deadline are what turn a long list into a plan.",
-          "Income, not cost, and not the question asked.",
-          "A strategic option far beyond a two-year cost programme.",
-          "Revenue forecasting, and outside the window."
-        ],
-        "commonMistakes": [
-          "Producing a generic cost tree with no way to prioritise between branches",
-          "Skipping feasibility, which is where hospital cost programmes actually fail"
-        ]
+        "correctOptions": [0, 1, 2, 3],
+        "optionRationale": ["The obvious first move, and the one that stops you spending the case on a $25M line.", "Benchmarks turn 'we should be more efficient' into a specific, sized gap.", "The standard cost decomposition: you can pay less per unit, or use fewer units, and they are different programmes.", "The board's constraints and the two-year deadline are what turn a long list into a plan.", "Income, not cost, and not the question asked.", "A strategic option far beyond a two-year cost programme.", "Revenue forecasting, and outside the window."],
+        "commonMistakes": ["Producing a generic cost tree with no way to prioritise between branches", "Skipping feasibility, which is where hospital cost programmes actually fail"]
       },
       "followUp": "Good. Here is the cost base and the one benchmark the finance office has already pulled.",
-      "followUpExhibitIds": [
-        "ex1",
-        "ex2"
-      ],
+      "followUpExhibitIds": ["ex1", "ex2"],
       "scoringWeights": {
         "structure": 0.5,
         "accuracy": 0.3,
@@ -174,9 +89,7 @@
       "type": "math",
       "timeLimitSeconds": 60,
       "prompt": "First, put the target in context. What percentage of the annual cost base is the board asking you to remove?",
-      "exhibitIds": [
-        "ex1"
-      ],
+      "exhibitIds": ["ex1"],
       "responseFormat": "number",
       "unit": "%",
       "tolerancePct": 2,
@@ -184,9 +97,7 @@
       "idealAnswer": {
         "value": 6,
         "workedSolution": "$30M / $500M = 6%.",
-        "commonMistakes": [
-          "Computing the target against a single cost line rather than the total base"
-        ]
+        "commonMistakes": ["Computing the target against a single cost line rather than the total base"]
       },
       "followUp": "6% of the run rate in two years. Demanding, but it is the sort of number a provider programme can reach — provided it comes from several places rather than one.\n\nNote what the cost mix says about where to look: staff, facilities and administration together are 75% of the base. Let's start with the benchmark the finance office found.",
       "scoringWeights": {
@@ -199,9 +110,7 @@
       "type": "math",
       "timeLimitSeconds": 180,
       "prompt": "Suppose St Brendan's closes its length-of-stay gap to the benchmark, with admissions unchanged. How much would that save annually?",
-      "exhibitIds": [
-        "ex2"
-      ],
+      "exhibitIds": ["ex2"],
       "responseFormat": "number",
       "unit": "$M",
       "tolerancePct": 2,
@@ -209,11 +118,7 @@
       "idealAnswer": {
         "value": 6.4,
         "workedSolution": "Patient-days today: 40,000 admissions × 5.0 days = 200,000.\nAt the benchmark: 40,000 × 4.6 = 184,000.\nDays removed: 16,000.\nSaving: 16,000 × $400 variable cost per patient-day = $6.4M a year.",
-        "commonMistakes": [
-          "Applying the $400 to all 200,000 patient-days instead of to the 16,000 removed",
-          "Using the total cost per patient-day rather than the variable cost — beds you empty do not save you the fixed cost of the ward",
-          "Assuming admissions fall as well; the question holds them constant"
-        ]
+        "commonMistakes": ["Applying the $400 to all 200,000 patient-days instead of to the 16,000 removed", "Using the total cost per patient-day rather than the variable cost — beds you empty do not save you the fixed cost of the ward", "Assuming admissions fall as well; the question holds them constant"]
       },
       "followUp": "$6.4M — about 21% of the target from a single operational lever, and one that respects every constraint the board set.\n\nThe next largest opportunity is on the buying side.",
       "scoringWeights": {
@@ -227,9 +132,7 @@
       "type": "math",
       "timeLimitSeconds": 90,
       "prompt": "Procurement believes it can take 8% out of medical supplies and drugs by renegotiating contracts and standardising the formulary. How much would that contribute?",
-      "exhibitIds": [
-        "ex1"
-      ],
+      "exhibitIds": ["ex1"],
       "responseFormat": "number",
       "unit": "$M",
       "tolerancePct": 2,
@@ -237,10 +140,7 @@
       "idealAnswer": {
         "value": 8,
         "workedSolution": "Medical supplies and drugs are 20% of $500M = $100M.\n8% of $100M = $8M a year.",
-        "commonMistakes": [
-          "Taking 8% of the whole $500M cost base",
-          "Taking 8% of the $30M target"
-        ]
+        "commonMistakes": ["Taking 8% of the whole $500M cost base", "Taking 8% of the $30M target"]
       },
       "followUp": "$8M — about 27% of the target, and a price lever rather than a volume one, so it is independent of the length-of-stay work.",
       "scoringWeights": {
@@ -260,10 +160,7 @@
       "idealAnswer": {
         "value": 15.6,
         "workedSolution": "$30M − $6.4M − $8M = $15.6M still to find.",
-        "commonMistakes": [
-          "Double-counting the two levers, which touch different cost lines and are genuinely additive here",
-          "Reporting the shortfall as a percentage when the question asks for dollars"
-        ]
+        "commonMistakes": ["Double-counting the two levers, which touch different cost lines and are genuinely additive here", "Reporting the shortfall as a percentage when the question asks for dollars"]
       },
       "followUp": "$15.6M outstanding — just over half the target. The two easiest levers get you 48% of the way, which is the usual shape of these programmes: the first half is arithmetic, the second half is management.",
       "scoringWeights": {
@@ -276,38 +173,14 @@
       "type": "brainstorming",
       "timeLimitSeconds": 150,
       "prompt": "Where should the remaining $15.6M realistically come from? Select the three strongest sources.",
-      "exhibitIds": [
-        "ex1"
-      ],
+      "exhibitIds": ["ex1"],
       "responseFormat": "choice",
       "selectCount": 3,
-      "options": [
-        "Staff productivity: rostering, agency and overtime reduction, and natural attrition against the $275M staff line",
-        "Administration: consolidating back-office functions and shared services against the $40M line",
-        "Facilities and utilities: energy efficiency, estate rationalisation and renegotiated service contracts against the $60M line",
-        "Closing the emergency department overnight",
-        "Reducing the nursing establishment on every ward by 10%",
-        "Cutting the 'other' line, at $25M, by 62%"
-      ],
+      "options": ["Staff productivity: rostering, agency and overtime reduction, and natural attrition against the $275M staff line", "Administration: consolidating back-office functions and shared services against the $40M line", "Facilities and utilities: energy efficiency, estate rationalisation and renegotiated service contracts against the $60M line", "Closing the emergency department overnight", "Reducing the nursing establishment on every ward by 10%", "Cutting the 'other' line, at $25M, by 62%"],
       "idealAnswer": {
-        "correctOptions": [
-          0,
-          1,
-          2
-        ],
-        "optionRationale": [
-          "At $275M it is the only line where a modest percentage — about 5.7% — closes the whole remaining gap, and agency and overtime can move without compulsory redundancies.",
-          "Real, though bounded: $40M means even an aggressive programme contributes single-digit millions.",
-          "Real and quick: $60M of facilities and utilities is where energy and contract work lands, and none of it touches clinical quality.",
-          "Breaches the constraint on service closures, and shifts cost onto neighbouring providers rather than removing it.",
-          "A blunt clinical cut that breaches the quality constraint — and the length-of-stay work depends on wards being properly staffed.",
-          "A 62% cut to a line nobody has decomposed is a target, not a plan."
-        ],
-        "commonMistakes": [
-          "Going after administration first because it feels safe, when $40M cannot carry a $15.6M gap on its own",
-          "Proposing clinical cuts that the board has explicitly ruled out",
-          "Naming lines without sizing what percentage each would have to give up"
-        ]
+        "correctOptions": [0, 1, 2],
+        "optionRationale": ["At $275M it is the only line where a modest percentage — about 5.7% — closes the whole remaining gap, and agency and overtime can move without compulsory redundancies.", "Real, though bounded: $40M means even an aggressive programme contributes single-digit millions.", "Real and quick: $60M of facilities and utilities is where energy and contract work lands, and none of it touches clinical quality.", "Breaches the constraint on service closures, and shifts cost onto neighbouring providers rather than removing it.", "A blunt clinical cut that breaches the quality constraint — and the length-of-stay work depends on wards being properly staffed.", "A 62% cut to a line nobody has decomposed is a target, not a plan."],
+        "commonMistakes": ["Going after administration first because it feels safe, when $40M cannot carry a $15.6M gap on its own", "Proposing clinical cuts that the board has explicitly ruled out", "Naming lines without sizing what percentage each would have to give up"]
       },
       "followUp": "That is the right shape: the remaining gap has to be spread across the three largest non-clinical-quality levers, with staff productivity carrying most of it at roughly 5.7% of the staff line.\n\nNote the sequencing risk — the length-of-stay saving needs wards staffed well enough to discharge patients promptly, so the staff lever and the length-of-stay lever pull against each other if handled carelessly.",
       "scoringWeights": {
@@ -324,20 +197,8 @@
       "responseFormat": "text",
       "maxLines": 6,
       "idealAnswer": {
-        "keyPoints": [
-          "Leads with the answer: the $30M is reachable, and here is where it comes from",
-          "Names the two sized levers first — $6.4M from length of stay, $8M from supplies — as 48% of the target",
-          "States the remaining $15.6M and where it comes from: staff productivity, facilities, administration",
-          "Quantifies the ask on the largest line: roughly 5.7% of the $275M staff base, via attrition, agency and overtime rather than redundancies",
-          "Confirms it respects the board's constraints on quality, services and compulsory redundancy",
-          "Names the delivery risk and the next step — the two-year run-rate deadline, and the tension between ward staffing and length of stay",
-          "Stays inside six lines and does not narrate the calculation"
-        ],
-        "commonMistakes": [
-          "Presenting a list of ideas with no numbers attached",
-          "Claiming the target is met without accounting for the $15.6M that has no named owner yet",
-          "Forgetting that the board asked for a recurring reduction, not a one-off"
-        ]
+        "keyPoints": ["Leads with the answer: the $30M is reachable, and here is where it comes from", "Names the two sized levers first — $6.4M from length of stay, $8M from supplies — as 48% of the target", "States the remaining $15.6M and where it comes from: staff productivity, facilities, administration", "Quantifies the ask on the largest line: roughly 5.7% of the $275M staff base, via attrition, agency and overtime rather than redundancies", "Confirms it respects the board's constraints on quality, services and compulsory redundancy", "Names the delivery risk and the next step — the two-year run-rate deadline, and the tension between ward staffing and length of stay", "Stays inside six lines and does not narrate the calculation"],
+        "commonMistakes": ["Presenting a list of ideas with no numbers attached", "Claiming the target is met without accounting for the $15.6M that has no named owner yet", "Forgetting that the board asked for a recurring reduction, not a one-off"]
       },
       "scoringWeights": {
         "communication": 0.4,

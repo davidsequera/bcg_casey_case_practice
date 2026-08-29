@@ -16,27 +16,11 @@
       "unitsNote": "Annual market: 3,000,000 passengers",
       "source": "Regulator traffic filings",
       "table": {
-        "columns": [
-          "Carrier",
-          "Market share",
-          "Average one-way fare ($)"
-        ],
+        "columns": ["Carrier", "Market share", "Average one-way fare ($)"],
         "rows": [
-          [
-            "Skylink",
-            "45%",
-            135
-          ],
-          [
-            "NorthAir",
-            "35%",
-            115
-          ],
-          [
-            "ValueJet",
-            "20%",
-            85
-          ]
+          ["Skylink", "45%", 135],
+          ["NorthAir", "35%", 115],
+          ["ValueJet", "20%", 85]
         ]
       }
     },
@@ -47,39 +31,15 @@
       "unitsNote": "Per the client's launch case",
       "source": "Client network planning",
       "table": {
-        "columns": [
-          "Assumption",
-          "Value"
-        ],
+        "columns": ["Assumption", "Value"],
         "rows": [
-          [
-            "Round trips per day",
-            4
-          ],
-          [
-            "Seats per aircraft",
-            180
-          ],
-          [
-            "Expected load factor",
-            "75%"
-          ],
-          [
-            "Operating days per year",
-            350
-          ],
-          [
-            "Planned average one-way fare ($)",
-            100
-          ],
-          [
-            "Cost per flight ($)",
-            12000
-          ],
-          [
-            "Annual route fixed costs ($M)",
-            3
-          ]
+          ["Round trips per day", 4],
+          ["Seats per aircraft", 180],
+          ["Expected load factor", "75%"],
+          ["Operating days per year", 350],
+          ["Planned average one-way fare ($)", 100],
+          ["Cost per flight ($)", 12000],
+          ["Annual route fixed costs ($M)", 3]
         ]
       }
     }
@@ -92,35 +52,14 @@
       "prompt": "Before you frame the problem, what should you check with the client? Select the two most relevant.",
       "responseFormat": "choice",
       "selectCount": 2,
-      "options": [
-        "What return does Meridian need on these two aircraft, and by when?",
-        "How large is the Castleton–Northport market, and how is it shared today?",
-        "What is the average age of Meridian's fleet?",
-        "How many cabin crew are based in Castleton?",
-        "What is Meridian's current on-time performance?"
-      ],
+      "options": ["What return does Meridian need on these two aircraft, and by when?", "How large is the Castleton–Northport market, and how is it shared today?", "How many passengers a year would Meridian have to carry to break even on the route?", "What landing fees and handling charges does Northport airport charge?", "How quickly could Meridian add a third aircraft if the route succeeded?"],
       "idealAnswer": {
-        "correctOptions": [
-          0,
-          1
-        ],
-        "optionRationale": [
-          "Without a hurdle you cannot say whether a profitable route is a good route. The aircraft have alternative uses.",
-          "Entry cases live or die on the size of the pool and how hard the incumbents will fight for it.",
-          "Fleet age affects maintenance cost, which is already inside the cost-per-flight assumption.",
-          "A staffing detail, and one that follows the launch decision rather than informing it.",
-          "A service metric that says nothing about whether this route earns its aircraft."
-        ],
-        "commonMistakes": [
-          "Treating a positive operating profit as a yes without asking what the aircraft could earn elsewhere",
-          "Framing the route in isolation from the competitors already flying it"
-        ]
+        "correctOptions": [0, 1],
+        "optionRationale": ["Without a hurdle you cannot say whether a profitable route is a good route. The aircraft have alternative uses.", "Entry cases live or die on the size of the pool and how hard the incumbents will fight for it.", "No. That is the output of the analysis you are about to do, not something the client can tell you. Asking the client to hand you your own answer wastes the one question you get before you start.", "No — a real input, and one you will need, but it is a data request for the route economics rather than something that has to be settled with the client before you can frame the problem.", "No. A fair second-order question, but it only matters after the first two aircraft are shown to earn their return; it does not change how you frame the launch decision."],
+        "commonMistakes": ["Treating a positive operating profit as a yes without asking what the aircraft could earn elsewhere", "Framing the route in isolation from the competitors already flying it"]
       },
       "followUp": "On the objective: the board will only release the two aircraft to this route if it clears $5M of annual operating profit by year three. Below that, the aircraft go to an existing route instead.\n\nOn the market: the corridor carries 3,000,000 passengers a year, shared between three carriers. Here is the picture, along with the plan the client's network team has built.",
-      "followUpExhibitIds": [
-        "ex1",
-        "ex2"
-      ],
+      "followUpExhibitIds": ["ex1", "ex2"],
       "scoringWeights": {
         "structure": 0.4,
         "accuracy": 0.4,
@@ -134,35 +73,11 @@
       "prompt": "How would you decide whether Meridian should launch this route? Select the four areas you would investigate.",
       "responseFormat": "choice",
       "selectCount": 4,
-      "options": [
-        "Standalone route economics: revenue, variable cost per flight, and route fixed costs",
-        "The share Meridian would have to win, and where it would have to come from",
-        "How the three incumbents would respond, and how much room each has to respond on price",
-        "The opportunity cost of the two aircraft against their next best deployment",
-        "Meridian's loyalty programme redemption rates",
-        "The historic profitability of Meridian's oldest route",
-        "The airport's terminal refurbishment schedule"
-      ],
+      "options": ["Standalone route economics: revenue, variable cost per flight, and route fixed costs", "The share Meridian would have to win, and where it would have to come from", "How the three incumbents would respond, and how much room each has to respond on price", "The opportunity cost of the two aircraft against their next best deployment", "The profitability of the three incumbents' whole networks", "The residual value of the two aircraft in ten years' time", "The cost of the campaign to launch and advertise the route"],
       "idealAnswer": {
-        "correctOptions": [
-          0,
-          1,
-          2,
-          3
-        ],
-        "optionRationale": [
-          "The base case. Everything else is a stress test on this.",
-          "An entry plan is a share plan: 378,000 passengers have to come from somewhere.",
-          "The reason entry cases fail. A plan that only works if nobody reacts is not a plan.",
-          "The board framed the decision this way, so the comparison has to be against the alternative use.",
-          "A retention detail on routes Meridian already flies.",
-          "Historic and unrelated to this corridor's economics.",
-          "Operationally relevant one day, decision-irrelevant today."
-        ],
-        "commonMistakes": [
-          "Building a standalone P&L and stopping there, with no competitive response and no opportunity cost",
-          "Treating market attractiveness as a substitute for Meridian's own economics"
-        ]
+        "correctOptions": [0, 1, 2, 3],
+        "optionRationale": ["The base case. Everything else is a stress test on this.", "An entry plan is a share plan: 378,000 passengers have to come from somewhere.", "The reason entry cases fail. A plan that only works if nobody reacts is not a plan.", "The board framed the decision this way, so the comparison has to be against the alternative use.", "No. What matters is how much room each incumbent has to respond on this route, which is already one of the four areas. Network-wide profit is a weaker proxy for the same thing, and picking both costs you an area.", "No. The aircraft are owned either way, so their residual value is common to every option. What differs between options is what else the aircraft could be flying now, which the opportunity-cost area already covers.", "No — a real cost, but it belongs inside the standalone route economics you are already investigating, not beside it. Taking it separately double-counts one of your four areas."],
+        "commonMistakes": ["Building a standalone P&L and stopping there, with no competitive response and no opportunity cost", "Treating market attractiveness as a substitute for Meridian's own economics"]
       },
       "followUp": "Good — and note the order. Size the base case first, then ask how much of it survives a competitive response. Let's build the base case.",
       "scoringWeights": {
@@ -176,9 +91,7 @@
       "type": "math",
       "timeLimitSeconds": 150,
       "prompt": "Using the operating plan, how many passengers would the route carry in its first full year?",
-      "exhibitIds": [
-        "ex2"
-      ],
+      "exhibitIds": ["ex2"],
       "responseFormat": "number",
       "unit": "'000 passengers",
       "tolerancePct": 2,
@@ -186,11 +99,7 @@
       "idealAnswer": {
         "value": 378,
         "workedSolution": "4 round trips a day is 8 flights a day.\nSeats offered: 8 × 180 × 350 = 504,000 a year.\nAt a 75% load factor: 504,000 × 0.75 = 378,000 passengers.",
-        "commonMistakes": [
-          "Treating 4 round trips as 4 flights and halving the answer",
-          "Applying the load factor to flights rather than to seats",
-          "Using 365 days when the plan says 350 operating days"
-        ]
+        "commonMistakes": ["Treating 4 round trips as 4 flights and halving the answer", "Applying the load factor to flights rather than to seats", "Using 365 days when the plan says 350 operating days"]
       },
       "followUp": "378,000 passengers, from 504,000 seats offered. Hold on to both numbers — the gap between them is where the risk sits.",
       "scoringWeights": {
@@ -204,9 +113,7 @@
       "type": "math",
       "timeLimitSeconds": 210,
       "prompt": "What annual operating profit would the route generate in its first full year?",
-      "exhibitIds": [
-        "ex2"
-      ],
+      "exhibitIds": ["ex2"],
       "responseFormat": "number",
       "unit": "$M",
       "tolerancePct": 2,
@@ -214,11 +121,7 @@
       "idealAnswer": {
         "value": 1.2,
         "workedSolution": "Revenue: 378,000 passengers × $100 = $37.8M.\nVariable cost: 8 flights × 350 days = 2,800 flights × $12,000 = $33.6M.\nFixed cost: $3.0M.\nOperating profit: $37.8M − $33.6M − $3.0M = $1.2M.",
-        "commonMistakes": [
-          "Costing per round trip rather than per flight, halving the variable cost",
-          "Forgetting the $3M of route fixed costs",
-          "Multiplying the fare by seats rather than by passengers"
-        ]
+        "commonMistakes": ["Costing per round trip rather than per flight, halving the variable cost", "Forgetting the $3M of route fixed costs", "Multiplying the fare by seats rather than by passengers"]
       },
       "followUp": "$1.2M — against a hurdle of $5M. On the client's own assumptions the route falls $3.8M short of the number the board set.\n\nBefore we conclude anything, let's test how robust that $1.2M is.",
       "scoringWeights": {
@@ -232,9 +135,7 @@
       "type": "math",
       "timeLimitSeconds": 90,
       "prompt": "What share of the Castleton–Northport market does the plan implicitly assume Meridian wins in its first year?",
-      "exhibitIds": [
-        "ex1"
-      ],
+      "exhibitIds": ["ex1"],
       "responseFormat": "number",
       "unit": "%",
       "tolerancePct": 2,
@@ -242,10 +143,7 @@
       "idealAnswer": {
         "value": 12.6,
         "workedSolution": "378,000 / 3,000,000 = 12.6%.",
-        "commonMistakes": [
-          "Dividing by seats offered rather than by the market size",
-          "Assuming the market grows to absorb Meridian, when nothing in the data says it does"
-        ]
+        "commonMistakes": ["Dividing by seats offered rather than by the market size", "Assuming the market grows to absorb Meridian, when nothing in the data says it does"]
       },
       "followUp": "12.6% — roughly one passenger in eight, in year one, taken from three established carriers. Nothing in the plan says where those passengers come from.",
       "scoringWeights": {
@@ -259,36 +157,14 @@
       "type": "exhibit",
       "timeLimitSeconds": 150,
       "prompt": "Look at the competitive picture alongside the plan. Select the three statements the exhibits support.",
-      "exhibitIds": [
-        "ex1",
-        "ex2"
-      ],
+      "exhibitIds": ["ex1", "ex2"],
       "responseFormat": "choice",
       "selectCount": 3,
-      "options": [
-        "At $100, Meridian would price about 15% below the market's average fare but about 18% above ValueJet",
-        "The plan requires taking roughly one passenger in eight from three established carriers in year one",
-        "ValueJet has the most room to respond on price, since it already carries the lowest fare and 600,000 passengers",
-        "Skylink's 45% share makes it the carrier least likely to defend the route",
-        "The market's average fare of $118 shows the plan's $100 fare is conservative"
-      ],
+      "options": ["At $100, Meridian would price about 15% below the market's average fare but about 18% above ValueJet", "The plan requires taking roughly one passenger in eight from three established carriers in year one", "ValueJet has the most room to respond on price, since it already carries the lowest fare and 600,000 passengers", "Skylink's 45% share makes it the carrier least likely to defend the route", "The market's average fare of $118 shows the plan's $100 fare is conservative"],
       "idealAnswer": {
-        "correctOptions": [
-          0,
-          1,
-          2
-        ],
-        "optionRationale": [
-          "True: the share-weighted average fare is $118, so $100 is 15% below it — but 18% above ValueJet's $85.",
-          "True: 12.6% of the market, with no stated source of those passengers.",
-          "True, and it is the sharpest threat: the low-fare incumbent is the one Meridian's positioning attacks.",
-          "False, and backwards: the largest incumbent has the most passengers to lose and the deepest pockets to defend them.",
-          "False: at $100 the route already needs a 72.6% load factor to break even. That is not conservatism."
-        ],
-        "commonMistakes": [
-          "Reading '$100 is below the average' as 'Meridian is the cheap option' — ValueJet is $15 cheaper",
-          "Assuming a large incumbent is a complacent one"
-        ]
+        "correctOptions": [0, 1, 2],
+        "optionRationale": ["True: the share-weighted average fare is $118, so $100 is 15% below it — but 18% above ValueJet's $85.", "True: 12.6% of the market, with no stated source of those passengers.", "True, and it is the sharpest threat: the low-fare incumbent is the one Meridian's positioning attacks.", "False, and backwards: the largest incumbent has the most passengers to lose and the deepest pockets to defend them.", "False: at $100 the route already needs a 72.6% load factor to break even. That is not conservatism."],
+        "commonMistakes": ["Reading '$100 is below the average' as 'Meridian is the cheap option' — ValueJet is $15 cheaper", "Assuming a large incumbent is a complacent one"]
       },
       "followUp": "So Meridian would enter as the second-cheapest carrier, not the cheapest, needing one passenger in eight, against an incumbent that can undercut it and a market leader with the most to lose.\n\nNow let's put a number on how much room the plan actually has.",
       "scoringWeights": {
@@ -302,9 +178,7 @@
       "type": "math",
       "timeLimitSeconds": 210,
       "prompt": "At the planned $100 fare, what load factor does the route need simply to break even?",
-      "exhibitIds": [
-        "ex2"
-      ],
+      "exhibitIds": ["ex2"],
       "responseFormat": "number",
       "unit": "%",
       "tolerancePct": 2,
@@ -312,11 +186,7 @@
       "idealAnswer": {
         "value": 72.6,
         "workedSolution": "Total cost: $33.6M variable + $3.0M fixed = $36.6M.\nPassengers needed at $100: $36.6M / $100 = 366,000.\nSeats offered: 504,000.\nBreak-even load factor: 366,000 / 504,000 = 72.6%.",
-        "commonMistakes": [
-          "Leaving the $3M of fixed costs out and answering 66.7%",
-          "Dividing by planned passengers instead of by seats offered",
-          "Treating the cost per flight as a cost per passenger"
-        ]
+        "commonMistakes": ["Leaving the $3M of fixed costs out and answering 66.7%", "Dividing by planned passengers instead of by seats offered", "Treating the cost per flight as a cost per passenger"]
       },
       "followUp": "72.6%, against a plan of 75%. The whole business case sits in 2.4 points of load factor — about 12,000 passengers a year, or roughly 34 a day across eight flights.\n\nThat is the fragility. Now let's price it.",
       "scoringWeights": {
@@ -330,9 +200,7 @@
       "type": "math",
       "timeLimitSeconds": 180,
       "prompt": "Suppose ValueJet responds and Meridian has to hold its fare at $90 rather than $100, while still carrying the planned 378,000 passengers. What is the route's operating result?",
-      "exhibitIds": [
-        "ex2"
-      ],
+      "exhibitIds": ["ex2"],
       "responseFormat": "number",
       "unit": "$M",
       "tolerancePct": 2,
@@ -340,11 +208,7 @@
       "idealAnswer": {
         "value": 2.58,
         "workedSolution": "Revenue at $90: 378,000 × $90 = $34.02M.\nTotal cost is unchanged at $36.6M.\nResult: $34.02M − $36.6M = −$2.58M, a loss of $2.58M.",
-        "commonMistakes": [
-          "Reducing costs alongside the fare; the cost per flight does not move with the fare",
-          "Applying the 10% fare cut to the $1.2M profit rather than to the revenue line",
-          "Assuming a lower fare fills more seats, which the question explicitly rules out"
-        ]
+        "commonMistakes": ["Reducing costs alongside the fare; the cost per flight does not move with the fare", "Applying the 10% fare cut to the $1.2M profit rather than to the revenue line", "Assuming a lower fare fills more seats, which the question explicitly rules out"]
       },
       "followUp": "A $10 fare cut — 10% — turns a $1.2M profit into a $2.58M loss, because every dollar of fare falls straight through to the bottom line while the cost base does not move.\n\nThat is the shape of the decision: a route that misses its hurdle at plan, and loses money on any realistic competitive response.",
       "scoringWeights": {
@@ -360,32 +224,11 @@
       "prompt": "If Meridian launches anyway, what should it do to protect the economics of the route? Select the three strongest moves.",
       "responseFormat": "choice",
       "selectCount": 3,
-      "options": [
-        "Launch at reduced frequency and build up, so fixed costs and exposure scale with demonstrated demand",
-        "Target segments the incumbents serve badly — off-peak times, connecting traffic, corporate contracts — rather than competing head-on on price",
-        "Secure the cost base: negotiate airport charges and handling contracts before launch, so the break-even load factor falls",
-        "Match ValueJet's $85 fare from day one to buy share quickly",
-        "Commit both aircraft immediately to signal permanence to the incumbents",
-        "Delay the decision until the next fare cycle and re-run the analysis"
-      ],
+      "options": ["Launch at reduced frequency and build up, so fixed costs and exposure scale with demonstrated demand", "Target segments the incumbents serve badly — off-peak times, connecting traffic, corporate contracts — rather than competing head-on on price", "Secure the cost base: negotiate airport charges and handling contracts before launch, so the break-even load factor falls", "Match ValueJet's $85 fare from day one to buy share quickly", "Commit both aircraft immediately to signal permanence to the incumbents", "Delay the decision until the next fare cycle and re-run the analysis"],
       "idealAnswer": {
-        "correctOptions": [
-          0,
-          1,
-          2
-        ],
-        "optionRationale": [
-          "Directly attacks the fragility: less fixed cost committed before the demand is proven.",
-          "The only way to win 12.6% without triggering the price war that the $90 case shows Meridian loses.",
-          "Every dollar off the cost base lowers the 72.6% break-even, which is the binding constraint.",
-          "At $85 the route loses roughly $4.5M a year — it buys share by destroying the economics.",
-          "Maximises committed cost against the least proven demand, which is the opposite of what the numbers say.",
-          "Not a protective move at all; it defers the decision without changing anything."
-        ],
-        "commonMistakes": [
-          "Reaching for price as the entry weapon when the sensitivity shows price is where Meridian is weakest",
-          "Confusing commitment with strategy on a route with 2.4 points of headroom"
-        ]
+        "correctOptions": [0, 1, 2],
+        "optionRationale": ["Directly attacks the fragility: less fixed cost committed before the demand is proven.", "The only way to win 12.6% without triggering the price war that the $90 case shows Meridian loses.", "Every dollar off the cost base lowers the 72.6% break-even, which is the binding constraint.", "At $85 the route loses roughly $4.5M a year — it buys share by destroying the economics.", "Maximises committed cost against the least proven demand, which is the opposite of what the numbers say.", "Not a protective move at all; it defers the decision without changing anything."],
+        "commonMistakes": ["Reaching for price as the entry weapon when the sensitivity shows price is where Meridian is weakest", "Confusing commitment with strategy on a route with 2.4 points of headroom"]
       },
       "followUp": "All three do the same thing in different ways: they lower the break-even, or they win passengers somewhere other than on headline fare. Neither of those is in the client's current plan.",
       "scoringWeights": {
@@ -402,20 +245,8 @@
       "responseFormat": "text",
       "maxLines": 8,
       "idealAnswer": {
-        "keyPoints": [
-          "Leads with the recommendation: do not launch on the current plan",
-          "Gives the headline number — $1.2M against a $5M hurdle, a $3.8M shortfall",
-          "Names the fragility: a 72.6% break-even against a 75% plan, so 2.4 points of load factor carry the whole case",
-          "Shows the sensitivity: a $10 fare cut produces a $2.58M loss, and the plan needs 12.6% share from three incumbents",
-          "Names the opportunity cost of the two aircraft explicitly",
-          "Offers the conditional path: relaunch the case at lower frequency, with a secured cost base and a segment-led plan rather than a price-led one",
-          "Stays inside eight lines and does not narrate the calculation"
-        ],
-        "commonMistakes": [
-          "Recommending launch because the route is profitable, when profitable is not the test the board set",
-          "Giving a flat no with no conditions under which the answer would change",
-          "Burying the hurdle comparison beneath the arithmetic"
-        ]
+        "keyPoints": ["Leads with the recommendation: do not launch on the current plan", "Gives the headline number — $1.2M against a $5M hurdle, a $3.8M shortfall", "Names the fragility: a 72.6% break-even against a 75% plan, so 2.4 points of load factor carry the whole case", "Shows the sensitivity: a $10 fare cut produces a $2.58M loss, and the plan needs 12.6% share from three incumbents", "Names the opportunity cost of the two aircraft explicitly", "Offers the conditional path: relaunch the case at lower frequency, with a secured cost base and a segment-led plan rather than a price-led one", "Stays inside eight lines and does not narrate the calculation"],
+        "commonMistakes": ["Recommending launch because the route is profitable, when profitable is not the test the board set", "Giving a flat no with no conditions under which the answer would change", "Burying the hurdle comparison beneath the arithmetic"]
       },
       "scoringWeights": {
         "communication": 0.4,

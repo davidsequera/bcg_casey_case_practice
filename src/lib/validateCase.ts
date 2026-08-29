@@ -199,9 +199,11 @@ export function validateCase(input: unknown): ValidationResult {
         if (
           typeof raw.selectCount !== 'number' ||
           !Number.isInteger(raw.selectCount) ||
-          raw.selectCount < 1
+          raw.selectCount < 0
         ) {
-          errors.push(`${where}.selectCount must be a positive integer.`)
+          errors.push(
+            `${where}.selectCount must be a non-negative integer (0 = "select all that apply").`,
+          )
         } else if (optionCount >= 0 && raw.selectCount > optionCount) {
           errors.push(
             `${where}.selectCount is ${raw.selectCount} but only ${optionCount} options exist.`,
@@ -267,7 +269,14 @@ export function validateCase(input: unknown): ValidationResult {
             if (new Set(picks).size !== picks.length) {
               errors.push(`${where}.idealAnswer.correctOptions contains a duplicate index.`)
             }
-            if (typeof raw.selectCount === 'number' && picks.length !== raw.selectCount) {
+            if (picks.length === 0) {
+              errors.push(`${where}.idealAnswer.correctOptions declares no correct option.`)
+            }
+            if (
+              typeof raw.selectCount === 'number' &&
+              raw.selectCount > 0 &&
+              picks.length !== raw.selectCount
+            ) {
               errors.push(
                 `${where} asks for ${raw.selectCount} option(s) but declares ${picks.length} correct.`,
               )

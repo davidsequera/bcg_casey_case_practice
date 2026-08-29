@@ -6,7 +6,7 @@ import pumps from '../src/cases/pumps-vietnam-plant.json'
 import cloud from '../src/cases/media-cloud-migration.json'
 import bank from '../src/cases/bank-fraud-losses.json'
 import coal from '../src/cases/coal-retirement.json'
-import vets from '../src/cases/pe-vet-rollup.json'
+import vets from '../src/cases/pe-vet-referral.json'
 import hospital from '../src/cases/hospital-cost-reduction.json'
 import motor from '../src/cases/motor-telematics-pricing.json'
 import jobs from '../src/cases/jobs-programme.json'
@@ -139,6 +139,27 @@ const good = choiceCase({
 })
 check('a well-formed choice question is accepted', good.ok,
   good.ok ? '' : '-> ' + good.errors.join('; '))
+
+const selectAll = choiceCase({
+  selectCount: 0, options: ['a', 'b', 'c'],
+  idealAnswer: { correctOptions: [0, 2], optionRationale: ['x', 'y', 'z'] },
+})
+check('"select all that apply" (selectCount 0) is accepted with any number of correct options',
+  selectAll.ok, selectAll.ok ? '' : '-> ' + selectAll.errors.join('; '))
+
+const emptyKey = choiceCase({
+  selectCount: 0, options: ['a', 'b'],
+  idealAnswer: { correctOptions: [], optionRationale: ['x', 'y'] },
+})
+check('"select all that apply" still needs at least one correct option',
+  !emptyKey.ok && emptyKey.errors.some((e) => e.includes('no correct option')))
+
+const negativeCount = choiceCase({
+  selectCount: -1, options: ['a', 'b'],
+  idealAnswer: { correctOptions: [0], optionRationale: ['x', 'y'] },
+})
+check('a negative selectCount is rejected',
+  !negativeCount.ok && negativeCount.errors.some((e) => e.includes('non-negative')))
 
 section('Ragged exhibit tables and charts are caught')
 const ragged = validateCase({

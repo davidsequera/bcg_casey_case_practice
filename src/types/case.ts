@@ -97,6 +97,11 @@ export interface Question {
 
   /** responseFormat "choice" */
   options?: string[]
+  /**
+   * How many options the candidate must pick. `0` means "select all that apply" -- the
+   * count is withheld, which is what the real assessment does on its judgement questions:
+   * being told "pick exactly two" is half the answer.
+   */
   selectCount?: number
 
   /** responseFormat "number" */

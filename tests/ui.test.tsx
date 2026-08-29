@@ -85,6 +85,22 @@ check('lists every option as a button', c.questions[0].options!.every((o) => cho
 check('says how many to select', choiceDock.includes('Select 2: 0/2 chosen'))
 check('shows the pacing budget', choiceDock.includes('of suggested time left'))
 
+// "select all that apply": the count is withheld, so the dock must not announce one
+const selectAllDock = text(renderToStaticMarkup(
+  <AnswerDock
+    question={{ ...c.questions[0], selectCount: 0 }}
+    softElapsed={10}
+    disabled={false}
+    onSend={noop}
+  />,
+))
+check('a select-all question says so instead of naming a count',
+  selectAllDock.includes('Select all that apply: 0 chosen'))
+check('a select-all question never leaks how many are correct',
+  !/Select d+:/.test(selectAllDock))
+check('a select-all question still lists every option',
+  c.questions[0].options!.every((o) => selectAllDock.includes(o)))
+
 const numberDock = text(renderToStaticMarkup(
   <AnswerDock question={c.questions[3]} softElapsed={10} disabled={false} onSend={noop} />,
 ))

@@ -1,383 +1,265 @@
 {
   "schemaVersion": 2,
   "id": "bank-fraud-losses",
-  "title": "Harbrook Bank: the fraud leak",
+  "title": "Harbrook Bank: the fraud screening decision",
   "industry": "Financial Institutions",
   "functionalPractice": "Risk and Compliance",
-  "difficulty": "medium",
+  "difficulty": "hard",
   "estimatedMinutes": 35,
   "totalTimeSeconds": 2100,
-  "prompt": "Our client is Harbrook Bank, a large retail bank. Fraud losses on its card business have been climbing for three years, and the banking regulator has warned that it expects losses brought below a set threshold within two years. At the same time, the bank’s current fraud screening blocks a meaningful number of legitimate transactions, and cardholders are complaining. Management is evaluating a new machine-learning screening system and has asked us whether it is worth the money.",
+  "prompt": "Card fraud screening works in three steps. Every card transaction is scored as it happens; transactions the model finds suspicious raise an alert; and an alert is only acted on once a human analyst in the fraud operations team reviews it and decides whether to block the transaction and call the cardholder. An alert nobody reviews is released — the transaction goes through, and if it was fraudulent the bank carries the loss. Our client is Harbrook Bank, a large retail bank whose card fraud losses have been climbing for three years, with the regulator watching. Harbrook's fraud operations team can review 500,000 alerts a year, and today's rules-based screening uses 300,000 of them. A vendor has offered Harbrook a machine-learning screening system that is genuinely better at spotting fraud, and the Chief Risk Officer wants to know whether it is worth buying. Two terms will matter today: an alert is only worth raising if someone reviews it, and the number we care about is the incremental benefit — what the new system adds over the rules Harbrook already runs, not what it achieves in total.",
   "exhibits": [
     {
+      "id": "ex0",
+      "title": "Exhibit 1 — How a fraud alert turns into a prevented loss",
+      "type": "text",
+      "text": "Transaction scored → alert raised → analyst reviews the alert → transaction blocked and cardholder called. The chain only prevents a loss if all four steps happen. Alerts raised beyond what the review team can handle are released unreviewed, and prevent nothing."
+    },
+    {
       "id": "ex1",
-      "title": "Exhibit 1 — Harbrook’s card business, annual figures",
+      "title": "Exhibit 2 — Harbrook's card fraud screening: today's rules and the vendor's system (Scenario 1)",
       "type": "table",
-      "unitsNote": "A basis point (bp) is one hundredth of one percent",
-      "source": "Client risk report",
       "table": {
-        "columns": [
-          "Item",
-          "Value"
-        ],
+        "columns": ["", "Today's rules", "Proposed ML system"],
         "rows": [
-          [
-            "Card transactions per year",
-            "500M"
-          ],
-          [
-            "Average transaction value",
-            "$80"
-          ],
-          [
-            "Fraud losses",
-            "8bp of card volume"
-          ],
-          [
-            "Regulator’s threshold",
-            "5bp of card volume"
-          ]
+          ["Fraud attempts per year", 40000, 40000],
+          ["Average value of a fraudulent transaction (USD)", 300, 300],
+          ["Alerts raised per year", 300000, 900000],
+          ["Share of fraud value prevented, if every alert raised is reviewed", "50%", "75%"],
+          ["Alerts the fraud operations team can review per year", 500000, 500000],
+          ["Cost per alert reviewed (USD)", 1.5, 1.5],
+          ["Vendor licence (USD per year)", 0, 1500000]
         ]
-      }
+      },
+      "unitsNote": "The extra alerts the proposed system raises are of uniform quality: reviewing a given share of them prevents that share of the extra fraud value. Alerts that cannot be reviewed are released.",
+      "source": "Fraud operations MI and the vendor's proposal"
     },
     {
       "id": "ex2",
-      "title": "Exhibit 2 — The cost of saying no",
-      "type": "text",
-      "source": "Client risk report",
-      "text": "Harbrook’s current screening declines 2% of all card transactions in error — legitimate purchases blocked as suspected fraud. The bank earns interchange of 1.5% on every transaction it approves, so each blocked purchase is revenue lost; declined cardholders also complain more and leave more often, which this case does not quantify."
-    },
-    {
-      "id": "ex3",
-      "title": "Exhibit 3 — Proposed screening system, vendor terms",
+      "title": "Exhibit 3 — Scenario 2: an offshore partner reviews the overflow",
       "type": "table",
-      "unitsNote": "Reductions are relative to today’s levels and assumed from the first year",
-      "source": "Vendor proposal, verified against reference banks",
       "table": {
-        "columns": [
-          "Item",
-          "Value"
-        ],
+        "columns": ["", "Today's rules", "Proposed ML system"],
         "rows": [
-          [
-            "One-off implementation cost",
-            "$20M"
-          ],
-          [
-            "Running cost (licence, data, team)",
-            "$10M per year"
-          ],
-          [
-            "Reduction in fraud losses",
-            "60%"
-          ],
-          [
-            "Reduction in false declines",
-            "50%"
-          ]
+          ["Fraud attempts per year", 40000, 40000],
+          ["Average value of a fraudulent transaction (USD)", 300, 300],
+          ["Alerts raised per year", 300000, 900000],
+          ["Share of fraud value prevented, if every alert raised is reviewed", "50%", "75%"],
+          ["Alerts the fraud operations team can review per year", 1100000, 1100000],
+          ["Cost per alert reviewed (USD)", 1.5, 1.5],
+          ["Vendor licence (USD per year)", 0, 1500000]
         ]
-      }
+      },
+      "unitsNote": "Changed from Scenario 1: review capacity is 1,100,000 alerts a year, not 500,000 — an offshore partner would take the overflow at the same $1.50 an alert. Every other figure is unchanged."
     }
   ],
   "questions": [
     {
       "id": "q1",
       "type": "structuring",
-      "timeLimitSeconds": 90,
-      "prompt": "Before we evaluate the system, what should we clarify with Harbrook first? Select the two most relevant.",
-      "responseFormat": "choice",
-      "selectCount": 2,
-      "options": [
-        "How large are the fraud losses today, and what threshold has the regulator set?",
-        "Which advertising agency runs the bank’s card campaigns?",
-        "What does the current screening cost the bank beyond fraud itself — in blocked good transactions?",
-        "How many branches does Harbrook operate?",
-        "What colour are the bank’s credit cards?"
-      ],
+      "timeLimitSeconds": 180,
+      "prompt": "Let's start with the right structure. What are the three key questions you would need to answer in order to tell Harbrook whether to buy the new screening system? Please summarise them in 3 lines maximum.",
+      "exhibitIds": ["ex0"],
+      "responseFormat": "text",
+      "maxLines": 3,
       "idealAnswer": {
-        "correctOptions": [
-          0,
-          2
-        ],
-        "optionRationale": [
-          "The size of the problem and the bar the regulator has set are the two numbers the whole case is judged against.",
-          "Marketing has no bearing on screening economics.",
-          "The hidden half of the problem: screening has a false-positive cost, and any fix is judged on both sides of that trade-off.",
-          "Branch count does not bear on card fraud.",
-          "Not a data point."
-        ],
-        "commonMistakes": [
-          "Framing the case as fraud-only and missing that over-blocking is also a cost",
-          "Not pinning down the regulatory threshold that makes this urgent"
-        ]
+        "keyPoints": ["How much extra fraud would the new system actually prevent, over and above the rules Harbrook already runs?", "What does it cost to get that benefit — the licence, and the analyst time needed to review the alerts it raises?", "Can the bank deliver it operationally: can the review team handle the alert volume, and what does the regulator require either way?"],
+        "commonMistakes": ["Answering with a generic build-versus-buy or cost-benefit framework rather than the three questions this decision turns on.", "Framing it as the total fraud the system catches rather than the incremental catch over today's rules.", "Ignoring the operational constraint entirely — the alert review capacity is the binding one here.", "Naming six things when the interviewer asked for three."]
       },
-      "followUp": "Harbrook processes 500M card transactions a year at an average of $80 — about $40B of volume. Fraud losses currently run at 8 basis points of that volume; the regulator wants them below 5bp within two years.\n\nAnd yes: the current screening also declines legitimate transactions in error. We will quantify that side too.",
+      "followUp": "Good. The vendor has given us its numbers and the fraud operations team has given us theirs. Note that the review team's capacity is shared: alerts from today's rules and alerts from the new system compete for the same analysts.",
+      "followUpExhibitIds": ["ex1"],
       "scoringWeights": {
-        "structure": 0.4,
-        "accuracy": 0.4,
-        "communication": 0.2
+        "structure": 0.5,
+        "creativity": 0.2,
+        "communication": 0.3
       }
     },
     {
       "id": "q2",
-      "type": "structuring",
-      "timeLimitSeconds": 120,
-      "prompt": "Which areas would you investigate to decide whether the new system is worth buying? Select the four most relevant.",
-      "responseFormat": "choice",
-      "selectCount": 4,
-      "options": [
-        "The annual cost of fraud today, and how much of it the system removes",
-        "The revenue lost to false declines today, and how much of it the system recovers",
-        "The full cost of the system — implementation and running",
-        "The compliance test: does the result get Harbrook under the regulator’s threshold?",
-        "The bank’s mortgage book performance",
-        "The vendor CEO’s previous employers",
-        "Cafeteria costs at the bank’s head office"
-      ],
+      "type": "math",
+      "timeLimitSeconds": 300,
+      "prompt": "Scenario 1: given the data in the exhibit, what is the annual net benefit to Harbrook of switching to the proposed system? Please give your answer rounded to the nearest whole number, without further explanation or working.",
+      "exhibitIds": ["ex1"],
+      "responseFormat": "number",
+      "unit": "USD per year",
+      "tolerancePct": 1,
+      "answerFormatNote": "Give your answer in USD per year, rounded to the nearest whole number (for example 1111 or 123456 or 500885), without further explanation or working. If the net benefit is negative, enter it with a minus sign, for example -250000.",
       "idealAnswer": {
-        "correctOptions": [
-          0,
-          1,
-          2,
-          3
-        ],
-        "optionRationale": [
-          "The headline benefit; without it there is no case.",
-          "The second benefit, and the one that makes this a customer-experience fix as well as a loss fix.",
-          "Benefits mean nothing until netted against what the system costs to buy and run.",
-          "Even a profitable system fails if it leaves Harbrook above 5bp — the regulator set a hard bar, not a preference.",
-          "Mortgages are a different book entirely.",
-          "Vendor diligence matters, but a biography is not one of the four analyses that decide this.",
-          "Not related."
-        ],
-        "commonMistakes": [
-          "Evaluating profit and forgetting the compliance test, or vice versa — this case has two pass/fail bars",
-          "Counting the benefits gross and skipping the running cost"
-        ]
+        "value": -800000,
+        "workedSolution": "Fraud exposure: 40,000 attempts × $300 = $12.0M a year.\nToday's rules raise 300,000 alerts, all of which fit inside the 500,000 the team can review, and prevent 50% of the fraud value = $6.0M.\nThe proposed system would prevent 75% = $9.0M, but only if all 900,000 of its alerts were reviewed. The team can review 500,000, of which 300,000 are already spoken for, so only 200,000 of the 600,000 extra alerts get looked at — one third.\nIncremental fraud prevented = ($9.0M − $6.0M) × 1/3 = $1.0M.\nIncremental review cost = 200,000 × $1.50 = $0.3M.\nLicence = $1.5M.\nNet benefit = $1.0M − $0.3M − $1.5M = −$800,000 a year. On these figures the system destroys value: the bank would be paying for detection it has no capacity to act on.",
+        "keyPoints": ["The benefit is incremental: what the new system prevents over and above today's $6.0M, not the whole $9.0M.", "Detection that is never reviewed prevents nothing, so the benefit is capped by spare review capacity, not by the model's accuracy.", "Only the extra alerts carry extra review cost; the first 300,000 are being reviewed already."],
+        "commonMistakes": ["Valuing the benefit at the full $9.0M the system detects and answering $7.2M, forgetting the bank already prevents $6.0M.", "Assuming all 900,000 alerts get reviewed and answering $600,000 — that is Scenario 2's answer, not this one.", "Charging the review cost on all 500,000 reviewed alerts rather than on the 200,000 incremental ones.", "Leaving the licence out of an 'annual net benefit'."]
       },
-      "followUp": "Let’s size the problem first. Here are the card business figures again — work from these.",
-      "followUpExhibitIds": [
-        "ex1"
-      ],
       "scoringWeights": {
-        "structure": 0.5,
-        "accuracy": 0.3,
-        "communication": 0.2
+        "accuracy": 0.8,
+        "structure": 0.2
       }
     },
     {
       "id": "q3",
       "type": "math",
-      "timeLimitSeconds": 180,
-      "prompt": "Using Exhibit 1, how much does card fraud cost Harbrook each year?",
-      "exhibitIds": [
-        "ex1"
-      ],
-      "responseFormat": "number",
-      "unit": "$M",
-      "tolerancePct": 2,
-      "answerFormatNote": "Enter in $ millions, rounded to the nearest million.",
+      "timeLimitSeconds": 150,
+      "prompt": "Please explain briefly the reasoning behind your answer to the previous question, in 3 lines maximum.",
+      "responseFormat": "text",
+      "maxLines": 3,
       "idealAnswer": {
-        "value": 32,
-        "workedSolution": "Volume: 500M transactions × $80 = $40B a year.\nFraud at 8bp: $40B × 0.0008 = $32M a year.",
-        "commonMistakes": [
-          "Treating 8bp as 8% and answering $3.2B",
-          "Applying the rate to transaction count instead of volume",
-          "Slipping a factor of ten converting basis points"
-        ]
+        "keyPoints": ["Compare the proposed system with today's rules, not with doing nothing: only the extra fraud prevented counts as benefit.", "The extra detection has to pass through the review team, and there is only enough spare capacity for one third of the extra alerts, so only one third of the extra benefit is real.", "Against that, the incremental review cost and the licence fee, which is paid in full whether or not the alerts get reviewed.", "The result is negative, which is the point: the constraint is operational capacity, not model quality."],
+        "commonMistakes": ["Describing the arithmetic without naming the capacity constraint that drives it.", "Talking about the model's accuracy as if accuracy alone were the benefit.", "Not saying explicitly that the answer is negative and what that implies."]
       },
-      "followUp": "$32M a year, and rising. Now the other leak — the good transactions the screening turns away. Here is what saying no costs.",
-      "followUpExhibitIds": [
-        "ex2"
-      ],
+      "followUp": "Understood. For completeness, the vendor's licence is a flat annual fee — it does not vary with alert volumes, and it is payable from day one.",
       "scoringWeights": {
-        "accuracy": 0.6,
-        "structure": 0.2,
-        "communication": 0.2
+        "structure": 0.3,
+        "accuracy": 0.4,
+        "communication": 0.3
       }
     },
     {
       "id": "q4",
       "type": "math",
-      "timeLimitSeconds": 240,
-      "prompt": "Using Exhibit 2, how much interchange revenue does Harbrook lose each year to falsely declined transactions?",
-      "exhibitIds": [
-        "ex2"
-      ],
+      "timeLimitSeconds": 90,
+      "prompt": "I'd like to check a couple of the parameters behind that. In Scenario 1, how much additional fraud value would the proposed system actually prevent in a year? Please give your answer rounded to the nearest whole number, without further explanation or working.",
+      "exhibitIds": ["ex1"],
       "responseFormat": "number",
-      "unit": "$M",
-      "tolerancePct": 2,
-      "answerFormatNote": "Enter in $ millions, rounded to the nearest million.",
+      "unit": "USD per year",
+      "tolerancePct": 1,
+      "answerFormatNote": "Give your answer in USD per year, rounded to the nearest whole number (for example 1111 or 123456 or 500885), without further explanation or working.",
       "idealAnswer": {
-        "value": 12,
-        "workedSolution": "Falsely declined: 2% × 500M = 10M transactions a year.\nBlocked volume: 10M × $80 = $0.8B.\nForgone interchange: $0.8B × 1.5% = $12M a year.",
-        "commonMistakes": [
-          "Counting the full $0.8B of blocked volume as the loss — the bank only earns the 1.5% interchange on it",
-          "Applying 2% to fraud losses instead of to all transactions",
-          "Ignoring this line entirely because it is not labelled \"fraud\""
-        ]
+        "value": 1000000,
+        "workedSolution": "Fraud exposure = 40,000 × $300 = $12.0M.\nThe system would lift prevention from 50% to 75%, worth $3.0M a year if every alert were reviewed.\nExtra alerts = 900,000 − 300,000 = 600,000. Spare review capacity = 500,000 − 300,000 = 200,000, so one third of the extra alerts are reviewed.\n$3.0M × 1/3 = $1,000,000.",
+        "keyPoints": ["The 25-point improvement is worth $3.0M gross, but only the reviewed share of it lands.", "Spare capacity, not total capacity, is what the extra alerts can use."],
+        "commonMistakes": ["Answering $3,000,000 and ignoring the review constraint.", "Using 500,000 / 900,000 as the reviewed share, which double-counts the alerts today's rules already consume.", "Answering $9,000,000, the total prevented rather than the additional."]
       },
-      "followUp": "So the screening problem costs $44M a year in total: $32M of fraud that gets through, plus $12M of good business turned away — before counting the customers who give up on the card altogether.\n\nHere is the system the bank is evaluating.",
-      "followUpExhibitIds": [
-        "ex3"
-      ],
+      "followUp": "Thanks. The fraud operations director confirms the team is at full utilisation today: there is no slack beyond the 500,000 figure in the exhibit, and no budget approved for more analysts.",
       "scoringWeights": {
-        "accuracy": 0.6,
-        "structure": 0.2,
-        "communication": 0.2
+        "accuracy": 0.85,
+        "structure": 0.15
       }
     },
     {
       "id": "q5",
       "type": "math",
-      "timeLimitSeconds": 240,
-      "prompt": "Using the vendor terms in Exhibit 3, what is the annual net benefit of the new system, once it is running?",
-      "exhibitIds": [
-        "ex3"
-      ],
+      "timeLimitSeconds": 90,
+      "prompt": "And what is the additional alert review cost the bank would incur in a year under Scenario 1? Please give your answer rounded to the nearest whole number, without further explanation or working.",
+      "exhibitIds": ["ex1"],
       "responseFormat": "number",
-      "unit": "$M",
-      "tolerancePct": 2,
-      "answerFormatNote": "Enter in $ millions, to one decimal place — for $15,700,000, type 15.7.",
+      "unit": "USD per year",
+      "tolerancePct": 1,
+      "answerFormatNote": "Give your answer in USD per year, rounded to the nearest whole number (for example 1111 or 123456 or 500885), without further explanation or working.",
       "idealAnswer": {
-        "value": 15.2,
-        "workedSolution": "Fraud avoided: 60% × $32M = $19.2M a year.\nInterchange recovered: 50% × $12M = $6M a year.\nGross benefit: $25.2M a year.\nLess running cost: $25.2M − $10M = $15.2M a year.",
-        "commonMistakes": [
-          "Forgetting the recovered interchange and netting only the fraud line",
-          "Subtracting the $20M one-off here — it belongs in the multi-year view, not the run-rate",
-          "Applying the 50% cut to fraud and the 60% cut to declines"
-        ]
+        "value": 300000,
+        "workedSolution": "Only the incremental alerts that actually get reviewed cost anything extra: 200,000 of them.\n200,000 × $1.50 = $300,000 a year.\nThe 300,000 alerts today's rules raise are already being reviewed and already cost $450,000; that cost does not change.",
+        "keyPoints": ["Incremental cost against incremental benefit: the existing review load is unaffected by the decision.", "Alerts the team never reviews cost nothing — and prevent nothing."],
+        "commonMistakes": ["Charging all 900,000 alerts at $1.50 and answering $1,350,000.", "Charging the full 500,000 reviewed alerts and answering $750,000.", "Adding the licence fee into the review cost."]
       },
-      "followUp": "A $25.2M gross benefit against $10M of running cost — $15.2M a year net. Now put the one-off cost in and look at the full horizon.",
+      "followUp": "That is the picture at today's capacity. Before we conclude, the Chief Risk Officer wants to know how robust the number is — several things are still moving.",
       "scoringWeights": {
-        "accuracy": 0.6,
-        "structure": 0.2,
-        "communication": 0.2
+        "accuracy": 0.85,
+        "structure": 0.15
       }
     },
     {
       "id": "q6",
-      "type": "math",
+      "type": "exhibit",
       "timeLimitSeconds": 180,
-      "prompt": "What is the net benefit of the system over five years, including the implementation cost?",
-      "responseFormat": "number",
-      "unit": "$M",
-      "tolerancePct": 2,
-      "answerFormatNote": "Enter in $ millions, rounded to the nearest million.",
+      "prompt": "Which of the following statements, if true, would change the annual net benefit you calculated? Select all that apply.",
+      "exhibitIds": ["ex1"],
+      "responseFormat": "choice",
+      "selectCount": 0,
+      "options": ["The vendor would drop the flat licence and charge $2.00 for every alert of its system that Harbrook reviews", "Fraud attempts are expected to run 20% higher next year, with no change in alert volumes", "A competitor bank has just deployed the same vendor's system", "The $1.50 per alert is entirely the salary of review analysts whose headcount is fixed for the next two years", "The proposed system raises 900,000 alerts a year against today's 300,000"],
       "idealAnswer": {
-        "value": 56,
-        "workedSolution": "Annual net benefit: $15.2M × 5 = $76M.\nLess the one-off implementation: $76M − $20M = $56M.",
-        "commonMistakes": [
-          "Charging the $20M every year",
-          "Using the $25.2M gross figure and forgetting the running cost",
-          "Stopping at the annual figure when the question asks for five years"
-        ]
+        "correctOptions": [0, 1, 3],
+        "optionRationale": ["Changes it. The $1.5M licence is replaced by 200,000 reviewed alerts × $2.00 = $400,000, so the net benefit moves from −$800,000 to +$300,000 — and the decision flips. Pricing that scales with what the bank can actually use is worth more to Harbrook than the model is.", "Changes it. Exposure rises to $14.4M, so the reviewed third of the 25-point improvement is worth $1.2M rather than $1.0M and the net benefit improves to −$600,000. Still negative: growing fraud does not fix a capacity constraint.", "Does not change it. What a competitor buys says nothing about Harbrook's own incremental benefit or its review capacity. It is a reason to ask questions, not a term in this calculation.", "Changes it. If the analysts are paid whether or not these alerts exist, the $300,000 is not an incremental cost of the decision at all, and the net benefit improves to −$500,000. Committed cost is not incremental cost.", "Does not change it. That is the exhibit restated; both figures are already inside the number you gave."],
+        "keyPoints": ["Test each statement by asking which term of your own calculation it touches.", "Committed costs drop out of an incremental calculation; a charge that scales with usage does not.", "A bigger problem does not raise the value of a solution the bank cannot operate."],
+        "commonMistakes": ["Picking the competitor's deployment because it feels strategically relevant.", "Rejecting the fixed-headcount statement as an accounting detail; it changes what counts as incremental.", "Assuming higher fraud must make the system worth buying, without re-running the capped benefit."]
       },
-      "followUp": "The system clears its costs comfortably — payback comes inside the second year. But profit was only one of the two bars. The regulator set the other.",
+      "followUp": "Helpful. One development since we last spoke: procurement has found an offshore partner that would review the overflow alerts at the same $1.50 each, lifting reviewable volume to 1,100,000 a year. Nothing else about the proposal changes.",
+      "followUpExhibitIds": ["ex2"],
       "scoringWeights": {
         "accuracy": 0.6,
-        "structure": 0.2,
-        "communication": 0.2
+        "structure": 0.4
       }
     },
     {
       "id": "q7",
-      "type": "math",
+      "type": "exhibit",
       "timeLimitSeconds": 180,
-      "prompt": "With the new system running, what would Harbrook’s fraud losses be as a share of card volume — and does that satisfy the regulator?",
-      "responseFormat": "number",
-      "unit": "bp",
-      "tolerancePct": 2,
-      "answerFormatNote": "Enter in basis points, to one decimal place — for 4.5bp, type 4.5.",
-      "idealAnswer": {
-        "value": 3.2,
-        "workedSolution": "Remaining fraud: 40% × $32M = $12.8M a year.\nAs a share of volume: $12.8M ÷ $40B = 3.2bp — comfortably below the regulator’s 5bp threshold.",
-        "commonMistakes": [
-          "Cutting the 8bp rate by 50% instead of 60%",
-          "Dividing by transaction count rather than volume",
-          "Reporting the reduction (4.8bp) instead of what remains (3.2bp)"
-        ]
-      },
-      "followUp": "So both bars are cleared: $56M of five-year value, and a fraud rate of 3.2bp against a 5bp requirement. Before we recommend, the risk function will ask what could go wrong with the system itself.",
-      "scoringWeights": {
-        "accuracy": 0.6,
-        "structure": 0.2,
-        "communication": 0.2
-      }
-    },
-    {
-      "id": "q8",
-      "type": "brainstorming",
-      "timeLimitSeconds": 120,
-      "prompt": "What are the most relevant risks of relying on the new screening system? Select the three most relevant.",
+      "prompt": "Which of the following is likely to be true for Scenario 2 compared with Scenario 1? Use the data below for your revised calculation. The change is described under the exhibit.",
+      "exhibitIds": ["ex2"],
       "responseFormat": "choice",
-      "selectCount": 3,
-      "options": [
-        "Model drift — fraudsters adapt, and a 60% reduction today may not hold next year",
-        "Integration risk — the system must sit inside payment flows that cannot go down",
-        "Branch refurbishment delays",
-        "Governance risk — the regulator will ask how an ML model’s decisions are explained and audited",
-        "The vendor’s office location"
-      ],
+      "selectCount": 1,
+      "options": ["The switch is worth making in Scenario 2, having not been worth making in Scenario 1", "The switch remains not worth making, though by a smaller margin", "The net benefit is unchanged, because the system's detection rate has not changed", "There is not enough information to decide"],
       "idealAnswer": {
-        "correctOptions": [
-          0,
-          1,
-          3
-        ],
-        "optionRationale": [
-          "The central risk: fraud is an adversary, not a constant, and the business case assumes the reduction persists.",
-          "Real: screening sits in the authorisation path, and an outage there stops card payments, not just fraud checks.",
-          "Branches are not part of this case.",
-          "Real and specific to ML: a regulator that set a loss threshold will also expect the model to be explainable, monitored and challengeable.",
-          "Immaterial."
-        ],
-        "commonMistakes": [
-          "Treating the vendor’s reduction figures as permanent rather than a moving target",
-          "Missing model governance — a compliance case solved with a tool the regulator cannot audit is not solved"
-        ]
+        "correctOptions": [0],
+        "optionRationale": ["Correct. With 1,100,000 alerts reviewable, all 600,000 extra alerts get looked at, so the full $3.0M of extra prevention lands. Review cost rises to 600,000 × $1.50 = $0.9M, the licence is still $1.5M, and the net benefit is +$600,000 a year. The model did not improve — the bank's ability to act on it did.", "Wrong, and it is the answer you get if you keep the one-third cap from Scenario 1 without re-reading the capacity row.", "Wrong. The detection rate is indeed unchanged; that is exactly why this is worth noticing. What changed is how much of that detection reaches a human, which is where the value was being lost.", "Wrong. Capacity, alert volumes, prevention rates, review cost and licence are all given. This option deserves real consideration in a case where something is genuinely missing; here nothing is."],
+        "keyPoints": ["−$800,000 becomes +$600,000: a $1.4M swing with no change to the technology.", "The binding constraint was review capacity, so relieving it is where the value came from.", "$0.9M of review cost buys $3.0M of prevention — the overflow alerts are worth reviewing on their own merits."],
+        "commonMistakes": ["Re-running the whole calculation from scratch and losing the incremental framing.", "Assuming more capacity must mean more cost without checking what that cost buys.", "Choosing 'not enough information' because the offshore arrangement feels underspecified."]
       },
-      "followUp": "Model drift: agree performance floors in the vendor contract, monitor weekly, and keep an in-house challenger model.\n\nIntegration: run the system in shadow mode against live traffic before it takes decisions, with a kill-switch back to the current rules.\n\nGovernance: stand up model documentation, decision explainability and an audit trail from day one — take the regulator through it before go-live, not after.",
       "scoringWeights": {
-        "creativity": 0.3,
-        "accuracy": 0.4,
+        "accuracy": 0.7,
         "structure": 0.3
       }
     },
     {
-      "id": "q9",
+      "id": "q8",
       "type": "synthesis",
       "timeLimitSeconds": 180,
-      "prompt": "Harbrook’s Chief Risk Officer asks for your recommendation on the system. Please give your answer in seven to eight lines maximum.",
+      "prompt": "Please explain in 2 to 3 lines the reasoning behind your answer to the previous question — and say what that implies about where Harbrook's real problem lies.",
       "responseFormat": "text",
-      "maxLines": 8,
+      "maxLines": 3,
       "idealAnswer": {
-        "keyPoints": [
-          "Leads with the recommendation: buy and implement the system",
-          "Gives the compliance answer first — fraud falls from 8bp to 3.2bp, clearing the regulator’s 5bp bar with room",
-          "Gives the financial answer with numbers: $15.2M a year net, $56M over five years, payback inside two years",
-          "Notes the customer side: half the false declines disappear, which the complaint numbers will show",
-          "Names the conditions: shadow-mode rollout, contractual performance floors, and model governance the regulator can audit",
-          "Stays inside seven or eight lines"
-        ],
-        "commonMistakes": [
-          "Leading with the ROI and treating the regulatory requirement as a footnote — it is the reason the case exists",
-          "Presenting vendor reduction figures as certainties rather than contracted targets",
-          "Omitting the false-decline benefit, which is a third of the value"
-        ]
+        "keyPoints": ["The system's detection is identical in both scenarios; what changes is how much of it a human ever acts on.", "With the overflow reviewed, the full incremental prevention lands and the extra review cost is small against it, so the switch pays.", "The implication: Harbrook's constraint was never model quality, it was alert-handling capacity — and the cheapest move may be to add review capacity, with or without the vendor.", "A strong answer notes that the same logic should be applied to today's rules: are there alerts already being released unreviewed?"],
+        "commonMistakes": ["Describing what changed in the exhibit rather than why it changes the decision.", "Concluding that the vendor's system is good, when the finding is that capacity was the binding constraint.", "Missing the follow-on question about whether to buy capacity instead of software."]
+      },
+      "followUp": "That is the argument the Chief Risk Officer needs on Thursday. Separately, the technology team has asked whether Harbrook should build its own screening model rather than license one.",
+      "scoringWeights": {
+        "structure": 0.3,
+        "accuracy": 0.35,
+        "communication": 0.35
+      }
+    },
+    {
+      "id": "q9",
+      "type": "brainstorming",
+      "timeLimitSeconds": 180,
+      "prompt": "Choose the four pieces of data that, when combined, would allow us to estimate the net benefit of a model Harbrook builds itself, over the model's whole life. Assume the review team can handle every alert it raises.",
+      "responseFormat": "choice",
+      "selectCount": 4,
+      "options": ["Upfront cost to build, validate and get regulatory approval for the model", "Number of years the model will stay effective before it must be rebuilt", "Fraud value the model would prevent in each year of its life", "Alert review cost in each year of the model's life", "Cost of running, monitoring and retraining the model in each year of its life", "The share of the model's alerts that turn out to be genuine fraud", "The vendor's licence fee for the system Harbrook would otherwise buy"],
+      "idealAnswer": {
+        "correctOptions": [0, 2, 3, 4],
+        "optionRationale": ["Needed. Lifetime net benefit is what the model delivers less what it cost to put in place.", "Not needed. Three of the other items are already given 'in each year of its life', so the number of years is carried by them. Spending one of your four picks on it costs you a real input.", "Needed, and per year: prevention will not be flat across the model's life as fraud patterns move.", "Needed. Alerts are only worth raising if they are reviewed, and reviewing them costs money.", "Needed. A model is not a one-off purchase; monitoring and retraining are the running cost of keeping it accurate.", "Not needed here, though it is the first thing most people ask a vendor. The fraud prevented in each year already embeds how accurate the model is: picking this as well is asking for the same fact twice, and it costs you one of your four.", "Not needed for this estimate. The vendor's fee is what you compare the answer against once you have it — it is not an input to the build's own benefit."],
+        "keyPoints": ["Lifetime net benefit = Σ over years of (fraud prevented − review cost − run and retrain cost) − upfront cost.", "That expression consumes exactly the four selected items and nothing else.", "A figure implied by another figure is not a missing input, and the alternative's price is not an input at all."],
+        "commonMistakes": ["Taking the number of years because a lifetime calculation obviously needs one, without noticing the per-year projections already carry it.", "Taking the vendor licence fee because the case has been about the vendor throughout.", "Estimating prevented fraud but forgetting that the model has to be run and retrained every year."]
+      },
+      "followUp": "Thanks. One last thing before the paper goes up.",
+      "scoringWeights": {
+        "structure": 0.5,
+        "accuracy": 0.5
+      }
+    },
+    {
+      "id": "q10",
+      "type": "brainstorming",
+      "timeLimitSeconds": 240,
+      "prompt": "Your BCG project leader has asked you for the potential downsides of Harbrook relying on the new screening system — the things that could go wrong even if the arithmetic works. Could you share your thoughts in 3 to 4 lines?",
+      "responseFormat": "text",
+      "maxLines": 4,
+      "idealAnswer": {
+        "keyPoints": ["False positives: a system that blocks three times as many transactions will decline more genuine ones, and declined customers stop using the card — a revenue and attrition cost that does not appear in the fraud numbers.", "Model risk and explainability: a machine-learning model needs regulatory approval, monitoring and a documented rationale for each decline, and it drifts as fraud patterns change.", "Dependence on the vendor: pricing power at renewal, and no in-house capability if the contract ends.", "Operational risk in the offshore review arrangement — quality, turnover and data protection on the overflow alerts.", "Fraudsters adapt: measured prevention rates decay once criminals learn what the new model catches."],
+        "commonMistakes": ["Listing generic technology-project risks with no connection to how fraud screening earns its money.", "Missing the false-positive cost, which is the one risk that runs directly against the benefit just calculated.", "Repeating the capacity argument instead of naming risks to the plan itself."]
       },
       "scoringWeights": {
-        "communication": 0.4,
+        "creativity": 0.35,
         "structure": 0.3,
-        "accuracy": 0.3
+        "communication": 0.35
       }
     }
   ],
-  "closing": "That is the end of the case. Your transcript is ready — copy it into an LLM to be graded on what you actually said, not on what you meant.",
+  "closing": "That is everything. You separated what the system detects from what the bank can act on, found that the case turned on review capacity rather than model quality, and then watched the decision flip when that constraint was relieved. Thank you — the Chief Risk Officer gets the paper on Thursday.",
   "authoring": {
-    "model": "claude-fable-5",
-    "generatedAt": "2026-08-25",
+    "model": "claude-opus-5",
+    "generatedAt": "2026-08-29",
     "mathVerifiedWith": "code-execution (node)",
-    "verificationLog": "=== Today ===\nCard volume                                                    40.0000 $B\nFraud losses at 8bp                                            32.0000 $M/yr\nFalsely declined transactions                                  10.0000 M/yr\nBlocked legitimate volume                                       0.8000 $B/yr\nForgone interchange at 1.5%                                    12.0000 $M/yr\n\n=== New screening system ===\nFraud losses avoided (60% cut)                                 19.2000 $M/yr\nInterchange recovered (declines halved)                         6.0000 $M/yr\nRunning cost                                                   10.0000 $M/yr\nAnnual net benefit                                             15.2000 $M/yr\nFive-year net benefit after one-off                            56.0000 $M\nRemaining fraud losses                                         12.8000 $M/yr\nRemaining fraud rate                                            3.2000 bp\n\n=== Assertions against the values declared in the JSON ===\nPASS  q3 annual fraud losses ($M): derived 32.0000 vs declared 32.0000 (tol 2%)\nPASS  q4 forgone interchange ($M): derived 12.0000 vs declared 12.0000 (tol 2%)\nPASS  q5 annual net benefit ($M): derived 15.2000 vs declared 15.2000 (tol 2%)\nPASS  q6 five-year net benefit ($M): derived 56.0000 vs declared 56.0000 (tol 2%)\nPASS  q7 remaining fraud rate (bp): derived 3.2000 vs declared 3.2000 (tol 2%)\n\n=== Figures quoted inside follow-up text and rationale ===\nPASS  card volume quoted in q1 follow-up ($B): derived 40.0000 vs declared 40.0000 (tol 2%)\nPASS  blocked volume quoted in q4 solution ($B): derived 0.8000 vs declared 0.8000 (tol 2%)\nPASS  fraud saved quoted in q5 solution ($M): derived 19.2000 vs declared 19.2000 (tol 2%)\nPASS  remaining fraud losses quoted in q7 solution ($M): derived 12.8000 vs declared 12.8000 (tol 2%)\nPASS  gross annual benefit quoted in q5 follow-up ($M): derived 25.2000 vs declared 25.2000 (tol 2%)\n\n=== Sanity ===\nRemaining 3.2bp is under the regulator’s 5bp threshold: true\nForgone interchange ($12M) is meaningful next to fraud ($32M): true\nSystem pays back inside two years (20 / 15.2): true\n"
+    "verificationLog": "=== Harbrook Bank: the fraud screening decision ===\nPASS  exhibit fraud attempts match the model\nPASS  exhibit fraud value matches the model\nPASS  exhibit alert volumes match the model\nPASS  exhibit prevention rates match the model\nPASS  exhibit review capacity matches the model\nPASS  exhibit review cost and licence match the model\nPASS  scenario 2 changes the capacity row only\n\nfraud exposure $12,000,000; extra alerts 600000; spare review capacity 200000 (33.3% of the extra)\nincremental prevented $1,000,000; incremental review cost $300,000; licence $1,500,000\nscenario 1 net benefit $-800,000; scenario 2 net benefit $600,000\n\nPASS  q2 (annual net benefit, scenario 1) = -800,000  declared -800,000, tolerance ±1%\nPASS  q4 (incremental fraud prevented) = 1,000,000  declared 1,000,000, tolerance ±1%\nPASS  q5 (incremental review cost) = 300,000  declared 300,000, tolerance ±1%\n\nPASS  q2 worked quotes $12.0M\nPASS  q2 worked quotes $6.0M\nPASS  q2 worked quotes $9.0M\nPASS  q2 worked quotes $1.0M\nPASS  q2 worked quotes $0.3M\nPASS  q2 worked quotes −$800,000\nPASS  q2 mistakes quotes $7.2M\nPASS  q2 mistake \"$7.2M\" is the full-prevention-minus-existing error\nPASS  q2 mistake \"$600,000\" is scenario 2's answer\nPASS  q5 worked solution quotes the unchanged $450,000 of existing review cost\nPASS  q5 mistakes quote $1,350,000 and $750,000\n\nPASS  q6 option 0 (vendor charges $2.00 per reviewed alert instead of the licence) moves the net benefit  $-800,000 -> $300,000\nPASS  q6 option 1 (fraud attempts 20% higher) moves the net benefit  $-800,000 -> $-600,000\nPASS  q6 option 2 (a competitor deploys the same system) does not move the net benefit  $-800,000 -> $-800,000\nPASS  q6 option 3 (review analyst headcount is fixed, so the $1.50 is committed) moves the net benefit  $-800,000 -> $-500,000\nPASS  q6 option 4 (restatement of the alert volumes) does not move the net benefit  $-800,000 -> $-800,000\nPASS  q6 option 0 rationale quotes +$300,000\nPASS  q6 option 1 rationale quotes $1.2M and −$600,000\nPASS  q6 option 3 rationale quotes −$500,000\n\nPASS  q7 scenario 2 turns the decision positive  $-800,000 -> $600,000\nPASS  q7 declares \"worth making in Scenario 2\"\nPASS  q7 rationale quotes $3.0M, $0.9M and +$600,000\nPASS  q7 keyPoints quote the $1.4M swing\n\nq9 lifetime net benefit = SUM over years[ fraud prevented(y) - review cost(y) - run and retrain cost(y) ] - upfront cost\n        inputs consumed: [0] upfront, [2] prevented by year, [3] review cost by year, [4] run/retrain by year\n        [1] years is carried by the per-year projections; [5] the precision of the model is already inside [2];\n        [6] the vendor licence is the comparison, not an input to the build.\nPASS  q9 declares exactly the four sufficient inputs\nPASS  q9 formula computes on those four inputs alone  worked example: $-1,850,000\n\nPASS  pacing budget fits inside the case clock  1770s of 2100s\nPASS  8-10 questions  10\nPASS  the last question is written\nPASS  every exhibit reaches the candidate  ex0:shown ex1:shown ex2:shown\nPASS  q6 rationale covers every option\nPASS  q6 correctOptions agrees with selectCount  select-all, 3 correct\nPASS  q7 rationale covers every option\nPASS  q7 correctOptions agrees with selectCount  1\nPASS  q9 rationale covers every option\nPASS  q9 correctOptions agrees with selectCount  4\nPASS  q2 tells the candidate how to format the number\nPASS  q2 explains how to enter a negative answer\nPASS  q4 tells the candidate how to format the number\nPASS  q5 tells the candidate how to format the number\nPASS  every question names its own common mistakes\nPASS  scoring weights sum to 1.0\nPASS  selectCount varies across the case  0, 1, 4\nPASS  the case is marked hard\nPASS  at least two explain-your-answer questions  2\n\nALL 54 ASSERTIONS PASSED"
   }
 }

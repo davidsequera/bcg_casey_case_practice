@@ -1,418 +1,269 @@
 {
   "schemaVersion": 2,
   "id": "coffee-chain-profitability",
-  "title": "Corvo Coffee: the vanishing profit",
+  "title": "Corvo Coffee: the queue at eight in the morning",
   "industry": "Consumer",
   "functionalPractice": "Marketing, Sales & Pricing",
-  "difficulty": "medium",
-  "estimatedMinutes": 30,
-  "totalTimeSeconds": 1800,
-  "prompt": "Our client is Corvo Coffee, a coffee-shop chain operating company-owned stores in one country. Between 2021 and 2024 the chain grew from 350 to 400 stores, and management expected profit to grow with it. Instead, group profit has collapsed and the board is alarmed. The CEO has asked us one question: what happened to our profit, and what should we do about it?",
+  "difficulty": "hard",
+  "estimatedMinutes": 35,
+  "totalTimeSeconds": 2100,
+  "prompt": "A coffee shop's day is not one market but two. Between seven and ten in the morning, commuters arrive faster than the store can serve them: the queue builds, and some customers look at it and leave without buying. For the rest of the trading day the same store, the same staff and the same machines run well below what they could handle. Our client is Corvo Coffee, a chain of 400 company-owned stores trading 350 days a year, all built to the same format. Corvo's operations director has counted the customers who walk away from the morning queue and believes the chain is leaving money on the pavement; she wants to put one extra barista into every store and has asked us whether that pays. Two things will matter today: at peak the store is capacity-constrained, so a sale it does not make is a sale it cannot recover later that hour, and the cost of a fix must be matched to the hours the fix is actually needed.",
   "exhibits": [
     {
+      "id": "ex0",
+      "title": "Exhibit 1 — The shape of a Corvo trading day",
+      "type": "text",
+      "text": "07:00–10:00 is peak: every till and machine is running flat out, the queue is long, and some arriving customers leave without ordering. 10:00–18:00 is off-peak: the same store runs at about a third of what it could serve, and nobody queues. A store trades 11 hours a day, 350 days a year, and Corvo has 400 of them."
+    },
+    {
       "id": "ex1",
-      "title": "Exhibit 1 — Average store P&L, 2021 vs 2024",
+      "title": "Exhibit 2 — One Corvo store, an average trading day (Scenario 1)",
       "type": "table",
-      "unitsNote": "$ thousands per store per year",
-      "source": "Client management accounts",
       "table": {
-        "columns": [
-          "Line",
-          "2021",
-          "2024"
-        ],
+        "columns": ["", "Peak (07:00–10:00)", "Off-peak (10:00–18:00)"],
         "rows": [
-          [
-            "Revenue",
-            900,
-            840
-          ],
-          [
-            "Cost of goods sold",
-            270,
-            294
-          ],
-          [
-            "Store labour",
-            315,
-            336
-          ],
-          [
-            "Rent",
-            108,
-            126
-          ],
-          [
-            "Other operating costs",
-            63,
-            63
-          ],
-          [
-            "Store profit",
-            144,
-            21
-          ]
+          ["Hours per day", 3, 8],
+          ["Customers served per hour", 120, 40],
+          ["Most customers the store can serve per hour", 120, 120],
+          ["Customers who leave without buying, per hour", 30, 0],
+          ["Price per cup (USD)", 4.5, 4.5],
+          ["Ingredient and cup cost per cup (USD)", 1.5, 1.5]
         ]
-      }
+      },
+      "unitsNote": "Every customer buys exactly one cup. Store rent, utilities and the existing staff rota are the same whatever the store sells.",
+      "source": "Store observation study across a sample of 40 stores"
     },
     {
       "id": "ex2",
-      "title": "Exhibit 2 — Store footprint and traffic",
+      "title": "Exhibit 3 — What an extra barista would cost and do",
+      "type": "text",
+      "text": "An extra barista lifts the store's capacity by 30 customers an hour for every hour they are on duty. Corvo can hire them on a peak-only shift of 3 hours at $90 a day, or on a full 11-hour shift at $180 a day. The operations director's proposal is one extra barista in each of the 400 stores, on the peak-only shift, for all 350 trading days."
+    },
+    {
+      "id": "ex3",
+      "title": "Exhibit 4 — Scenario 2: the walk-away count re-measured",
       "type": "table",
-      "unitsNote": "Chain level",
-      "source": "Client data",
       "table": {
-        "columns": [
-          "Metric",
-          "2021",
-          "2024"
-        ],
+        "columns": ["", "Peak (07:00–10:00)", "Off-peak (10:00–18:00)"],
         "rows": [
-          [
-            "Stores at year end",
-            350,
-            400
-          ],
-          [
-            "Transactions per store per day",
-            600,
-            500
-          ],
-          [
-            "Average ticket ($)",
-            5,
-            5.6
-          ],
-          [
-            "Trading days per year",
-            300,
-            300
-          ]
+          ["Hours per day", 3, 8],
+          ["Customers served per hour", 120, 40],
+          ["Most customers the store can serve per hour", 120, 120],
+          ["Customers who leave without buying, per hour", 15, 0],
+          ["Price per cup (USD)", 4.5, 4.5],
+          ["Ingredient and cup cost per cup (USD)", 1.5, 1.5]
         ]
-      }
+      },
+      "unitsNote": "Changed from Scenario 1: a larger observation study counts 15 walk-aways an hour at peak, not 30. Every other figure is unchanged."
     }
   ],
   "questions": [
     {
       "id": "q1",
       "type": "structuring",
-      "timeLimitSeconds": 90,
-      "prompt": "Before we look at any data, what should we check with the client? Select the two most relevant.",
-      "responseFormat": "choice",
-      "selectCount": 2,
-      "options": [
-        "How many drinks does the average customer buy per visit?",
-        "What exactly does the board mean by profit — group profit, or margin per store?",
-        "Has the competitive landscape changed over this period?",
-        "What is the chain's brand awareness among under-25s?",
-        "How many roasting facilities does the chain operate?"
-      ],
+      "timeLimitSeconds": 180,
+      "prompt": "Let's start with the right structure. What are the three key questions you would need to answer in order to tell Corvo whether to put an extra barista into every store? Please summarise them in 3 lines maximum.",
+      "exhibitIds": ["ex0"],
+      "responseFormat": "text",
+      "maxLines": 3,
       "idealAnswer": {
-        "correctOptions": [
-          1,
-          2
-        ],
-        "optionRationale": [
-          "A drill-down you would reach for later, once you know whether the problem is traffic or basket.",
-          "Essential. Group profit and per-store margin tell different stories when the store count is moving.",
-          "Essential. Three years is long enough for the market to have changed under the client.",
-          "Brand awareness is a symptom at best, and it will not tell you where the profit went.",
-          "Supply-side structure is not where a chain loses four fifths of its profit in three years."
-        ],
-        "commonMistakes": [
-          "Diving into store-level detail before pinning down what the board is actually measuring",
-          "Ignoring the outside world in a problem that spans three years"
-        ]
+        "keyPoints": ["How much demand is genuinely being lost, and is it lost for good or recovered later in the day?", "What would an extra barista actually capture — how much extra capacity, in the hours where capacity is the constraint?", "What does that capture cost, and does the cost have to be carried for hours when the store is already half empty?"],
+        "commonMistakes": ["Reaching for a generic profitability tree (revenue, cost, price, volume) rather than the three questions this decision turns on.", "Treating the walk-aways as pure incremental demand without asking whether those customers come back.", "Ignoring that the constraint exists for three hours a day and the cost might be incurred for eleven.", "Naming six things when the interviewer asked for three."]
       },
-      "followUp": "On the metric: both have fallen, but the board cares most about absolute group profit.\n\nOn the estate: the pattern is broadly uniform. The 50 new stores perform in line with the rest, so this is not a bad-openings problem.\n\nOn competition: two low-price chains entered the market in 2022 and now operate roughly 200 stores between them.",
+      "followUp": "Good. The operations team has done an observation study across 40 stores, and the people team has priced the two ways of hiring the extra barista.",
+      "followUpExhibitIds": ["ex1", "ex2"],
       "scoringWeights": {
-        "structure": 0.4,
-        "accuracy": 0.4,
-        "communication": 0.2
+        "structure": 0.5,
+        "creativity": 0.2,
+        "communication": 0.3
       }
     },
     {
       "id": "q2",
-      "type": "structuring",
-      "timeLimitSeconds": 120,
-      "prompt": "How would you structure your approach to finding out why Corvo's profit has fallen? Select the four areas you would investigate.",
-      "responseFormat": "choice",
-      "selectCount": 4,
-      "options": [
-        "Revenue per store, split into transactions and average ticket",
-        "Cost per store, split into variable lines (COGS, hourly labour) and fixed lines (rent, other)",
-        "The number of stores, and how group profit moves with it",
-        "External change: the new entrants, category demand, input-cost and rent inflation",
-        "The chain's social-media engagement rate",
-        "Store-opening costs incurred before 2021",
-        "The CEO's compensation structure"
-      ],
+      "type": "math",
+      "timeLimitSeconds": 300,
+      "prompt": "Scenario 1: given the data in the exhibits, what would the operations director's proposal add to Corvo's annual profit across the whole chain? Please give your answer rounded to the nearest whole number, without further explanation or working.",
+      "exhibitIds": ["ex1", "ex2"],
+      "responseFormat": "number",
+      "unit": "USD per year",
+      "tolerancePct": 1,
+      "answerFormatNote": "Give your answer in USD per year, rounded to the nearest whole number (for example 1111 or 123456 or 500885), without further explanation or working. If the proposal loses money, enter the answer with a minus sign, for example -250000.",
       "idealAnswer": {
-        "correctOptions": [
-          0,
-          1,
-          2,
-          3
-        ],
-        "optionRationale": [
-          "The first fork in a retail profit tree: is the store selling less, or selling for less?",
-          "The second fork, and the one that tells you whether costs moved with volume or against it.",
-          "The bridge between per-store economics and the group number the board is watching.",
-          "The reason the internal numbers moved. Without it you can describe the fall but not explain it.",
-          "An engagement metric will not reconcile to a dollar of profit.",
-          "Sunk, and outside the window the board asked about.",
-          "Governance, not economics — it explains nothing about store profitability."
-        ],
-        "commonMistakes": [
-          "Reciting a generic profitability tree instead of tailoring it to a store-based chain",
-          "Forgetting the store count, so group profit and per-store profit get conflated",
-          "Jumping to cost cutting before sizing the revenue problem"
-        ]
+        "value": 25200000,
+        "workedSolution": "Contribution per cup = $4.50 − $1.50 = $3.00.\nWhere is the constraint? Only at peak: the store serves 120 an hour against a ceiling of 120, and 30 customers an hour leave. Off-peak it serves 40 against a ceiling of 120, so nothing is lost there and an extra barista adds nothing.\nAn extra barista adds 30 customers an hour, exactly the number walking away, for the 3 peak hours: 30 × 3 = 90 extra cups a day.\nExtra contribution = 90 × $3.00 = $270 a day. Peak-only shift = $90 a day. Uplift = $180 a day per store.\nAcross the chain: $180 × 350 days × 400 stores = $25,200,000 a year.",
+        "keyPoints": ["The uplift exists only in the hours when capacity binds; the other eight hours contribute nothing.", "Match the shift to the constraint: the peak-only barista costs half as much as the full shift and captures exactly the same cups.", "Rent, utilities and the existing rota do not change, so they are not part of this decision."],
+        "commonMistakes": ["Applying the 30 walk-aways an hour across all 11 trading hours and answering $126,000,000 — averaging away the very peak the case is about.", "Pricing the full 11-hour shift at $180 and answering $12,600,000 when the constraint lasts three hours.", "Using the $4.50 price rather than the $3.00 contribution, and answering $44,100,000.", "Loading a share of store rent onto the extra cups, when rent does not change."]
       },
-      "followUp": "That is the right frame. The arithmetic you will need is:\n\ngroup profit = store profit × number of stores\nrevenue per store = transactions per day × average ticket × trading days\n\nHere are both exhibits.",
-      "followUpExhibitIds": [
-        "ex1",
-        "ex2"
-      ],
       "scoringWeights": {
-        "structure": 0.5,
-        "accuracy": 0.3,
-        "communication": 0.2
+        "accuracy": 0.8,
+        "structure": 0.2
       }
     },
     {
       "id": "q3",
-      "type": "exhibit",
-      "timeLimitSeconds": 120,
-      "prompt": "Start by checking the two exhibits agree with each other. Using the footprint data only, what was revenue per store in 2024?",
-      "exhibitIds": [
-        "ex1",
-        "ex2"
-      ],
-      "responseFormat": "number",
-      "unit": "$K",
-      "tolerancePct": 2,
-      "answerFormatNote": "Enter in $ thousands per store per year, e.g. 900.",
+      "type": "math",
+      "timeLimitSeconds": 150,
+      "prompt": "Please explain briefly the reasoning behind your answer to the previous question, in 3 lines maximum.",
+      "responseFormat": "text",
+      "maxLines": 3,
       "idealAnswer": {
-        "value": 840,
-        "workedSolution": "500 transactions per day × $5.60 average ticket × 300 trading days = $840,000 per store, or $840K.\nThat is exactly the revenue line in the P&L, so the two exhibits are consistent and you can use them together.",
-        "commonMistakes": [
-          "Using the 2021 ticket of $5.00 with the 2024 transaction count",
-          "Forgetting the 300 trading days and answering a daily or weekly figure"
-        ]
+        "keyPoints": ["The store only loses sales where it is capacity-constrained, which is the three peak hours; off-peak there is spare capacity and no queue.", "An extra barista adds 30 customers an hour, which is exactly the walk-away rate, so the capture is 90 cups a day valued at contribution, not price.", "The cost is matched to those hours — a peak-only shift — and then scaled by 350 trading days and 400 stores.", "Fixed store costs are untouched by the decision and stay out of the calculation."],
+        "commonMistakes": ["Explaining the multiplication without saying why only the peak hours count.", "Describing the gain as revenue rather than contribution.", "Not mentioning that the barista's capacity uplift happens to match the walk-away rate — the assumption the next questions will test."]
       },
-      "followUp": "Exactly — and it ties to the P&L revenue line, so the two exhibits are consistent. Now let's take the revenue fall apart.",
+      "followUp": "Understood. The people team confirms the peak-only shift is deliverable: baristas can be recruited for a three-hour morning contract in every market Corvo trades in.",
       "scoringWeights": {
-        "accuracy": 0.5,
         "structure": 0.3,
-        "communication": 0.2
+        "accuracy": 0.4,
+        "communication": 0.3
       }
     },
     {
       "id": "q4",
       "type": "math",
       "timeLimitSeconds": 90,
-      "prompt": "By what percentage did transactions per store per day fall between 2021 and 2024?",
-      "exhibitIds": [
-        "ex2"
-      ],
+      "prompt": "I'd like to check a couple of the parameters behind that. In Scenario 1, how many extra cups would one store sell on a trading day with the extra barista? Please give your answer rounded to the nearest whole number, without further explanation or working.",
+      "exhibitIds": ["ex1", "ex2"],
       "responseFormat": "number",
-      "unit": "%",
-      "tolerancePct": 2,
-      "answerFormatNote": "Enter the percentage fall, e.g. 12.5.",
+      "unit": "cups per store per day",
+      "tolerancePct": 1,
+      "answerFormatNote": "Give your answer in cups per store per day, rounded to the nearest whole number (for example 1111 or 123456 or 500885), without further explanation or working.",
       "idealAnswer": {
-        "value": 16.7,
-        "workedSolution": "(600 − 500) / 600 = 16.7%.",
-        "commonMistakes": [
-          "Dividing by the 2024 figure instead of the 2021 base, giving 20%",
-          "Answering the absolute fall of 100 transactions rather than the percentage"
-        ]
+        "value": 90,
+        "workedSolution": "The barista lifts capacity by 30 customers an hour, and 30 customers an hour are walking away, so all 30 can be served.\nThey are only on duty for the 3 peak hours, and only at peak is anyone lost.\n30 × 3 = 90 extra cups a day.",
+        "keyPoints": ["Capture is the smaller of the extra capacity and the demand that is being turned away.", "Off-peak hours add nothing, because nobody is being turned away then."],
+        "commonMistakes": ["30 × 11 = 330, applying the walk-away rate to the whole trading day.", "Adding off-peak headroom to the answer, when there is no unmet demand off-peak.", "Answering 120, the store's hourly ceiling rather than the extra cups."]
       },
-      "followUp": "Traffic is down 16.7%, while the average ticket rose 12.0%, from $5.00 to $5.60. Net, revenue per store is down 6.7%.\n\nSo Corvo has been raising prices into a falling footfall — and the price rises have not covered the customers lost.",
+      "followUp": "Thanks. For reference, the observation study also found that the walk-away rate is stable across the three peak hours — it does not spike in a single half-hour.",
       "scoringWeights": {
-        "accuracy": 0.6,
-        "communication": 0.4
+        "accuracy": 0.85,
+        "structure": 0.15
       }
     },
     {
       "id": "q5",
       "type": "math",
-      "timeLimitSeconds": 210,
-      "prompt": "Using the store P&L and the footprint data, how much did chain-level store profit change between 2021 and 2024?",
-      "exhibitIds": [
-        "ex1",
-        "ex2"
-      ],
+      "timeLimitSeconds": 90,
+      "prompt": "And what would the proposal add to the annual profit of a single store? Please give your answer rounded to the nearest whole number, without further explanation or working.",
+      "exhibitIds": ["ex1", "ex2"],
       "responseFormat": "number",
-      "unit": "$M",
-      "tolerancePct": 2,
-      "answerFormatNote": "This is a fall. Enter its size in $ millions, without a minus sign.",
+      "unit": "USD per store per year",
+      "tolerancePct": 1,
+      "answerFormatNote": "Give your answer in USD per store per year, rounded to the nearest whole number (for example 1111 or 123456 or 500885), without further explanation or working.",
       "idealAnswer": {
-        "value": 42,
-        "workedSolution": "2021: 350 stores × $144K = $50.4M.\n2024: 400 stores × $21K = $8.4M.\nChange: $8.4M − $50.4M = −$42.0M, a fall of $42M.",
-        "commonMistakes": [
-          "Multiplying both years by the same store count, which hides that expansion partly offset the decline",
-          "Answering the per-store fall of $123K and never getting to the group number",
-          "Losing a factor of 1,000 — the P&L is in $ thousands per store"
-        ]
+        "value": 63000,
+        "workedSolution": "Extra contribution per day = 90 cups × $3.00 = $270.\nPeak-only barista = $90 a day.\nUplift = $180 a day × 350 trading days = $63,000 per store per year.",
+        "keyPoints": ["Days are trading days, not calendar days.", "The barista is only paid on days the store trades."],
+        "commonMistakes": ["Using 365 days and answering $65,700.", "Forgetting to deduct the barista and answering $94,500.", "Deducting the full-shift $180 and answering $31,500."]
       },
-      "followUp": "A fall of $42M — group store profit went from $50.4M to $8.4M, down 83%.\n\nNote what that means: the store count grew 14.3% over the same period. Expansion was adding profit while per-store economics collapsed underneath it. Without the 50 new stores the group number would look worse still.",
+      "followUp": "That is the store-level picture. Now — the operations director has just come back with a bigger observation study, and the headline number has moved.",
+      "followUpExhibitIds": ["ex3"],
       "scoringWeights": {
-        "accuracy": 0.6,
-        "structure": 0.2,
-        "communication": 0.2
+        "accuracy": 0.85,
+        "structure": 0.15
       }
     },
     {
       "id": "q6",
       "type": "exhibit",
-      "timeLimitSeconds": 150,
-      "prompt": "Look again at the store P&L. Select the three statements it supports.",
-      "exhibitIds": [
-        "ex1"
-      ],
+      "timeLimitSeconds": 180,
+      "prompt": "Which of the following is likely to be true for Scenario 2 compared with Scenario 1? Use the data below for your revised calculation. The change is described under the exhibit.",
+      "exhibitIds": ["ex3"],
       "responseFormat": "choice",
-      "selectCount": 3,
-      "options": [
-        "Store profit per store fell by more than 85%",
-        "Rent rose faster in percentage terms than any other cost line",
-        "Cost of goods sold rose as a share of revenue",
-        "Other operating costs rose roughly in line with inflation",
-        "Total cost per store fell as revenue fell"
-      ],
+      "selectCount": 1,
+      "options": ["The uplift is lower, but the extra barista still pays for itself", "The extra barista now loses money in every store", "The uplift is unchanged, because the barista's capacity has not changed", "There is not enough information to decide"],
       "idealAnswer": {
-        "correctOptions": [
-          0,
-          1,
-          2
-        ],
-        "optionRationale": [
-          "True: $144K to $21K is a fall of 85.4%.",
-          "True: rent +16.7%, against COGS +8.9% and store labour +6.7%.",
-          "True: 30.0% of revenue in 2021, 35.0% in 2024 — the squeeze is on the gross margin, not only the fixed lines.",
-          "False: other operating costs are flat at $63K in both years.",
-          "False, and this is the heart of it — total cost per store ROSE from $756K to $819K while revenue fell."
-        ],
-        "commonMistakes": [
-          "Reading the cost lines in dollars only and missing that COGS also rose as a share of revenue",
-          "Assuming costs must have fallen with volume; they did the opposite"
-        ]
+        "correctOptions": [0],
+        "optionRationale": ["Correct. With 15 walk-aways an hour, the barista's extra capacity of 30 an hour is no longer the constraint — demand is. The store captures 15 × 3 = 45 cups a day, worth $135, against a $90 shift: $45 a day, $15,750 a year per store, $6,300,000 across the chain. Less than a quarter of the Scenario 1 number, and still worth doing.", "Wrong, and it is the intuitive answer: halving the walk-aways does not halve the uplift, it cuts it by three quarters, because the barista's cost is unchanged. But $135 of contribution still covers a $90 shift.", "Wrong. The barista's capacity is unchanged, which is precisely why it stops being the binding constraint: only 15 customers an hour are available to capture, so half the extra capacity goes unused.", "Wrong. Walk-aways, capacity, price, cost and the shift rate are all given. Worth considering seriously where a figure is genuinely missing; here nothing is."],
+        "keyPoints": ["$25.2M becomes $6.3M — a fixed daily cost against a halved capture bites hard.", "The constraint has moved from the store's capacity to the size of the lost demand.", "The decision does not flip, but the margin of safety nearly disappears: at 10 walk-aways an hour the proposal breaks even."],
+        "commonMistakes": ["Halving the Scenario 1 answer to $12.6M, forgetting the barista's cost does not halve.", "Concluding the barista is loss-making because the uplift fell so far.", "Re-deriving the whole chain number without noticing only one row changed."]
       },
-      "followUp": "That is the whole problem in one line: revenue per store fell $60K while cost per store rose $63K. Fixed lines did not flex with the lost traffic, and the gross margin gave way at the same time.\n\nNow let's size the prize on the revenue side.",
       "scoringWeights": {
-        "accuracy": 0.5,
-        "structure": 0.2,
-        "communication": 0.3
+        "accuracy": 0.7,
+        "structure": 0.3
       }
     },
     {
       "id": "q7",
-      "type": "math",
-      "timeLimitSeconds": 210,
-      "prompt": "Suppose Corvo recovered all 100 lost transactions per store per day, at the 2024 average ticket. Assume cost of goods sold stays at its 2024 share of revenue and every other cost line is unchanged. How much would that add to group profit each year?",
-      "exhibitIds": [
-        "ex1",
-        "ex2"
-      ],
-      "responseFormat": "number",
-      "unit": "$M",
-      "tolerancePct": 3,
-      "answerFormatNote": "Enter in $ millions per year, e.g. 12.5.",
+      "type": "synthesis",
+      "timeLimitSeconds": 180,
+      "prompt": "Please explain in 2 to 3 lines the reasoning behind your answer to the previous question — and say what walk-away rate would make the proposal break even.",
+      "responseFormat": "text",
+      "maxLines": 3,
       "idealAnswer": {
-        "value": 43.7,
-        "workedSolution": "Extra revenue per store: 100 × $5.60 × 300 = $168K.\nCOGS runs at 294 / 840 = 35% of revenue, so the incremental COGS is 35% × $168K = $58.8K.\nEvery other line is unchanged, so incremental profit per store is $168K − $58.8K = $109.2K.\nAcross 400 stores: $109.2K × 400 = $43.7M a year.",
-        "commonMistakes": [
-          "Treating all costs as variable and applying the full 2024 cost ratio, which understates the prize badly",
-          "Treating none of the costs as variable, which overstates it by the COGS on the new volume",
-          "Applying the recovery to the 350 stores of 2021 rather than today's 400"
-        ]
+        "keyPoints": ["The barista's cost is fixed per day while the capture varies with demand, so the uplift falls faster than the walk-away rate does.", "At 15 an hour the store captures 45 cups worth $135 against a $90 shift, so it still pays, but with far less room.", "Break-even is where 3 hours × w walk-aways × $3.00 = $90, so w = 10 an hour: below that the proposal loses money.", "A strong answer notes that the decision now rests on the accuracy of an observation study, and that Corvo could pilot rather than roll out to 400 stores."],
+        "commonMistakes": ["Giving the direction without computing the break-even the question asks for.", "Break-even stated per day rather than per hour, without saying which.", "Ignoring that the barista's cost is what makes the uplift fall disproportionately."]
       },
-      "followUp": "About $43.7M a year — slightly more than the $42M the chain lost, because the recovered traffic now comes at the higher $5.60 ticket.\n\nThat is the size of the traffic prize, and it says the answer is a volume answer, not a cost answer. Cost work alone cannot get you there: total costs per store are $819K, and most of that is labour and rent you need in order to trade at all.",
+      "followUp": "That is the right instinct. The operations director accepts the pilot logic, and would like to pressure-test the Scenario 1 number before committing.",
       "scoringWeights": {
-        "accuracy": 0.6,
-        "structure": 0.2,
-        "communication": 0.2
+        "structure": 0.3,
+        "accuracy": 0.4,
+        "communication": 0.3
       }
     },
     {
       "id": "q8",
-      "type": "brainstorming",
-      "timeLimitSeconds": 150,
-      "prompt": "The CEO wants options. Select the four levers most worth putting in front of her.",
+      "type": "exhibit",
+      "timeLimitSeconds": 180,
+      "prompt": "Back to Scenario 1. Which of the following statements, if true, would change the chain-wide annual uplift you calculated? Select all that apply.",
+      "exhibitIds": ["ex1"],
       "responseFormat": "choice",
-      "selectCount": 4,
-      "options": [
-        "Win traffic back with a value tier priced against the new entrants",
-        "Renegotiate rents, and exit the weakest leases at their break clauses",
-        "Re-engineer the menu and supply contracts to pull COGS back toward 30% of revenue",
-        "Raise the average ticket further through attachments and larger formats",
-        "Accelerate store openings so that group profit grows again",
-        "Cut marketing spend to protect the margin",
-        "Sell the roasting operation to release cash"
-      ],
+      "selectCount": 0,
+      "options": ["Baristas cannot be hired on three-hour contracts in this market, only on full 11-hour shifts at $180 a day", "The walk-away rate at peak is 45 customers an hour, not 30", "Store rent is a fixed monthly amount and does not vary with sales", "Ingredient and cup costs will rise by $0.30 a cup next year", "Two in every five customers who walk away at peak come back to the same store later the same day"],
       "idealAnswer": {
-        "correctOptions": [
-          0,
-          1,
-          2,
-          3
-        ],
-        "optionRationale": [
-          "Goes directly at the 16.7% traffic loss, which is where the money is.",
-          "Rent rose 16.7% per store and does not flex with volume — the largest fixed-cost opportunity.",
-          "Five points of gross margin is roughly $42K per store, or $17M across the estate.",
-          "Ticket growth has worked so far; it is worth continuing, but it cannot carry the recovery alone.",
-          "Opening more stores at $21K of profit each adds almost nothing and consumes capital.",
-          "Cutting marketing into a traffic problem makes the traffic problem worse.",
-          "A financing move that does nothing about store economics."
-        ],
-        "commonMistakes": [
-          "Listing levers without weighting them against the numbers just calculated",
-          "Reaching for growth or disposals when per-store economics are the problem"
-        ]
+        "correctOptions": [0, 3, 4],
+        "optionRationale": ["Changes it. The same 90 cups are captured, but the shift now costs $180 instead of $90, so the daily uplift halves to $90 and the chain-wide figure falls to $12,600,000. The capture is unchanged; only the match between cost and constraint is broken.", "Does not change it. The extra barista only adds 30 customers an hour of capacity, so 30 an hour is all that can be captured whatever the walk-away rate is. More lost demand is a reason to consider a second barista — it is not a change to this calculation.", "Does not change it. A cost that is the same whether or not the barista is hired does not belong in an incremental calculation at all.", "Changes it. Contribution falls from $3.00 to $2.70, so the daily capture is worth $243 against the $90 shift and the chain-wide uplift falls to $21,420,000.", "Changes it, and it is the one most often missed. Those customers were never lost — serving them at peak simply moves a sale Corvo would have made anyway. Only three in five of the 90 cups are incremental: 54 cups worth $162, an uplift of $72 a day and $10,080,000 across the chain."],
+        "keyPoints": ["Test each statement against your own terms: capture, contribution, cost, and whether the sale is genuinely incremental.", "A capture capped by the barista's own capacity does not move when demand rises.", "Recovered demand is not lost demand — this is the difference between a sales uplift and a sales transfer."],
+        "commonMistakes": ["Picking the higher walk-away rate, which feels obviously material until you check what the barista can actually serve.", "Picking the fixed rent because it is a large number in the store's P&L.", "Missing the returning customers, which is the only statement that questions whether the demand was lost at all."]
       },
-      "followUp": "Those group into three: recover volume, repair the gross margin, and take back the fixed-cost creep. The volume lever is the biggest, but it is also the one the competitors get a vote on.",
+      "followUp": "That last point has changed the operations director's mind about how to measure this. Separately, the property team has asked about a different way to catch the same commuters.",
       "scoringWeights": {
-        "creativity": 0.3,
-        "structure": 0.4,
-        "accuracy": 0.3
+        "accuracy": 0.6,
+        "structure": 0.4
       }
     },
     {
       "id": "q9",
-      "type": "synthesis",
-      "timeLimitSeconds": 120,
-      "prompt": "The CEO steps into the lift with you. Give her your recommendation in six lines maximum.",
-      "responseFormat": "text",
-      "maxLines": 6,
+      "type": "brainstorming",
+      "timeLimitSeconds": 180,
+      "prompt": "Corvo is considering a small kiosk format for commuter locations. Choose the five pieces of data that, when combined, would allow us to estimate the profit one kiosk would generate over its whole life. Treat every cup a kiosk sells as an incremental sale for the chain.",
+      "responseFormat": "choice",
+      "selectCount": 5,
+      "options": ["Upfront cost to build and fit out the kiosk", "The kiosk's useful life, in years", "Cups the kiosk can sell per year", "Average contribution per cup over the kiosk's life", "Fixed running cost per year, averaged over the kiosk's life", "Customers passing the kiosk site in the busiest hour of the day", "Share of kiosk customers who would otherwise have bought at a nearby Corvo store", "Rent the kiosk site would command on the open market"],
       "idealAnswer": {
-        "keyPoints": [
-          "Leads with the diagnosis: this is a traffic problem, not an expansion problem",
-          "Quantifies it — group store profit down $42M, driven by a 16.7% fall in transactions per store",
-          "Notes that price rises of 12% have not covered the lost customers, and that cost per store rose while revenue fell",
-          "Names the traffic prize at roughly $43.7M a year as the reason to lead with volume",
-          "Gives a second, smaller lever: five points of COGS and the rent creep",
-          "States the risk — the two low-price entrants will respond — and the immediate next step",
-          "Stays inside six lines and does not narrate the calculation"
-        ],
-        "commonMistakes": [
-          "Recommending cost cuts first when the arithmetic points at volume",
-          "Describing the fall without saying what to do about it",
-          "Ignoring that the entrants get a vote on any pricing move"
-        ]
+        "correctOptions": [0, 1, 2, 3, 4],
+        "optionRationale": ["Needed. Lifetime profit is what the kiosk earns less what it cost to build.", "Needed here. Unlike a set of year-by-year projections, these figures are averages, so nothing tells you how many years to run them for. The life has to be picked separately.", "Needed. Annual volume is what the average contribution is applied to.", "Needed. Contribution, not price: the cups cost something to make.", "Needed. A kiosk carries rent, utilities and staff whether or not it is busy.", "Not needed for this number, and it is the most tempting wrong answer in a case about peaks: busiest-hour footfall is what sizes the kiosk's equipment and rota, but lifetime profit runs on annual volume, which another option already gives you.", "Not needed. The question tells you to treat every cup as incremental, which is exactly what this figure would otherwise let you adjust for.", "Not needed as a separate input. Rent is real money, but it is already one of the fixed running costs per year — take it twice and you understate the kiosk by its own rent."],
+        "keyPoints": ["Lifetime profit = years × (cups per year × average contribution per cup − fixed cost per year) − upfront cost.", "That expression consumes exactly the five selected items and nothing else.", "Whether the life is a separate input depends on how the other figures are expressed: averages need a life, year-by-year projections already carry one."],
+        "commonMistakes": ["Taking busiest-hour footfall because this case has been about peak demand throughout, when what the formula needs is the year's volume.", "Taking the cannibalisation share despite the assumption stated in the question.", "Dropping the useful life by analogy with cases where the projections are given year by year."]
+      },
+      "followUp": "Thanks. One last thing before we write this up for the CEO.",
+      "scoringWeights": {
+        "structure": 0.5,
+        "accuracy": 0.5
+      }
+    },
+    {
+      "id": "q10",
+      "type": "brainstorming",
+      "timeLimitSeconds": 240,
+      "prompt": "Your BCG project leader has asked you what could stop the extra-barista uplift from ever showing up in Corvo's accounts, even if the arithmetic is right. Could you share your thoughts in 3 to 4 lines?",
+      "responseFormat": "text",
+      "maxLines": 4,
+      "idealAnswer": {
+        "keyPoints": ["The bottleneck may not be the barista: if the constraint is the espresso machine, the till, or the space to queue, a second pair of hands captures nothing.", "Serving 30 more customers an hour at peak may slow service for everyone, and the walk-aways could return at the same rate.", "Recruitment and rota reality: three-hour morning contracts are hard to fill and turn over fast, and unfilled shifts mean the cost lands without the benefit.", "Measurement: the walk-away count came from an observation study, and the two studies already disagree by a factor of two.", "Whether the extra sales are genuinely new or moved from later in the day, or from the Corvo store two streets away."],
+        "commonMistakes": ["Listing generic retail risks with no link to how the uplift was calculated.", "Missing the possibility that the barista is not the binding constraint, which is the risk that would void the whole number.", "Repeating the walk-away measurement point alone when the question asks for a range of reasons."]
       },
       "scoringWeights": {
-        "communication": 0.4,
+        "creativity": 0.35,
         "structure": 0.3,
-        "accuracy": 0.3
+        "communication": 0.35
       }
     }
   ],
-  "closing": "That is the end of the case. Your transcript is ready — copy it into an LLM to be graded on what you actually said, not on what you meant.",
+  "closing": "That is everything I wanted to cover. You found the constraint, priced the fix against the hours it is actually needed, watched the case nearly collapse when the demand estimate moved, and then separated sales that are new from sales that were only ever moved. Thank you — the CEO sees this on Monday.",
   "authoring": {
     "model": "claude-opus-5",
-    "generatedAt": "2026-08-23",
-    "mathVerifiedWith": "code-execution (python)",
-    "verificationLog": "=== Internal consistency of the two exhibits ===\n2021 revenue per store from traffic: 600 x $5.0 x 300 = $900.0K\nPASS  2021 revenue ties to the P&L: derived 900.0000 vs declared 900.0000 (tol 0.01%)\n2024 revenue per store from traffic: 500 x $5.6 x 300 = $840.0K\nPASS  2024 revenue ties to the P&L: derived 840.0000 vs declared 840.0000 (tol 0.01%)\n2021 total costs per store: $756K\nPASS  2021 store profit ties to the P&L: derived 144.0000 vs declared 144.0000 (tol 0.01%)\n2024 total costs per store: $819K\nPASS  2024 store profit ties to the P&L: derived 21.0000 vs declared 21.0000 (tol 0.01%)\n\n=== Declared answers ===\nPASS  q3 2024 revenue per store ($K): derived 840.0000 vs declared 840.0000 (tol 2%)\nPASS  q4 fall in transactions per store (%): derived 16.6667 vs declared 16.7000 (tol 2%)\n2021 group store profit: $50.4M   2024: $8.4M\nPASS  q5 fall in group store profit ($M): derived 42.0000 vs declared 42.0000 (tol 2%)\nExtra revenue per store: $168.0K   COGS rate 2024: 35.0%\nExtra profit per store: $109.20K   across 400 stores: $43.68M\nPASS  q7 traffic-recovery prize ($M): derived 43.6800 vs declared 43.7000 (tol 2%)\n\n=== Figures quoted in follow-up text and in q6's options ===\nPASS  average ticket rise (%): derived 12.0000 vs declared 12.0000 (tol 2%)\nPASS  revenue per store fall (%): derived 6.6667 vs declared 6.7000 (tol 2%)\nPASS  store profit per store fall (%): derived 85.4167 vs declared 85.4000 (tol 2%)\nPASS  rent per store rise (%): derived 16.6667 vs declared 16.7000 (tol 2%)\nPASS  COGS per store rise (%): derived 8.8889 vs declared 8.9000 (tol 2%)\nPASS  store labour rise (%): derived 6.6667 vs declared 6.7000 (tol 2%)\nPASS  COGS share of revenue 2021 (%): derived 30.0000 vs declared 30.0000 (tol 2%)\nPASS  COGS share of revenue 2024 (%): derived 35.0000 vs declared 35.0000 (tol 2%)\nPASS  store count growth (%): derived 14.2857 vs declared 14.3000 (tol 2%)\nPASS  group profit fall (%): derived 83.3333 vs declared 83.3000 (tol 2%)\n\n=== q6 option checks (three true statements, two false) ===\nTRUE  store profit per store fell more than 85%: 85.4% -> True\nTRUE  rent rose faster than any other cost line: rent 16.7% vs COGS 8.9% vs labour 6.7% -> True\nTRUE  COGS rose as a share of revenue: 30.0% -> 35.0% -> True\nFALSE other operating costs are flat, not inflating: (63, 63) -> True\nFALSE total costs per store ROSE while revenue fell: $756K -> $819K -> True\n\n=== Sanity ===\nAll P&L lines positive: True\n2024 store profit margin: 2.5% (thin but positive)\nPrize of 43.7M vs the 42.0M lost: recovers 104% of the fall\n"
+    "generatedAt": "2026-08-29",
+    "mathVerifiedWith": "code-execution (node)",
+    "verificationLog": "=== Corvo Coffee: the queue at eight in the morning ===\nPASS  exhibit hours match the model\nPASS  exhibit shows the store at its ceiling at peak and below it off-peak\nPASS  exhibit walk-aways match the model\nPASS  exhibit price and cost match the model\nPASS  scenario 2 changes the walk-away row only\n\ncontribution per cup $3; cups captured per store per day 90\nuplift per store per day $180; per store per year $63,000; chain-wide $25,200,000\nscenario 2 (15 walk-aways/hr): $45 a day, $6,300,000 chain-wide\n\nPASS  q2 (chain-wide annual uplift) = 25,200,000  declared 25,200,000, tolerance ±1%\nPASS  q4 (extra cups per store per day) = 90  declared 90, tolerance ±1%\nPASS  q5 (annual uplift per store) = 63,000  declared 63,000, tolerance ±1%\n\nPASS  q2 mistake \"$126,000,000\" is the averaged-across-the-day error\nPASS  q2 mistake \"$12,600,000\" is the full-shift error\nPASS  q2 mistake \"$44,100,000\" is the price-not-contribution error\nPASS  q5 mistakes quote $65,700, $94,500 and $31,500\n\nPASS  q6 scenario 2 uplift is lower but still positive  $25,200,000 -> $6,300,000\nPASS  q6 declares \"lower but still pays\"\nPASS  q6 rationale quotes $135, $45, $15,750 and $6,300,000\nPASS  q6 rationale is right that halving walk-aways more than halves the uplift  $6,300,000 vs half of $25,200,000\nPASS  q7 break-even of 10 walk-aways an hour is right\n\nPASS  q8 option 0 (only full 11-hour shifts can be hired) moves the uplift  $25,200,000 -> $12,600,000\nPASS  q8 option 1 (walk-aways are 45 an hour, not 30) does not move the uplift  $25,200,000 -> $25,200,000\nPASS  q8 option 2 (store rent is a fixed monthly amount) does not move the uplift  $25,200,000 -> $25,200,000\nPASS  q8 option 3 (ingredient and cup costs rise $0.30) moves the uplift  $25,200,000 -> $21,420,000\nPASS  q8 option 4 (two in five walk-aways return later the same day) moves the uplift  $25,200,000 -> $10,080,000\nPASS  q8 option 1 is capped by the barista's own capacity  90 cups either way\nPASS  q8 rationales quote $12,600,000, $21,420,000 and $10,080,000\n\nq9 lifetime profit = years x ( cups per year x average contribution per cup - fixed cost per year ) - upfront fit-out\n        inputs consumed: [0] upfront, [1] years, [2] cups per year, [3] average contribution, [4] fixed cost per year\n        [5] busiest-hour footfall is not the annual volume [2] gives; [6] cannibalisation is excluded by the question's own assumption;\n        [7] site rent is already inside [4]. NOTE: unlike the bank case, the figures here are\n        averages rather than year-by-year projections, so the life IS a required input.\nPASS  q9 declares exactly the five sufficient inputs\nPASS  q9 formula computes on those five inputs alone  worked example: $180,000\n\nPASS  pacing budget fits inside the case clock  1770s of 2100s\nPASS  8-10 questions  10\nPASS  the last question is written\nPASS  every exhibit reaches the candidate  ex0:shown ex1:shown ex2:shown ex3:shown\nPASS  q6 rationale covers every option\nPASS  q6 correctOptions agrees with selectCount  1\nPASS  q8 rationale covers every option\nPASS  q8 correctOptions agrees with selectCount  select-all, 3 correct\nPASS  q9 rationale covers every option\nPASS  q9 correctOptions agrees with selectCount  5\nPASS  q2 tells the candidate how to format the number\nPASS  q4 tells the candidate how to format the number\nPASS  q5 tells the candidate how to format the number\nPASS  every question names its own common mistakes\nPASS  scoring weights sum to 1.0\nPASS  selectCount varies across the case  1, 0, 5\nPASS  the case is marked hard\nPASS  at least two explain-your-answer questions  2\n\nALL 44 ASSERTIONS PASSED"
   }
 }
