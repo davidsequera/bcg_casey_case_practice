@@ -13,7 +13,7 @@ const PLACEHOLDER: Record<Question['type'], string> = {
   math: 'State your approach, then the number.',
   exhibit: 'What does the exhibit say, and so what for the client?',
   brainstorming: 'List your ideas, grouped. Breadth first, then depth.',
-  synthesis: 'Recommendation first, then your reasons, then risks and next steps.',
+  synthesis: 'Your recommendation in the first line, then your reasons with the numbers, then next steps.',
 }
 
 export function AnswerDock({

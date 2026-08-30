@@ -59,9 +59,10 @@ Withhold exactly one thing: the framework. Never hint at buckets.
 
 ---
 
-## Part 2 — The eight question archetypes
+## Part 2 — The nine question archetypes
 
-Build the case out of these. A good 9-question case uses six or seven distinct archetypes; reusing
+Build the case out of these. Archetypes 1 and 9 are fixed — every case opens on the structuring
+question and closes on the recommendation. A good 9-question case uses six or seven distinct archetypes; reusing
 the same three shapes is the most common failure mode of generated cases.
 
 ### 1. Open structuring (question 1, always)
@@ -199,11 +200,71 @@ Brainstorming, scored on judgement rather than on volume:
 
 Include one option that is attractive and wrong for a stateable reason — a benefit this deal's
 structure does not deliver (10% of a market is not market power), or one that runs the wrong way
-(buying upstream in your own industry *increases* cyclicality, it does not decrease it). Close the
-case with the mirror image as free text, `maxLines: 4`:
+(buying upstream in your own industry *increases* cyclicality, it does not decrease it). Pair it
+with the mirror image as free text, `maxLines: 4`, in the **second-to-last** slot:
 
 > "Your project leader has asked for the potential disadvantages — the negative synergies — that
 > might result from this deal. Share your thoughts in 3–4 lines."
+
+This question is not the closer. It is the set-up for one: the risks a candidate names here are
+the raw material for the next steps in archetype 9.
+
+### 9. The closing recommendation (last question, always)
+
+`type: "synthesis"`, `responseFormat: "text"`, `maxLines` 6 to 8, `timeLimitSeconds` 180. Put a
+named person and a deadline in the prompt — that is what forces synthesis rather than summary:
+
+> "Kestrel's CEO calls for your recommendation on the Vietnam plant. Please give your answer in
+> seven to eight lines maximum."
+
+Never signpost the structure inside the prompt ("remember to include next steps"). Producing the
+structure unprompted is the thing being tested; the rubric below is where it is enforced.
+
+**What a strong answer looks like.** Three criteria, and the `keyPoints` must test all three:
+
+1. **It opens with the recommendation.** The very first sentence states the call, assertively and
+   without preamble. The most common failure is a candidate who restates the problem, narrates
+   the analysis, and arrives at the answer last. A candidate who hedges the call itself ("it
+   depends on…", "it could go either way") has not made a recommendation — hedging belongs in the
+   next steps, never in the first line.
+2. **It is structured.** A stated number of reasons, then those reasons, then the call again:
+
+   > "I recommend we do not enter the peanut butter market, for three reasons. One, the top four
+   > players hold 90% of the market — it is concentrated, with high barriers to entry. Two, there
+   > are no synergies with our jam business; we would buy new equipment and develop a recipe.
+   > Three, break-even is ten years out, against management's two-to-three-year horizon. For
+   > these reasons, I recommend we do not enter."
+
+   Each reason carries a figure the candidate established earlier in *this* case, and interprets
+   it — "$150M against $90M, so payback in about 3.6 years, inside the four-year hurdle" — rather
+   than re-running the arithmetic. Two to three reasons is right; a fourth is padding.
+3. **It ends with next steps.** Two of them, each one a loose end the case itself left: the
+   assumption the scenario question moved, the datum the data-sufficiency question said was
+   missing, a risk from the disadvantages question. Next steps are not new ideas introduced in
+   the last line — they are the things the candidate wished they had, said out loud.
+
+**Writing the rubric.** `keyPoints` follows that order, one entry per criterion plus the cap:
+
+- "Opens with the call itself in the first sentence — build the plant — with no preamble and no
+  restatement of the problem"
+- one entry per supporting reason, naming the figure it must carry
+- "Closes by restating the recommendation"
+- "Gives two next steps drawn from the case: currency exposure, and the ramp-up assumption behind
+  the year-one volume"
+- "Stays inside seven or eight lines and does not narrate the calculation"
+
+Name the call the case's arithmetic supports. Where the numbers genuinely land close to the
+hurdle, say so in `keyPoints` and credit either call **defended with the case's own figures** —
+but never write a rubric that rewards refusing to pick.
+
+`commonMistakes` for this question names the delivery failures, not the analysis:
+opening with a summary of the problem; hedging the call; reciting the arithmetic step by step;
+listing reasons with no numbers attached; stopping at the reasons with no next steps; and the
+case-specific one — the reason this candidate is most likely to lead with instead of the
+strongest one.
+
+`scoringWeights` here should lean on communication (about 0.4), with structure and accuracy
+splitting the rest: this is the one question where *how it is delivered* is most of the score.
 
 ---
 
@@ -437,11 +498,14 @@ has to choose to open, and opening it is recorded against them. So:
 
 ## Question design rules
 
-- **8 to 10 questions**, and the last one is `responseFormat: "text"` — the app requires it.
+- **8 to 10 questions**, and the last one is the closing recommendation of archetype 9 —
+  `type: "synthesis"`, `responseFormat: "text"`; the app requires the free-text ending, and the
+  assessment requires it to be a recommendation rather than one more list of risks.
 - **The ten slots are almost fully spoken for.** A case that satisfies these rules lands on:
   1 structuring (arch 1) · 2 composite number (arch 2) · 3 explain (arch 3) · 4–5 two components ·
-  6 counterfactual (arch 4) · 7 scenario re-run (arch 5) · 8 explain (arch 3) · 9 data sufficiency
-  (arch 7) · 10 closing free text (arch 8). That is the default running order, and it leaves no
+  6 counterfactual (arch 4) · 7 scenario re-run (arch 5) · 8 data sufficiency (arch 7) · 9 risks
+  as free text (arch 8) · 10 closing recommendation (arch 9). That is the default running order,
+  and it leaves no
   spare slot: archetype 6 (the comparative bidder) and a select-all advantages question are
   *extras*, and taking one means dropping a component or folding it into an explain question's
   rubric. Decide that trade deliberately rather than discovering it at question nine.
@@ -497,7 +561,10 @@ Answer these honestly; if any is "no", revise rather than emitting.
 6. Does the brief carry every fact the case needs, other than what follow-ups deliberately add?
 7. Does the scenario move exactly one term of the model, and did you prove that in code?
 8. Is every figure you quoted inside `commonMistakes` computed by the script rather than estimated?
-9. Did the verification script actually run, and is its real output in `verificationLog`?
+9. Does the last question ask for a recommendation, and does its rubric require the call in the
+   first sentence, reasons carrying figures from this case, and two next steps drawn from loose
+   ends the case actually left?
+10. Did the verification script actually run, and is its real output in `verificationLog`?
 
 ## Output format
 

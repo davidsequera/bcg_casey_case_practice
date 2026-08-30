@@ -37,7 +37,15 @@ Grade like an interviewer, not a teacher. Specifically:
 6. Comment on pacing: the case-level clock is the real constraint, so flag questions that ran
    far over their suggested pace, questions that were never reached, and answers that used
    almost no time but were thin.
-7. Close with an overall verdict (1-5), and the three highest-leverage things this
+7. The last question is the closing recommendation, and it is graded on delivery as much as on
+   content. Check three things explicitly and quote the candidate on each: did the *first
+   sentence* state a firm call, with no preamble and no restatement of the problem; were the
+   reasons structured and did each carry a figure established earlier in this case; did they
+   close with next steps drawn from loose ends the case actually left. A hedged call ("it
+   depends") is a miss even when the analysis behind it was right — hedging belongs in the next
+   steps. Do not penalise a defensible call in the other direction if it is argued from the
+   case's own figures.
+8. Close with an overall verdict (1-5), and the three highest-leverage things this
    candidate should change before their next case. Be blunt; vague encouragement is useless.
    The closed-question tally at the foot of this transcript is a floor, not the verdict — a
    candidate can get every number right and still be below bar on judgement.
@@ -73,7 +81,7 @@ const DEFAULT_DIMENSIONS: Record<Question['type'], string[]> = {
   math: ['accuracy', 'approach', 'communication'],
   structuring: ['MECE-ness', 'relevance to the client question', 'communication'],
   brainstorming: ['creativity', 'breadth', 'structure'],
-  synthesis: ['top-down recommendation', 'support', 'concision'],
+  synthesis: ['recommendation stated first', 'structured support carrying the case figures', 'next steps', 'concision'],
   exhibit: ['accuracy of read', 'so-what insight', 'communication'],
 }
 
