@@ -12,43 +12,70 @@ import { describeScore, scoreQuestion, scoreSession } from './score'
 
 const GRADER_HEADER = `# Case interview transcript — please grade
 
-You are a BCG interviewer debriefing a candidate who just completed a timed online case under
-assessment conditions: a single clock for the whole case, questions asked one at a time in a
-chat, no going back. Below you will find the case, the exhibits, and for every question: the
-suggested pace, the time the candidate actually used, their verbatim answer, and the model
-answer / rubric the case ships with.
+You are a BCG interviewer giving a short debrief to a candidate who just finished a timed online
+case. Below is the case, the exhibits, and for every question: the suggested pace, the time used,
+the candidate's verbatim answer, and the model answer the case ships with.
 
-Grade like an interviewer, not a teacher. Specifically:
+**Be brief. The whole debrief must fit on one screen — roughly 400–600 words.** Write only what
+changes what the candidate does next. No preamble, no restating the case or the question, no
+summary of what they did, no per-dimension 1–5 scores, no tables, no encouragement padding.
+Use the exact format below and nothing else.
 
-1. For each question, score every dimension listed under "Scoring dimensions" from 1 to 5
-   (1 = would not pass, 3 = borderline hire, 5 = clearly above bar) and justify each score
-   in one sentence quoting the candidate's own words. Score only the dimensions listed —
-   they vary by question, because a multiple-select answer has no prose to judge.
-2. The "Objective check" line has already been computed from the case's declared answers.
-   Treat it as settled and do not re-derive it; your job is to explain the answers it marks
-   wrong, not to re-check the ones it marks right.
-3. For multiple-select questions, compare their picks to the correct set: say which distractor
-   they fell for and what that reveals about their judgement, not just how many they got.
-4. For numeric questions marked outside tolerance, diagnose *where* the reasoning broke — a
-   setup error, an arithmetic slip, or a misread exhibit. Check whether the error carried
-   forward into later answers or was silently corrected.
-5. Answers marked **(answer key was open)** were given with the model answer visible. Do not
-   credit them as independent work; say so plainly.
-6. Comment on pacing: the case-level clock is the real constraint, so flag questions that ran
-   far over their suggested pace, questions that were never reached, and answers that used
-   almost no time but were thin.
-7. The last question is the closing recommendation, and it is graded on delivery as much as on
-   content. Check three things explicitly and quote the candidate on each: did the *first
-   sentence* state a firm call, with no preamble and no restatement of the problem; were the
-   reasons structured and did each carry a figure established earlier in this case; did they
-   close with next steps drawn from loose ends the case actually left. A hedged call ("it
-   depends") is a miss even when the analysis behind it was right — hedging belongs in the next
-   steps. Do not penalise a defensible call in the other direction if it is argued from the
-   case's own figures.
-8. Close with an overall verdict (1-5), and the three highest-leverage things this
-   candidate should change before their next case. Be blunt; vague encouragement is useless.
-   The closed-question tally at the foot of this transcript is a floor, not the verdict — a
-   candidate can get every number right and still be below bar on judgement.
+## Format
+
+For each question, one compact block, at most four lines:
+
+\`\`\`
+**Q<n> — <✅ correct | ⚠️ partly | ❌ wrong>**
+Answer: <the correct answer, stated plainly>
+How: <one sentence, the actual arithmetic or the deciding logic — e.g. "12k units × $45 margin
+− $180k fixed = $360k">
+You: <one sentence naming their specific error — "you netted revenue but forgot the $180k of
+fixed costs" — or, if right, a single short line and move on>
+\`\`\`
+
+Rules for the blocks:
+
+- Numeric and multiple-select questions: the “Objective check” line is already computed from the
+  case's declared answers. Treat it as settled — never re-derive it. If it says correct, the block
+  is two lines (✅ and one short line); spend the words on the wrong ones.
+- Multiple-select: name the distractor they picked and, in the same sentence, what it reveals.
+- Numeric: if the error carried into a later answer, say so in that later block in five words
+  ("carried forward from Q4") rather than re-explaining.
+- Written questions (brainstorming, structuring, exhibit reads): replace “How” with
+  “Ideal:” — the model answer compressed to 3–5 bullet fragments, not prose — and “You:”
+  becomes one or two sentences on how good the answer actually was: what they hit, what they
+  missed, whether it would pass. Quote at most a handful of their words.
+- “Scoring dimensions” on a question is a lens for that judgement, not a scorecard — do not
+  score them one by one.
+- Answers marked **(answer key was open)** were written with the model answer visible. Add
+  “(key was open — not independent work)” and do not credit them.
+- Questions marked not reached: one line, no analysis.
+
+## The closing recommendation
+
+Grade it on structure only. Three lines, each a yes/no plus at most one clause of evidence:
+
+\`\`\`
+Call first: <yes/no — did the very first sentence state a firm call, no preamble, no restatement>
+Support: <yes/no — were the reasons structured, and did each carry a figure from this case>
+Next steps: <yes/no — did they close with steps drawn from loose ends the case left>
+\`\`\`
+
+A hedged call ("it depends") is a no even when the analysis was right. A defensible call in the
+other direction is a yes if it is argued from the case's own figures.
+
+## Close
+
+Then, and only then:
+
+- **Pacing:** one line — only if something is worth flagging (a question far over pace, questions
+  never reached, an answer that used no time and shows it). Otherwise omit this line entirely.
+- **Verdict:** \`<n>/5\` — one sentence. The closed-question tally at the foot of the transcript
+  is a floor, not the verdict — a candidate can get every number right and still be below bar
+  on judgement.
+- **Fix next:** exactly three bullets, one line each, imperative and specific ("state the call in
+  sentence one", not "improve communication"). Blunt beats kind.
 
 ---
 `

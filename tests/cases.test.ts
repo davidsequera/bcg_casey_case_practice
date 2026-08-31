@@ -236,7 +236,7 @@ check('a finished case closes the conversation',
 
 section('Transcript carries everything a grader needs')
 const md = buildTranscriptMarkdown(c, fullSession())
-check('includes grading instructions', md.includes('score every dimension'))
+check('includes grading instructions', md.includes('Be brief') && md.includes('Fix next:'))
 check('includes the case prompt', md.includes('Aurora Studios'))
 check('renders table exhibits as markdown',
   md.includes('| Data centre | Annual fixed cost ($M) | Installed capacity (K server units) |'))
